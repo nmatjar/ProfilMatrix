@@ -6,7 +6,7 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User } from "lucide-react";
+import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from 'react-router-dom';
 
 interface ActiveSegment {
@@ -100,10 +100,15 @@ const mainAreas: MainArea[] = [
 // Mapowanie kategorii do obszarów
 const categoryToAreaMap: Record<string, string> = {
   // Środowisko
+  'workplace': 'environment',
   'os': 'environment',
+  'hardware': 'environment',
+  'workPlace': 'environment',
   'ide': 'environment',
   'terminal': 'environment',
   'browser': 'environment',
+  'mobility': 'environment',
+  'officeType': 'environment',
   
   // Zespół
   'teamSize': 'team',
@@ -481,78 +486,83 @@ const Index = () => {
   };
 
   const renderCategoryOptions = () => {
-    const category = categories[activeCategory];
+    // Pobierz wszystkie kategorie z aktualnie wybranego obszaru
+    const areaCategories = getCategoriesByArea(selectedArea);
     
     return (
-      <div className="mb-4">
-        <h2 className="text-xl font-bold mb-4 flex items-center">
-          {category.icon}
-          <span className="ml-2">{category.name}</span>
-        </h2>
-        
-        {category.type === "input" ? (
-          <div className="mb-4">
-            <Input
-              placeholder={`Wprowadź ${category.name.toLowerCase()}`}
-              value={selections[category.id] || ""}
-              onChange={(e) => handleInputChange(e, category.id)}
-              className="w-full"
-            />
-          </div>
-        ) : category.type === "slider" ? (
-          <div className="mb-4">
-            <Slider
-              defaultValue={[selections[category.id] || 0]}
-              max={100}
-              step={1}
-              onValueChange={(value) => handleSliderChange(value, category.id)}
-              className="w-full"
-            />
-            <div className="text-center mt-2">
-              {selections[category.id] || 0}%
-            </div>
-          </div>
-        ) : category.options ? (
-          <div className="grid grid-cols-1 gap-2">
-            <ToggleGroup type="single" variant="outline" className="flex flex-col space-y-1">
-              {category.options.map((option) => (
-                <ToggleGroupItem
-                  key={option.id}
-                  value={option.value}
-                  className="flex items-center justify-start p-2 border border-green-700 rounded bg-black"
-                  onClick={() => handleOptionSelect(category.id, option.value)}
-                  data-state={selections[category.id] === option.value ? "on" : "off"}
-                >
-                  <span>{option.label}</span>
-                </ToggleGroupItem>
-              ))}
-            </ToggleGroup>
-          </div>
-        ) : category.subCategories ? (
-          <div className="space-y-4">
-            {category.subCategories.map((subCategory) => (
-              <div key={subCategory.id} className="mb-4">
-                <div className="flex items-center mb-2">
-                  {subCategory.icon}
-                  <h4 className="text-md font-medium">{subCategory.name}</h4>
+      <div className="space-y-8">
+        {areaCategories.map((category) => (
+          <div key={category.id} className="mb-6">
+            <h2 className="text-xl font-bold mb-4 flex items-center">
+              {category.icon}
+              <span className="ml-2">{category.name}</span>
+            </h2>
+            
+            {category.type === "input" ? (
+              <div className="mb-4">
+                <Input
+                  placeholder={`Wprowadź ${category.name.toLowerCase()}`}
+                  value={selections[category.id] || ""}
+                  onChange={(e) => handleInputChange(e, category.id)}
+                  className="w-full"
+                />
+              </div>
+            ) : category.type === "slider" ? (
+              <div className="mb-4">
+                <Slider
+                  defaultValue={[selections[category.id] || 0]}
+                  max={100}
+                  step={1}
+                  onValueChange={(value) => handleSliderChange(value, category.id)}
+                  className="w-full"
+                />
+                <div className="text-center mt-2">
+                  {selections[category.id] || 0}%
                 </div>
+              </div>
+            ) : category.options ? (
+              <div className="grid grid-cols-1 gap-2">
                 <ToggleGroup type="single" variant="outline" className="flex flex-col space-y-1">
-                  {subCategory.options.map((option) => (
+                  {category.options.map((option) => (
                     <ToggleGroupItem
                       key={option.id}
                       value={option.value}
-                      className="flex items-center justify-start p-2 border border-green-700 rounded bg-black"
-                      onClick={() => handleOptionSelect(subCategory.id, option.value)}
-                      data-state={selections[subCategory.id] === option.value ? "on" : "off"}
+                      className="flex items-center justify-start p-2 border border-green-700"
+                      onClick={() => handleOptionSelect(category.id, option.value)}
+                      data-state={selections[category.id] === option.value ? "on" : "off"}
                     >
                       <span>{option.label}</span>
                     </ToggleGroupItem>
                   ))}
                 </ToggleGroup>
               </div>
-            ))}
+            ) : category.subCategories ? (
+              <div className="space-y-4">
+                {category.subCategories.map((subCategory) => (
+                  <div key={subCategory.id} className="mb-4">
+                    <div className="flex items-center mb-2">
+                      {subCategory.icon}
+                      <h4 className="text-md font-medium ml-2">{subCategory.name}</h4>
+                    </div>
+                    <ToggleGroup type="single" variant="outline" className="flex flex-col space-y-1">
+                      {subCategory.options.map((option) => (
+                        <ToggleGroupItem
+                          key={option.id}
+                          value={option.value}
+                          className="flex items-center justify-start p-2 border border-green-700"
+                          onClick={() => handleOptionSelect(subCategory.id, option.value)}
+                          data-state={selections[subCategory.id] === option.value ? "on" : "off"}
+                        >
+                          <span>{option.label}</span>
+                        </ToggleGroupItem>
+                      ))}
+                    </ToggleGroup>
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </div>
-        ) : null}
+        ))}
       </div>
     );
   };
@@ -560,56 +570,32 @@ const Index = () => {
   const renderNavigationButtons = () => {
     return (
       <div className="flex justify-between mt-6">
-        <Button
+        <button
           onClick={() => {
-            // Znajdź poprzednią kategorię w tym samym obszarze
-            const areaCategories = getCategoriesByArea(selectedArea);
-            const currentIndex = areaCategories.findIndex(c => c.id === categories[activeCategory].id);
-            if (currentIndex > 0) {
-              // Jeśli nie jest to pierwsza kategoria w obszarze, przejdź do poprzedniej
-              setActiveCategory(categories.findIndex(c => c.id === areaCategories[currentIndex - 1].id));
-            } else if (areaCategories.length > 0) {
-              // Jeśli jest to pierwsza kategoria, przejdź do poprzedniego obszaru
-              const areaIndex = mainAreas.findIndex(a => a.id === selectedArea);
-              if (areaIndex > 0) {
-                const prevArea = mainAreas[areaIndex - 1].id;
-                setSelectedArea(prevArea);
-                const prevAreaCategories = getCategoriesByArea(prevArea);
-                if (prevAreaCategories.length > 0) {
-                  setActiveCategory(categories.findIndex(c => c.id === prevAreaCategories[prevAreaCategories.length - 1].id));
-                }
-              }
+            const areaIndex = mainAreas.findIndex(a => a.id === selectedArea);
+            if (areaIndex > 0) {
+              const prevArea = mainAreas[areaIndex - 1].id;
+              setSelectedArea(prevArea);
             }
           }}
           className="px-4 py-2 border border-green-700 rounded hover:bg-green-900 hover:bg-opacity-30 flex items-center"
         >
-          <span className="mr-2">◀︎</span> Poprzedni
-        </Button>
-        <Button
+          <ChevronLeft className="h-4 w-4 mr-2" />
+          Poprzedni
+        </button>
+        <button
           onClick={() => {
-            // Znajdź następną kategorię w tym samym obszarze
-            const areaCategories = getCategoriesByArea(selectedArea);
-            const currentIndex = areaCategories.findIndex(c => c.id === categories[activeCategory].id);
-            if (currentIndex < areaCategories.length - 1) {
-              // Jeśli nie jest to ostatnia kategoria w obszarze, przejdź do następnej
-              setActiveCategory(categories.findIndex(c => c.id === areaCategories[currentIndex + 1].id));
-            } else if (areaCategories.length > 0) {
-              // Jeśli jest to ostatnia kategoria, przejdź do następnego obszaru
-              const areaIndex = mainAreas.findIndex(a => a.id === selectedArea);
-              if (areaIndex < mainAreas.length - 1) {
-                const nextArea = mainAreas[areaIndex + 1].id;
-                setSelectedArea(nextArea);
-                const nextAreaCategories = getCategoriesByArea(nextArea);
-                if (nextAreaCategories.length > 0) {
-                  setActiveCategory(categories.findIndex(c => c.id === nextAreaCategories[0].id));
-                }
-              }
+            const areaIndex = mainAreas.findIndex(a => a.id === selectedArea);
+            if (areaIndex < mainAreas.length - 1) {
+              const nextArea = mainAreas[areaIndex + 1].id;
+              setSelectedArea(nextArea);
             }
           }}
           className="px-4 py-2 border border-green-700 rounded hover:bg-green-900 hover:bg-opacity-30 flex items-center"
         >
-          Następny <span className="ml-2">▶︎</span>
-        </Button>
+          Następny
+          <ChevronRight className="h-4 w-4 ml-2" />
+        </button>
       </div>
     );
   };
