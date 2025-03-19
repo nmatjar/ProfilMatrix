@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,12 +19,21 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				mono: ['Space Mono', 'monospace'],
+				terminal: ['VT323', 'monospace'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				terminal: {
+					green: '#00FF00',
+					darkgreen: '#003300',
+					black: '#000000',
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -63,6 +73,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			backgroundImage: {
+				'crt-overlay': 'repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 2px, transparent 2px, transparent 4px)',
+				'terminal-glow': 'radial-gradient(ellipse at center, rgba(0, 255, 0, 0.2) 0%, rgba(0, 0, 0, 0) 70%)',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -84,11 +98,32 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'scanline': {
+					'0%': { top: '0%' },
+					'100%': { top: '100%' }
+				},
+				'blink': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0' }
+				},
+				'pulse-glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 5px rgba(0, 255, 0, 0.5)',
+						textShadow: '0 0 5px rgba(0, 255, 0, 0.5)'
+					},
+					'50%': { 
+						boxShadow: '0 0 15px rgba(0, 255, 0, 0.8)',
+						textShadow: '0 0 15px rgba(0, 255, 0, 0.8)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'scanline': 'scanline 6s linear infinite',
+				'blink': 'blink 1s step-end infinite',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
 			}
 		}
 	},
