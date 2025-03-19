@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/hooks/use-toast";
-import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Robot, Smartphone, Lightbulb } from "lucide-react";
+import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb } from "lucide-react";
 
 const Index = () => {
   const { toast } = useToast();
@@ -29,7 +28,6 @@ const Index = () => {
     asyncPreference: 3
   });
 
-  // Categories and their options
   const categories = [
     {
       id: "workplace",
@@ -146,14 +144,12 @@ const Index = () => {
     }
   ];
 
-  // Update profile code when selections change
   useEffect(() => {
     const { 
       workplace, mobility, culture, potential, transformation, 
       availability, synergy, workHours, locationMobility, system
     } = selections;
 
-    // Generate profile code based on selections
     const code = [
       workplace ? `${workplace}⇄🌐.${mobility}.${culture}` : "",
       potential ? `💫P${potential}.${transformation}.${availability}` : "",
@@ -196,7 +192,6 @@ const Index = () => {
     });
   };
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowRight" || e.key === "Tab") {
@@ -212,7 +207,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-green-500 font-mono flex flex-col">
-      {/* Header */}
       <header className="border-b border-green-900 p-4 flex justify-between items-center bg-black bg-opacity-90 backdrop-blur-sm">
         <div className="flex items-center">
           <Terminal className="h-6 w-6 mr-2" />
@@ -224,9 +218,7 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Main content */}
       <main className="flex-1 flex flex-col md:flex-row">
-        {/* Sidebar with categories */}
         <div className="md:w-64 border-r border-green-900 bg-black bg-opacity-80">
           <div className="p-4">
             <h2 className="text-lg font-bold mb-4">Kategorie</h2>
@@ -249,17 +241,14 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Main content area */}
         <div className="flex-1 p-6">
           <div className="max-w-3xl mx-auto space-y-8">
-            {/* Current category selection */}
             <div className="border border-green-900 rounded-md p-6 bg-black bg-opacity-90 backdrop-blur-sm">
               <h2 className="text-xl font-bold mb-4 flex items-center">
                 {categories[activeCategory].icon}
                 <span>{categories[activeCategory].name}</span>
               </h2>
 
-              {/* Render different inputs based on category type */}
               {categories[activeCategory].type === "slider" ? (
                 <div className="space-y-4">
                   <div className="flex justify-between">
@@ -348,7 +337,6 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Profile code display */}
             <div className="border border-green-900 rounded-md p-6 bg-black bg-opacity-90 backdrop-blur-sm">
               <h2 className="text-xl font-bold mb-4">Wygenerowany Profil</h2>
               <div className="font-bold text-sm sm:text-base md:text-lg break-all bg-black p-4 rounded border border-green-700 font-mono">
@@ -365,7 +353,6 @@ const Index = () => {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="border-t border-green-900 p-4 text-center text-xs bg-black bg-opacity-90">
         <p>Profile Coder v1.0 | Nawigacja: Klawiatura [←][→] lub Przyciski</p>
       </footer>
