@@ -11,7 +11,7 @@ import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, T
 import { Link } from 'react-router-dom';
 import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/segment-types';
 import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
-import { dnaCategories, getDNACodeForValue, getDNAMappingForSegment, groupSegmentsByArea, ensureAllSegmentsMapped } from '@/lib/dna-code-mapping';
+import { dnaCategories, getDNACodeForValue, getDNAMappingForSegment, groupSegmentsByArea, ensureAllSegmentsMapped, parseDNACode, ParsedDNASegment } from '@/lib/dna-code-mapping';
 import { DNACodeDisplay } from '@/components/DNACodeDisplay';
 
 interface ActiveSegment {
@@ -116,6 +116,7 @@ function getSegmentsByAreaId(areaId: string): SegmentWithIcon[] {
 const Index = () => {
   const { toast } = useToast();
   const [profile, setProfile] = useState("");
+  const [parsedDnaCode, setParsedDnaCode] = useState<ParsedDNASegment[]>([]);
   const [activeSegments, setActiveSegments] = useState<ActiveSegment[]>([]);
   const [selections, setSelections] = useState<Record<string, string | number>>({});
   const [activeCategory, setActiveCategory] = useState(0);
@@ -624,69 +625,71 @@ const Index = () => {
     localStorage.setItem('activeSegments', JSON.stringify(updatedSegments));
   }, [selections]);
 
-  // Generate profile code based on selections and active segments
+  // Funkcja pomocnicza do formatowania kodu DNA dla obszaru
+  const formatDNACode = (areaId: string, segments: { segmentId: string, value: string | number }[]) => {
+    if (segments.length === 0) return '';
+    
+    const area = mainAreas.find(a => a.id === areaId);
+    if (!area) return '';
+    
+    // Generuj kody dla segmentów w obszarze
+    const codePairs = segments.map(segment => {
+      const mapping = getDNAMappingForSegment(segment.segmentId);
+      if (!mapping) return '';
+      
+      const valueCode = getDNACodeForValue(segment.segmentId, segment.value);
+      // Upewnij się, że mamy zarówno kod jak i wartość
+      if (!mapping.code || !valueCode) return '';
+      
+      return `${mapping.code}.${valueCode}`;
+    }).filter(Boolean);
+    
+    if (codePairs.length === 0) return '';
+    
+    // Pobierz emoji dla obszaru z dnaCategories
+    const areaInfo = dnaCategories.find(c => c.id === areaId);
+    const emoji = areaInfo ? areaInfo.emoji : '🔹';
+    
+    // Połącz kody w jeden string, upewniając się, że nie ma podwójnych kropek
+    return `${emoji}${codePairs.join('.')}`;
+  };
+
+  // Efekt do generowania profilu
   useEffect(() => {
-    if (activeSegments.length === 0) {
-      console.log('No active segments available yet');
-      return;
-    }
-    
-    console.log('Generating profile with active segments:', activeSegments);
-    
     // Upewnij się, że wszystkie segmenty mają mapowania DNA
     ensureAllSegmentsMapped();
     
-    // Grupuj segmenty według obszarów
-    const groupedSegments = groupSegmentsByArea(activeSegments);
-    
-    console.log('Grouped segments by area:', groupedSegments);
+    // Pogrupuj segmenty według obszarów
+    const segmentsByArea = groupSegmentsByArea(activeSegments);
     
     // Generuj kod dla każdego obszaru
-    const codeSegments = [];
+    const areaCodes = Object.entries(segmentsByArea)
+      .map(([areaId, segments]) => {
+        const formattedCode = formatDNACode(areaId, segments);
+        return formattedCode ? formattedCode : null;
+      })
+      .filter(Boolean); // Usuń puste kody
     
-    // Funkcja pomocnicza do formatowania kodu DNA dla obszaru
-    const formatDNACode = (areaId: string, segments: { segmentId: string, value: string | number }[]) => {
-      if (segments.length === 0) return '';
-      
-      const area = mainAreas.find(a => a.id === areaId);
-      if (!area) return '';
-      
-      // Generuj kody dla segmentów w obszarze
-      const codes = segments.map(segment => {
-        const mapping = getDNAMappingForSegment(segment.segmentId);
-        if (!mapping) return '';
-        
-        const valueCode = getDNACodeForValue(segment.segmentId, segment.value);
-        return `${mapping.code}.${valueCode}`;
-      }).filter(Boolean);
-      
-      if (codes.length === 0) return '';
-      
-      // Pobierz emoji dla obszaru z dnaCategories
-      const areaInfo = dnaCategories.find(c => c.id === areaId);
-      const emoji = areaInfo ? areaInfo.emoji : '🔹';
-      
-      // Połącz kody w jeden string
-      return `${emoji}${codes.join('.')}`;
-    };
+    // Połącz kody obszarów w jeden string
+    const fullDNACode = areaCodes.join(' | ');
     
-    // Generuj kod dla każdego obszaru
-    mainAreas.forEach(area => {
-      const areaSegments = groupedSegments[area.id] || [];
-      if (areaSegments.length > 0) {
-        const areaCode = formatDNACode(area.id, areaSegments);
-        if (areaCode) {
-          codeSegments.push(areaCode);
-        }
-      }
-    });
+    // Ustaw kod DNA
+    setProfile(fullDNACode);
     
-    // Połącz wszystkie segmenty kodu
-    const code = codeSegments.filter(Boolean).join(" | ");
+    // Zapisz kod DNA w localStorage
+    localStorage.setItem('dnaCode', fullDNACode);
     
-    console.log('Generated DNA profile code:', code);
-    setProfile(code);
+    console.log('Wygenerowano kod DNA:', fullDNACode);
   }, [selections, activeSegments]);
+
+  // Efekt do parsowania kodu DNA
+  useEffect(() => {
+    if (!profile) return
+    
+    // Parsuj kod DNA
+    const parsed = parseDNACode(profile);
+    setParsedDnaCode(parsed);
+  }, [profile]);
 
   // Funkcja pomocnicza do wyciągania opisu z etykiety (tekst w nawiasie)
   const extractDescription = (label: string): string => {
@@ -734,7 +737,7 @@ const Index = () => {
                 {profile && (
                   <div className="mt-4 p-4 rounded border border-green-700 bg-black/50">
                     <h3 className="text-lg font-semibold mb-2">Wizualizacja DNA</h3>
-                    <DNACodeDisplay code={profile} />
+                    <DNACodeDisplay parsedCode={parsedDnaCode} rawCode={profile} />
                   </div>
                 )}
                 <button

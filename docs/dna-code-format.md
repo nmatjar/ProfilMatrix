@@ -4,75 +4,104 @@
 
 Format DNA to nowy sposób reprezentacji profili w aplikacji ProfileCoder. Został zaprojektowany, aby być bardziej zwięzły, czytelny i elastyczny niż poprzedni format. Format DNA używa krótkich kodów i emotikonów do reprezentowania różnych atrybutów i preferencji użytkownika.
 
-## Struktura formatu DNA
+## Struktura kodu DNA
 
-Format DNA składa się z segmentów, które są pogrupowane według obszarów aplikacji. Każdy segment ma następującą strukturę:
+Kod DNA ma następującą strukturę:
 
 ```
-[EMOJI][KOD1].[WARTOŚĆ1].[KOD2].[WARTOŚĆ2]...
+[emoji_obszaru][kod_segmentu].[wartość].[kod_segmentu].[wartość]... | [emoji_obszaru][kod_segmentu].[wartość]...
 ```
 
-Na przykład:
-```
-🧬ORG.K.WF.Z | 📍LOC.WAW.MOB.F3 | 👥TS.S.TWS.TA
-```
+Gdzie:
+- `[emoji_obszaru]` - emoji reprezentujące obszar aplikacji (np. 🏢 dla "Praca i Organizacja")
+- `[kod_segmentu]` - 2-3 znakowy kod identyfikujący segment (np. "WP" dla "Work Preference")
+- `[wartość]` - wartość segmentu, która może być:
+  - Kodem wartości dla segmentów z predefiniowanymi opcjami (np. "K" dla "Korporacja")
+  - Wartością skalarną z prefiksem typu skali (np. "P50" dla "50%" w skali procentowej)
 
-### Elementy formatu DNA
-
-1. **Emoji kategorii** - Emotikona reprezentująca obszar aplikacji, np. 🧬 dla pracy i organizacji, 📍 dla lokalizacji i mobilności.
-2. **Kod segmentu** - Krótki kod reprezentujący segment, np. ORG dla typu organizacji, WF dla formatu pracy.
-3. **Wartość segmentu** - Wartość wybrana dla danego segmentu, np. K dla korporacji, Z dla pracy zdalnej.
-4. **Separator segmentów** - Kropka (.) oddziela kody i wartości w ramach jednej kategorii.
-5. **Separator obszarów** - Pionowa kreska (|) oddziela różne obszary aplikacji.
+Sekcje dla różnych obszarów są oddzielone znakiem `|` (pionowa kreska).
 
 ## Obszary aplikacji
 
-Format DNA grupuje segmenty według obszarów aplikacji, które są oznaczone odpowiednimi emoji:
+Kod DNA jest podzielony na następujące obszary, każdy oznaczony odpowiednim emoji:
 
-1. **💼 Praca i Organizacja (work-organization)** - Preferencje dotyczące organizacji i środowiska pracy.
-2. **📍 Lokalizacja i Mobilność (location-mobility)** - Preferencje dotyczące lokalizacji pracy.
-3. **👥 Współpraca i Relacje (collaboration-relations)** - Preferencje dotyczące współpracy i interakcji z innymi.
-4. **⏰ Czas i Dostępność (time-availability)** - Preferencje dotyczące czasu i organizacji pracy.
-5. **🧠 Proces i Metodologia (process-methodology)** - Preferencje dotyczące procesów i metodologii pracy.
-6. **💬 Komunikacja i Decyzje (communication-decisions)** - Preferencje dotyczące komunikacji i podejmowania decyzji.
-7. **🔄 Rozwój i Adaptacja (development-adaptation)** - Umiejętności, potencjał i faza rozwoju zawodowego.
-8. **💻 Preferencje Technologiczne (technology-preferences)** - Preferowane narzędzia i technologie.
-9. **☕ Styl Pracy i Preferencje (work-style-preferences)** - Preferencje dotyczące stylu pracy.
-
-Każdy obszar jest oznaczony odpowiednim emoji, które pojawia się na początku segmentu kodu DNA.
+| Emoji | ID obszaru | Nazwa obszaru |
+|-------|------------|---------------|
+| 🏢 | work-organization | Praca i Organizacja |
+| 📍 | location-mobility | Lokalizacja i Mobilność |
+| 👥 | collaboration-relations | Współpraca i Relacje |
+| ⏰ | time-availability | Czas i Dostępność |
+| 🧠 | process-methodology | Proces i Metodologia |
+| 💬 | communication-decisions | Komunikacja i Decyzje |
+| 🔄 | development-adaptation | Rozwój i Adaptacja |
+| 💻 | technology-preferences | Preferencje Technologiczne |
+| ☕ | work-style-preferences | Styl Pracy i Preferencje |
 
 ## Typy skal
 
-Format DNA obsługuje różne typy skal dla wartości segmentów:
+Dla segmentów, które używają skal, stosujemy następujące prefiksy:
 
-1. **P[0-100]** - Skala procentowa, np. P75 oznacza 75%.
-2. **T[1-5]** - Skala od 1 do 5, np. T3 oznacza 3/5.
-3. **F[1-5]** - Skala elastyczności, np. F4 oznacza wysoką elastyczność.
-4. **C[1-5]** - Skala kultury, np. C2 oznacza kulturę typu 2.
-5. **A[1-5]** - Skala dostępności, np. A3 oznacza średnią dostępność.
-6. **S[1-5]** - Skala synergii, np. S5 oznacza maksymalną synergię.
+| Prefiks | Typ skali | Przykład | Znaczenie |
+|---------|-----------|----------|-----------|
+| P | Procentowa | P50 | 50% |
+| T | 1-5 | T3 | 3/5 |
+| F | Elastyczność | F4 | Elastyczność: 4/5 |
+| C | Kultura | CA | Kultura typu A |
+| A | Dostępność | A3 | Dostępność: 3/5 |
+| S | Synergia | S4 | Synergia: 4/5 |
 
-## Przykłady kodów DNA
+## Przykład kodu DNA
 
-### Przykład 1: Profil osoby preferującej pracę zdalną w korporacji
-
-```
-🧬ORG.K.WF.Z | 📍LOC.WAW.MOB.F3 | 👥TS.S.TWS.TA | ⏰WH.40.WS.9-17 | 🧠LS.A.PS.L | 💬FS.D.AP.A | 🔄SM.H | 💡IL.H.PP.L | 💻SYS.M
-```
-
-### Przykład 2: Profil osoby preferującej pracę hybrydową w startupie
+Przykładowy kod DNA:
 
 ```
-🧬ORG.S.WF.HE | 📍LOC.KRK.MOB.F4 | 👥TS.M.TWS.LL | ⏰WH.35.WS.F | 🧠LS.V.PS.C | 💬FS.C.AP.S | 🔄SM.M | 💡IL.I.PP.S | 💻SYS.A
+🏢WP.H.CU.T3.OT.S.ORG.K.WF.Z.OS.O | 📍LM.P50.LOC.W.MOB.F3 | 👥CS.D.AV.T4.TS.S.TWS.T | ⏰WP.F.WH.40.WS.F.AL.A1
 ```
+
+Zdekodowany:
+
+- **Praca i Organizacja** 🏢
+  - WP: Hybrydowa (Work Preference)
+  - CU: Kultura typu 3/5 (Culture)
+  - OT: Startup/Scaleup (Organization Type)
+  - ORG: Korporacja (Organization)
+  - WF: Zdalna (Work Format)
+  - OS: Biuro (Office Space)
+
+- **Lokalizacja i Mobilność** 📍
+  - LM: 50% (Location Mobility)
+  - LOC: Warszawa (Location)
+  - MOB: Elastyczność: 3/5 (Mobility)
+
+- **Współpraca i Relacje** 👥
+  - CS: Dyplomatyczny (Communication Style)
+  - AV: 4/5 (Availability)
+  - TS: Solo (Team Size)
+  - TWS: Team (Team Work Style)
+
+- **Czas i Dostępność** ⏰
+  - WP: Elastyczny (Work Pattern)
+  - WH: 40h (Work Hours)
+  - WS: Elastyczny (Work Schedule)
+  - AL: Dostępność: 1/5 (Availability Level)
+
+## Generowanie i parsowanie kodu DNA
+
+Kod DNA jest generowany na podstawie aktywnych segmentów użytkownika. Każdy segment jest mapowany na odpowiedni kod i wartość, a następnie segmenty są grupowane według obszarów. Kod jest parsowany w podobny sposób, dzieląc go na sekcje i pary kod-wartość.
+
+## Obsługa wartości tekstowych
+
+Dla wartości tekstowych, które nie mają predefiniowanych kodów, stosujemy następujące zasady:
+1. Dla pojedynczych słów: pierwsze 3 litery (np. "Warszawa" -> "WAR")
+2. Dla wielu słów: pierwsze litery każdego słowa (np. "Praca Zdalna" -> "PZ")
+3. Dla długich wartości: skrócona wersja oparta na pierwszych literach słów
 
 ## Zalety formatu DNA
 
-1. **Zwięzłość** - Format DNA jest bardziej zwięzły niż poprzedni format, co ułatwia jego przechowywanie i udostępnianie.
-2. **Czytelność** - Dzięki użyciu emotikonów i krótkich kodów, format DNA jest bardziej czytelny i łatwiejszy do interpretacji.
-3. **Elastyczność** - Format DNA jest bardziej elastyczny i może być łatwo rozszerzony o nowe segmenty i obszary aplikacji.
-4. **Strukturyzacja** - Format DNA grupuje segmenty według obszarów aplikacji, co ułatwia ich organizację i zrozumienie.
-5. **Wizualizacja** - Format DNA może być łatwo wizualizowany, co ułatwia jego interpretację.
+1. **Kompaktowość** - kod DNA jest znacznie krótszy niż pełne opisy preferencji
+2. **Czytelność** - użycie emoji i krótkich kodów ułatwia wizualne rozróżnianie sekcji
+3. **Elastyczność** - format obsługuje różne typy wartości (tekstowe, skalarne)
+4. **Rozszerzalność** - można łatwo dodawać nowe segmenty i obszary
 
 ## Mapowanie segmentów na kody DNA
 

@@ -1,70 +1,61 @@
 import React from 'react'
-import { parseDNACode } from '@/lib/dna-code-mapping'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { ParsedDNASegment } from '../lib/dna-code-mapping'
+import { dnaCategories } from '../lib/dna-code-mapping'
 
 interface DNACodeDisplayProps {
-  code: string
+  parsedCode: ParsedDNASegment[]
+  rawCode: string
 }
 
 /**
  * Komponent wyświetlający kod DNA w bardziej czytelny sposób
  */
-export function DNACodeDisplay({ code }: DNACodeDisplayProps) {
-  if (!code) return null
-
-  // Parsuj kod DNA
-  const parsedSegments = parseDNACode(code)
+export function DNACodeDisplay({ parsedCode, rawCode }: DNACodeDisplayProps) {
+  // Jeśli nie ma sparsowanego kodu, wyświetl tylko surowy kod
+  if (!parsedCode || parsedCode.length === 0) {
+    return (
+      <div className="dna-code-display">
+        <div className="raw-code">
+          <h3>Kod DNA:</h3>
+          <pre>{rawCode || 'Brak kodu DNA'}</pre>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="dna-code-display">
-      <TooltipProvider>
-        <div className="space-y-4">
-          {parsedSegments.map((segment, areaIndex) => (
-            <div key={areaIndex} className="category-container">
-              <div className="category-header flex items-center gap-2 mb-2 text-green-400 font-semibold">
-                <span className="text-xl">{segment.emoji}</span>
-                <span>{segment.areaName}</span>
-              </div>
+      <div className="raw-code">
+        <h3>Kod DNA:</h3>
+        <pre className="text-wrap">{rawCode}</pre>
+      </div>
+      
+      <div className="parsed-code">
+        <h3>Zdekodowany profil:</h3>
+        
+        {parsedCode.map((segment, index) => {
+          // Znajdź nazwę obszaru
+          const area = dnaCategories.find(c => c.id === segment.area)
+          const areaName = area ? area.name : segment.area
+
+          return (
+            <div key={index} className="area-section">
+              <h4>
+                {segment.emoji} {areaName}
+              </h4>
               
-              <div className="flex flex-wrap gap-3">
-                {segment.codes.length > 0 ? (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <div className="dna-segment bg-green-950/30 p-3 rounded-md border border-green-800 hover:border-green-500 transition-colors flex flex-wrap items-center gap-2 cursor-help">
-                        {segment.codes.map((codeItem, codeIndex) => (
-                          <div key={codeIndex} className="flex items-center gap-1">
-                            <span className="dna-code-item px-2 py-1 rounded-md text-sm bg-green-900/50 text-green-300 font-bold">
-                              {codeItem.code}
-                            </span>
-                            <span className="dna-code-item px-2 py-1 rounded-md text-sm bg-black/40 text-white">
-                              {codeItem.value}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent side="top" className="bg-black border border-green-700 p-3 max-w-sm">
-                      <div className="space-y-2">
-                        {segment.codes.map((codeItem, codeIndex) => (
-                          <div key={codeIndex} className="flex flex-col gap-1">
-                            <div className="flex items-center gap-2">
-                              <span className="font-semibold text-green-400">{codeItem.code}:</span>
-                              <span className="text-white">{codeItem.decodedValue}</span>
-                            </div>
-                            <div className="text-xs text-gray-400">{codeItem.description}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </TooltipContent>
-                  </Tooltip>
-                ) : (
-                  <div className="text-gray-500 italic">Brak danych</div>
-                )}
-              </div>
+              <ul>
+                {segment.codes.map((code, codeIndex) => (
+                  <li key={codeIndex}>
+                    <strong>{code.code}:</strong> {code.decodedValue} 
+                    <span className="text-muted"> - {code.description}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
-        </div>
-      </TooltipProvider>
+          )
+        })}
+      </div>
     </div>
   )
 }

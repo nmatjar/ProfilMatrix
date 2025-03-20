@@ -16,7 +16,7 @@ export interface DNACodeMapping {
 
 // Główne obszary aplikacji używane jako kategorie DNA
 export const dnaCategories = [
-  { id: 'work-organization', name: 'Praca i Organizacja', emoji: '💼' },
+  { id: 'work-organization', name: 'Praca i Organizacja', emoji: '🏢' },
   { id: 'location-mobility', name: 'Lokalizacja i Mobilność', emoji: '📍' },
   { id: 'collaboration-relations', name: 'Współpraca i Relacje', emoji: '👥' },
   { id: 'time-availability', name: 'Czas i Dostępność', emoji: '⏰' },
@@ -309,31 +309,52 @@ export const dnaCodeMappings: DNACodeMapping[] = [
 ]
 
 // Funkcja do generowania kodu segmentu na podstawie jego ID
-function generateSegmentCode(segmentId: string): string {
+function generateSegmentCode(segmentId: string, existingCodes: Set<string>): string {
   // Usuń myślniki i podziel na słowa
   const words = segmentId.split('-')
   
   // Jeśli segment ma tylko jedno słowo
   if (words.length === 1) {
     // Weź pierwsze 3 litery (lub mniej, jeśli słowo jest krótsze)
-    return words[0].substring(0, Math.min(3, words[0].length)).toUpperCase()
+    let code = words[0].substring(0, Math.min(3, words[0].length)).toUpperCase()
+    
+    // Jeśli kod już istnieje, dodaj liczbę na końcu
+    let counter = 1
+    let originalCode = code
+    while (existingCodes.has(code)) {
+      code = `${originalCode}${counter}`
+      counter++
+    }
+    
+    return code
   }
   
   // Dla segmentów z wieloma słowami, weź pierwsze litery każdego słowa
-  return words.map(word => word.charAt(0).toUpperCase()).join('')
+  let code = words.map(word => word.charAt(0).toUpperCase()).join('')
+  
+  // Jeśli kod już istnieje, dodaj liczbę na końcu
+  let counter = 1
+  let originalCode = code
+  while (existingCodes.has(code)) {
+    code = `${originalCode}${counter}`
+    counter++
+  }
+  
+  return code
 }
 
 // Funkcja do automatycznego generowania mapowań dla brakujących segmentów
 export function ensureAllSegmentsMapped(): DNACodeMapping[] {
   const allSegments = getAllSegments()
-  const mappedSegmentIds = new Set(dnaCodeMappings.map(m => m.segmentId))
+  const existingMappings = new Map(dnaCodeMappings.map(m => [m.segmentId, m]))
+  const existingCodes = new Set(dnaCodeMappings.map(m => m.code))
   const dynamicMappings: DNACodeMapping[] = []
   
-  console.log(`Total segments: ${allSegments.length}, already mapped: ${mappedSegmentIds.size}`)
+  console.log(`Total segments: ${allSegments.length}, already mapped: ${existingMappings.size}`)
   
   // Dla każdego segmentu, który nie ma mapowania
   allSegments.forEach(segment => {
-    if (!mappedSegmentIds.has(segment.id)) {
+    if (!existingMappings.has(segment.id)) {
       // Określ obszar segmentu
       const areaId = segment.areaId
       
@@ -342,7 +363,8 @@ export function ensureAllSegmentsMapped(): DNACodeMapping[] {
       const emoji = categoryInfo?.emoji || '🔹'
       
       // Wygeneruj kod segmentu
-      const code = generateSegmentCode(segment.id)
+      const code = generateSegmentCode(segment.id, existingCodes)
+      existingCodes.add(code) // Dodaj kod do istniejących, aby zapewnić unikalność
       
       // Utwórz mapowanie dla segmentu
       const mapping: DNACodeMapping = {
@@ -359,8 +381,28 @@ export function ensureAllSegmentsMapped(): DNACodeMapping[] {
         const reverseValueMap: Record<string, string> = {}
         
         segment.options.forEach((option, index) => {
-          // Dla każdej opcji, użyj pierwszych 2 liter lub indeksu
-          const optionCode = option.value.substring(0, 2).toUpperCase() || `O${index}`
+          // Dla każdej opcji, generuj unikalny kod
+          let optionCode: string
+          
+          if (option.value.length <= 2) {
+            // Dla krótkich wartości, użyj ich bezpośrednio
+            optionCode = option.value.toUpperCase()
+          } else if (option.value.includes(' ')) {
+            // Dla wartości z wieloma słowami, użyj pierwszych liter
+            optionCode = option.value.split(' ')
+              .map(word => word.charAt(0).toUpperCase())
+              .slice(0, 2)
+              .join('')
+          } else {
+            // Dla pojedynczych słów, użyj pierwszych 2 liter
+            optionCode = option.value.substring(0, 2).toUpperCase()
+          }
+          
+          // Jeśli kod opcji już istnieje, dodaj indeks
+          if (Object.values(valueMap).includes(optionCode)) {
+            optionCode = `${optionCode}${index + 1}`
+          }
+          
           valueMap[option.value] = optionCode
           reverseValueMap[optionCode] = option.value
         })
@@ -380,7 +422,7 @@ export function ensureAllSegmentsMapped(): DNACodeMapping[] {
   return [...dnaCodeMappings, ...dynamicMappings]
 }
 
-// Funkcja pomocnicza do dekodowania kodu DNA
+// Funkcja do dekodowania kodu DNA
 export function decodeDNAValue(code: string, value: string): string {
   // Upewnij się, że wszystkie segmenty mają mapowania
   const allMappings = ensureAllSegmentsMapped()
@@ -440,7 +482,7 @@ export function getDNAMappingForSegment(segmentId: string): DNACodeMapping | und
   const emoji = categoryInfo?.emoji || '🔹'
   
   // Wygeneruj kod segmentu
-  const code = generateSegmentCode(segment.id)
+  const code = generateSegmentCode(segment.id, new Set())
   
   // Utwórz mapowanie dla segmentu
   const mapping: DNACodeMapping = {
@@ -459,6 +501,9 @@ export function getDNACodeForValue(segmentId: string, value: string | number): s
   const mapping = getDNAMappingForSegment(segmentId)
   if (!mapping) return value.toString()
   
+  // Jeśli wartość jest pusta lub undefined, zwróć pusty string
+  if (value === undefined || value === null || value === '') return ''
+  
   // Jeśli istnieje mapowanie wartości, użyj go
   if (mapping.valueMap && typeof value === 'string' && mapping.valueMap[value]) {
     return mapping.valueMap[value]
@@ -472,6 +517,21 @@ export function getDNACodeForValue(segmentId: string, value: string | number): s
   // Jeśli istnieje szablon formatowania, użyj go
   if (mapping.formatTemplate) {
     return mapping.formatTemplate.replace('{value}', value.toString())
+  }
+  
+  // Jeśli wartość jest stringiem i zawiera spacje lub jest dłuższa niż 10 znaków,
+  // wygeneruj skrócony kod na podstawie pierwszych liter słów
+  if (typeof value === 'string' && (value.includes(' ') || value.length > 10)) {
+    // Usuń znaki specjalne i podziel na słowa
+    const words = value.replace(/[^\w\s]/gi, '').split(/\s+/)
+    
+    // Jeśli jest tylko jedno słowo, weź pierwsze 3 litery
+    if (words.length === 1) {
+      return words[0].substring(0, Math.min(3, words[0].length)).toUpperCase()
+    }
+    
+    // Dla wielu słów, weź pierwsze litery każdego słowa (max 3)
+    return words.slice(0, 3).map(word => word.charAt(0).toUpperCase()).join('')
   }
   
   // W przeciwnym razie zwróć oryginalną wartość
@@ -538,19 +598,29 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
   const result: ParsedDNASegment[] = []
   
   segments.forEach(segment => {
+    // Pierwszy znak to emoji obszaru
     const emoji = segment.charAt(0)
     const area = dnaCategories.find(c => c.emoji === emoji)
     
-    if (!area) return
+    if (!area) {
+      console.log(`Nie znaleziono obszaru dla emoji: ${emoji}`)
+      return
+    }
     
+    // Usuń emoji z początku segmentu
     const codesString = segment.substring(1)
-    const codePairs = codesString.split('.')
+    
+    // Podziel string na części oddzielone kropkami
+    const parts = codesString.split('.')
     const parsedCodes = []
     
     // Przetwarzaj pary kod-wartość
-    for (let i = 0; i < codePairs.length; i += 2) {
-      const code = codePairs[i]
-      const value = codePairs[i + 1] || ''
+    for (let i = 0; i < parts.length; i += 2) {
+      const code = parts[i]
+      const value = parts[i + 1] || ''
+      
+      // Pomijaj puste kody lub wartości
+      if (!code || code.trim() === '') continue
       
       // Znajdź mapowanie dla kodu
       const mapping = allMappings.find(m => m.code === code)
@@ -561,6 +631,15 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
           value,
           decodedValue: decodeDNAValue(code, value),
           description: mapping.description || code
+        })
+      } else {
+        console.log(`Nie znaleziono mapowania dla kodu: ${code}`)
+        // Dodaj kod nawet jeśli nie ma mapowania, aby zachować wszystkie informacje
+        parsedCodes.push({
+          code,
+          value,
+          decodedValue: value,
+          description: `Nieznany kod: ${code}`
         })
       }
     }
