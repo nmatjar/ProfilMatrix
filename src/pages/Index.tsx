@@ -5,14 +5,16 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
 import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu, Info, Coffee } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/segment-types';
 import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
-import { dnaCategories, getDNACodeForValue, getDNAMappingForSegment, groupSegmentsByArea, ensureAllSegmentsMapped, parseDNACode, ParsedDNASegment } from '@/lib/dna-code-mapping';
-import { DNACodeDisplay } from '@/components/DNACodeDisplay';
+import { DNACodeDisplay } from "@/components/DNACodeDisplay";
+import { DNACodeMapping, ParsedDNASegment, dnaCategories, ensureAllSegmentsMapped, ensureSegmentEmojis, getDNACodeForValue, getDNAMappingForSegment, groupSegmentsByArea, parseDNACode } from "@/lib/dna-code-mapping";
 
 interface ActiveSegment {
   id: string;
@@ -627,32 +629,28 @@ const Index = () => {
 
   // Funkcja pomocnicza do formatowania kodu DNA dla obszaru
   const formatDNACode = (areaId: string, segments: { segmentId: string, value: string | number }[]) => {
-    if (segments.length === 0) return '';
+    // Upewnij się, że wszystkie segmenty mają ustawione segmentEmoji
+    const updatedMappings = ensureSegmentEmojis()
     
-    const area = mainAreas.find(a => a.id === areaId);
-    if (!area) return '';
+    const areaMapping = dnaCategories.find(c => c.id === areaId)
+    const areaEmoji = areaMapping?.emoji || '🔹'
     
-    // Generuj kody dla segmentów w obszarze
-    const codePairs = segments.map(segment => {
-      const mapping = getDNAMappingForSegment(segment.segmentId);
-      if (!mapping) return '';
+    const segmentPairs = segments.map(segment => {
+      // Znajdź mapowanie dla segmentu z zaktualizowanych mappingów
+      const mapping = updatedMappings.find(m => m.segmentId === segment.segmentId)
+      if (!mapping) return ''
       
-      const valueCode = getDNACodeForValue(segment.segmentId, segment.value);
-      // Upewnij się, że mamy zarówno kod jak i wartość
-      if (!mapping.code || !valueCode) return '';
+      const valueCode = getDNACodeForValue(segment.segmentId, segment.value)
+      if (!valueCode) return ''
       
-      return `${mapping.code}.${valueCode}`;
+      // Użyj emoji segmentu zamiast kodu tekstowego
+      const segmentEmoji = mapping.segmentEmoji || mapping.emoji || '🔹'
+      console.log('Using emoji for segment', segment.segmentId, ':', segmentEmoji)
+      return `${segmentEmoji}=${valueCode}`;
     }).filter(Boolean);
     
-    if (codePairs.length === 0) return '';
-    
-    // Pobierz emoji dla obszaru z dnaCategories
-    const areaInfo = dnaCategories.find(c => c.id === areaId);
-    const emoji = areaInfo ? areaInfo.emoji : '🔹';
-    
-    // Połącz kody w jeden string, upewniając się, że nie ma podwójnych kropek
-    return `${emoji}${codePairs.join('.')}`;
-  };
+    return `[${areaEmoji}]{${segmentPairs.join(';')}}`
+  }
 
   // Efekt do generowania profilu
   useEffect(() => {
@@ -670,8 +668,8 @@ const Index = () => {
       })
       .filter(Boolean); // Usuń puste kody
     
-    // Połącz kody obszarów w jeden string
-    const fullDNACode = areaCodes.join(' | ');
+    // Połącz kody obszarów w jeden string z separatorem ▪
+    const fullDNACode = areaCodes.join(' ▪ ');
     
     // Ustaw kod DNA
     setProfile(fullDNACode);
