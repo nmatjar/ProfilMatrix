@@ -6,7 +6,7 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight } from "lucide-react";
+import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/segment-types';
 import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
@@ -86,6 +86,13 @@ const mainAreas: MainArea[] = [
     description: 'Rozwój zawodowy i adaptacja do zmian',
     emoji: '🔄',
     icon: <RefreshCw className="h-5 w-5" />
+  },
+  {
+    id: 'technology-preferences',
+    name: 'Preferencje Technologiczne',
+    description: 'Technologie, narzędzia i środowiska pracy',
+    emoji: '💻',
+    icon: <Cpu className="h-5 w-5" />
   }
 ];
 
@@ -254,7 +261,7 @@ const Index = () => {
               </div>
             ) : category.options ? (
               <div className="mb-4">
-                <ToggleGroup type="single" variant="outline" className="flex flex-col space-y-1">
+                <ToggleGroup type="single" variant="outline" className="flex flex-wrap gap-2">
                   {category.options.map((option) => (
                     <ToggleGroupItem
                       key={option.id}
@@ -763,14 +770,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black text-green-500 flex flex-col">
       <header className="border-b border-green-900 p-4">
-        <div className="max-w-3xl mx-auto flex justify-between items-center">
+        <div className="max-w-1xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold flex items-center">
-            <Terminal className="h-6 w-6 mr-2" />
-            Retro Modern Selector
+            <Terminal className="h-7 w-7 mr-2" />
+            {"ProfileCoder_v1.0"}
           </h1>
-          <Link to="/segment-manager" className="text-green-500 hover:text-green-400">
-            Zarządzaj segmentami
-          </Link>
+    
         </div>
       </header>
 

@@ -50,6 +50,13 @@ export const areas: Area[] = [
     iconName: 'RefreshCw',
     emoji: '🔄',
     description: 'Uczenie się i zarządzanie zmianą'
+  },
+  { 
+    id: 'technology-preferences', 
+    name: 'Preferencje Technologiczne', 
+    iconName: 'Cpu',
+    emoji: '💻',
+    description: 'Technologie, narzędzia i środowiska pracy'
   }
 ]
 
@@ -475,6 +482,122 @@ const developmentAdaptationSegments: Segment[] = [
   }
 ]
 
+// Segmenty dla obszaru Preferencje Technologiczne
+const technologyPreferencesSegments: Segment[] = [
+  {
+    id: 'operating-system',
+    name: 'System Operacyjny',
+    iconName: 'Monitor',
+    emoji: '🖥️',
+    type: 'toggle',
+    options: [
+      { id: 'windows', label: '🪟 Windows', value: 'Windows' },
+      { id: 'macos', label: '🍎 MacOS', value: 'MacOS' },
+      { id: 'linux', label: '🐧 Linux', value: 'Linux' }
+    ],
+    areaId: 'technology-preferences',
+    description: 'Preferowany system operacyjny'
+  },
+  {
+    id: 'development-environment',
+    name: 'Środowisko Programistyczne',
+    iconName: 'Code',
+    emoji: '⌨️',
+    type: 'toggle',
+    options: [
+      { id: 'vscode', label: '📝 VS Code', value: 'VS Code' },
+      { id: 'intellij', label: '🧠 IntelliJ', value: 'IntelliJ' },
+      { id: 'eclipse', label: '🌑 Eclipse', value: 'Eclipse' },
+      { id: 'vim', label: '⚡ Vim', value: 'Vim' },
+      { id: 'sublime', label: '🔍 Sublime', value: 'Sublime' }
+    ],
+    areaId: 'technology-preferences',
+    description: 'Preferowane środowisko programistyczne'
+  },
+  {
+    id: 'programming-languages',
+    name: 'Języki Programowania',
+    iconName: 'Hash',
+    emoji: '📊',
+    type: 'toggle',
+    options: [
+      { id: 'javascript', label: '🟨 JavaScript', value: 'JavaScript' },
+      { id: 'python', label: '🐍 Python', value: 'Python' },
+      { id: 'java', label: '☕ Java', value: 'Java' },
+      { id: 'csharp', label: '🔷 C#', value: 'C#' },
+      { id: 'cpp', label: '🔶 C++', value: 'C++' },
+      { id: 'go', label: '🔵 Go', value: 'Go' },
+      { id: 'rust', label: '🦀 Rust', value: 'Rust' },
+      { id: 'php', label: '🐘 PHP', value: 'PHP' }
+    ],
+    areaId: 'technology-preferences',
+    description: 'Preferowane języki programowania'
+  },
+  {
+    id: 'frontend-frameworks',
+    name: 'Frameworki Frontend',
+    iconName: 'Layout',
+    emoji: '🎨',
+    type: 'toggle',
+    options: [
+      { id: 'react', label: '⚛️ React', value: 'React' },
+      { id: 'vue', label: '🟢 Vue', value: 'Vue' },
+      { id: 'angular', label: '🔴 Angular', value: 'Angular' },
+      { id: 'svelte', label: '🧡 Svelte', value: 'Svelte' }
+    ],
+    areaId: 'technology-preferences',
+    description: 'Preferowane frameworki frontend'
+  },
+  {
+    id: 'backend-technologies',
+    name: 'Technologie Backend',
+    iconName: 'Server',
+    emoji: '🗄️',
+    type: 'toggle',
+    options: [
+      { id: 'nodejs', label: '🟢 Node.js', value: 'Node.js' },
+      { id: 'django', label: '🐍 Django', value: 'Django' },
+      { id: 'spring', label: '🍃 Spring', value: 'Spring' },
+      { id: 'dotnet', label: '🔵 .NET', value: '.NET' },
+      { id: 'laravel', label: '🔴 Laravel', value: 'Laravel' }
+    ],
+    areaId: 'technology-preferences',
+    description: 'Preferowane technologie backend'
+  },
+  {
+    id: 'database-systems',
+    name: 'Systemy Bazodanowe',
+    iconName: 'Database',
+    emoji: '🗃️',
+    type: 'toggle',
+    options: [
+      { id: 'mysql', label: '🐬 MySQL', value: 'MySQL' },
+      { id: 'postgresql', label: '🐘 PostgreSQL', value: 'PostgreSQL' },
+      { id: 'mongodb', label: '🍃 MongoDB', value: 'MongoDB' },
+      { id: 'redis', label: '🔴 Redis', value: 'Redis' },
+      { id: 'sqlite', label: '🔹 SQLite', value: 'SQLite' }
+    ],
+    areaId: 'technology-preferences',
+    description: 'Preferowane systemy bazodanowe'
+  },
+  {
+    id: 'cloud-services',
+    name: 'Usługi Chmurowe',
+    iconName: 'Cloud',
+    emoji: '☁️',
+    type: 'toggle',
+    options: [
+      { id: 'aws', label: '🟠 AWS', value: 'AWS' },
+      { id: 'azure', label: '🔵 Azure', value: 'Azure' },
+      { id: 'gcp', label: '🟢 GCP', value: 'GCP' },
+      { id: 'heroku', label: '💜 Heroku', value: 'Heroku' },
+      { id: 'vercel', label: '⚫ Vercel', value: 'Vercel' }
+    ],
+    areaId: 'technology-preferences',
+    description: 'Preferowane usługi chmurowe'
+  }
+]
+
 // Wszystkie segmenty
 export const segments: Segment[] = [
   ...workOrganizationSegments,
@@ -483,7 +606,8 @@ export const segments: Segment[] = [
   ...timeAvailabilitySegments,
   ...processMethodologySegments,
   ...communicationDecisionsSegments,
-  ...developmentAdaptationSegments
+  ...developmentAdaptationSegments,
+  ...technologyPreferencesSegments
 ]
 
 // Sprawdźmy, czy wszystkie segmenty mają poprawnie ustawione właściwości type i options
@@ -504,3 +628,4 @@ console.log('timeAvailabilitySegments:', timeAvailabilitySegments.length);
 console.log('processMethodologySegments:', processMethodologySegments.length);
 console.log('communicationDecisionsSegments:', communicationDecisionsSegments.length);
 console.log('developmentAdaptationSegments:', developmentAdaptationSegments.length);
+console.log('technologyPreferencesSegments:', technologyPreferencesSegments.length);
