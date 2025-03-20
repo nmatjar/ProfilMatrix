@@ -1,6 +1,6 @@
-import { Segment, SegmentOption } from './segment-types'
+import { Segment } from './segment-types'
 import { getAllSegments, getAllAreas } from './segment-service'
-import { segments as allSegments, areas } from './segment-data'
+import { segments, areas } from './segment-data'
 
 // Interfejs dla sparsowanego segmentu DNA
 export interface ParsedDNASegment {
@@ -16,22 +16,72 @@ export interface ParsedDNASegment {
   }[]
 }
 
-// Główne obszary aplikacji używane jako kategorie DNA
-export const dnaCategories = areas.map(area => ({
-  id: area.id,
-  name: area.name,
-  emoji: area.emoji || '❓'
-}))
+// Funkcja do generowania kodu segmentu na podstawie jego ID
+export function generateSegmentCode(segmentId: string, existingCodes: Set<string>): string {
+  // Usuń myślniki i podziel na słowa
+  const words = segmentId.split('-')
+  
+  // Jeśli segment ma tylko jedno słowo
+  if (words.length === 1) {
+    // Weź pierwsze 3 litery (lub mniej, jeśli słowo jest krótsze)
+    let code = words[0].substring(0, Math.min(3, words[0].length)).toUpperCase()
+    
+    // Jeśli kod już istnieje, dodaj liczbę na końcu
+    let counter = 1
+    let originalCode = code
+    while (existingCodes.has(code)) {
+      code = `${originalCode}${counter}`
+      counter++
+    }
+    
+    return code
+  }
+  
+  // Dla segmentów z wieloma słowami, weź pierwsze litery każdego słowa
+  let code = words.map(word => word.charAt(0).toUpperCase()).join('')
+  
+  // Jeśli kod już istnieje, dodaj liczbę na końcu
+  let counter = 1
+  let originalCode = code
+  while (existingCodes.has(code)) {
+    code = `${originalCode}${counter}`
+    counter++
+  }
+  
+  return code
+}
 
 // Funkcja do dekodowania wartości kodu DNA
 export function decodeDNAValue(code: string, value: string): string {
   // Znajdź segment z odpowiednim kodem
-  const segment = allSegments.find(s => s.code === code)
+  const segment = segments.find(s => s.code === code)
   if (!segment) return value // Jeśli nie znaleziono segmentu, zwróć oryginalną wartość
   
   // Jeśli istnieje reverseValueMap, użyj go do dekodowania
   if (segment.reverseValueMap && segment.reverseValueMap[value]) {
     return segment.reverseValueMap[value]
+  }
+  
+  // Jeśli istnieje typ skali, zdekoduj go
+  if (segment.scaleType && value.startsWith(segment.scaleType)) {
+    const scaleValue = value.substring(1)
+    
+    switch (segment.scaleType) {
+      case 'P':
+        return `${scaleValue}%`
+      case 'T':
+        return `${scaleValue}/5`
+      case 'F':
+        return `Elastyczność: ${scaleValue}/5`
+      case 'C':
+        return `Kultura typu ${scaleValue}`
+      case 'A':
+        return `Dostępność: ${scaleValue}/5`
+      case 'S':
+        return `Synergia: ${scaleValue}/5`
+      default:
+        return value
+    }
   }
   
   return value // Jeśli nie ma mapowania, zwróć oryginalną wartość
@@ -44,8 +94,8 @@ export function groupSegmentsByArea(
   const result: Record<string, { segmentId: string, value: string | number }[]> = {}
   
   // Inicjalizuj kategorie
-  dnaCategories.forEach(category => {
-    result[category.id] = []
+  areas.forEach(area => {
+    result[area.id] = []
   })
   
   console.log(`Grouping ${activeSegments.length} active segments`)
@@ -53,7 +103,7 @@ export function groupSegmentsByArea(
   
   // Grupuj aktywne segmenty według obszarów
   activeSegments.filter(s => s.visible).forEach(segment => {
-    const segmentData = allSegments.find(s => s.id === segment.segmentId)
+    const segmentData = segments.find(s => s.id === segment.segmentId)
     
     if (!segmentData) {
       console.log(`No segment data found for segment: ${segment.segmentId}`)
@@ -82,61 +132,50 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
   const result: ParsedDNASegment[] = []
   
   // Podziel kod DNA na segmenty (obszary)
-  const dnaSegments = dnaCode.split('▪')
-  console.log('Podzielone segmenty DNA:', dnaSegments)
+  const dnaSegments = dnaCode.split('|')
   
-  dnaSegments.forEach(segmentStr => {
+  dnaSegments.forEach(segment => {
     try {
-      console.log('Przetwarzanie segmentu:', segmentStr)
-      // Wyodrębnij emoji obszaru i zawartość w nawiasach klamrowych
-      const areaMatch = segmentStr.match(/^\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)\{(.+)\}\s*$/u)
-      if (!areaMatch) {
-        console.log('Nie znaleziono dopasowania dla obszaru:', segmentStr)
-        return
-      }
+      // Każdy segment powinien zaczynać się od emoji obszaru
+      const match = segment.match(/^([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)(.+)$/u)
+      if (!match) return
       
-      const [, areaEmoji, codesStr] = areaMatch
-      console.log('Znaleziono emoji obszaru:', areaEmoji, 'i kody:', codesStr)
+      const [, areaEmoji, codesStr] = match
       
       // Znajdź obszar na podstawie emoji
-      const area = areas.find(a => a.emoji === areaEmoji.trim())
+      const area = areas.find(a => a.emoji === areaEmoji)
       if (!area) {
         console.log(`Nie znaleziono obszaru dla emoji: ${areaEmoji}`)
         return
       }
       
-      // Podziel kody na segmenty oddzielone średnikiem
-      const segmentCodes = codesStr.split(';')
-      console.log('Podzielone kody segmentów:', segmentCodes)
+      // Podziel kody na pary (emoji segmentu + wartość)
+      const codeMatches = [...codesStr.matchAll(/([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)([^[\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)/gu)]
       
       const parsedCodes = []
       
-      for (const segmentCodeStr of segmentCodes) {
-        console.log('Przetwarzanie kodu segmentu:', segmentCodeStr)
-        // Wyodrębnij emoji segmentu, kod segmentu i wartość
-        // Nowy wzorzec: emoji + kod + wartość
-        const codeMatch = segmentCodeStr.match(/\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)([A-Z]+)([A-Z0-9]+)\s*/u)
-        if (!codeMatch) {
-          console.log('Nie znaleziono dopasowania dla kodu segmentu:', segmentCodeStr)
-          continue
-        }
+      for (const [, segmentEmoji, value] of codeMatches) {
+        // Znajdź segment na podstawie emoji
+        const segment = segments.find(s => s.emoji === segmentEmoji)
         
-        const [, segmentEmoji, segmentCode, valueCode] = codeMatch
-        console.log('Znaleziono emoji segmentu:', segmentEmoji, 'kod segmentu:', segmentCode, 'i wartość:', valueCode)
-        
-        // Znajdź segment na podstawie kodu
-        const foundSegment = allSegments.find(s => s.code === segmentCode)
-        
-        if (foundSegment) {
+        if (segment) {
           parsedCodes.push({
-            code: segmentCode,
-            value: valueCode,
-            decodedValue: decodeDNAValue(segmentCode, valueCode),
-            description: foundSegment.description || '',
-            segmentEmoji: segmentEmoji
+            code: segment.code || '???',
+            value,
+            decodedValue: decodeDNAValue(segment.code || '???', value),
+            description: segment.description || segment.name,
+            segmentEmoji
           })
         } else {
-          console.log(`Nie znaleziono segmentu dla kodu: ${segmentCode}`)
+          console.log(`Nie znaleziono segmentu dla emoji: ${segmentEmoji}`)
+          // Dodaj kod nawet jeśli nie ma segmentu, aby zachować wszystkie informacje
+          parsedCodes.push({
+            code: '???',
+            value,
+            decodedValue: value,
+            description: `Nieznany segment: ${segmentEmoji}`,
+            segmentEmoji
+          })
         }
       }
       
@@ -149,7 +188,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
         })
       }
     } catch (error) {
-      console.error('Błąd podczas parsowania kodu DNA:', error)
+      console.error('Błąd podczas parsowania segmentu:', segment, error)
     }
   })
   
@@ -158,7 +197,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
 
 // Funkcja do pobierania kodu DNA dla wartości segmentu
 export function getDNACodeForValue(segmentId: string, value: string | number): string {
-  const segment = allSegments.find(s => s.id === segmentId)
+  const segment = segments.find(s => s.id === segmentId)
   
   if (!segment) return value.toString()
   
@@ -208,8 +247,8 @@ export function generateDNACode(activeSegments: { id: string, segmentId: string,
   const dnaSegments = []
   
   // Dla każdego obszaru
-  Object.entries(groupedSegments).forEach(([areaId, segmentList]) => {
-    if (segmentList.length === 0) return
+  Object.entries(groupedSegments).forEach(([areaId, areaSegments]) => {
+    if (areaSegments.length === 0) return
     
     // Znajdź obszar
     const area = areas.find(a => a.id === areaId)
@@ -222,93 +261,51 @@ export function generateDNACode(activeSegments: { id: string, segmentId: string,
     const segmentCodes = []
     
     // Dla każdego segmentu w obszarze
-    segmentList.forEach(({ segmentId, value }) => {
+    areaSegments.forEach(({ segmentId, value }) => {
       // Pobierz dane segmentu
-      const segment = allSegments.find(s => s.id === segmentId)
+      const segment = segments.find(s => s.id === segmentId)
       if (!segment) return
       
       // Emoji segmentu
       const segmentEmoji = segment.emoji
       if (!segmentEmoji) return
       
-      // Kod segmentu
-      const segmentCode = segment.code
-      if (!segmentCode) return
-      
       // Kod DNA dla wartości
       const dnaValue = getDNACodeForValue(segmentId, value)
       
       // Dodaj kod segmentu
-      segmentCodes.push(`${segmentEmoji}${segmentCode}${dnaValue}`)
+      segmentCodes.push(`${segmentEmoji}${dnaValue}`)
     })
     
     // Jeśli są jakieś kody segmentów, dodaj segment obszaru
     if (segmentCodes.length > 0) {
-      dnaSegments.push(`${areaEmoji}{${segmentCodes.join(';')}}`)
+      dnaSegments.push(`${areaEmoji}${segmentCodes.join('')}`)
     }
   })
   
   // Połącz wszystkie segmenty
-  return dnaSegments.join('▪')
+  return dnaSegments.join('|')
 }
 
-// Interfejs dla mapowania kodu DNA
-export interface DNACodeMapping {
-  segmentId: string
-  emoji?: string
-  segmentEmoji?: string // Emoji dla segmentu (może być inne niż emoji segmentu)
-  code: string
-  valueMap?: Record<string, string>
-  reverseValueMap?: Record<string, string>
-  scaleType?: 'P' | 'T' | 'F' | 'C' | 'A' | 'S'
-  formatTemplate?: string
-  areaId: string
-  description?: string
-}
-
-// Funkcja zapewniająca, że wszystkie segmenty mają ustawione emoji
-export function ensureSegmentEmojis(): DNACodeMapping[] {
-  const mappings: DNACodeMapping[] = []
+// Funkcja do inicjalizacji kodów dla wszystkich segmentów
+export function ensureAllSegmentCodes(): void {
+  // Pobierz wszystkie segmenty
+  const allSegments = segments
   
-  // Dla każdego segmentu utwórz mapowanie
+  // Zbiór istniejących kodów
+  const existingCodes = new Set(allSegments.filter(s => s.code).map(s => s.code))
+  
+  // Dla każdego segmentu bez kodu, wygeneruj kod
   allSegments.forEach(segment => {
-    const mapping: DNACodeMapping = {
-      segmentId: segment.id,
-      emoji: segment.emoji,
-      segmentEmoji: segment.emoji, // Użyj emoji segmentu jako domyślne
-      code: segment.code || '',
-      valueMap: segment.valueMap,
-      reverseValueMap: segment.reverseValueMap,
-      scaleType: segment.scaleType as any,
-      formatTemplate: segment.formatTemplate,
-      areaId: segment.areaId,
-      description: segment.description
+    if (!segment.code) {
+      // Wygeneruj kod segmentu
+      const code = generateSegmentCode(segment.id, existingCodes)
+      
+      // Dodaj kod do zbioru istniejących kodów
+      existingCodes.add(code)
+      
+      // Ustaw kod segmentu
+      segment.code = code
     }
-    
-    mappings.push(mapping)
   })
-  
-  return mappings
-}
-
-// Funkcje dla kompatybilności wstecznej
-export function ensureAllSegmentsMapped(): DNACodeMapping[] {
-  return []
-}
-
-export function getDNAMappingForSegment(segmentId: string): DNACodeMapping | undefined {
-  const segment = allSegments.find(s => s.id === segmentId)
-  if (!segment) return undefined
-  
-  return {
-    segmentId: segment.id,
-    emoji: segment.emoji,
-    code: segment.code || '',
-    valueMap: segment.valueMap,
-    reverseValueMap: segment.reverseValueMap,
-    scaleType: segment.scaleType as any,
-    formatTemplate: segment.formatTemplate,
-    areaId: segment.areaId,
-    description: segment.description
-  }
 }

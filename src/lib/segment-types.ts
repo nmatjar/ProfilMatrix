@@ -30,6 +30,12 @@ export interface Segment {
   defaultValue?: string | number
   areaId: string // Powiązanie z obszarem zamiast kategorią
   description?: string
+  // Pola z DNACodeMapping
+  code?: string // Kod DNA (np. 'ORG', 'WF')
+  valueMap?: Record<string, string> // Mapowanie wartości na kody
+  reverseValueMap?: Record<string, string> // Mapowanie kodów na wartości (do dekodowania)
+  scaleType?: 'P' | 'T' | 'F' | 'C' | 'A' | 'S' // Typ skali
+  formatTemplate?: string // Szablon formatowania
 }
 
 export interface Area {

@@ -15,6 +15,7 @@ import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/
 import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
 import { DNACodeDisplay } from "@/components/DNACodeDisplay";
 import { DNACodeMapping, ParsedDNASegment, dnaCategories, ensureAllSegmentsMapped, ensureSegmentEmojis, getDNACodeForValue, getDNAMappingForSegment, groupSegmentsByArea, parseDNACode } from "@/lib/dna-code-mapping";
+import { segments as allSegments } from "@/lib/segment-data";
 
 interface ActiveSegment {
   id: string;
@@ -42,71 +43,14 @@ getAllAreas().forEach(area => {
   });
 });
 
-const mainAreas: MainArea[] = [
-  {
-    id: 'work-organization',
-    name: 'Praca i Organizacja',
-    description: 'Środowisko, kultura i struktura organizacyjna',
-    emoji: '💼',
-    icon: <Building className="h-5 w-5" />
-  },
-  {
-    id: 'location-mobility',
-    name: 'Lokalizacja i Mobilność',
-    description: 'Miejsce pracy i elastyczność lokalizacyjna',
-    emoji: '📍',
-    icon: <Globe className="h-5 w-5" />
-  },
-  {
-    id: 'collaboration-relations',
-    name: 'Współpraca i Relacje',
-    description: 'Dynamika zespołu i interakcje',
-    emoji: '👥',
-    icon: <Users className="h-5 w-5" />
-  },
-  {
-    id: 'time-availability',
-    name: 'Czas i Dostępność',
-    description: 'Harmonogram i organizacja czasu',
-    emoji: '⏰',
-    icon: <Clock className="h-5 w-5" />
-  },
-  {
-    id: 'process-methodology',
-    name: 'Proces i Metodologia',
-    description: 'Podejście do zadań i procesów',
-    emoji: '🧠',
-    icon: <Brain className="h-5 w-5" />
-  },
-  {
-    id: 'communication-decisions',
-    name: 'Komunikacja i Decyzje',
-    description: 'Style komunikacji i podejmowania decyzji',
-    emoji: '💬',
-    icon: <MessageSquare className="h-5 w-5" />
-  },
-  {
-    id: 'development-adaptation',
-    name: 'Rozwój i Adaptacja',
-    description: 'Rozwój zawodowy i adaptacja do zmian',
-    emoji: '🔄',
-    icon: <RefreshCw className="h-5 w-5" />
-  },
-  {
-    id: 'technology-preferences',
-    name: 'Preferencje Technologiczne',
-    description: 'Technologie, narzędzia i środowiska pracy',
-    emoji: '💻',
-    icon: <Cpu className="h-5 w-5" />
-  },
-  {
-    id: 'work-style-preferences',
-    name: 'Styl Pracy i Preferencje',
-    description: 'Preferencje dotyczące stylu pracy i środowiska',
-    emoji: '☕️',
-    icon: <Coffee className="h-5 w-5" />
-  }
-];
+// Pobierz obszary z serwisu zamiast hardkodowanej listy
+const mainAreas: MainArea[] = getAllAreas().map(area => ({
+  id: area.id,
+  name: area.name,
+  description: area.description,
+  emoji: area.emoji,
+  icon: area.icon
+}));
 
 function getSegmentsByAreaId(areaId: string): SegmentWithIcon[] {
   console.log('Getting segments for area:', areaId);
@@ -122,7 +66,7 @@ const Index = () => {
   const [activeSegments, setActiveSegments] = useState<ActiveSegment[]>([]);
   const [selections, setSelections] = useState<Record<string, string | number>>({});
   const [activeCategory, setActiveCategory] = useState(0);
-  const [selectedArea, setSelectedArea] = useState('work-organization');
+  const [selectedArea, setSelectedArea] = useState(mainAreas[0].id);
 
   // Dodajmy console.log, aby zobaczyć wszystkie segmenty
   useEffect(() => {
@@ -465,16 +409,39 @@ const Index = () => {
 
   // Funkcja do generowania profilu na podstawie wybranych opcji
   const generateProfile = () => {
-    let profileCode = "";
+    // Upewnij się, że wszystkie segmenty mają mapowania DNA
+    ensureAllSegmentsMapped();
     
-    // Dodaj wybrane opcje do kodu profilu
-    Object.entries(selections).forEach(([key, value]) => {
-      if (value) {
-        profileCode += `${key}:${value} `;
-      }
+    // Pogrupuj segmenty według obszarów
+    const segmentsByArea = groupSegmentsByArea(activeSegments);
+    
+    // Generuj kod dla każdego obszaru
+    const areaCodes = Object.entries(segmentsByArea)
+      .map(([areaId, segments]) => {
+        const formattedCode = formatDNACode(areaId, segments);
+        return formattedCode ? formattedCode : null;
+      })
+      .filter(Boolean); // Usuń puste kody
+    
+    // Połącz kody obszarów w jeden string z separatorem ▪
+    const fullDNACode = areaCodes.join(' ▪ ');
+    
+    // Ustaw kod DNA
+    setProfile(fullDNACode);
+    
+    // Zapisz kod DNA w localStorage
+    localStorage.setItem('dnaCode', fullDNACode);
+    
+    console.log('Wygenerowano kod DNA:', fullDNACode);
+    
+    // Parsuj kod DNA
+    const parsed = parseDNACode(fullDNACode);
+    setParsedDnaCode(parsed);
+    
+    toast({
+      title: "Wygenerowano profil DNA!",
+      description: "Twój unikalny kod DNA został utworzony.",
     });
-    
-    setProfile(profileCode.trim());
   };
 
   // Funkcja do kopiowania wygenerowanego kodu do schowka
@@ -627,29 +594,47 @@ const Index = () => {
     localStorage.setItem('activeSegments', JSON.stringify(updatedSegments));
   }, [selections]);
 
-  // Funkcja pomocnicza do formatowania kodu DNA dla obszaru
+  // Funkcja formatująca kod DNA
   const formatDNACode = (areaId: string, segments: { segmentId: string, value: string | number }[]) => {
     // Upewnij się, że wszystkie segmenty mają ustawione segmentEmoji
     const updatedMappings = ensureSegmentEmojis()
     
     const areaMapping = dnaCategories.find(c => c.id === areaId)
     const areaEmoji = areaMapping?.emoji || '🔹'
+    console.log('Formatowanie kodu DNA dla obszaru:', areaId, 'z emoji:', areaEmoji)
     
     const segmentPairs = segments.map(segment => {
       // Znajdź mapowanie dla segmentu z zaktualizowanych mappingów
       const mapping = updatedMappings.find(m => m.segmentId === segment.segmentId)
-      if (!mapping) return ''
+      if (!mapping) {
+        console.log('Nie znaleziono mapowania dla segmentu:', segment.segmentId)
+        return ''
+      }
+      
+      // Znajdź segment w allSegments
+      const segmentData = allSegments.find(s => s.id === segment.segmentId)
+      if (!segmentData || !segmentData.code) {
+        console.log('Nie znaleziono danych segmentu lub kodu dla:', segment.segmentId)
+        return ''
+      }
       
       const valueCode = getDNACodeForValue(segment.segmentId, segment.value)
-      if (!valueCode) return ''
+      if (!valueCode) {
+        console.log('Nie znaleziono kodu wartości dla segmentu:', segment.segmentId, 'z wartością:', segment.value)
+        return ''
+      }
       
-      // Użyj emoji segmentu zamiast kodu tekstowego
+      // Użyj emoji segmentu i kodu segmentu
       const segmentEmoji = mapping.segmentEmoji || mapping.emoji || '🔹'
-      console.log('Using emoji for segment', segment.segmentId, ':', segmentEmoji)
-      return `${segmentEmoji}=${valueCode}`;
+      console.log('Segment:', segment.segmentId, 'emoji:', segmentEmoji, 'kod:', segmentData.code, 'wartość:', valueCode)
+      const result = `${segmentEmoji}${segmentData.code}${valueCode}`;
+      console.log('Wygenerowany kod dla segmentu:', result)
+      return result;
     }).filter(Boolean);
     
-    return `${areaEmoji}{${segmentPairs.join(';')}}`
+    const result = `${areaEmoji}{${segmentPairs.join(';')}}`
+    console.log('Wygenerowany kod dla obszaru:', result)
+    return result
   }
 
   // Efekt do generowania profilu
@@ -659,10 +644,12 @@ const Index = () => {
     
     // Pogrupuj segmenty według obszarów
     const segmentsByArea = groupSegmentsByArea(activeSegments);
+    console.log('Segmenty pogrupowane według obszarów:', JSON.stringify(segmentsByArea, null, 2));
     
     // Generuj kod dla każdego obszaru
     const areaCodes = Object.entries(segmentsByArea)
       .map(([areaId, segments]) => {
+        console.log('Generowanie kodu dla obszaru:', areaId, 'z segmentami:', JSON.stringify(segments, null, 2));
         const formattedCode = formatDNACode(areaId, segments);
         return formattedCode ? formattedCode : null;
       })
@@ -678,7 +665,7 @@ const Index = () => {
     localStorage.setItem('dnaCode', fullDNACode);
     
     console.log('Wygenerowano kod DNA:', fullDNACode);
-  }, [selections, activeSegments]);
+  }, [activeSegments]);
 
   // Efekt do parsowania kodu DNA
   useEffect(() => {

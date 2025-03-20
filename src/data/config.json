@@ -1,0 +1,8 @@
+{
+  "dataSource": "json",
+  "files": {
+    "areas": "areas.json",
+    "segments": "segments.json"
+  },
+  "version": "1.0.0"
+}

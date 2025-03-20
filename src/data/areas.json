@@ -1,0 +1,65 @@
+[
+  { 
+    "id": "work-organization", 
+    "name": "Praca i Organizacja", 
+    "iconName": "Briefcase",
+    "emoji": "💼",
+    "description": "Środowisko, kultura i struktura organizacyjna"
+  },
+  { 
+    "id": "location-mobility", 
+    "name": "Lokalizacja i Mobilność", 
+    "iconName": "MapPin",
+    "emoji": "📍",
+    "description": "Miejsce pracy i elastyczność lokalizacyjna"
+  },
+  { 
+    "id": "work-environment", 
+    "name": "Środowisko Pracy", 
+    "iconName": "Home",
+    "emoji": "🏢",
+    "description": "Fizyczne i społeczne środowisko pracy"
+  },
+  { 
+    "id": "work-time", 
+    "name": "Czas Pracy", 
+    "iconName": "Clock",
+    "emoji": "⏰",
+    "description": "Harmonogram i organizacja czasu pracy"
+  },
+  { 
+    "id": "work-style", 
+    "name": "Styl Pracy", 
+    "iconName": "Activity",
+    "emoji": "📊",
+    "description": "Preferowany sposób wykonywania zadań"
+  },
+  { 
+    "id": "work-conditions", 
+    "name": "Warunki Pracy", 
+    "iconName": "FileText",
+    "emoji": "📑",
+    "description": "Formalne i finansowe aspekty zatrudnienia"
+  },
+  { 
+    "id": "work-development", 
+    "name": "Rozwój Zawodowy", 
+    "iconName": "TrendingUp",
+    "emoji": "📈",
+    "description": "Możliwości rozwoju i awansu"
+  },
+  { 
+    "id": "work-values", 
+    "name": "Wartości Zawodowe", 
+    "iconName": "Heart",
+    "emoji": "❤️",
+    "description": "Kluczowe wartości i priorytety w pracy"
+  },
+  { 
+    "id": "personal-traits", 
+    "name": "Cechy Osobowości", 
+    "iconName": "User",
+    "emoji": "👤",
+    "description": "Indywidualne cechy charakteru i preferencje"
+  }
+]
