@@ -649,7 +649,7 @@ const Index = () => {
       return `${segmentEmoji}=${valueCode}`;
     }).filter(Boolean);
     
-    return `[${areaEmoji}]{${segmentPairs.join(';')}}`
+    return `${areaEmoji}{${segmentPairs.join(';')}}`
   }
 
   // Efekt do generowania profilu
