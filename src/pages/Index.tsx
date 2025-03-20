@@ -624,10 +624,10 @@ const Index = () => {
         return ''
       }
       
-      // Użyj emoji segmentu i kodu segmentu
+      // Użyj emoji segmentu i wartości (bez kodu segmentu)
       const segmentEmoji = mapping.segmentEmoji || mapping.emoji || '🔹'
-      console.log('Segment:', segment.segmentId, 'emoji:', segmentEmoji, 'kod:', segmentData.code, 'wartość:', valueCode)
-      const result = `${segmentEmoji}${segmentData.code}${valueCode}`;
+      console.log('Segment:', segment.segmentId, 'emoji:', segmentEmoji, 'wartość:', valueCode)
+      const result = `${segmentEmoji}${valueCode}`;
       console.log('Wygenerowany kod dla segmentu:', result)
       return result;
     }).filter(Boolean);
