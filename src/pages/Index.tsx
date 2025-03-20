@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
-import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu, Info } from "lucide-react";
+import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu, Info, Coffee } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/segment-types';
 import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
@@ -94,6 +94,13 @@ const mainAreas: MainArea[] = [
     description: 'Technologie, narzędzia i środowiska pracy',
     emoji: '💻',
     icon: <Cpu className="h-5 w-5" />
+  },
+  {
+    id: 'work-style-preferences',
+    name: 'Styl Pracy i Preferencje',
+    description: 'Preferencje dotyczące stylu pracy i środowiska',
+    emoji: '☕️',
+    icon: <Coffee className="h-5 w-5" />
   }
 ];
 

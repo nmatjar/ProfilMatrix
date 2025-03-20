@@ -57,6 +57,13 @@ export const areas: Area[] = [
     iconName: 'Cpu',
     emoji: '💻',
     description: 'Technologie, narzędzia i środowiska pracy'
+  },
+  { 
+    id: 'work-style-preferences', 
+    name: 'Styl Pracy i Preferencje', 
+    iconName: 'Coffee',
+    emoji: '☕',
+    description: 'Osobiste preferencje i styl pracy'
   }
 ]
 
@@ -128,21 +135,6 @@ const workOrganizationSegments: Segment[] = [
     ],
     areaId: 'work-organization',
     description: 'Preferowana przestrzeń biurowa'
-  },
-  {
-    id: 'dress-code',
-    name: 'Dress Code',
-    iconName: 'Shirt',
-    emoji: '👔',
-    type: 'toggle',
-    options: [
-      { id: 'formal', label: '👔 Formalny (garnitur/kostium)', value: 'Formalny' },
-      { id: 'business-casual', label: '👕 Business Casual', value: 'Business Casual' },
-      { id: 'smart-casual', label: '👚 Smart Casual', value: 'Smart Casual' },
-      { id: 'casual', label: '😎 Casual', value: 'Casual' }
-    ],
-    areaId: 'work-organization',
-    description: 'Preferowany dress code w miejscu pracy'
   }
 ]
 
@@ -230,7 +222,7 @@ const locationMobilitySegments: Segment[] = [
     emoji: '🚶',
     type: 'toggle',
     options: [
-      { id: 'fixed', label: 'Stała lokalizacja', value: 'Stała lokalizacja', description: 'Preferuję pracę w jednej, stałej lokalizacji' },
+      { id: 'fixed', label: 'Stała lokalizacja', value: 'Stała lokalizacja', description: 'Preferujesz pracę w jednej, stałej lokalizacji' },
       { id: 'limited', label: 'Ograniczona mobilność', value: 'Ograniczona mobilność', description: 'Mogę okazjonalnie zmieniać lokalizację pracy' },
       { id: 'regular', label: 'Regularna mobilność', value: 'Regularna mobilność', description: 'Jestem gotów/gotowa regularnie zmieniać lokalizację' },
       { id: 'full', label: 'Pełna mobilność', value: 'Pełna mobilność', description: 'Jestem otwarty/a na częste zmiany lokalizacji' },
@@ -260,49 +252,62 @@ const locationMobilitySegments: Segment[] = [
 // Segmenty dla obszaru Współpraca i Relacje
 const collaborationRelationsSegments: Segment[] = [
   {
-    id: 'team-structure',
-    name: 'Struktura Zespołu',
+    id: 'team-size',
+    name: 'Wielkość Zespołu',
     iconName: 'Users',
-    emoji: '👤',
+    emoji: '👥',
     type: 'toggle',
     options: [
-      { id: 'solo', label: '👤 Solo (praca indywidualna)', value: 'Solo' },
-      { id: 'small-team', label: '👥 Mały zespół (2-5 osób)', value: 'Mały zespół' },
-      { id: 'medium-team', label: '👨‍👩‍👧‍👦 Średni zespół (6-15 osób)', value: 'Średni zespół' },
-      { id: 'large-team', label: '🏢 Duży zespół (16+ osób)', value: 'Duży zespół' }
+      { id: 'solo', label: '👤 Solo (1 osoba)', value: 'Solo' },
+      { id: 'small', label: '👥 Mały (2-5 osób)', value: 'Mały' },
+      { id: 'medium', label: '👨‍👩‍👧‍👦 Średni (6-15 osób)', value: 'Średni' },
+      { id: 'large', label: '👨‍👩‍👧‍👦👨‍👩‍👧‍👦 Duży (16+ osób)', value: 'Duży' }
     ],
     areaId: 'collaboration-relations',
     description: 'Preferowana wielkość zespołu'
   },
   {
-    id: 'team-role',
-    name: 'Rola w Zespole',
-    iconName: 'UserCheck',
-    emoji: '🚩',
+    id: 'team-structure',
+    name: 'Struktura Zespołu',
+    iconName: 'Network',
+    emoji: '🌐',
     type: 'toggle',
     options: [
-      { id: 'leader', label: '🚩 Lider/Manager', value: 'Lider/Manager' },
-      { id: 'expert', label: '🛠️ Indywidualny Ekspert', value: 'Indywidualny Ekspert' },
-      { id: 'team-member', label: '🔄 Współpracownik Zespołowy', value: 'Współpracownik Zespołowy' },
-      { id: 'analyst', label: '🔍 Analityk/Obserwator', value: 'Analityk/Obserwator' }
+      { id: 'flat', label: '🌐 Flat (płaska)', value: 'Flat' },
+      { id: 'hierarchical', label: '🏛️ Hierarchical (hierarchiczna)', value: 'Hierarchical' },
+      { id: 'matrix', label: '🔄 Matrix (macierzowa)', value: 'Matrix' }
     ],
     areaId: 'collaboration-relations',
-    description: 'Preferowana rola w zespole'
+    description: 'Preferowana struktura zespołu'
   },
   {
-    id: 'collaboration-dynamics',
-    name: 'Dynamika Współpracy',
-    iconName: 'UsersPlus',
-    emoji: '🤝',
+    id: 'team-work-style',
+    name: 'Styl Pracy Zespołowej',
+    iconName: 'Users',
+    emoji: '👥',
     type: 'toggle',
     options: [
-      { id: 'high-interdependence', label: '🤝 Wysoka współzależność', value: 'Wysoka współzależność' },
-      { id: 'balanced', label: '🔄 Zbalansowana współpraca', value: 'Zbalansowana współpraca' },
-      { id: 'independence', label: '🚶 Samodzielność z konsultacjami', value: 'Samodzielność z konsultacjami' },
-      { id: 'high-autonomy', label: '🏝️ Wysoka autonomia', value: 'Wysoka autonomia' }
+      { id: 'lone-wolf-independent', label: '🐺 LoneWolf / Niezależny', value: 'LoneWolf/Niezależny', description: 'Preferujesz samodzielną pracę, niezależne zadania i autonomię w działaniu' },
+      { id: 'team-ant-collaborative', label: '🐜 TeamAnt / Kolaboratywny', value: 'TeamAnt/Kolaboratywny', description: 'Lubisz pracować w zespole, wspólnie rozwiązywać problemy i dzielić się zadaniami' },
+      { id: 'leader-lion-leadership', label: '🦁 LeaderLion / Przywódczy', value: 'LeaderLion/Przywódczy', description: 'Naturalnie przejmujesz inicjatywę, koordynujesz pracę innych i wyznaczasz kierunek' },
+      { id: 'social-whale-supportive', label: '🐋 SocialWhale / Wspierający', value: 'SocialWhale/Wspierający', description: 'Dbasz o dobrą atmosferę w zespole, wspierasz innych i budujesz relacje' }
     ],
     areaId: 'collaboration-relations',
-    description: 'Preferowana dynamika współpracy w zespole'
+    description: 'Twój styl pracy i współdziałania w zespole'
+  },
+  {
+    id: 'motivation-system',
+    name: 'System Motywacyjny',
+    iconName: 'Target',
+    emoji: '🎯',
+    type: 'toggle',
+    options: [
+      { id: 'competitive', label: '🥇 Competitive', value: 'Competitive', description: 'Motywuje Cię rywalizacja, porównywanie wyników i dążenie do bycia najlepszym' },
+      { id: 'collaborative', label: '🤝 Collaborative', value: 'Collaborative', description: 'Motywuje Cię wspólne osiąganie celów i sukcesy całego zespołu' },
+      { id: 'goal-setter', label: '🎯 GoalSetter', value: 'GoalSetter', description: 'Motywuje Cię wyznaczanie i osiąganie własnych celów, niezależnie od innych' }
+    ],
+    areaId: 'collaboration-relations',
+    description: 'Co najbardziej motywuje Cię do działania'
   }
 ]
 
@@ -488,63 +493,80 @@ const communicationDecisionsSegments: Segment[] = [
 const developmentAdaptationSegments: Segment[] = [
   {
     id: 'learning-style',
-    name: 'Styl Uczenia Się',
+    name: 'Styl Uczenia się',
     iconName: 'BookOpen',
-    emoji: '🛠️',
+    emoji: '📚',
     type: 'toggle',
     options: [
+      { id: 'theoretical', label: '📚 Teoretyczny (nauka przed praktyką)', value: 'Teoretyczny' },
       { id: 'practical', label: '🛠️ Praktyczny (nauka przez działanie)', value: 'Praktyczny' },
-      { id: 'theoretical', label: '📚 Teoretyczny (nauka przez studiowanie)', value: 'Teoretyczny' },
-      { id: 'mixed', label: '🔄 Mieszany (równowaga teorii i praktyki)', value: 'Mieszany' },
-      { id: 'social', label: '👥 Społeczny (nauka przez interakcje)', value: 'Społeczny' }
+      { id: 'mixed', label: '🔄 Mieszany (teoria i praktyka)', value: 'Mieszany' },
+      { id: 'social', label: '👥 Społeczny (nauka z innymi)', value: 'Społeczny' }
     ],
     areaId: 'development-adaptation',
-    description: 'Preferowany styl uczenia się'
+    description: 'Preferowany styl uczenia się i rozwoju'
   },
   {
-    id: 'problem-solving',
-    name: 'Rozwiązywanie Problemów',
-    iconName: 'PuzzlePiece',
-    emoji: '🔍',
-    type: 'toggle',
-    options: [
-      { id: 'analytical', label: '🔍 Analityczne (systematyczne podejście)', value: 'Analityczne' },
-      { id: 'creative', label: '🎨 Kreatywne (niestandardowe rozwiązania)', value: 'Kreatywne' },
-      { id: 'team', label: '🤝 Zespołowe (wspólne generowanie rozwiązań)', value: 'Zespołowe' },
-      { id: 'adaptive', label: '🔄 Adaptacyjne (elastyczne dopasowanie metody)', value: 'Adaptacyjne' }
-    ],
-    areaId: 'development-adaptation',
-    description: 'Preferowany styl rozwiązywania problemów'
-  },
-  {
-    id: 'change-management',
-    name: 'Zarządzanie Zmianą',
+    id: 'change-adaptation',
+    name: 'Adaptacja do Zmian',
     iconName: 'RefreshCw',
-    emoji: '🛡️',
+    emoji: '🔄',
     type: 'toggle',
     options: [
-      { id: 'resilient', label: '🛡️ Odporny (stabilny w obliczu zmian)', value: 'Odporny' },
-      { id: 'preventive', label: '⚠️ Zapobiegawczy (przygotowany na zmiany)', value: 'Zapobiegawczy' },
-      { id: 'adaptive', label: '🧘 Adaptacyjny (płynnie dostosowujący się)', value: 'Adaptacyjny' },
-      { id: 'initiating', label: '🚀 Inicjujący (wprowadzający zmiany)', value: 'Inicjujący' }
+      { id: 'pioneer', label: '🚀 Pionier (inicjator zmian)', value: 'Pionier' },
+      { id: 'early-adopter', label: '🔍 Early Adopter (szybka adaptacja)', value: 'Early Adopter' },
+      { id: 'pragmatic', label: '⚖️ Pragmatyczny (po sprawdzeniu)', value: 'Pragmatyczny' },
+      { id: 'conservative', label: '🛡️ Konserwatywny (ostrożny)', value: 'Konserwatywny' }
     ],
     areaId: 'development-adaptation',
-    description: 'Preferowany styl radzenia sobie ze zmianami'
+    description: 'Jak adaptujesz się do zmian'
   },
   {
-    id: 'innovation',
-    name: 'Innowacyjność',
-    iconName: 'Lightbulb',
-    emoji: '🏛️',
+    id: 'feedback-reception',
+    name: 'Przyjmowanie Feedbacku',
+    iconName: 'MessageCircle',
+    emoji: '💬',
     type: 'toggle',
     options: [
-      { id: 'conservative', label: '🏛️ Konserwatywny (sprawdzone rozwiązania)', value: 'Konserwatywny' },
-      { id: 'moderate', label: '⚖️ Umiarkowany (selektywne innowacje)', value: 'Umiarkowany' },
-      { id: 'innovative', label: '🚀 Innowacyjny (częste testowanie nowości)', value: 'Innowacyjny' },
-      { id: 'pioneering', label: '💡 Pionierski (tworzenie nowych rozwiązań)', value: 'Pionierski' }
+      { id: 'seeks-actively', label: '🔍 Aktywnie poszukuje', value: 'Aktywnie poszukuje' },
+      { id: 'open-receptive', label: '👂 Otwarty i receptywny', value: 'Otwarty i receptywny' },
+      { id: 'selective', label: '⚖️ Selektywny (filtrujący)', value: 'Selektywny' },
+      { id: 'defensive', label: '🛡️ Ostrożny (potrzebuje czasu)', value: 'Ostrożny' }
     ],
     areaId: 'development-adaptation',
-    description: 'Preferowany poziom innowacyjności'
+    description: 'Jak przyjmujesz feedback i krytykę'
+  },
+  {
+    id: 'futurist-factor',
+    name: 'Futurist Factor',
+    iconName: 'Rocket',
+    emoji: '🛸',
+    type: 'toggle',
+    options: [
+      { id: 'f1', label: '🛸 F1', value: 'F1', description: 'Tradition Keeper - cenisz sprawdzone rozwiązania' },
+      { id: 'f2', label: '🛸 F2', value: 'F2', description: 'Cautious Adopter - ostrożnie podchodzisz do nowinek' },
+      { id: 'f3', label: '🛸 F3', value: 'F3', description: 'Balanced Adopter - równoważysz tradycję i innowację' },
+      { id: 'f4', label: '🛸 F4', value: 'F4', description: 'Innovation Enthusiast - chętnie testujesz nowe rozwiązania' },
+      { id: 'f5', label: '🛸 F5', value: 'F5', description: 'Innovation Fanatic - zawsze na czele technologicznych trendów' }
+    ],
+    areaId: 'development-adaptation',
+    description: 'Poziom otwartości na nowinki technologiczne'
+  },
+  {
+    id: 'impact-level',
+    name: 'Impact Level',
+    iconName: 'Leaf',
+    emoji: '🌱',
+    type: 'toggle',
+    options: [
+      { id: 'i1', label: '🌱 I1', value: 'I1', description: 'Basic Responsibility - podstawowa odpowiedzialność' },
+      { id: 'i2', label: '🌱 I2', value: 'I2', description: 'Growing Awareness - rosnąca świadomość wpływu' },
+      { id: 'i3', label: '🌱 I3', value: 'I3', description: 'Moderate Engagement - umiarkowane zaangażowanie' },
+      { id: 'i4', label: '🌱 I4', value: 'I4', description: 'Active Contribution - aktywny wkład w pozytywne zmiany' },
+      { id: 'i5', label: '🌱 I5', value: 'I5', description: 'Full Commitment - pełne zaangażowanie, purpose-driven' }
+    ],
+    areaId: 'development-adaptation',
+    description: 'Prospołeczny, ekologiczny lub społeczno-odpowiedzialny poziom twojej kariery'
   }
 ]
 
@@ -664,6 +686,71 @@ const technologyPreferencesSegments: Segment[] = [
   }
 ]
 
+// Segmenty dla obszaru Styl Pracy i Preferencje
+const workStylePreferencesSegments: Segment[] = [
+  {
+    id: 'work-style',
+    name: 'Styl Pracy',
+    iconName: 'Compass',
+    emoji: '🧭',
+    type: 'toggle',
+    options: [
+      { id: 'sprint', label: '🔥 Sprint', value: 'Sprint', description: 'Szybkie, intensywne sesje pracy' },
+      { id: 'flow', label: '🌊 Flow', value: 'Flow', description: 'Płynne przeplatanie pracy i przerw' },
+      { id: 'burst', label: '🚀 Burst', value: 'Burst', description: 'Długie okresy działania z przerwami' },
+      { id: 'steady', label: '🐌 Steady', value: 'Steady', description: 'Stałe tempo przez cały dzień' }
+    ],
+    areaId: 'work-style-preferences',
+    description: 'Preferowana energia i podejście w pracy'
+  },
+  {
+    id: 'soundscape',
+    name: 'Soundscape (Preferencje Audialne)',
+    iconName: 'Headphones',
+    emoji: '🎧',
+    type: 'toggle',
+    options: [
+      { id: 'chill-lofi', label: '🎶 ChillLoFi', value: 'ChillLoFi', description: 'Spokojne, relaksujące dźwięki lofi idealne do skupienia' },
+      { id: 'energetic', label: '🔊 Energetic', value: 'Energetic', description: 'Energiczna muzyka pobudzająca do działania' },
+      { id: 'ambient', label: '🌧️ Ambient', value: 'Ambient', description: 'Delikatne dźwięki tła, szum natury, odgłosy deszczu' },
+      { id: 'silence', label: '🎧 Silence', value: 'Silence', description: 'Cisza lub całkowite wyciszenie hałasu zewnętrznego' }
+    ],
+    areaId: 'work-style-preferences',
+    description: 'W jakich warunkach dźwiękowych najlepiej pracujesz?'
+  },
+  {
+    id: 'fuel',
+    name: 'Fuel',
+    iconName: 'Coffee',
+    emoji: '☕️',
+    type: 'toggle',
+    options: [
+      { id: 'coffee', label: '☕️ Coffee', value: 'Coffee', description: 'Kawa jako główne źródło energii' },
+      { id: 'tea', label: '🍵 Tea', value: 'Tea', description: 'Herbata jako preferowany napój' },
+      { id: 'chocolate', label: '🍫 Chocolate', value: 'Chocolate', description: 'Czekolada lub przekąski czekoladowe' },
+      { id: 'energy-drink', label: '🥤 EnergyDrink', value: 'EnergyDrink', description: 'Napoje energetyczne' },
+      { id: 'water', label: '💧 Water', value: 'Water', description: 'Woda jako podstawowy napój' }
+    ],
+    areaId: 'work-style-preferences',
+    description: 'Czym się "napędzasz" podczas pracy?'
+  },
+  {
+    id: 'dress-code',
+    name: 'Dress Code',
+    iconName: 'Shirt',
+    emoji: '👔',
+    type: 'toggle',
+    options: [
+      { id: 'formal', label: '👔 Formalny (garnitur/kostium)', value: 'Formalny' },
+      { id: 'business-casual', label: '👕 Business Casual', value: 'Business Casual' },
+      { id: 'smart-casual', label: '👚 Smart Casual', value: 'Smart Casual' },
+      { id: 'casual', label: '😎 Casual', value: 'Casual' }
+    ],
+    areaId: 'work-style-preferences',
+    description: 'Preferowany dress code w miejscu pracy'
+  }
+]
+
 // Wszystkie segmenty
 export const segments: Segment[] = [
   ...workOrganizationSegments,
@@ -673,7 +760,8 @@ export const segments: Segment[] = [
   ...processMethodologySegments,
   ...communicationDecisionsSegments,
   ...developmentAdaptationSegments,
-  ...technologyPreferencesSegments
+  ...technologyPreferencesSegments,
+  ...workStylePreferencesSegments
 ]
 
 // Sprawdźmy, czy wszystkie segmenty mają poprawnie ustawione właściwości type i options
@@ -695,3 +783,4 @@ console.log('processMethodologySegments:', processMethodologySegments.length);
 console.log('communicationDecisionsSegments:', communicationDecisionsSegments.length);
 console.log('developmentAdaptationSegments:', developmentAdaptationSegments.length);
 console.log('technologyPreferencesSegments:', technologyPreferencesSegments.length);
+console.log('workStylePreferencesSegments:', workStylePreferencesSegments.length);
