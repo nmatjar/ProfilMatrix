@@ -1,23 +1,19 @@
 import React from 'react'
-import { ParsedDNASegment } from '../lib/dna-code-mapping'
-import { dnaCategories } from '../lib/dna-code-mapping'
 
 interface DNACodeDisplayProps {
-  parsedCode: ParsedDNASegment[]
   rawCode: string
 }
 
 /**
  * Komponent wyświetlający kod DNA w bardziej czytelny sposób
  */
-export function DNACodeDisplay({ parsedCode, rawCode }: DNACodeDisplayProps) {
-  // Jeśli nie ma sparsowanego kodu, wyświetl tylko surowy kod
-  if (!parsedCode || parsedCode.length === 0) {
+export function DNACodeDisplay({ rawCode }: DNACodeDisplayProps) {
+  if (!rawCode) {
     return (
       <div className="dna-code-display">
         <div className="raw-code">
-          <h3>Kod DNA:</h3>
-          <pre>{rawCode || 'Brak kodu DNA'}</pre>
+          <h3>Wygenerowany Profil DNA:</h3>
+          <pre>Brak kodu DNA</pre>
         </div>
       </div>
     )
@@ -29,13 +25,19 @@ export function DNACodeDisplay({ parsedCode, rawCode }: DNACodeDisplayProps) {
     const emojiPattern = /(\p{Emoji_Presentation}|\p{Emoji}\uFE0F|\p{Emoji}\u200D\p{Emoji})+/gu
     const parts = []
     let lastIndex = 0
+    let isFirstEmojiInSegment = true
     
     // Znajdź wszystkie dopasowania emoji
     let match
     while ((match = emojiPattern.exec(rawCode)) !== null) {
       // Dodaj tekst przed emoji
-      if (match.index > lastIndex) {
-        parts.push(<span key={`text-${lastIndex}`}>{rawCode.substring(lastIndex, match.index)}</span>)
+      const textBefore = rawCode.substring(lastIndex, match.index)
+      if (textBefore) {
+        // Jeśli tekst przed emoji zawiera { lub ▪, resetuj flagę pierwszego emoji
+        if (textBefore.includes('{') || textBefore.includes('▪')) {
+          isFirstEmojiInSegment = true
+        }
+        parts.push(<span key={`text-${lastIndex}`}>{textBefore}</span>)
       }
       
       // Dodaj emoji z wyróżnieniem
@@ -45,6 +47,13 @@ export function DNACodeDisplay({ parsedCode, rawCode }: DNACodeDisplayProps) {
         </span>
       )
       
+      // Jeśli to pierwsze emoji w segmencie i następny znak to nie { ani =, dodaj znak =
+      const nextChar = rawCode[match.index + match[0].length]
+      if (isFirstEmojiInSegment && nextChar !== '{' && nextChar !== '=') {
+        parts.push(<span key={`equals-${match.index}`}>=</span>)
+      }
+      
+      isFirstEmojiInSegment = false
       lastIndex = match.index + match[0].length
     }
     
@@ -56,38 +65,31 @@ export function DNACodeDisplay({ parsedCode, rawCode }: DNACodeDisplayProps) {
     return parts
   }
 
+  // Funkcja do formatowania kodu z podziałem na linie
+  const formatMultilineCode = (code: string) => {
+    const areas = code.split('▪').filter(Boolean)
+    const formattedAreas = areas.map((area, index) => {
+      const parts = formatRawCode(area)
+      return (
+        <div key={`area-${index}`} className="mb-1">
+          {parts}
+          {index < areas.length - 1 && (
+            <span className="text-green-500">▪</span>
+          )}
+        </div>
+      )
+    })
+    return formattedAreas
+  }
+
   return (
     <div className="dna-code-display">
       <div className="raw-code">
-        <h3>Kod DNA:</h3>
-        <pre className="text-wrap leading-relaxed">{formatRawCode(rawCode)}</pre>
-      </div>
-      
-      <div className="parsed-code">
-        <h3>Zdekodowany profil:</h3>
-        
-        {parsedCode.map((segment, index) => {
-          // Znajdź nazwę obszaru
-          const area = dnaCategories.find(c => c.id === segment.area)
-          const areaName = area ? area.name : segment.area
-
-          return (
-            <div key={index} className="area-section">
-              <h4>
-                {segment.emoji} {areaName}
-              </h4>
-              
-              <ul>
-                {segment.codes.map((code, codeIndex) => (
-                  <li key={codeIndex}>
-                    <strong>{code.segmentEmoji || ''} {code.code}:</strong> {code.decodedValue} 
-                    <span className="text-muted"> - {code.description}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        })}
+        <h3>Wygenerowany Profil DNA:</h3>
+        <pre className="text-wrap leading-relaxed">
+          {formatMultilineCode(rawCode)}
+        </pre>
+        <input type="hidden" id="raw-dna-code" value={rawCode} />
       </div>
     </div>
   )

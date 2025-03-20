@@ -445,9 +445,24 @@ const Index = () => {
   };
 
   // Funkcja do kopiowania wygenerowanego kodu do schowka
+  const resetProfile = () => {
+    setActiveSegments([])
+    setSelections({})
+    setProfile("")
+    setParsedDnaCode([])
+    setActiveCategory(0)
+    setSelectedArea(mainAreas[0].id)
+    toast({
+      title: "Profil zresetowany",
+      description: "Wszystkie ustawienia zostały wyczyszczone.",
+    })
+  }
+
   const copyToClipboard = () => {
     if (profile) {
-      navigator.clipboard.writeText(profile)
+      // Użyj oryginalnego kodu DNA z ukrytego inputa
+      const rawDnaCode = document.getElementById('raw-dna-code')?.getAttribute('value') || profile
+      navigator.clipboard.writeText(rawDnaCode)
         .then(() => {
           toast({
             title: "Skopiowano!",
@@ -627,7 +642,7 @@ const Index = () => {
       // Użyj emoji segmentu i wartości (bez kodu segmentu)
       const segmentEmoji = mapping.segmentEmoji || mapping.emoji || '🔹'
       console.log('Segment:', segment.segmentId, 'emoji:', segmentEmoji, 'wartość:', valueCode)
-      const result = `${segmentEmoji}${valueCode}`;
+      const result = `${segmentEmoji}=${valueCode}`;
       console.log('Wygenerowany kod dla segmentu:', result)
       return result;
     }).filter(Boolean);
@@ -716,21 +731,30 @@ const Index = () => {
               
               <div className="border border-green-900 rounded-md p-6 bg-black bg-opacity-90 backdrop-blur-sm">
                 <h2 className="text-xl font-bold mb-4">Wygenerowany Profil DNA</h2>
-                <div className="font-bold text-sm sm:text-base md:text-lg break-all bg-black p-4 rounded border border-green-700 font-mono">
-                  {profile || "Wybierz opcje aby wygenerować profil..."}
+                <div className="mt-4 p-4 rounded border border-green-700 bg-black/50">
+                  <DNACodeDisplay rawCode={profile || "Wybierz opcje aby wygenerować profil..."} />
                 </div>
-                {profile && (
-                  <div className="mt-4 p-4 rounded border border-green-700 bg-black/50">
-                    <h3 className="text-lg font-semibold mb-2">Wizualizacja DNA</h3>
-                    <DNACodeDisplay parsedCode={parsedDnaCode} rawCode={profile} />
-                  </div>
-                )}
-                <button
-                  onClick={copyToClipboard}
-                  className="mt-4 px-4 py-2 border border-green-700 rounded hover:bg-green-900 hover:bg-opacity-30 w-full"
-                >
-                  Kopiuj Profil
-                </button>
+                <div className="mt-4 flex gap-2">
+                  <button
+                    onClick={copyToClipboard}
+                    className="flex-1 px-4 py-2 border border-green-700 rounded hover:bg-green-900 hover:bg-opacity-30"
+                  >
+                    Kopiuj Profil
+                  </button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={resetProfile}
+                        className="px-4 py-2 border border-red-700 rounded hover:bg-red-900 hover:bg-opacity-30 text-red-500 hover:text-red-400"
+                      >
+                        <RefreshCw className="h-4 w-4" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Resetuj profil DNA</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
               </div>
             </div>
           </div>
