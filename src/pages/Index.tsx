@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
-import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu } from "lucide-react";
+import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu, Info } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/segment-types';
 import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
@@ -263,15 +264,27 @@ const Index = () => {
               <div className="mb-4">
                 <ToggleGroup type="single" variant="outline" className="flex flex-wrap gap-2">
                   {category.options.map((option) => (
-                    <ToggleGroupItem
-                      key={option.id}
-                      value={option.value}
-                      className="flex items-center justify-start p-2 border border-green-700"
-                      onClick={() => handleOptionSelect(category.id, option.value)}
-                      data-state={selections[category.id] === option.value ? "on" : "off"}
-                    >
-                      <span>{option.label}</span>
-                    </ToggleGroupItem>
+                    <Tooltip key={option.id}>
+                      <TooltipTrigger asChild>
+                        <ToggleGroupItem
+                          value={option.value}
+                          className="flex items-center justify-start p-2 border border-green-700"
+                          onClick={() => handleOptionSelect(category.id, option.value)}
+                          data-state={selections[category.id] === option.value ? "on" : "off"}
+                        >
+                          <span>{formatOptionLabel(option.label)}</span>
+                          {extractDescription(option.label) && (
+                            <Info className="h-4 w-4 ml-1 text-green-400 opacity-70" />
+                          )}
+                        </ToggleGroupItem>
+                      </TooltipTrigger>
+                      <TooltipContent 
+                        className="bg-black border border-green-700 text-green-400 p-2"
+                        side="top"
+                      >
+                        {option.description || extractDescription(option.label)}
+                      </TooltipContent>
+                    </Tooltip>
                   ))}
                 </ToggleGroup>
               </div>
@@ -767,62 +780,74 @@ const Index = () => {
     setProfile(code);
   }, [selections, activeSegments]);
 
+  // Funkcja pomocnicza do wyciągania opisu z etykiety (tekst w nawiasie)
+  const extractDescription = (label: string): string => {
+    const match = label.match(/\(([^)]+)\)/);
+    return match ? match[1] : '';
+  };
+
+  // Funkcja pomocnicza do formatowania etykiety (usuwanie tekstu w nawiasie)
+  const formatOptionLabel = (label: string): string => {
+    return label.replace(/\s*\([^)]*\)\s*/, '');
+  };
+
   return (
-    <div className="min-h-screen bg-black text-green-500 flex flex-col">
-      <header className="border-b border-green-900 p-4">
-        <div className="max-w-1xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold flex items-center">
-            <Terminal className="h-7 w-7 mr-2" />
-            {"ProfileCoder_v1.0"}
-          </h1>
-    
-        </div>
-      </header>
+    <TooltipProvider>
+      <div className="min-h-screen bg-black text-green-500 flex flex-col">
+        <header className="border-b border-green-900 p-4">
+          <div className="max-w-1xl mx-auto flex justify-between items-center">
+            <h1 className="text-2xl font-bold flex items-center">
+              <Terminal className="h-7 w-7 mr-2" />
+              {"ProfileCoder_v1.0"}
+            </h1>
+      
+          </div>
+        </header>
 
-      <div className="flex-1 flex">
-        {/* Menu kategorii po lewej */}
-        <div className="w-1/4 border-r border-green-900 p-4">
-          {renderAreaMenu()}
-          {renderCategoryMenu()}
-        </div>
+        <div className="flex-1 flex">
+          {/* Menu kategorii po lewej */}
+          <div className="w-1/4 border-r border-green-900 p-4">
+            {renderAreaMenu()}
+          </div>
 
-        {/* Zawartość po prawej */}
-        <div className="w-3/4 p-6">
-          <div className="max-w-2xl mx-auto space-y-8">
-            <div className="border border-green-900 rounded-md p-6 bg-black bg-opacity-90 backdrop-blur-sm">
-              {renderCategoryOptions()}
-              {renderNavigationButtons()}
-            </div>
-            
-            <div className="border border-green-900 rounded-md p-6 bg-black bg-opacity-90 backdrop-blur-sm">
-              <h2 className="text-xl font-bold mb-4">Wygenerowany Profil</h2>
-              <div className="font-bold text-sm sm:text-base md:text-lg break-all bg-black p-4 rounded border border-green-700 font-mono">
-                {profile || "Wybierz opcje aby wygenerować profil..."}
+          {/* Zawartość po prawej */}
+          <div className="w-3/4 p-6">
+            <div className="max-w-2xl mx-auto space-y-8">
+              <div className="border border-green-900 rounded-md p-6 bg-black bg-opacity-90 backdrop-blur-sm">
+                {renderCategoryOptions()}
+                {renderNavigationButtons()}
               </div>
-              <button
-                onClick={copyToClipboard}
-                className="mt-4 px-4 py-2 border border-green-700 rounded hover:bg-green-900 hover:bg-opacity-30 w-full"
-              >
-                Kopiuj Profil
-              </button>
+              
+              <div className="border border-green-900 rounded-md p-6 bg-black bg-opacity-90 backdrop-blur-sm">
+                <h2 className="text-xl font-bold mb-4">Wygenerowany Profil</h2>
+                <div className="font-bold text-sm sm:text-base md:text-lg break-all bg-black p-4 rounded border border-green-700 font-mono">
+                  {profile || "Wybierz opcje aby wygenerować profil..."}
+                </div>
+                <button
+                  onClick={copyToClipboard}
+                  className="mt-4 px-4 py-2 border border-green-700 rounded hover:bg-green-900 hover:bg-opacity-30 w-full"
+                >
+                  Kopiuj Profil
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <footer className="border-t border-green-900 p-4 text-center text-xs bg-black bg-opacity-90">
-        <div className="flex justify-between items-center">
-          <p>Profile Coder v1.0 | Nawigacja: Klawiatura [←][→] lub Przyciski</p>
-          <Link 
-            to="/segment-manager" 
-            className="flex items-center text-green-500 hover:text-green-400 transition-colors"
-          >
-            <Settings className="h-4 w-4 mr-1" />
-            <span>Zarządzaj Segmentami</span>
-          </Link>
-        </div>
-      </footer>
-    </div>
+        <footer className="border-t border-green-900 p-4 text-center text-xs bg-black bg-opacity-90">
+          <div className="flex justify-between items-center">
+            <p>Profile Coder v1.0 | Nawigacja: Klawiatura [←][→] lub Przyciski</p>
+            <Link 
+              to="/segment-manager" 
+              className="flex items-center text-green-500 hover:text-green-400 transition-colors"
+            >
+              <Settings className="h-4 w-4 mr-1" />
+              <span>Zarządzaj Segmentami</span>
+            </Link>
+          </div>
+        </footer>
+      </div>
+    </TooltipProvider>
   );
 };
 

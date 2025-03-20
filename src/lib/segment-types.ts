@@ -5,6 +5,7 @@ export interface SegmentOption {
   label: string
   value: string
   emoji?: string
+  description?: string
 }
 
 export interface SubOption {

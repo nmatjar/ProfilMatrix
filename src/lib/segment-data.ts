@@ -149,45 +149,111 @@ const workOrganizationSegments: Segment[] = [
 // Segmenty dla obszaru Lokalizacja i Mobilność
 const locationMobilitySegments: Segment[] = [
   {
-    id: 'geographic-location',
-    name: 'Lokalizacja Geograficzna',
+    id: 'continent',
+    name: 'Kontynent',
     iconName: 'Globe',
-    emoji: '🌍',
+    emoji: '🌎',
+    type: 'toggle',
+    options: [
+      { id: 'europe', label: 'Europa', value: 'Europa', description: 'Kraje europejskie' },
+      { id: 'north-america', label: 'Ameryka Północna', value: 'Ameryka Północna', description: 'USA, Kanada, Meksyk' },
+      { id: 'south-america', label: 'Ameryka Południowa', value: 'Ameryka Południowa', description: 'Kraje Ameryki Południowej' },
+      { id: 'asia', label: 'Azja', value: 'Azja', description: 'Kraje azjatyckie' },
+      { id: 'africa', label: 'Afryka', value: 'Afryka', description: 'Kraje afrykańskie' },
+      { id: 'australia', label: 'Australia i Oceania', value: 'Australia i Oceania', description: 'Australia, Nowa Zelandia i wyspy Oceanii' }
+    ],
+    areaId: 'location-mobility',
+    description: 'Kontynent, na którym znajduje się Twoja lokalizacja'
+  },
+  {
+    id: 'country',
+    name: 'Kraj',
+    iconName: 'Flag',
+    emoji: '🏳️',
     type: 'input',
     areaId: 'location-mobility',
-    description: 'Preferowana lokalizacja geograficzna pracy'
+    description: 'Kraj, w którym się znajdujesz lub preferujesz pracować'
+  },
+  {
+    id: 'region',
+    name: 'Region/Województwo',
+    iconName: 'Map',
+    emoji: '🗺️',
+    type: 'input',
+    areaId: 'location-mobility',
+    description: 'Region, województwo lub stan'
+  },
+  {
+    id: 'city',
+    name: 'Miasto',
+    iconName: 'Building',
+    emoji: '🏙️',
+    type: 'input',
+    areaId: 'location-mobility',
+    description: 'Miasto, w którym się znajdujesz lub preferujesz pracować'
+  },
+  {
+    id: 'district',
+    name: 'Dzielnica',
+    iconName: 'Home',
+    emoji: '🏘️',
+    type: 'input',
+    areaId: 'location-mobility',
+    description: 'Dzielnica lub część miasta'
+  },
+  {
+    id: 'timezone',
+    name: 'Strefa Czasowa',
+    iconName: 'Clock',
+    emoji: '🕒',
+    type: 'toggle',
+    options: [
+      { id: 'utc-8', label: 'UTC-8 (PST)', value: 'UTC-8', description: 'Pacyficzny czas standardowy (np. Los Angeles, San Francisco)' },
+      { id: 'utc-5', label: 'UTC-5 (EST)', value: 'UTC-5', description: 'Wschodni czas standardowy (np. Nowy Jork, Miami)' },
+      { id: 'utc-1', label: 'UTC-1', value: 'UTC-1', description: 'Azory, Wyspy Zielonego Przylądka' },
+      { id: 'utc', label: 'UTC+0 (GMT)', value: 'UTC+0', description: 'Czas uniwersalny (np. Londyn, Lizbona)' },
+      { id: 'utc+1', label: 'UTC+1 (CET)', value: 'UTC+1', description: 'Czas środkowoeuropejski (np. Warszawa, Berlin, Paryż)' },
+      { id: 'utc+2', label: 'UTC+2 (EET)', value: 'UTC+2', description: 'Czas wschodnioeuropejski (np. Ateny, Bukareszt)' },
+      { id: 'utc+3', label: 'UTC+3', value: 'UTC+3', description: 'Moskwa, Stambuł' },
+      { id: 'utc+5.5', label: 'UTC+5:30', value: 'UTC+5:30', description: 'Indie' },
+      { id: 'utc+8', label: 'UTC+8', value: 'UTC+8', description: 'Chiny, Singapur, Hongkong' },
+      { id: 'utc+9', label: 'UTC+9', value: 'UTC+9', description: 'Japonia, Korea Południowa' },
+      { id: 'utc+10', label: 'UTC+10', value: 'UTC+10', description: 'Wschodnia Australia' }
+    ],
+    areaId: 'location-mobility',
+    description: 'Twoja strefa czasowa'
   },
   {
     id: 'mobility-level',
-    name: 'Poziom Mobilności',
+    name: 'Mobilność',
     iconName: 'Move',
-    emoji: 'M',
+    emoji: '🚶',
     type: 'toggle',
     options: [
-      { id: 'm1', label: 'M1 (Stała lokalizacja)', value: 'M1' },
-      { id: 'm2', label: 'M2 (Ograniczona mobilność)', value: 'M2' },
-      { id: 'm3', label: 'M3 (Regularna mobilność)', value: 'M3' },
-      { id: 'm4', label: 'M4 (Pełna mobilność)', value: 'M4' },
-      { id: 'm5', label: 'M5 (Nomadyzm cyfrowy)', value: 'M5' }
+      { id: 'fixed', label: 'Stała lokalizacja', value: 'Stała lokalizacja', description: 'Preferuję pracę w jednej, stałej lokalizacji' },
+      { id: 'limited', label: 'Ograniczona mobilność', value: 'Ograniczona mobilność', description: 'Mogę okazjonalnie zmieniać lokalizację pracy' },
+      { id: 'regular', label: 'Regularna mobilność', value: 'Regularna mobilność', description: 'Jestem gotów/gotowa regularnie zmieniać lokalizację' },
+      { id: 'full', label: 'Pełna mobilność', value: 'Pełna mobilność', description: 'Jestem otwarty/a na częste zmiany lokalizacji' },
+      { id: 'nomad', label: 'Nomadyzm cyfrowy', value: 'Nomadyzm cyfrowy', description: 'Preferuję pracę z różnych lokalizacji, w stylu nomady cyfrowego' }
     ],
     areaId: 'location-mobility',
-    description: 'Preferowany poziom mobilności w pracy'
+    description: 'Twój preferowany poziom mobilności w pracy'
   },
   {
     id: 'business-travel',
     name: 'Podróże Służbowe',
     iconName: 'Plane',
-    emoji: 'T',
+    emoji: '✈️',
     type: 'toggle',
     options: [
-      { id: 't0', label: 'T0 (Brak)', value: 'T0' },
-      { id: 't1', label: 'T1 (Sporadyczne)', value: 'T1' },
-      { id: 't2', label: 'T2 (Regularne, krajowe)', value: 'T2' },
-      { id: 't3', label: 'T3 (Regularne, międzynarodowe)', value: 'T3' },
-      { id: 't4', label: 'T4 (Częste, globalne)', value: 'T4' }
+      { id: 'none', label: 'Brak podróży', value: 'Brak podróży', description: 'Nie chcę podróżować służbowo' },
+      { id: 'rare', label: 'Sporadyczne podróże', value: 'Sporadyczne podróże', description: 'Akceptuję okazjonalne podróże służbowe (kilka razy w roku)' },
+      { id: 'regular-domestic', label: 'Regularne krajowe', value: 'Regularne krajowe', description: 'Jestem gotów/gotowa na regularne podróże w obrębie kraju' },
+      { id: 'regular-international', label: 'Regularne międzynarodowe', value: 'Regularne międzynarodowe', description: 'Akceptuję regularne podróże międzynarodowe' },
+      { id: 'frequent-global', label: 'Częste globalne', value: 'Częste globalne', description: 'Jestem otwarty/a na częste podróże po całym świecie' }
     ],
     areaId: 'location-mobility',
-    description: 'Preferowana częstotliwość podróży służbowych'
+    description: 'Twoja preferowana częstotliwość podróży służbowych'
   }
 ]
 
