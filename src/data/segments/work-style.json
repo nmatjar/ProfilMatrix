@@ -35,16 +35,16 @@
     "description": "Preferowany poziom autonomii w pracy",
     "code": "WA",
     "valueMap": {
-      "Silnie kierowana": "D",
-      "Kierowana": "G",
-      "Autonomiczna": "A",
-      "W pełni niezależna": "I"
+      "Silnie kierowana": "👨‍💼",
+      "Kierowana": "🧭",
+      "Autonomiczna": "🚀",
+      "W pełni niezależna": "🦅"
     },
     "reverseValueMap": {
-      "D": "Silnie kierowana",
-      "G": "Kierowana",
-      "A": "Autonomiczna",
-      "I": "W pełni niezależna"
+      "👨‍💼": "Silnie kierowana",
+      "🧭": "Kierowana",
+      "🚀": "Autonomiczna",
+      "🦅": "W pełni niezależna"
     }
   },
   {
@@ -83,16 +83,16 @@
     "description": "Preferowany styl podejmowania decyzji",
     "code": "DM",
     "valueMap": {
-      "Analityczne": "A",
-      "Intuicyjne": "I",
-      "Współpracujące": "C",
-      "Zdecydowane": "D"
+      "Analityczne": "📊",
+      "Intuicyjne": "🧠",
+      "Współpracujące": "👥",
+      "Zdecydowane": "💪"
     },
     "reverseValueMap": {
-      "A": "Analityczne",
-      "I": "Intuicyjne",
-      "C": "Współpracujące",
-      "D": "Zdecydowane"
+      "📊": "Analityczne",
+      "🧠": "Intuicyjne",
+      "👥": "Współpracujące",
+      "💪": "Zdecydowane"
     }
   },
   {
@@ -131,16 +131,16 @@
     "description": "Preferowane tempo pracy",
     "code": "WP",
     "valueMap": {
-      "Metodyczne": "M",
-      "Stabilne": "S",
-      "Dynamiczne": "D",
-      "Szybkie": "F"
+      "Metodyczne": "📋",
+      "Stabilne": "⏱️",
+      "Dynamiczne": "💥",
+      "Szybkie": "🚀"
     },
     "reverseValueMap": {
-      "M": "Metodyczne",
-      "S": "Stabilne",
-      "D": "Dynamiczne",
-      "F": "Szybkie"
+      "📋": "Metodyczne",
+      "⏱️": "Stabilne",
+      "💥": "Dynamiczne",
+      "🚀": "Szybkie"
     }
   },
   {
@@ -179,16 +179,16 @@
     "description": "Preferowany styl skupienia i zarządzania zadaniami",
     "code": "FS",
     "valueMap": {
-      "Pojedyncze zadanie": "S",
-      "Sekwencyjny": "Q",
-      "Grupowy": "B",
-      "Wielozadaniowy": "M"
+      "Pojedyncze zadanie": "🎯",
+      "Sekwencyjny": "🔄",
+      "Grupowy": "📈",
+      "Wielozadaniowy": "🤹‍♂️"
     },
     "reverseValueMap": {
-      "S": "Pojedyncze zadanie",
-      "Q": "Sekwencyjny",
-      "B": "Grupowy",
-      "M": "Wielozadaniowy"
+      "🎯": "Pojedyncze zadanie",
+      "🔄": "Sekwencyjny",
+      "📈": "Grupowy",
+      "🤹‍♂️": "Wielozadaniowy"
     }
   },
   {
@@ -227,16 +227,16 @@
     "description": "Preferowany styl rozwiązywania problemów",
     "code": "PS",
     "valueMap": {
-      "Analityczne": "A",
-      "Kreatywne": "C",
-      "Współpracujące": "T",
-      "Praktyczne": "P"
+      "Analityczne": "📊",
+      "Kreatywne": "🎨",
+      "Współpracujące": "👥",
+      "Praktyczne": "📈"
     },
     "reverseValueMap": {
-      "A": "Analityczne",
-      "C": "Kreatywne",
-      "T": "Współpracujące",
-      "P": "Praktyczne"
+      "📊": "Analityczne",
+      "🎨": "Kreatywne",
+      "👥": "Współpracujące",
+      "📈": "Praktyczne"
     }
   }
 ]

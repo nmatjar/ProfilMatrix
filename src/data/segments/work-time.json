@@ -35,16 +35,16 @@
     "description": "Preferowane godziny pracy",
     "code": "WH",
     "valueMap": {
-      "Standardowe (9-17)": "S",
-      "Elastyczne": "E",
-      "Zmianowe": "Z",
-      "Nocne": "N"
+      "Standardowe (9-17)": "🕙",
+      "Elastyczne": "🔄",
+      "Zmianowe": "🔀",
+      "Nocne": "🌃"
     },
     "reverseValueMap": {
-      "S": "Standardowe (9-17)",
-      "E": "Elastyczne",
-      "Z": "Zmianowe",
-      "N": "Nocne"
+      "🕙": "Standardowe (9-17)",
+      "🔄": "Elastyczne",
+      "🔀": "Zmianowe",
+      "🌃": "Nocne"
     }
   },
   {
@@ -83,16 +83,16 @@
     "description": "Preferowany układ tygodnia pracy",
     "code": "WW",
     "valueMap": {
-      "Standardowy (pon-pt)": "S",
-      "Z weekendami": "W",
-      "Skompresowany": "K",
-      "Elastyczny": "E"
+      "Standardowy (pon-pt)": "📆",
+      "Z weekendami": "🌞",
+      "Skompresowany": "📈",
+      "Elastyczny": "🔄"
     },
     "reverseValueMap": {
-      "S": "Standardowy (pon-pt)",
-      "W": "Z weekendami",
-      "K": "Skompresowany",
-      "E": "Elastyczny"
+      "📆": "Standardowy (pon-pt)",
+      "🌞": "Z weekendami",
+      "📈": "Skompresowany",
+      "🔄": "Elastyczny"
     }
   },
   {
@@ -131,16 +131,16 @@
     "description": "Preferowany model czasu pracy",
     "code": "WTM",
     "valueMap": {
-      "Pełny etat": "F",
-      "Niepełny etat": "P",
-      "Projektowy": "R",
-      "Elastyczny": "E"
+      "Pełny etat": "⏱️",
+      "Niepełny etat": "⌛",
+      "Projektowy": "📈",
+      "Elastyczny": "🔄"
     },
     "reverseValueMap": {
-      "F": "Pełny etat",
-      "P": "Niepełny etat",
-      "R": "Projektowy",
-      "E": "Elastyczny"
+      "⏱️": "Pełny etat",
+      "⌛": "Niepełny etat",
+      "📈": "Projektowy",
+      "🔄": "Elastyczny"
     }
   },
   {
@@ -179,16 +179,16 @@
     "description": "Preferowany stosunek do nadgodzin",
     "code": "OT",
     "valueMap": {
-      "Nigdy": "N",
-      "Okazjonalnie": "O",
-      "Regularnie": "R",
-      "Według potrzeb": "P"
+      "Nigdy": "❌",
+      "Okazjonalnie": "🔄",
+      "Regularnie": "📆",
+      "Według potrzeb": "🔍"
     },
     "reverseValueMap": {
-      "N": "Nigdy",
-      "O": "Okazjonalnie",
-      "R": "Regularnie",
-      "P": "Według potrzeb"
+      "❌": "Nigdy",
+      "🔄": "Okazjonalnie",
+      "📆": "Regularnie",
+      "🔍": "Według potrzeb"
     }
   },
   {
@@ -227,16 +227,16 @@
     "description": "Preferowana dostępność poza standardowymi godzinami pracy",
     "code": "AV",
     "valueMap": {
-      "Tylko w godzinach pracy": "W",
-      "Rozszerzona": "R",
-      "Dyżurna": "D",
-      "Zawsze": "A"
+      "Tylko w godzinach pracy": "🕒",
+      "Rozszerzona": "📈",
+      "Dyżurna": "📞",
+      "Zawsze": "♻️"
     },
     "reverseValueMap": {
-      "W": "Tylko w godzinach pracy",
-      "R": "Rozszerzona",
-      "D": "Dyżurna",
-      "A": "Zawsze"
+      "🕒": "Tylko w godzinach pracy",
+      "📈": "Rozszerzona",
+      "📞": "Dyżurna",
+      "♻️": "Zawsze"
     }
   }
 ]

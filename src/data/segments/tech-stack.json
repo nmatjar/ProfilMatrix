@@ -23,32 +23,32 @@
     "description": "Preferowane języki programowania",
     "code": "PL",
     "valueMap": {
-      "JavaScript": "JS",
-      "TypeScript": "TS",
-      "Python": "PY",
-      "Java": "JV",
-      "C#": "CS",
-      "C++": "CP",
-      "Go": "GO",
-      "Rust": "RS",
-      "PHP": "PP",
-      "Ruby": "RB",
-      "Swift": "SW",
-      "Kotlin": "KT"
+      "JavaScript": "🟨",
+      "TypeScript": "🟧",
+      "Python": "🐍",
+      "Java": "☕",
+      "C#": "🟢",
+      "C++": "🔵",
+      "Go": "🦫",
+      "Rust": "🦀",
+      "PHP": "🐘",
+      "Ruby": "💎",
+      "Swift": "🐦",
+      "Kotlin": "🟟"
     },
     "reverseValueMap": {
-      "JS": "JavaScript",
-      "TS": "TypeScript",
-      "PY": "Python",
-      "JV": "Java",
-      "CS": "C#",
-      "CP": "C++",
-      "GO": "Go",
-      "RS": "Rust",
-      "PP": "PHP",
-      "RB": "Ruby",
-      "SW": "Swift",
-      "KT": "Kotlin"
+      "🟨": "JavaScript",
+      "🟧": "TypeScript",
+      "🐍": "Python",
+      "☕": "Java",
+      "🟢": "C#",
+      "🔵": "C++",
+      "🦫": "Go",
+      "🦀": "Rust",
+      "🐘": "PHP",
+      "💎": "Ruby",
+      "🐦": "Swift",
+      "🟟": "Kotlin"
     }
   },
   {
@@ -69,20 +69,20 @@
     "description": "Preferowane frameworki frontendowe",
     "code": "FF",
     "valueMap": {
-      "React": "RE",
-      "Angular": "AN",
-      "Vue.js": "VU",
-      "Svelte": "SV",
-      "Next.js": "NX",
-      "Nuxt.js": "NU"
+      "React": "⚛️",
+      "Angular": "🅰️",
+      "Vue.js": "🟢",
+      "Svelte": "🟠",
+      "Next.js": "⬛",
+      "Nuxt.js": "🟩"
     },
     "reverseValueMap": {
-      "RE": "React",
-      "AN": "Angular",
-      "VU": "Vue.js",
-      "SV": "Svelte",
-      "NX": "Next.js",
-      "NU": "Nuxt.js"
+      "⚛️": "React",
+      "🅰️": "Angular",
+      "🟢": "Vue.js",
+      "🟠": "Svelte",
+      "⬛": "Next.js",
+      "🟩": "Nuxt.js"
     }
   },
   {
@@ -105,24 +105,24 @@
     "description": "Preferowane frameworki backendowe",
     "code": "BF",
     "valueMap": {
-      "Node.js": "NJ",
-      "Express": "EX",
-      "Django": "DJ",
-      "Flask": "FL",
-      "Spring": "SP",
-      "Laravel": "LR",
-      "Ruby on Rails": "RR",
-      ".NET": "DN"
+      "Node.js": "🟢",
+      "Express": "⚡",
+      "Django": "🐍",
+      "Flask": "🧪",
+      "Spring": "🍃",
+      "Laravel": "🔻",
+      "Ruby on Rails": "🛤️",
+      ".NET": "🟧"
     },
     "reverseValueMap": {
-      "NJ": "Node.js",
-      "EX": "Express",
-      "DJ": "Django",
-      "FL": "Flask",
-      "SP": "Spring",
-      "LR": "Laravel",
-      "RR": "Ruby on Rails",
-      "DN": ".NET"
+      "🟢": "Node.js",
+      "⚡": "Express",
+      "🐍": "Django",
+      "🧪": "Flask",
+      "🍃": "Spring",
+      "🔻": "Laravel",
+      "🛤️": "Ruby on Rails",
+      "🟧": ".NET"
     }
   },
   {
@@ -144,22 +144,22 @@
     "description": "Preferowane bazy danych",
     "code": "DB",
     "valueMap": {
-      "MySQL": "MY",
-      "PostgreSQL": "PG",
-      "MongoDB": "MG",
-      "SQLite": "SL",
-      "Redis": "RD",
-      "Oracle": "OR",
-      "MS SQL Server": "MS"
+      "MySQL": "🐬",
+      "PostgreSQL": "🐘",
+      "MongoDB": "🍃",
+      "SQLite": "🔵",
+      "Redis": "🔴",
+      "Oracle": "🟠",
+      "MS SQL Server": "🟧"
     },
     "reverseValueMap": {
-      "MY": "MySQL",
-      "PG": "PostgreSQL",
-      "MG": "MongoDB",
-      "SL": "SQLite",
-      "RD": "Redis",
-      "OR": "Oracle",
-      "MS": "MS SQL Server"
+      "🐬": "MySQL",
+      "🐘": "PostgreSQL",
+      "🍃": "MongoDB",
+      "🔵": "SQLite",
+      "🔴": "Redis",
+      "🟠": "Oracle",
+      "🟧": "MS SQL Server"
     }
   },
   {
