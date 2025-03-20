@@ -11,6 +11,8 @@ import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, T
 import { Link } from 'react-router-dom';
 import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/segment-types';
 import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
+import { dnaCategories, getDNACodeForValue, getDNAMappingForSegment, groupSegmentsByArea, ensureAllSegmentsMapped } from '@/lib/dna-code-mapping';
+import { DNACodeDisplay } from '@/components/DNACodeDisplay';
 
 interface ActiveSegment {
   id: string;
@@ -631,159 +633,58 @@ const Index = () => {
     
     console.log('Generating profile with active segments:', activeSegments);
     
-    // Only include segments that are active (visible)
-    const activeSegmentIds = new Set(
-      activeSegments.filter(s => s.visible).map(s => s.segmentId)
-    );
+    // Upewnij się, że wszystkie segmenty mają mapowania DNA
+    ensureAllSegmentsMapped();
     
-    console.log('Active segment IDs:', Array.from(activeSegmentIds));
+    // Grupuj segmenty według obszarów
+    const groupedSegments = groupSegmentsByArea(activeSegments);
     
-    // Grupowanie segmentów na podstawie kategorii
-    const categoryGroups = {};
+    console.log('Grouped segments by area:', groupedSegments);
     
-    // Definiujemy grupy kategorii, które powinny być razem w kodzie
-    const groupDefinitions = [
-      // ŚRODOWISKO PRACY - wszystko związane z miejscem i otoczeniem pracy
-      { 
-        name: 'environment', 
-        categories: ['workplace', 'officeType', 'culture'], 
-        emoji: '🏢', 
-        format: '{workplace}{officeType}·{culture}',
-        description: 'Środowisko pracy'
-      },
-      
-      // ZESPÓŁ - wszystko związane z ludźmi i współpracą
-      { 
-        name: 'team', 
-        categories: ['teamSize', 'communicationStyle', 'availability'], 
-        emoji: '👥', 
-        format: '{teamSize}·{communicationStyle}·{availability}',
-        description: 'Zespół i współpraca'
-      },
-      
-      // CZAS - wszystko związane z czasem pracy
-      { 
-        name: 'time', 
-        categories: ['workHours', 'workSchedule', 'workPace'], 
-        emoji: '⏱️', 
-        format: '{workHours}h·{workSchedule}·{workPace}',
-        description: 'Czas pracy'
-      },
-      
-      // SPOSÓB PRACY - styl myślenia i podejście do zadań
-      { 
-        name: 'workStyle', 
-        categories: ['learningStyle', 'problemSolving', 'decisionMaking'], 
-        emoji: '🧠', 
-        format: '{learningStyle}·{problemSolving}·{decisionMaking}',
-        description: 'Sposób pracy'
-      },
-      
-      // KOMUNIKACJA - wszystko związane z komunikacją i feedbackiem
-      { 
-        name: 'communication', 
-        categories: ['feedbackStyle', 'asyncPreference'], 
-        emoji: '💬', 
-        format: '{feedbackStyle}·{asyncPreference}',
-        description: 'Komunikacja'
-      },
-      
-      // ADAPTACJA - elastyczność i mobilność
-      { 
-        name: 'adaptation', 
-        categories: ['mobility', 'locationMobility', 'stressManagement'], 
-        emoji: '🔄', 
-        format: '{mobility}·{locationMobility}·{stressManagement}',
-        description: 'Adaptacja i elastyczność'
-      },
-      
-      // INNOWACJA - kreatywność i podejście do projektów
-      { 
-        name: 'innovation', 
-        categories: ['innovationLevel', 'projectPreference', 'synergy'], 
-        emoji: '💡', 
-        format: '{innovationLevel}·{projectPreference}·S{synergy}',
-        description: 'Innowacja i kreatywność'
-      },
-      
-      // STYL OSOBISTY - preferencje osobiste
-      { 
-        name: 'personal', 
-        categories: ['system', 'musicPreference', 'dressCode'], 
-        emoji: '🎭', 
-        format: '{system}·{musicPreference}·{dressCode}',
-        description: 'Styl osobisty'
-      }
-    ];
-    
-    // Generowanie kodu dla każdej grupy
+    // Generuj kod dla każdego obszaru
     const codeSegments = [];
     
-    // Funkcja pomocnicza do sprawdzania, czy grupa ma aktywne kategorie
-    const hasActiveCategories = (categories) => {
-      return categories.some(category => 
-        activeSegmentIds.has(category) && 
-        selections[category] && 
-        selections[category].toString().trim() !== ''
-      );
+    // Funkcja pomocnicza do formatowania kodu DNA dla obszaru
+    const formatDNACode = (areaId: string, segments: { segmentId: string, value: string | number }[]) => {
+      if (segments.length === 0) return '';
+      
+      const area = mainAreas.find(a => a.id === areaId);
+      if (!area) return '';
+      
+      // Generuj kody dla segmentów w obszarze
+      const codes = segments.map(segment => {
+        const mapping = getDNAMappingForSegment(segment.segmentId);
+        if (!mapping) return '';
+        
+        const valueCode = getDNACodeForValue(segment.segmentId, segment.value);
+        return `${mapping.code}.${valueCode}`;
+      }).filter(Boolean);
+      
+      if (codes.length === 0) return '';
+      
+      // Pobierz emoji dla obszaru z dnaCategories
+      const areaInfo = dnaCategories.find(c => c.id === areaId);
+      const emoji = areaInfo ? areaInfo.emoji : '🔹';
+      
+      // Połącz kody w jeden string
+      return `${emoji}${codes.join('.')}`;
     };
     
-    // Funkcja pomocnicza do formatowania kodu grupy
-    const formatGroupCode = (group) => {
-      let format = group.format;
-      
-      // Zastąp placeholdery wartościami
-      group.categories.forEach(category => {
-        const value = selections[category] || "";
-        format = format.replace(`{${category}}`, value);
-      });
-      
-      // Usuń puste wartości i popraw separatory
-      format = format
-        .replace(/·+/g, '·')         // Zamień wielokrotne kropki na jedną
-        .replace(/^·|·$/g, '')       // Usuń kropki na początku i końcu
-        .replace(/·+$/g, '')         // Usuń kropki na końcu
-        .replace(/^·+/, '')          // Usuń kropki na początku
-        .replace(/·+/g, '·');        // Jeszcze raz upewnij się, że nie ma podwójnych kropek
-      
-      return `${group.emoji} ${format}`;
-    };
-    
-    // Generuj kod dla każdej grupy
-    groupDefinitions.forEach(group => {
-      if (hasActiveCategories(group.categories)) {
-        const groupCode = formatGroupCode(group);
-        if (groupCode.trim() !== group.emoji) { // Dodaj tylko jeśli nie jest to sam emoji
-          codeSegments.push(groupCode);
+    // Generuj kod dla każdego obszaru
+    mainAreas.forEach(area => {
+      const areaSegments = groupedSegments[area.id] || [];
+      if (areaSegments.length > 0) {
+        const areaCode = formatDNACode(area.id, areaSegments);
+        if (areaCode) {
+          codeSegments.push(areaCode);
         }
       }
     });
     
-    // Znajdź aktywne kategorie, które nie są w żadnej zdefiniowanej grupie
-    const definedCategories = new Set(
-      groupDefinitions.flatMap(group => group.categories)
-    );
-    
-    const otherActiveCategories = Array.from(activeSegmentIds)
-      .filter(category => 
-        !definedCategories.has(category) && 
-        selections[category] && 
-        selections[category].toString().trim() !== ''
-      );
-    
-    // Jeśli są jakieś inne aktywne kategorie, dodaj je do kodu
-    if (otherActiveCategories.length > 0) {
-      const otherCode = otherActiveCategories
-        .map(category => `${category.charAt(0).toUpperCase()}${selections[category]}`)
-        .join('·');
-      
-      codeSegments.push(`⚙️ ${otherCode}`);
-    }
-    
-    // Join all code segments with a separator
+    // Połącz wszystkie segmenty kodu
     const code = codeSegments.filter(Boolean).join(" | ");
     
-    console.log('Generated profile code:', code);
+    console.log('Generated DNA profile code:', code);
     setProfile(code);
   }, [selections, activeSegments]);
 
@@ -826,10 +727,16 @@ const Index = () => {
               </div>
               
               <div className="border border-green-900 rounded-md p-6 bg-black bg-opacity-90 backdrop-blur-sm">
-                <h2 className="text-xl font-bold mb-4">Wygenerowany Profil</h2>
+                <h2 className="text-xl font-bold mb-4">Wygenerowany Profil DNA</h2>
                 <div className="font-bold text-sm sm:text-base md:text-lg break-all bg-black p-4 rounded border border-green-700 font-mono">
                   {profile || "Wybierz opcje aby wygenerować profil..."}
                 </div>
+                {profile && (
+                  <div className="mt-4 p-4 rounded border border-green-700 bg-black/50">
+                    <h3 className="text-lg font-semibold mb-2">Wizualizacja DNA</h3>
+                    <DNACodeDisplay code={profile} />
+                  </div>
+                )}
                 <button
                   onClick={copyToClipboard}
                   className="mt-4 px-4 py-2 border border-green-700 rounded hover:bg-green-900 hover:bg-opacity-30 w-full"

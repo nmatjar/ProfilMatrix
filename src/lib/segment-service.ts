@@ -55,10 +55,18 @@ export function getSegmentById(id: string): SegmentWithIcon | null {
 }
 
 /**
+ * Get all segments
+ * This function could be replaced with a database query in the future
+ */
+export function getAllSegments(): Segment[] {
+  return segments
+}
+
+/**
  * Get all segments with their icon components
  * This function could be replaced with a database query in the future
  */
-export function getAllSegments(): SegmentWithIcon[] {
+export function getAllSegmentsWithIcons(): SegmentWithIcon[] {
   return segments.map(segment => ({
     ...segment,
     icon: getIconComponent(segment.iconName)
