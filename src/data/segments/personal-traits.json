@@ -8,19 +8,19 @@
     "options": [
       {
         "id": "introvert",
-        "label": "Introwertyk",
+        "label": "🧠 Introwertyk",
         "value": "Introwertyk",
         "description": "Preferuję spokojne, refleksyjne środowisko"
       },
       {
         "id": "extrovert",
-        "label": "Ekstrawertyk",
+        "label": "🗣️ Ekstrawertyk",
         "value": "Ekstrawertyk",
         "description": "Preferuję dynamiczne, społeczne środowisko"
       },
       {
         "id": "ambivert",
-        "label": "Ambiwertyk",
+        "label": "⚖️ Ambiwertyk",
         "value": "Ambiwertyk",
         "description": "Balans między introwertyzmem a ekstrawertyzmem"
       }
@@ -48,27 +48,21 @@
     "options": [
       {
         "id": "proactive",
-        "label": "Proaktywne",
+        "label": "🛡️ Proaktywne",
         "value": "Proaktywne",
-        "description": "Aktywne zapobieganie i zarządzanie stresem"
-      },
-      {
-        "id": "adaptive",
-        "label": "Adaptacyjne",
-        "value": "Adaptacyjne",
-        "description": "Elastyczne dostosowywanie się do sytuacji stresowych"
+        "description": "Aktywnie zapobiegam stresowi"
       },
       {
         "id": "reactive",
-        "label": "Reaktywne",
+        "label": "🧘 Reaktywne",
         "value": "Reaktywne",
-        "description": "Reagowanie na stres po jego wystąpieniu"
+        "description": "Dobrze radzę sobie ze stresem gdy się pojawia"
       },
       {
         "id": "avoidant",
-        "label": "Unikające",
+        "label": "🚪 Unikające",
         "value": "Unikające",
-        "description": "Unikanie sytuacji stresowych"
+        "description": "Staram się unikać sytuacji stresowych"
       }
     ],
     "areaId": "personal-traits",
@@ -76,15 +70,13 @@
     "code": "SM",
     "valueMap": {
       "Proaktywne": "P",
-      "Adaptacyjne": "A",
       "Reaktywne": "R",
-      "Unikające": "V"
+      "Unikające": "A"
     },
     "reverseValueMap": {
       "P": "Proaktywne",
-      "A": "Adaptacyjne",
       "R": "Reaktywne",
-      "V": "Unikające"
+      "A": "Unikające"
     }
   },
   {
@@ -96,27 +88,27 @@
     "options": [
       {
         "id": "high",
-        "label": "Wysoka",
+        "label": "⬆️ Wysoka",
         "value": "Wysoka",
-        "description": "Szybkie dostosowywanie się do zmian"
+        "description": "Szybko dostosowuję się do zmian"
       },
       {
         "id": "moderate",
-        "label": "Umiarkowana",
+        "label": "⬇️ Umiarkowana",
         "value": "Umiarkowana",
-        "description": "Umiarkowane tempo dostosowywania się do zmian"
+        "description": "Umiarkowanie szybko dostosowuję się do zmian"
       },
       {
         "id": "selective",
-        "label": "Selektywna",
+        "label": "🔍 Selektywna",
         "value": "Selektywna",
-        "description": "Dostosowywanie się tylko do wybranych zmian"
+        "description": "Dostosowuję się tylko do wybranych zmian"
       },
       {
         "id": "traditional",
-        "label": "Tradycyjna",
+        "label": "📜 Tradycyjna",
         "value": "Tradycyjna",
-        "description": "Preferowanie stabilności i przewidywalności"
+        "description": "Preferuję stabilność i przewidywalność"
       }
     ],
     "areaId": "personal-traits",
@@ -144,27 +136,27 @@
     "options": [
       {
         "id": "innovative",
-        "label": "Innowacyjna",
+        "label": "💥 Innowacyjna",
         "value": "Innowacyjna",
-        "description": "Tworzenie nowych, oryginalnych pomysłów"
+        "description": "Tworzę nowe, oryginalne pomysły"
       },
       {
         "id": "adaptive",
-        "label": "Adaptacyjna",
+        "label": "🔄 Adaptacyjna",
         "value": "Adaptacyjna",
-        "description": "Dostosowywanie istniejących rozwiązań do nowych sytuacji"
+        "description": "Dostosowuję istniejące rozwiązania do nowych sytuacji"
       },
       {
         "id": "practical",
-        "label": "Praktyczna",
+        "label": "🛠️ Praktyczna",
         "value": "Praktyczna",
-        "description": "Tworzenie praktycznych, użytecznych rozwiązań"
+        "description": "Tworzę praktyczne, użyteczne rozwiązania"
       },
       {
         "id": "conceptual",
-        "label": "Koncepcyjna",
+        "label": "🤔 Koncepcyjna",
         "value": "Koncepcyjna",
-        "description": "Tworzenie abstrakcyjnych koncepcji i teorii"
+        "description": "Tworzę abstrakcyjne koncepcje i teorie"
       }
     ],
     "areaId": "personal-traits",
@@ -192,43 +184,35 @@
     "options": [
       {
         "id": "risk-averse",
-        "label": "Unikające",
-        "value": "Unikające",
-        "description": "Preferowanie bezpiecznych, sprawdzonych rozwiązań"
+        "label": "🛡️ Unikające ryzyka",
+        "value": "Unikające ryzyka",
+        "description": "Preferuję unikać ryzyka i niepewności"
       },
       {
         "id": "risk-neutral",
-        "label": "Neutralne",
-        "value": "Neutralne",
-        "description": "Zrównoważone podejście do ryzyka"
+        "label": "⚖️ Neutralne wobec ryzyka",
+        "value": "Neutralne wobec ryzyka",
+        "description": "Oceniam ryzyko obiektywnie, bez emocji"
       },
       {
         "id": "risk-seeking",
-        "label": "Poszukujące",
-        "value": "Poszukujące",
-        "description": "Gotowość do podejmowania ryzykownych decyzji"
-      },
-      {
-        "id": "calculated",
-        "label": "Kalkulowane",
-        "value": "Kalkulowane",
-        "description": "Podejmowanie ryzyka po dokładnej analizie"
+        "label": "🎯 Poszukujące ryzyka",
+        "value": "Poszukujące ryzyka",
+        "description": "Lubię podejmować ryzyko dla potencjalnych korzyści"
       }
     ],
     "areaId": "personal-traits",
-    "description": "Stosunek do podejmowania ryzyka",
+    "description": "Preferowane podejście do ryzyka",
     "code": "RA",
     "valueMap": {
-      "Unikające": "A",
-      "Neutralne": "N",
-      "Poszukujące": "S",
-      "Kalkulowane": "C"
+      "Unikające ryzyka": "A",
+      "Neutralne wobec ryzyka": "N",
+      "Poszukujące ryzyka": "S"
     },
     "reverseValueMap": {
-      "A": "Unikające",
-      "N": "Neutralne",
-      "S": "Poszukujące",
-      "C": "Kalkulowane"
+      "A": "Unikające ryzyka",
+      "N": "Neutralne wobec ryzyka",
+      "S": "Poszukujące ryzyka"
     }
   },
   {
@@ -240,43 +224,43 @@
     "options": [
       {
         "id": "visual",
-        "label": "Wizualny",
+        "label": "👁️ Wizualny",
         "value": "Wizualny",
-        "description": "Uczenie się poprzez obrazy, diagramy, wykresy"
+        "description": "Uczę się najlepiej poprzez obrazy i wizualizacje"
       },
       {
         "id": "auditory",
-        "label": "Słuchowy",
+        "label": "👂 Słuchowy",
         "value": "Słuchowy",
-        "description": "Uczenie się poprzez słuchanie, dyskusje"
+        "description": "Uczę się najlepiej poprzez słuchanie i dyskusje"
+      },
+      {
+        "id": "reading-writing",
+        "label": "✍️ Czytanie/Pisanie",
+        "value": "Czytanie/Pisanie",
+        "description": "Uczę się najlepiej poprzez czytanie i pisanie"
       },
       {
         "id": "kinesthetic",
-        "label": "Kinestetyczny",
+        "label": "🤸 Kinestetyczny",
         "value": "Kinestetyczny",
-        "description": "Uczenie się poprzez praktykę, doświadczenie"
-      },
-      {
-        "id": "reading",
-        "label": "Czytanie/Pisanie",
-        "value": "Czytanie/Pisanie",
-        "description": "Uczenie się poprzez czytanie i pisanie"
+        "description": "Uczę się najlepiej poprzez praktykę i doświadczenie"
       }
     ],
     "areaId": "personal-traits",
-    "description": "Preferowany sposób przyswajania nowej wiedzy",
+    "description": "Preferowany styl uczenia się",
     "code": "LS",
     "valueMap": {
       "Wizualny": "V",
       "Słuchowy": "A",
-      "Kinestetyczny": "K",
-      "Czytanie/Pisanie": "R"
+      "Czytanie/Pisanie": "R",
+      "Kinestetyczny": "K"
     },
     "reverseValueMap": {
       "V": "Wizualny",
       "A": "Słuchowy",
-      "K": "Kinestetyczny",
-      "R": "Czytanie/Pisanie"
+      "R": "Czytanie/Pisanie",
+      "K": "Kinestetyczny"
     }
   },
   {
@@ -288,25 +272,25 @@
     "options": [
       {
         "id": "achievement",
-        "label": "Osiągnięcia",
+        "label": "🏆 Osiągnięcia",
         "value": "Osiągnięcia",
         "description": "Motywacja przez osiąganie celów i sukcesów"
       },
       {
         "id": "recognition",
-        "label": "Uznanie",
+        "label": "👏 Uznanie",
         "value": "Uznanie",
         "description": "Motywacja przez otrzymywanie uznania i pochwał"
       },
       {
         "id": "growth",
-        "label": "Rozwój",
+        "label": "🚀 Rozwój",
         "value": "Rozwój",
         "description": "Motywacja przez możliwości rozwoju i nauki"
       },
       {
         "id": "purpose",
-        "label": "Cel",
+        "label": "💡 Cel",
         "value": "Cel",
         "description": "Motywacja przez poczucie sensu i celu"
       }
@@ -336,43 +320,43 @@
     "options": [
       {
         "id": "self-awareness",
-        "label": "Samoświadomość",
+        "label": "🧠 Samoświadomość",
         "value": "Samoświadomość",
-        "description": "Świadomość własnych emocji i ich wpływu"
+        "description": "Rozumiem własne emocje i ich wpływ na innych"
       },
       {
         "id": "self-regulation",
-        "label": "Samoregulacja",
+        "label": "⚖️ Samoregulacja",
         "value": "Samoregulacja",
-        "description": "Zdolność do kontrolowania własnych emocji"
+        "description": "Potrafię kontrolować i kierować swoimi emocjami"
       },
       {
         "id": "empathy",
-        "label": "Empatia",
+        "label": "🤝 Empatia",
         "value": "Empatia",
-        "description": "Zdolność do rozumienia emocji innych"
+        "description": "Rozumiem emocje i potrzeby innych"
       },
       {
         "id": "social-skills",
-        "label": "Umiejętności społeczne",
+        "label": "👥 Umiejętności społeczne",
         "value": "Umiejętności społeczne",
-        "description": "Zdolność do budowania relacji i współpracy"
+        "description": "Potrafię budować i utrzymywać zdrowe relacje"
       }
     ],
     "areaId": "personal-traits",
-    "description": "Najsilniejszy aspekt inteligencji emocjonalnej",
+    "description": "Kluczowe aspekty inteligencji emocjonalnej",
     "code": "EI",
     "valueMap": {
-      "Samoświadomość": "A",
-      "Samoregulacja": "R",
+      "Samoświadomość": "SA",
+      "Samoregulacja": "SR",
       "Empatia": "E",
-      "Umiejętności społeczne": "S"
+      "Umiejętności społeczne": "SS"
     },
     "reverseValueMap": {
-      "A": "Samoświadomość",
-      "R": "Samoregulacja",
+      "SA": "Samoświadomość",
+      "SR": "Samoregulacja",
       "E": "Empatia",
-      "S": "Umiejętności społeczne"
+      "SS": "Umiejętności społeczne"
     }
   },
   {
@@ -384,27 +368,27 @@
     "options": [
       {
         "id": "collaborative",
-        "label": "Współpracujące",
+        "label": "👥 Współpracujące",
         "value": "Współpracujące",
-        "description": "Dążenie do rozwiązań korzystnych dla wszystkich stron"
+        "description": "Dążę do rozwiązań korzystnych dla wszystkich stron"
       },
       {
         "id": "compromising",
-        "label": "Kompromisowe",
+        "label": "⚖️ Kompromisowe",
         "value": "Kompromisowe",
-        "description": "Szukanie rozwiązań częściowo satysfakcjonujących obie strony"
+        "description": "Szukam rozwiązań częściowo satysfakcjonujących obie strony"
       },
       {
         "id": "accommodating",
-        "label": "Dostosowujące",
+        "label": "🤝 Dostosowujące",
         "value": "Dostosowujące",
-        "description": "Ustępowanie dla dobra relacji"
+        "description": "Staram się dostosować do potrzeb innych"
       },
       {
         "id": "assertive",
-        "label": "Asertywne",
+        "label": "👊 Asertywne",
         "value": "Asertywne",
-        "description": "Stanowcze wyrażanie swoich potrzeb i oczekiwań"
+        "description": "Stanowczo wyrażam swoje potrzeby i oczekiwania"
       }
     ],
     "areaId": "personal-traits",

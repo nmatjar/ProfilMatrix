@@ -23,25 +23,25 @@
     "options": [
       {
         "id": "employment",
-        "label": "Umowa o pracę",
+        "label": "📑 Umowa o pracę",
         "value": "Umowa o pracę",
         "description": "Preferuję umowę o pracę"
       },
       {
         "id": "b2b",
-        "label": "Kontrakt B2B",
+        "label": "🏢 Kontrakt B2B",
         "value": "Kontrakt B2B",
         "description": "Preferuję kontrakt B2B"
       },
       {
         "id": "commission",
-        "label": "Umowa zlecenie",
+        "label": "📝 Umowa zlecenie",
         "value": "Umowa zlecenie",
         "description": "Preferuję umowę zlecenie"
       },
       {
         "id": "work",
-        "label": "Umowa o dzieło",
+        "label": "🎨 Umowa o dzieło",
         "value": "Umowa o dzieło",
         "description": "Preferuję umowę o dzieło"
       }
@@ -50,16 +50,16 @@
     "description": "Preferowana forma zatrudnienia",
     "code": "ET",
     "valueMap": {
-      "Umowa o pracę": "E",
-      "Kontrakt B2B": "B",
-      "Umowa zlecenie": "C",
-      "Umowa o dzieło": "W"
+      "Umowa o pracę": "UOP",
+      "Kontrakt B2B": "B2B",
+      "Umowa zlecenie": "UZ",
+      "Umowa o dzieło": "UOD"
     },
     "reverseValueMap": {
-      "E": "Umowa o pracę",
-      "B": "Kontrakt B2B",
-      "C": "Umowa zlecenie",
-      "W": "Umowa o dzieło"
+      "UOP": "Umowa o pracę",
+      "B2B": "Kontrakt B2B",
+      "UZ": "Umowa zlecenie",
+      "UOD": "Umowa o dzieło"
     }
   },
   {
@@ -71,25 +71,25 @@
     "options": [
       {
         "id": "trial",
-        "label": "Okres próbny",
+        "label": "🕒️ Okres próbny",
         "value": "Okres próbny",
         "description": "Umowa na okres próbny"
       },
       {
         "id": "fixed",
-        "label": "Określony",
+        "label": "📆 Określony",
         "value": "Określony",
         "description": "Umowa na czas określony"
       },
       {
         "id": "indefinite",
-        "label": "Nieokreślony",
+        "label": "🕰️ Nieokreślony",
         "value": "Nieokreślony",
         "description": "Umowa na czas nieokreślony"
       },
       {
         "id": "project",
-        "label": "Projektowy",
+        "label": "📈 Projektowy",
         "value": "Projektowy",
         "description": "Umowa na czas trwania projektu"
       }
@@ -119,37 +119,37 @@
     "options": [
       {
         "id": "healthcare",
-        "label": "Opieka zdrowotna",
+        "label": "🏥 Opieka zdrowotna",
         "value": "Opieka zdrowotna",
         "description": "Prywatna opieka zdrowotna"
       },
       {
         "id": "sports",
-        "label": "Karta sportowa",
+        "label": "🏋️ Karta sportowa",
         "value": "Karta sportowa",
         "description": "Karta sportowa (np. MultiSport)"
       },
       {
         "id": "education",
-        "label": "Szkolenia",
+        "label": "📚 Szkolenia",
         "value": "Szkolenia",
         "description": "Szkolenia i rozwój zawodowy"
       },
       {
         "id": "food",
-        "label": "Posiłki",
+        "label": "🍴 Posiłki",
         "value": "Posiłki",
         "description": "Dofinansowanie posiłków"
       },
       {
         "id": "insurance",
-        "label": "Ubezpieczenie",
+        "label": "🛡️ Ubezpieczenie",
         "value": "Ubezpieczenie",
         "description": "Dodatkowe ubezpieczenie"
       },
       {
         "id": "retirement",
-        "label": "Emerytura",
+        "label": "🏠 Emerytura",
         "value": "Emerytura",
         "description": "Dodatkowy program emerytalny"
       }
@@ -183,25 +183,25 @@
     "options": [
       {
         "id": "standard",
-        "label": "Standardowy",
+        "label": "📅 Standardowy",
         "value": "Standardowy",
         "description": "Standardowy wymiar urlopu (20-26 dni)"
       },
       {
         "id": "extended",
-        "label": "Rozszerzony",
+        "label": "🗓️ Rozszerzony",
         "value": "Rozszerzony",
         "description": "Rozszerzony wymiar urlopu (27-30 dni)"
       },
       {
         "id": "flexible",
-        "label": "Elastyczny",
+        "label": "♾️ Elastyczny",
         "value": "Elastyczny",
         "description": "Elastyczny urlop (np. nielimitowany)"
       },
       {
         "id": "sabbatical",
-        "label": "Sabbatical",
+        "label": "🏖️ Sabbatical",
         "value": "Sabbatical",
         "description": "Możliwość dłuższego urlopu (sabbatical)"
       }

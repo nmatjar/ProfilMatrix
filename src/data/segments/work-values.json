@@ -8,25 +8,25 @@
     "options": [
       {
         "id": "financial",
-        "label": "Finansowy",
+        "label": "💰 Finansowy",
         "value": "Finansowy",
         "description": "Praca głównie dla korzyści finansowych"
       },
       {
         "id": "career",
-        "label": "Kariera",
+        "label": "📈 Kariera",
         "value": "Kariera",
         "description": "Praca dla rozwoju kariery i osiągnięć"
       },
       {
         "id": "passion",
-        "label": "Pasja",
+        "label": "❤️ Pasja",
         "value": "Pasja",
         "description": "Praca z pasji i zainteresowania"
       },
       {
         "id": "impact",
-        "label": "Wpływ",
+        "label": "🌍 Wpływ",
         "value": "Wpływ",
         "description": "Praca dla pozytywnego wpływu na świat"
       }
@@ -56,25 +56,25 @@
     "options": [
       {
         "id": "integrity",
-        "label": "Uczciwość",
+        "label": "✅ Uczciwość",
         "value": "Uczciwość",
         "description": "Priorytet dla uczciwości i transparentności"
       },
       {
         "id": "responsibility",
-        "label": "Odpowiedzialność",
+        "label": "📝 Odpowiedzialność",
         "value": "Odpowiedzialność",
         "description": "Priorytet dla odpowiedzialności i niezawodności"
       },
       {
         "id": "excellence",
-        "label": "Doskonałość",
+        "label": "🌟 Doskonałość",
         "value": "Doskonałość",
         "description": "Priorytet dla jakości i doskonałości"
       },
       {
         "id": "fairness",
-        "label": "Sprawiedliwość",
+        "label": "⚖️ Sprawiedliwość",
         "value": "Sprawiedliwość",
         "description": "Priorytet dla sprawiedliwości i równości"
       }
@@ -104,25 +104,25 @@
     "options": [
       {
         "id": "collaborative",
-        "label": "Współpracująca",
+        "label": "🤝 Współpracująca",
         "value": "Współpracująca",
         "description": "Kultura oparta na współpracy i wsparciu"
       },
       {
         "id": "competitive",
-        "label": "Konkurencyjna",
+        "label": "🏆 Konkurencyjna",
         "value": "Konkurencyjna",
         "description": "Kultura oparta na konkurencji i osiągnięciach"
       },
       {
         "id": "innovative",
-        "label": "Innowacyjna",
+        "label": "💡 Innowacyjna",
         "value": "Innowacyjna",
         "description": "Kultura oparta na innowacji i kreatywności"
       },
       {
         "id": "traditional",
-        "label": "Tradycyjna",
+        "label": "🏛️ Tradycyjna",
         "value": "Tradycyjna",
         "description": "Kultura oparta na tradycji i stabilności"
       }
@@ -152,25 +152,25 @@
     "options": [
       {
         "id": "work-focused",
-        "label": "Skupienie na pracy",
+        "label": "💼 Skupienie na pracy",
         "value": "Skupienie na pracy",
         "description": "Priorytet dla rozwoju zawodowego"
       },
       {
         "id": "balanced",
-        "label": "Zrównoważona",
+        "label": "⚖️ Zrównoważona",
         "value": "Zrównoważona",
         "description": "Równy podział czasu między pracę i życie prywatne"
       },
       {
         "id": "life-focused",
-        "label": "Skupienie na życiu",
+        "label": "🏠 Skupienie na życiu",
         "value": "Skupienie na życiu",
         "description": "Priorytet dla życia prywatnego"
       },
       {
         "id": "integrated",
-        "label": "Zintegrowana",
+        "label": "🔄 Zintegrowana",
         "value": "Zintegrowana",
         "description": "Integracja pracy z życiem prywatnym"
       }
@@ -200,25 +200,25 @@
     "options": [
       {
         "id": "environmental",
-        "label": "Środowiskowa",
+        "label": "🌿 Środowiskowa",
         "value": "Środowiskowa",
         "description": "Troska o środowisko naturalne"
       },
       {
         "id": "social",
-        "label": "Społeczna",
+        "label": "👥 Społeczna",
         "value": "Społeczna",
         "description": "Troska o społeczności lokalne"
       },
       {
         "id": "ethical",
-        "label": "Etyczna",
+        "label": "📜 Etyczna",
         "value": "Etyczna",
         "description": "Troska o etyczne praktyki biznesowe"
       },
       {
         "id": "philanthropic",
-        "label": "Filantropijna",
+        "label": "❤️ Filantropijna",
         "value": "Filantropijna",
         "description": "Troska o działalność charytatywną"
       }

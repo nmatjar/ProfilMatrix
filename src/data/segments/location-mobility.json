@@ -8,37 +8,37 @@
     "options": [
       {
         "id": "europe",
-        "label": "Europa",
+        "label": "🇪🇺 Europa",
         "value": "Europa",
         "description": "Kraje europejskie"
       },
       {
         "id": "north-america",
-        "label": "Ameryka Północna",
+        "label": "🇺🇸 Ameryka Północna",
         "value": "Ameryka Północna",
         "description": "USA, Kanada, Meksyk"
       },
       {
         "id": "south-america",
-        "label": "Ameryka Południowa",
+        "label": "🇧🇷 Ameryka Południowa",
         "value": "Ameryka Południowa",
         "description": "Kraje Ameryki Południowej"
       },
       {
         "id": "asia",
-        "label": "Azja",
+        "label": "🇯🇵 Azja",
         "value": "Azja",
         "description": "Kraje azjatyckie"
       },
       {
         "id": "africa",
-        "label": "Afryka",
+        "label": "🇿🇦 Afryka",
         "value": "Afryka",
         "description": "Kraje afrykańskie"
       },
       {
         "id": "australia",
-        "label": "Australia i Oceania",
+        "label": "🇦🇺 Australia i Oceania",
         "value": "Australia i Oceania",
         "description": "Australia, Nowa Zelandia i wyspy Oceanii"
       }
@@ -52,7 +52,7 @@
       "Ameryka Południowa": "SA",
       "Azja": "AS",
       "Afryka": "AF",
-      "Australia i Oceania": "OC"
+      "Australia i Oceania": "AU"
     },
     "reverseValueMap": {
       "EU": "Europa",
@@ -60,14 +60,14 @@
       "SA": "Ameryka Południowa",
       "AS": "Azja",
       "AF": "Afryka",
-      "OC": "Australia i Oceania"
+      "AU": "Australia i Oceania"
     }
   },
   {
     "id": "country",
     "name": "Kraj",
-    "iconName": "Flag",
-    "emoji": "🏳️",
+    "iconName": "Map",
+    "emoji": "🗺️",
     "type": "input",
     "areaId": "location-mobility",
     "description": "Kraj, w którym się znajdujesz lub preferujesz pracować",
@@ -116,67 +116,67 @@
     "options": [
       {
         "id": "utc-8",
-        "label": "UTC-8 (PST)",
+        "label": "🕰️ UTC-8 (PST)",
         "value": "UTC-8",
         "description": "Pacyficzny czas standardowy (np. Los Angeles, San Francisco)"
       },
       {
         "id": "utc-5",
-        "label": "UTC-5 (EST)",
+        "label": "🕰️ UTC-5 (EST)",
         "value": "UTC-5",
         "description": "Wschodni czas standardowy (np. Nowy Jork, Miami)"
       },
       {
         "id": "utc-1",
-        "label": "UTC-1",
+        "label": "🕰️ UTC-1",
         "value": "UTC-1",
         "description": "Azory, Wyspy Zielonego Przylądka"
       },
       {
         "id": "utc",
-        "label": "UTC+0 (GMT)",
+        "label": "🕰️ UTC+0 (GMT)",
         "value": "UTC+0",
         "description": "Czas uniwersalny (np. Londyn, Lizbona)"
       },
       {
         "id": "utc+1",
-        "label": "UTC+1 (CET)",
+        "label": "🕰️ UTC+1 (CET)",
         "value": "UTC+1",
         "description": "Czas środkowoeuropejski (np. Warszawa, Berlin, Paryż)"
       },
       {
         "id": "utc+2",
-        "label": "UTC+2 (EET)",
+        "label": "🕰️ UTC+2 (EET)",
         "value": "UTC+2",
         "description": "Czas wschodnioeuropejski (np. Ateny, Bukareszt)"
       },
       {
         "id": "utc+3",
-        "label": "UTC+3",
+        "label": "🕰️ UTC+3",
         "value": "UTC+3",
         "description": "Moskwa, Stambuł"
       },
       {
         "id": "utc+5.5",
-        "label": "UTC+5:30",
+        "label": "🕰️ UTC+5:30",
         "value": "UTC+5:30",
         "description": "Indie"
       },
       {
         "id": "utc+8",
-        "label": "UTC+8",
+        "label": "🕰️ UTC+8",
         "value": "UTC+8",
         "description": "Chiny, Singapur, Hongkong"
       },
       {
         "id": "utc+9",
-        "label": "UTC+9",
+        "label": "🕰️ UTC+9",
         "value": "UTC+9",
         "description": "Japonia, Korea Południowa"
       },
       {
         "id": "utc+10",
-        "label": "UTC+10",
+        "label": "🕰️ UTC+10",
         "value": "UTC+10",
         "description": "Wschodnia Australia"
       }
@@ -220,31 +220,31 @@
     "options": [
       {
         "id": "fixed",
-        "label": "Stała lokalizacja",
+        "label": "📍 Stała lokalizacja",
         "value": "Stała lokalizacja",
         "description": "Preferuję pracę w jednej, stałej lokalizacji"
       },
       {
         "id": "limited",
-        "label": "Ograniczona mobilność",
+        "label": "🚗 Ograniczona mobilność",
         "value": "Ograniczona mobilność",
         "description": "Mogę okazjonalnie zmieniać lokalizację pracy"
       },
       {
         "id": "regular",
-        "label": "Regularna mobilność",
+        "label": "🚌 Regularna mobilność",
         "value": "Regularna mobilność",
         "description": "Jestem gotów/gotowa regularnie zmieniać lokalizację"
       },
       {
         "id": "full",
-        "label": "Pełna mobilność",
+        "label": "🚀 Pełna mobilność",
         "value": "Pełna mobilność",
         "description": "Jestem otwarty/a na częste zmiany lokalizacji"
       },
       {
         "id": "nomad",
-        "label": "Nomadyzm cyfrowy",
+        "label": "🌏 Nomadyzm cyfrowy",
         "value": "Nomadyzm cyfrowy",
         "description": "Preferuję pracę z różnych lokalizacji, w stylu nomady cyfrowego"
       }
@@ -276,31 +276,31 @@
     "options": [
       {
         "id": "none",
-        "label": "Brak podróży",
+        "label": "❌ Brak podróży",
         "value": "Brak podróży",
         "description": "Nie chcę podróżować służbowo"
       },
       {
         "id": "rare",
-        "label": "Sporadyczne podróże",
+        "label": "📅 Sporadyczne podróże",
         "value": "Sporadyczne podróże",
         "description": "Akceptuję okazjonalne podróże służbowe (kilka razy w roku)"
       },
       {
         "id": "regular-domestic",
-        "label": "Regularne krajowe",
+        "label": "🚂 Regularne krajowe",
         "value": "Regularne krajowe",
         "description": "Jestem gotów/gotowa na regularne podróże w obrębie kraju"
       },
       {
         "id": "regular-international",
-        "label": "Regularne międzynarodowe",
+        "label": "🛫 Regularne międzynarodowe",
         "value": "Regularne międzynarodowe",
         "description": "Akceptuję regularne podróże międzynarodowe"
       },
       {
         "id": "frequent-global",
-        "label": "Częste globalne",
+        "label": "🌍 Częste globalne",
         "value": "Częste globalne",
         "description": "Jestem otwarty/a na częste podróże po całym świecie"
       }

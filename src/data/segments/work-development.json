@@ -8,25 +8,25 @@
     "options": [
       {
         "id": "specialist",
-        "label": "Specjalistyczna",
+        "label": "🔍 Specjalistyczna",
         "value": "Specjalistyczna",
         "description": "Rozwój w kierunku eksperta w danej dziedzinie"
       },
       {
         "id": "management",
-        "label": "Menedżerska",
+        "label": "👥 Menedżerska",
         "value": "Menedżerska",
         "description": "Rozwój w kierunku zarządzania zespołem"
       },
       {
         "id": "project",
-        "label": "Projektowa",
+        "label": "📊 Projektowa",
         "value": "Projektowa",
         "description": "Rozwój w kierunku zarządzania projektami"
       },
       {
         "id": "entrepreneurial",
-        "label": "Przedsiębiorcza",
+        "label": "🚀 Przedsiębiorcza",
         "value": "Przedsiębiorcza",
         "description": "Rozwój w kierunku przedsiębiorczości i innowacji"
       }
@@ -56,25 +56,25 @@
     "options": [
       {
         "id": "formal",
-        "label": "Formalne",
+        "label": "🎓 Formalne",
         "value": "Formalne",
         "description": "Formalne szkolenia, kursy i certyfikacje"
       },
       {
         "id": "mentoring",
-        "label": "Mentoring",
+        "label": "👨‍🏫 Mentoring",
         "value": "Mentoring",
         "description": "Mentoring i coaching"
       },
       {
         "id": "self-directed",
-        "label": "Samokierowane",
+        "label": "🧠 Samokierowane",
         "value": "Samokierowane",
         "description": "Samodzielna nauka i rozwój"
       },
       {
         "id": "on-the-job",
-        "label": "W praktyce",
+        "label": "💼 W praktyce",
         "value": "W praktyce",
         "description": "Nauka poprzez praktykę i doświadczenie"
       }
@@ -104,25 +104,25 @@
     "options": [
       {
         "id": "technical",
-        "label": "Techniczne",
+        "label": "💻 Techniczne",
         "value": "Techniczne",
         "description": "Rozwój umiejętności technicznych"
       },
       {
         "id": "soft",
-        "label": "Miękkie",
+        "label": "🗣️ Miękkie",
         "value": "Miękkie",
         "description": "Rozwój umiejętności miękkich"
       },
       {
         "id": "leadership",
-        "label": "Przywódcze",
+        "label": "👑 Przywódcze",
         "value": "Przywódcze",
         "description": "Rozwój umiejętności przywódczych"
       },
       {
         "id": "business",
-        "label": "Biznesowe",
+        "label": "📊 Biznesowe",
         "value": "Biznesowe",
         "description": "Rozwój umiejętności biznesowych"
       }
@@ -152,25 +152,25 @@
     "options": [
       {
         "id": "continuous",
-        "label": "Ciągły",
+        "label": "🔄 Ciągły",
         "value": "Ciągły",
         "description": "Ciągły feedback w trakcie pracy"
       },
       {
         "id": "regular",
-        "label": "Regularny",
+        "label": "📅 Regularny",
         "value": "Regularny",
         "description": "Regularny feedback (np. cotygodniowy)"
       },
       {
         "id": "milestone",
-        "label": "Po kamieniach milowych",
+        "label": "🏁 Po kamieniach milowych",
         "value": "Po kamieniach milowych",
         "description": "Feedback po osiągnięciu kamieni milowych"
       },
       {
         "id": "formal",
-        "label": "Formalny",
+        "label": "📝 Formalny",
         "value": "Formalny",
         "description": "Formalny feedback (np. kwartalne oceny)"
       }
@@ -200,25 +200,25 @@
     "options": [
       {
         "id": "regular",
-        "label": "Regularne",
+        "label": "📈 Regularne",
         "value": "Regularne",
         "description": "Regularne możliwości awansu"
       },
       {
         "id": "merit-based",
-        "label": "Oparte na zasługach",
+        "label": "🏆 Oparte na zasługach",
         "value": "Oparte na zasługach",
         "description": "Awanse oparte na zasługach i wynikach"
       },
       {
         "id": "tenure-based",
-        "label": "Oparte na stażu",
+        "label": "🕒 Oparte na stażu",
         "value": "Oparte na stażu",
         "description": "Awanse oparte na stażu pracy"
       },
       {
         "id": "project-based",
-        "label": "Projektowe",
+        "label": "📊 Projektowe",
         "value": "Projektowe",
         "description": "Awanse związane z realizacją projektów"
       }

@@ -8,25 +8,25 @@
     "options": [
       {
         "id": "standard",
-        "label": "Standardowe (9-17)",
+        "label": "🕘 Standardowe (9-17)",
         "value": "Standardowe (9-17)",
         "description": "Preferuję standardowe godziny pracy od 9 do 17"
       },
       {
         "id": "flexible",
-        "label": "Elastyczne",
+        "label": "🔄 Elastyczne",
         "value": "Elastyczne",
         "description": "Preferuję elastyczne godziny pracy"
       },
       {
         "id": "shifts",
-        "label": "Zmianowe",
+        "label": "🔄 Zmianowe",
         "value": "Zmianowe",
         "description": "Jestem gotów/gotowa pracować w systemie zmianowym"
       },
       {
         "id": "night",
-        "label": "Nocne",
+        "label": "🌃 Nocne",
         "value": "Nocne",
         "description": "Jestem gotów/gotowa pracować w nocy"
       }
@@ -56,25 +56,25 @@
     "options": [
       {
         "id": "standard",
-        "label": "Standardowy (pon-pt)",
+        "label": "📆 Standardowy (pon-pt)",
         "value": "Standardowy (pon-pt)",
         "description": "Preferuję standardowy tydzień pracy od poniedziałku do piątku"
       },
       {
         "id": "weekend",
-        "label": "Z weekendami",
+        "label": "🌞 Z weekendami",
         "value": "Z weekendami",
         "description": "Jestem gotów/gotowa pracować w weekendy"
       },
       {
         "id": "compressed",
-        "label": "Skompresowany",
+        "label": "📊 Skompresowany",
         "value": "Skompresowany",
         "description": "Preferuję skompresowany tydzień pracy (np. 4 dni po 10 godzin)"
       },
       {
         "id": "flexible",
-        "label": "Elastyczny",
+        "label": "🔄 Elastyczny",
         "value": "Elastyczny",
         "description": "Preferuję elastyczny tydzień pracy"
       }
@@ -104,25 +104,25 @@
     "options": [
       {
         "id": "full-time",
-        "label": "Pełny etat",
+        "label": "⏱️ Pełny etat",
         "value": "Pełny etat",
         "description": "Preferuję pracę na pełny etat"
       },
       {
         "id": "part-time",
-        "label": "Niepełny etat",
+        "label": "⌛ Niepełny etat",
         "value": "Niepełny etat",
         "description": "Preferuję pracę na niepełny etat"
       },
       {
         "id": "project",
-        "label": "Projektowy",
+        "label": "📊 Projektowy",
         "value": "Projektowy",
         "description": "Preferuję pracę projektową"
       },
       {
         "id": "flexible",
-        "label": "Elastyczny",
+        "label": "🔄 Elastyczny",
         "value": "Elastyczny",
         "description": "Preferuję elastyczny model czasu pracy"
       }
@@ -152,25 +152,25 @@
     "options": [
       {
         "id": "never",
-        "label": "Nigdy",
+        "label": "❌ Nigdy",
         "value": "Nigdy",
         "description": "Nie chcę pracować w nadgodzinach"
       },
       {
         "id": "occasionally",
-        "label": "Okazjonalnie",
+        "label": "🔄 Okazjonalnie",
         "value": "Okazjonalnie",
         "description": "Jestem gotów/gotowa okazjonalnie pracować w nadgodzinach"
       },
       {
         "id": "regularly",
-        "label": "Regularnie",
+        "label": "📆 Regularnie",
         "value": "Regularnie",
         "description": "Jestem gotów/gotowa regularnie pracować w nadgodzinach"
       },
       {
         "id": "as-needed",
-        "label": "Według potrzeb",
+        "label": "🔍 Według potrzeb",
         "value": "Według potrzeb",
         "description": "Jestem gotów/gotowa pracować w nadgodzinach według potrzeb"
       }
@@ -200,25 +200,25 @@
     "options": [
       {
         "id": "work-hours",
-        "label": "Tylko w godzinach pracy",
+        "label": "🕒 Tylko w godzinach pracy",
         "value": "Tylko w godzinach pracy",
         "description": "Jestem dostępny/a tylko w godzinach pracy"
       },
       {
         "id": "extended",
-        "label": "Rozszerzona",
+        "label": "📊 Rozszerzona",
         "value": "Rozszerzona",
         "description": "Jestem dostępny/a w rozszerzonych godzinach"
       },
       {
         "id": "on-call",
-        "label": "Dyżurna",
+        "label": "📞 Dyżurna",
         "value": "Dyżurna",
         "description": "Jestem gotów/gotowa pełnić dyżury"
       },
       {
         "id": "always",
-        "label": "Zawsze",
+        "label": "📈 Zawsze",
         "value": "Zawsze",
         "description": "Jestem dostępny/a praktycznie zawsze"
       }

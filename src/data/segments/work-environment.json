@@ -8,25 +8,25 @@
     "options": [
       {
         "id": "solo",
-        "label": "Solo (1 osoba)",
+        "label": "🧑 Solo (1 osoba)",
         "value": "Solo (1 osoba)",
         "description": "Preferuję pracę samodzielną"
       },
       {
         "id": "small",
-        "label": "Mały (2-5 osób)",
+        "label": "👥 Mały (2-5 osób)",
         "value": "Mały (2-5 osób)",
         "description": "Preferuję pracę w małym zespole (2-5 osób)"
       },
       {
         "id": "medium",
-        "label": "Średni (6-15 osób)",
+        "label": "👨‍👩‍👧 Średni (6-15 osób)",
         "value": "Średni (6-15 osób)",
         "description": "Preferuję pracę w średnim zespole (6-15 osób)"
       },
       {
         "id": "large",
-        "label": "Duży (16+ osób)",
+        "label": "👨‍👩‍👧‍👦 Duży (16+ osób)",
         "value": "Duży (16+ osób)",
         "description": "Preferuję pracę w dużym zespole (16+ osób)"
       }
@@ -51,48 +51,96 @@
     "id": "team-diversity",
     "name": "Różnorodność Zespołu",
     "iconName": "Globe",
-    "emoji": "🌈",
+    "emoji": "🌍",
     "type": "toggle",
     "options": [
       {
         "id": "homogeneous",
-        "label": "Homogeniczny",
-        "value": "Homogeniczny",
-        "description": "Preferuję pracę w zespole o podobnym doświadczeniu i umiejętnościach"
+        "label": "🧩 Jednorodny",
+        "value": "Jednorodny",
+        "description": "Preferuję pracę w zespole o podobnych umiejętnościach i doświadczeniu"
       },
       {
         "id": "mixed-skills",
-        "label": "Zróżnicowane umiejętności",
+        "label": "🔧 Zróżnicowane umiejętności",
         "value": "Zróżnicowane umiejętności",
         "description": "Preferuję pracę w zespole o zróżnicowanych umiejętnościach"
       },
       {
         "id": "mixed-experience",
-        "label": "Zróżnicowane doświadczenie",
+        "label": "📈 Zróżnicowane doświadczenie",
         "value": "Zróżnicowane doświadczenie",
         "description": "Preferuję pracę w zespole o zróżnicowanym doświadczeniu"
       },
       {
-        "id": "diverse",
-        "label": "Pełna różnorodność",
-        "value": "Pełna różnorodność",
-        "description": "Preferuję pracę w zespole o pełnej różnorodności (umiejętności, doświadczenie, pochodzenie)"
+        "id": "fully-diverse",
+        "label": "🌈 W pełni zróżnicowany",
+        "value": "W pełni zróżnicowany",
+        "description": "Preferuję pracę w zespole o pełnej różnorodności"
       }
     ],
     "areaId": "work-environment",
     "description": "Preferowana różnorodność zespołu",
     "code": "TD",
     "valueMap": {
-      "Homogeniczny": "H",
+      "Jednorodny": "H",
       "Zróżnicowane umiejętności": "S",
       "Zróżnicowane doświadczenie": "E",
-      "Pełna różnorodność": "D"
+      "W pełni zróżnicowany": "F"
     },
     "reverseValueMap": {
-      "H": "Homogeniczny",
+      "H": "Jednorodny",
       "S": "Zróżnicowane umiejętności",
       "E": "Zróżnicowane doświadczenie",
-      "D": "Pełna różnorodność"
+      "F": "W pełni zróżnicowany"
+    }
+  },
+  {
+    "id": "work-location",
+    "name": "Lokalizacja Pracy",
+    "iconName": "Map",
+    "emoji": "🗺️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "office",
+        "label": "🏢 Biuro",
+        "value": "Biuro",
+        "description": "Preferuję pracę w biurze"
+      },
+      {
+        "id": "hybrid",
+        "label": "🔄 Hybrydowa",
+        "value": "Hybrydowa",
+        "description": "Preferuję pracę hybrydową (biuro + zdalnie)"
+      },
+      {
+        "id": "remote-fixed",
+        "label": "🏠 Zdalna (stała lokalizacja)",
+        "value": "Zdalna (stała lokalizacja)",
+        "description": "Preferuję pracę zdalną z jednej lokalizacji"
+      },
+      {
+        "id": "remote-flexible",
+        "label": "🌐 Zdalna (elastyczna lokalizacja)",
+        "value": "Zdalna (elastyczna lokalizacja)",
+        "description": "Preferuję pracę zdalną z możliwością zmiany lokalizacji"
+      }
+    ],
+    "areaId": "work-environment",
+    "description": "Preferowana lokalizacja pracy",
+    "code": "WL",
+    "valueMap": {
+      "Biuro": "O",
+      "Hybrydowa": "H",
+      "Zdalna (stała lokalizacja)": "R",
+      "Zdalna (elastyczna lokalizacja)": "F"
+    },
+    "reverseValueMap": {
+      "O": "Biuro",
+      "H": "Hybrydowa",
+      "R": "Zdalna (stała lokalizacja)",
+      "F": "Zdalna (elastyczna lokalizacja)"
     }
   },
   {
@@ -103,44 +151,44 @@
     "type": "toggle",
     "options": [
       {
-        "id": "direct",
-        "label": "Bezpośredni",
-        "value": "Bezpośredni",
-        "description": "Preferuję bezpośrednią, konkretną komunikację"
+        "id": "formal",
+        "label": "📝 Formalny",
+        "value": "Formalny",
+        "description": "Preferuję formalną, ustrukturyzowaną komunikację"
       },
       {
-        "id": "diplomatic",
-        "label": "Dyplomatyczny",
-        "value": "Dyplomatyczny",
-        "description": "Preferuję dyplomatyczną, taktowną komunikację"
+        "id": "semi-formal",
+        "label": "📋 Półformalny",
+        "value": "Półformalny",
+        "description": "Preferuję półformalną komunikację"
       },
       {
-        "id": "collaborative",
-        "label": "Współpracujący",
-        "value": "Współpracujący",
-        "description": "Preferuję komunikację opartą na współpracy i konsensusie"
+        "id": "casual",
+        "label": "🙂 Swobodny",
+        "value": "Swobodny",
+        "description": "Preferuję swobodną, nieformalną komunikację"
       },
       {
-        "id": "detailed",
-        "label": "Szczegółowy",
-        "value": "Szczegółowy",
-        "description": "Preferuję szczegółową, dokładną komunikację"
+        "id": "mixed",
+        "label": "🔄 Mieszany",
+        "value": "Mieszany",
+        "description": "Preferuję mieszany styl komunikacji dostosowany do sytuacji"
       }
     ],
     "areaId": "work-environment",
     "description": "Preferowany styl komunikacji w zespole",
     "code": "CS",
     "valueMap": {
-      "Bezpośredni": "D",
-      "Dyplomatyczny": "P",
-      "Współpracujący": "C",
-      "Szczegółowy": "T"
+      "Formalny": "F",
+      "Półformalny": "S",
+      "Swobodny": "C",
+      "Mieszany": "M"
     },
     "reverseValueMap": {
-      "D": "Bezpośredni",
-      "P": "Dyplomatyczny",
-      "C": "Współpracujący",
-      "T": "Szczegółowy"
+      "F": "Formalny",
+      "S": "Półformalny",
+      "C": "Swobodny",
+      "M": "Mieszany"
     }
   },
   {
@@ -152,27 +200,27 @@
     "options": [
       {
         "id": "minimal",
-        "label": "Minimalna",
+        "label": "⏱️ Minimalna",
         "value": "Minimalna",
-        "description": "Preferuję minimalną komunikację, tylko gdy jest to niezbędne"
+        "description": "Preferuję minimalną, tylko niezbędną komunikację"
       },
       {
-        "id": "moderate",
-        "label": "Umiarkowana",
-        "value": "Umiarkowana",
-        "description": "Preferuję umiarkowaną komunikację, regularne spotkania"
+        "id": "scheduled",
+        "label": "📅 Zaplanowana",
+        "value": "Zaplanowana",
+        "description": "Preferuję zaplanowaną, regularną komunikację"
       },
       {
         "id": "frequent",
-        "label": "Częsta",
+        "label": "🔄 Częsta",
         "value": "Częsta",
-        "description": "Preferuję częstą komunikację i aktualizacje"
+        "description": "Preferuję częstą komunikację"
       },
       {
         "id": "constant",
-        "label": "Stała",
-        "value": "Stała",
-        "description": "Preferuję stałą komunikację i ciągłe aktualizacje"
+        "label": "⚡ Ciągła",
+        "value": "Ciągła",
+        "description": "Preferuję ciągłą, stałą komunikację"
       }
     ],
     "areaId": "work-environment",
@@ -180,111 +228,63 @@
     "code": "CF",
     "valueMap": {
       "Minimalna": "M",
-      "Umiarkowana": "O",
+      "Zaplanowana": "S",
       "Częsta": "F",
-      "Stała": "C"
+      "Ciągła": "C"
     },
     "reverseValueMap": {
       "M": "Minimalna",
-      "O": "Umiarkowana",
+      "S": "Zaplanowana",
       "F": "Częsta",
-      "C": "Stała"
+      "C": "Ciągła"
     }
   },
   {
-    "id": "meeting-preference",
-    "name": "Preferencje Spotkań",
-    "iconName": "Users",
-    "emoji": "👥",
+    "id": "communication-channel",
+    "name": "Kanał Komunikacji",
+    "iconName": "Phone",
+    "emoji": "📱",
     "type": "toggle",
     "options": [
       {
-        "id": "minimal",
-        "label": "Minimalne",
-        "value": "Minimalne",
-        "description": "Preferuję minimalne spotkania, tylko gdy są niezbędne"
+        "id": "text",
+        "label": "💬 Tekstowy",
+        "value": "Tekstowy",
+        "description": "Preferuję komunikację tekstową (e-mail, chat)"
       },
       {
-        "id": "structured",
-        "label": "Ustrukturyzowane",
-        "value": "Ustrukturyzowane",
-        "description": "Preferuję ustrukturyzowane spotkania z agendą"
+        "id": "voice",
+        "label": "🔊 Głosowy",
+        "value": "Głosowy",
+        "description": "Preferuję komunikację głosową (telefon, VoIP)"
       },
       {
-        "id": "regular",
-        "label": "Regularne",
-        "value": "Regularne",
-        "description": "Preferuję regularne spotkania zespołu"
+        "id": "video",
+        "label": "📹 Wideo",
+        "value": "Wideo",
+        "description": "Preferuję komunikację wideo"
       },
       {
-        "id": "frequent",
-        "label": "Częste",
-        "value": "Częste",
-        "description": "Preferuję częste spotkania i dyskusje"
-      }
-    ],
-    "areaId": "work-environment",
-    "description": "Preferowany styl i częstotliwość spotkań",
-    "code": "MP",
-    "valueMap": {
-      "Minimalne": "M",
-      "Ustrukturyzowane": "S",
-      "Regularne": "R",
-      "Częste": "F"
-    },
-    "reverseValueMap": {
-      "M": "Minimalne",
-      "S": "Ustrukturyzowane",
-      "R": "Regularne",
-      "F": "Częste"
-    }
-  },
-  {
-    "id": "feedback-style",
-    "name": "Styl Feedbacku",
-    "iconName": "MessageCircle",
-    "emoji": "📝",
-    "type": "toggle",
-    "options": [
-      {
-        "id": "direct",
-        "label": "Bezpośredni",
+        "id": "face-to-face",
+        "label": "👥 Bezpośredni",
         "value": "Bezpośredni",
-        "description": "Preferuję bezpośredni, konkretny feedback"
-      },
-      {
-        "id": "constructive",
-        "label": "Konstruktywny",
-        "value": "Konstruktywny",
-        "description": "Preferuję konstruktywny feedback z sugestiami poprawy"
-      },
-      {
-        "id": "positive",
-        "label": "Pozytywny",
-        "value": "Pozytywny",
-        "description": "Preferuję pozytywny feedback skupiony na mocnych stronach"
-      },
-      {
-        "id": "balanced",
-        "label": "Zbalansowany",
-        "value": "Zbalansowany",
-        "description": "Preferuję zbalansowany feedback (mocne i słabe strony)"
+        "description": "Preferuję komunikację bezpośrednią (twarzą w twarz)"
       }
     ],
     "areaId": "work-environment",
-    "description": "Preferowany styl otrzymywania i dawania feedbacku",
-    "code": "FS",
+    "description": "Preferowany kanał komunikacji w zespole",
+    "code": "CC",
     "valueMap": {
-      "Bezpośredni": "D",
-      "Konstruktywny": "C",
-      "Pozytywny": "P",
-      "Zbalansowany": "B"
+      "Tekstowy": "T",
+      "Głosowy": "V",
+      "Wideo": "W",
+      "Bezpośredni": "F"
     },
     "reverseValueMap": {
-      "D": "Bezpośredni",
-      "C": "Konstruktywny",
-      "P": "Pozytywny",
-      "B": "Zbalansowany"
+      "T": "Tekstowy",
+      "V": "Głosowy",
+      "W": "Wideo",
+      "F": "Bezpośredni"
     }
   }
 ]

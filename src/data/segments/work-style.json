@@ -8,25 +8,25 @@
     "options": [
       {
         "id": "highly-directed",
-        "label": "Silnie kierowana",
+        "label": "👨‍💼 Silnie kierowana",
         "value": "Silnie kierowana",
         "description": "Preferuję pracę z jasnymi instrukcjami i nadzorem"
       },
       {
         "id": "guided",
-        "label": "Kierowana",
+        "label": "🧭 Kierowana",
         "value": "Kierowana",
         "description": "Preferuję pracę z ogólnymi wytycznymi i okresowym nadzorem"
       },
       {
         "id": "autonomous",
-        "label": "Autonomiczna",
+        "label": "🚀 Autonomiczna",
         "value": "Autonomiczna",
         "description": "Preferuję autonomiczną pracę z minimalnymi wytycznymi"
       },
       {
         "id": "fully-independent",
-        "label": "W pełni niezależna",
+        "label": "🦅 W pełni niezależna",
         "value": "W pełni niezależna",
         "description": "Preferuję w pełni niezależną pracę bez nadzoru"
       }
@@ -56,25 +56,25 @@
     "options": [
       {
         "id": "analytical",
-        "label": "Analityczne",
+        "label": "📊 Analityczne",
         "value": "Analityczne",
         "description": "Preferuję podejmowanie decyzji w oparciu o dokładną analizę danych"
       },
       {
         "id": "intuitive",
-        "label": "Intuicyjne",
+        "label": "🧠 Intuicyjne",
         "value": "Intuicyjne",
         "description": "Preferuję podejmowanie decyzji w oparciu o intuicję i doświadczenie"
       },
       {
         "id": "collaborative",
-        "label": "Współpracujące",
+        "label": "👥 Współpracujące",
         "value": "Współpracujące",
         "description": "Preferuję podejmowanie decyzji poprzez współpracę i konsensus"
       },
       {
         "id": "decisive",
-        "label": "Zdecydowane",
+        "label": "💪 Zdecydowane",
         "value": "Zdecydowane",
         "description": "Preferuję szybkie i zdecydowane podejmowanie decyzji"
       }
@@ -104,25 +104,25 @@
     "options": [
       {
         "id": "methodical",
-        "label": "Metodyczne",
+        "label": "📋 Metodyczne",
         "value": "Metodyczne",
         "description": "Preferuję metodyczne, dokładne tempo pracy"
       },
       {
         "id": "steady",
-        "label": "Stabilne",
+        "label": "⏱️ Stabilne",
         "value": "Stabilne",
         "description": "Preferuję stabilne, przewidywalne tempo pracy"
       },
       {
         "id": "dynamic",
-        "label": "Dynamiczne",
+        "label": "💥 Dynamiczne",
         "value": "Dynamiczne",
         "description": "Preferuję dynamiczne tempo pracy z okresowymi spiętrzeniami"
       },
       {
         "id": "fast-paced",
-        "label": "Szybkie",
+        "label": "🚀 Szybkie",
         "value": "Szybkie",
         "description": "Preferuję szybkie tempo pracy i działanie pod presją"
       }
@@ -152,25 +152,25 @@
     "options": [
       {
         "id": "single-task",
-        "label": "Pojedyncze zadanie",
+        "label": "🎯 Pojedyncze zadanie",
         "value": "Pojedyncze zadanie",
         "description": "Preferuję skupienie się na jednym zadaniu naraz"
       },
       {
         "id": "sequential",
-        "label": "Sekwencyjny",
+        "label": "🔄 Sekwencyjny",
         "value": "Sekwencyjny",
         "description": "Preferuję sekwencyjne wykonywanie zadań"
       },
       {
         "id": "batch",
-        "label": "Grupowy",
+        "label": "📈 Grupowy",
         "value": "Grupowy",
         "description": "Preferuję grupowanie podobnych zadań"
       },
       {
         "id": "multitasking",
-        "label": "Wielozadaniowy",
+        "label": "🤹‍♂️ Wielozadaniowy",
         "value": "Wielozadaniowy",
         "description": "Preferuję pracę nad wieloma zadaniami jednocześnie"
       }
@@ -200,25 +200,25 @@
     "options": [
       {
         "id": "analytical",
-        "label": "Analityczne",
+        "label": "📊 Analityczne",
         "value": "Analityczne",
         "description": "Preferuję analityczne podejście do rozwiązywania problemów"
       },
       {
         "id": "creative",
-        "label": "Kreatywne",
+        "label": "🎨 Kreatywne",
         "value": "Kreatywne",
         "description": "Preferuję kreatywne podejście do rozwiązywania problemów"
       },
       {
         "id": "collaborative",
-        "label": "Współpracujące",
+        "label": "👥 Współpracujące",
         "value": "Współpracujące",
         "description": "Preferuję współpracujące podejście do rozwiązywania problemów"
       },
       {
         "id": "practical",
-        "label": "Praktyczne",
+        "label": "📈 Praktyczne",
         "value": "Praktyczne",
         "description": "Preferuję praktyczne podejście do rozwiązywania problemów"
       }
