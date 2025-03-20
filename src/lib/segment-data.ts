@@ -1,608 +1,506 @@
-import { SegmentCategory, Segment, MicrosegmentGroup } from './segment-types'
+import { Area, Segment, SubOption } from './segment-types'
 
-// Categories
-export const categories: SegmentCategory[] = [
+// Obszary (Areas)
+export const areas: Area[] = [
   { 
-    id: 'work-environment', 
-    name: 'Środowisko Pracy', 
-    iconName: 'Building', 
-    description: 'Preferencje dotyczące miejsca i stylu pracy'
+    id: 'work-organization', 
+    name: 'Praca i Organizacja', 
+    iconName: 'Briefcase',
+    emoji: '💼',
+    description: 'Środowisko, kultura i struktura organizacyjna'
   },
   { 
-    id: 'work-patterns', 
-    name: 'Wzorce Pracy', 
+    id: 'location-mobility', 
+    name: 'Lokalizacja i Mobilność', 
+    iconName: 'MapPin',
+    emoji: '📍',
+    description: 'Miejsce pracy i elastyczność lokalizacyjna'
+  },
+  { 
+    id: 'collaboration-relations', 
+    name: 'Współpraca i Relacje', 
+    iconName: 'Users',
+    emoji: '👥',
+    description: 'Dynamika zespołu i interakcje'
+  },
+  { 
+    id: 'time-availability', 
+    name: 'Czas i Dostępność', 
     iconName: 'Clock',
-    description: 'Preferencje dotyczące organizacji czasu i sposobu pracy'
+    emoji: '⏰',
+    description: 'Harmonogram i organizacja czasu'
   },
   { 
-    id: 'tech-tools', 
-    name: 'Narzędzia i Technologie', 
-    iconName: 'Terminal',
-    description: 'Preferencje technologiczne i narzędziowe'
+    id: 'process-methodology', 
+    name: 'Proces i Metodologia', 
+    iconName: 'Activity',
+    emoji: '🧠',
+    description: 'Podejście do zadań i procesów'
   },
   { 
-    id: 'location', 
-    name: 'Preferencje Lokalizacyjne', 
-    iconName: 'Globe',
-    description: 'Preferencje dotyczące lokalizacji i mobilności'
+    id: 'communication-decisions', 
+    name: 'Komunikacja i Decyzje', 
+    iconName: 'MessageSquare',
+    emoji: '💬',
+    description: 'Style komunikacji i podejmowania decyzji'
   },
   { 
-    id: 'personal', 
-    name: 'Preferencje Osobiste', 
-    iconName: 'User',
-    description: 'Osobiste preferencje i styl pracy'
+    id: 'development-adaptation', 
+    name: 'Rozwój i Adaptacja', 
+    iconName: 'RefreshCw',
+    emoji: '🔄',
+    description: 'Uczenie się i zarządzanie zmianą'
   }
 ]
 
-// Work Environment Segments
-const workEnvironmentSegments: Segment[] = [
+// Segmenty dla obszaru Praca i Organizacja
+const workOrganizationSegments: Segment[] = [
   {
-    id: 'workplace',
-    name: 'Typ Miejsca Pracy',
+    id: 'organization-type',
+    name: 'Typ Organizacji',
     iconName: 'Building',
     emoji: '🏢',
     type: 'toggle',
     options: [
-      { id: 'corporate', label: '🏢 Korporacja', value: '🏢' },
-      { id: 'remote', label: '🏡 Remote', value: '🏡' },
-      { id: 'creative', label: '🎨 Kreatywne', value: '🎨' },
-      { id: 'social', label: '🤝 Społeczne', value: '🤝' }
+      { id: 'corporate', label: '🏢 Korporacja', value: 'Korporacja' },
+      { id: 'startup', label: '🚀 Startup/Scaleup', value: 'Startup/Scaleup' },
+      { id: 'public-institution', label: '🏫 Instytucja publiczna', value: 'Instytucja publiczna' },
+      { id: 'education', label: '🎓 Uczelnia/Edukacja', value: 'Uczelnia/Edukacja' },
+      { id: 'ngo', label: '🤝 NGO/Non-profit', value: 'NGO/Non-profit' }
     ],
-    categoryId: 'work-environment',
-    description: 'Preferowany typ miejsca pracy'
+    areaId: 'work-organization',
+    description: 'Typ organizacji, w której preferujesz pracować'
   },
   {
-    id: 'mobility',
-    name: 'Mobilność',
-    iconName: 'ArrowUpRight',
-    emoji: '🌐',
+    id: 'work-format',
+    name: 'Format Pracy',
+    iconName: 'Layout',
+    emoji: '🏢',
     type: 'toggle',
     options: [
-      { id: 'f1', label: 'F1 (Stała)', value: 'F1' },
-      { id: 'f3', label: 'F3 (Elastyczna)', value: 'F3' },
-      { id: 'f5', label: 'F5 (Pełna)', value: 'F5' }
+      { id: 'stationary', label: '🏢 Stacjonarny (100%)', value: 'Stacjonarny' },
+      { id: 'remote', label: '🏠 Zdalny (100%)', value: 'Zdalny' },
+      { id: 'hybrid-fixed', label: '🔄 Hybrydowy (określony)', value: 'Hybrydowy (określony)' },
+      { id: 'hybrid-flexible', label: '🌊 Hybrydowy (elastyczny)', value: 'Hybrydowy (elastyczny)' }
     ],
-    categoryId: 'work-environment',
-    description: 'Poziom mobilności w pracy'
+    subOptions: [
+      { id: 'hybrid-1-4', label: '1 dzień zdalnie / 4 dni w biurze', value: '1z/4b', parentOptionId: 'hybrid-fixed' },
+      { id: 'hybrid-2-3', label: '2 dni zdalnie / 3 dni w biurze', value: '2z/3b', parentOptionId: 'hybrid-fixed' },
+      { id: 'hybrid-3-2', label: '3 dni zdalnie / 2 dni w biurze', value: '3z/2b', parentOptionId: 'hybrid-fixed' },
+      { id: 'hybrid-4-1', label: '4 dni zdalnie / 1 dzień w biurze', value: '4z/1b', parentOptionId: 'hybrid-fixed' }
+    ],
+    areaId: 'work-organization',
+    description: 'Preferowany format pracy (stacjonarny, zdalny, hybrydowy)'
   },
   {
-    id: 'culture',
-    name: 'Kultura',
+    id: 'organizational-culture',
+    name: 'Kultura Organizacyjna',
     iconName: 'Users',
-    emoji: '🧠',
+    emoji: '👔',
     type: 'toggle',
     options: [
-      { id: 'c1', label: 'C1 (Hierarchiczna)', value: 'C1' },
-      { id: 'c3', label: 'C3 (Hybrydowa)', value: 'C3' },
-      { id: 'c5', label: 'C5 (Płaska)', value: 'C5' }
+      { id: 'formal', label: '👔 Formalna/Hierarchiczna', value: 'Formalna/Hierarchiczna' },
+      { id: 'moderate', label: '👕 Umiarkowana/Zbalansowana', value: 'Umiarkowana/Zbalansowana' },
+      { id: 'flexible', label: '👚 Elastyczna/Płaska', value: 'Elastyczna/Płaska' },
+      { id: 'creative', label: '🎨 Kreatywna/Swobodna', value: 'Kreatywna/Swobodna' }
     ],
-    categoryId: 'work-environment',
-    description: 'Preferowana kultura organizacyjna'
+    areaId: 'work-organization',
+    description: 'Preferowana kultura organizacyjna w miejscu pracy'
   },
   {
-    id: 'workHours',
-    name: 'Godziny Pracy',
-    iconName: 'Clock',
-    emoji: '⏰',
-    type: 'slider',
-    min: 1,
-    max: 12,
-    step: 1,
-    defaultValue: 8,
-    categoryId: 'work-environment',
-    description: 'Preferowana liczba godzin pracy dziennie'
-  },
-  {
-    id: 'workSchedule',
-    name: 'Harmonogram Pracy',
-    iconName: 'Clock',
-    emoji: '📆',
+    id: 'office-space',
+    name: 'Przestrzeń Biurowa',
+    iconName: 'Home',
+    emoji: '🏟️',
     type: 'toggle',
     options: [
-      { id: 'early', label: '🌅 6-14', value: '6-14' },
-      { id: 'standard', label: '🕘 9-17', value: '9-17' },
-      { id: 'late', label: '🌙 12-20', value: '12-20' },
-      { id: 'flexible', label: '🔄 Elastyczne', value: 'Flex' }
+      { id: 'open-space', label: '🏟️ Open Space', value: 'Open Space' },
+      { id: 'closed-office', label: '🚪 Biuro zamknięte', value: 'Biuro zamknięte' },
+      { id: 'flexible-space', label: '🏠 Flexible Space', value: 'Flexible Space' },
+      { id: 'hot-desking', label: '🛋️ Hot-desking', value: 'Hot-desking' }
     ],
-    categoryId: 'work-environment',
-    description: 'Preferowane godziny pracy'
+    areaId: 'work-organization',
+    description: 'Preferowana przestrzeń biurowa'
   },
   {
-    id: 'officeType',
-    name: 'Typ Biura',
-    iconName: 'Building',
-    emoji: '🏗️',
-    type: 'toggle',
-    options: [
-      { id: 'open', label: '🏢 Open Space', value: 'O' },
-      { id: 'private', label: '🚪 Prywatne', value: 'P' },
-      { id: 'hybrid', label: '🔄 Hybrydowe', value: 'H' },
-      { id: 'coworking', label: '👥 Co-working', value: 'C' }
-    ],
-    categoryId: 'work-environment',
-    description: 'Preferowany typ przestrzeni biurowej'
-  },
-  {
-    id: 'dressCode',
+    id: 'dress-code',
     name: 'Dress Code',
     iconName: 'Shirt',
     emoji: '👔',
     type: 'toggle',
     options: [
-      { id: 'formal', label: '👔 Formalny', value: 'F' },
-      { id: 'business', label: '👕 Business Casual', value: 'BC' },
-      { id: 'casual', label: '👖 Casual', value: 'C' },
-      { id: 'none', label: '🎽 Brak', value: 'NC' }
+      { id: 'formal', label: '👔 Formalny (garnitur/kostium)', value: 'Formalny' },
+      { id: 'business-casual', label: '👕 Business Casual', value: 'Business Casual' },
+      { id: 'smart-casual', label: '👚 Smart Casual', value: 'Smart Casual' },
+      { id: 'casual', label: '😎 Casual', value: 'Casual' }
     ],
-    categoryId: 'work-environment',
-    description: 'Preferowany styl ubioru w pracy'
+    areaId: 'work-organization',
+    description: 'Preferowany dress code w miejscu pracy'
   }
 ]
 
-// Work Patterns Segments
-const workPatternsSegments: Segment[] = [
+// Segmenty dla obszaru Lokalizacja i Mobilność
+const locationMobilitySegments: Segment[] = [
   {
-    id: 'potential',
-    name: 'Potencjał',
-    iconName: 'Sparkles',
-    emoji: '💫',
-    type: 'slider',
-    min: 0,
-    max: 100,
-    step: 1,
-    defaultValue: 67,
-    categoryId: 'work-patterns',
-    description: 'Poziom potencjału (0-100)'
+    id: 'geographic-location',
+    name: 'Lokalizacja Geograficzna',
+    iconName: 'Globe',
+    emoji: '🌍',
+    type: 'input',
+    areaId: 'location-mobility',
+    description: 'Preferowana lokalizacja geograficzna pracy'
   },
   {
-    id: 'transformation',
-    name: 'Transformacja',
-    iconName: 'Target',
+    id: 'mobility-level',
+    name: 'Poziom Mobilności',
+    iconName: 'Move',
+    emoji: 'M',
+    type: 'toggle',
+    options: [
+      { id: 'm1', label: 'M1 (Stała lokalizacja)', value: 'M1' },
+      { id: 'm2', label: 'M2 (Ograniczona mobilność)', value: 'M2' },
+      { id: 'm3', label: 'M3 (Regularna mobilność)', value: 'M3' },
+      { id: 'm4', label: 'M4 (Pełna mobilność)', value: 'M4' },
+      { id: 'm5', label: 'M5 (Nomadyzm cyfrowy)', value: 'M5' }
+    ],
+    areaId: 'location-mobility',
+    description: 'Preferowany poziom mobilności w pracy'
+  },
+  {
+    id: 'business-travel',
+    name: 'Podróże Służbowe',
+    iconName: 'Plane',
+    emoji: 'T',
+    type: 'toggle',
+    options: [
+      { id: 't0', label: 'T0 (Brak)', value: 'T0' },
+      { id: 't1', label: 'T1 (Sporadyczne)', value: 'T1' },
+      { id: 't2', label: 'T2 (Regularne, krajowe)', value: 'T2' },
+      { id: 't3', label: 'T3 (Regularne, międzynarodowe)', value: 'T3' },
+      { id: 't4', label: 'T4 (Częste, globalne)', value: 'T4' }
+    ],
+    areaId: 'location-mobility',
+    description: 'Preferowana częstotliwość podróży służbowych'
+  }
+]
+
+// Segmenty dla obszaru Współpraca i Relacje
+const collaborationRelationsSegments: Segment[] = [
+  {
+    id: 'team-structure',
+    name: 'Struktura Zespołu',
+    iconName: 'Users',
+    emoji: '👤',
+    type: 'toggle',
+    options: [
+      { id: 'solo', label: '👤 Solo (praca indywidualna)', value: 'Solo' },
+      { id: 'small-team', label: '👥 Mały zespół (2-5 osób)', value: 'Mały zespół' },
+      { id: 'medium-team', label: '👨‍👩‍👧‍👦 Średni zespół (6-15 osób)', value: 'Średni zespół' },
+      { id: 'large-team', label: '🏢 Duży zespół (16+ osób)', value: 'Duży zespół' }
+    ],
+    areaId: 'collaboration-relations',
+    description: 'Preferowana wielkość zespołu'
+  },
+  {
+    id: 'team-role',
+    name: 'Rola w Zespole',
+    iconName: 'UserCheck',
+    emoji: '🚩',
+    type: 'toggle',
+    options: [
+      { id: 'leader', label: '🚩 Lider/Manager', value: 'Lider/Manager' },
+      { id: 'expert', label: '🛠️ Indywidualny Ekspert', value: 'Indywidualny Ekspert' },
+      { id: 'team-member', label: '🔄 Współpracownik Zespołowy', value: 'Współpracownik Zespołowy' },
+      { id: 'analyst', label: '🔍 Analityk/Obserwator', value: 'Analityk/Obserwator' }
+    ],
+    areaId: 'collaboration-relations',
+    description: 'Preferowana rola w zespole'
+  },
+  {
+    id: 'collaboration-dynamics',
+    name: 'Dynamika Współpracy',
+    iconName: 'UsersPlus',
+    emoji: '🤝',
+    type: 'toggle',
+    options: [
+      { id: 'high-interdependence', label: '🤝 Wysoka współzależność', value: 'Wysoka współzależność' },
+      { id: 'balanced', label: '🔄 Zbalansowana współpraca', value: 'Zbalansowana współpraca' },
+      { id: 'independence', label: '🚶 Samodzielność z konsultacjami', value: 'Samodzielność z konsultacjami' },
+      { id: 'high-autonomy', label: '🏝️ Wysoka autonomia', value: 'Wysoka autonomia' }
+    ],
+    areaId: 'collaboration-relations',
+    description: 'Preferowana dynamika współpracy w zespole'
+  }
+]
+
+// Segmenty dla obszaru Czas i Dostępność
+const timeAvailabilitySegments: Segment[] = [
+  {
+    id: 'working-hours',
+    name: 'Godziny Pracy',
+    iconName: 'Clock',
+    emoji: '⏰',
+    type: 'toggle',
+    options: [
+      { id: 'standard', label: '⏰ Standardowe (np. 9-17)', value: 'Standardowe' },
+      { id: 'early', label: '🌅 Wczesne (np. 6-14)', value: 'Wczesne' },
+      { id: 'late', label: '🌇 Późne (np. 12-20)', value: 'Późne' },
+      { id: 'flexible', label: '🔄 Elastyczne (w ramach core hours)', value: 'Elastyczne' },
+      { id: 'shift', label: '🌙 Zmianowe', value: 'Zmianowe' }
+    ],
+    areaId: 'time-availability',
+    description: 'Preferowane godziny pracy'
+  },
+  {
+    id: 'availability-level',
+    name: 'Poziom Dostępności',
+    iconName: 'Bell',
+    emoji: 'A',
+    type: 'toggle',
+    options: [
+      { id: 'a1', label: 'A1 (Minimalna - tylko zaplanowane spotkania)', value: 'A1' },
+      { id: 'a2', label: 'A2 (Niska - określone godziny kontaktu)', value: 'A2' },
+      { id: 'a3', label: 'A3 (Standardowa - dostępność w godzinach pracy)', value: 'A3' },
+      { id: 'a4', label: 'A4 (Rozszerzona - dostępność przed/po godzinach)', value: 'A4' },
+      { id: 'a5', label: 'A5 (Pełna - praktycznie zawsze dostępny)', value: 'A5' }
+    ],
+    subOptions: [
+      { id: 'morning', label: 'Poranek (np. 8-12)', value: '8-12', parentOptionId: 'a2' },
+      { id: 'midday', label: 'Środek dnia (np. 11-15)', value: '11-15', parentOptionId: 'a2' },
+      { id: 'afternoon', label: 'Popołudnie (np. 14-18)', value: '14-18', parentOptionId: 'a2' },
+      { id: 'evening', label: 'Wieczór (np. 17-21)', value: '17-21', parentOptionId: 'a2' }
+    ],
+    areaId: 'time-availability',
+    description: 'Preferowany poziom dostępności'
+  },
+  {
+    id: 'schedule',
+    name: 'Harmonogram',
+    iconName: 'Calendar',
+    emoji: '📆',
+    type: 'toggle',
+    options: [
+      { id: 'fixed', label: '📆 Stały i przewidywalny', value: 'Stały i przewidywalny' },
+      { id: 'cyclical', label: '📊 Cykliczny z powtarzającymi się elementami', value: 'Cykliczny' },
+      { id: 'dynamic', label: '🔄 Dynamiczny i adaptacyjny', value: 'Dynamiczny i adaptacyjny' },
+      { id: 'project-oriented', label: '🎯 Zorientowany projektowo', value: 'Zorientowany projektowo' }
+    ],
+    areaId: 'time-availability',
+    description: 'Preferowany typ harmonogramu pracy'
+  }
+]
+
+// Segmenty dla obszaru Proces i Metodologia
+const processMethodologySegments: Segment[] = [
+  {
+    id: 'work-methodology',
+    name: 'Metodologia Pracy',
+    iconName: 'GitBranch',
     emoji: '🔄',
     type: 'toggle',
     options: [
-      { id: 't1', label: 'T1 (0-20%)', value: '1' },
-      { id: 't2', label: 'T2 (20-40%)', value: '2' },
-      { id: 't3', label: 'T3 (40-60%)', value: '3' },
-      { id: 't4', label: 'T4 (60-80%)', value: '4' },
-      { id: 't5', label: 'T5 (80-100%)', value: '5' }
+      { id: 'agile', label: '🔄 Agile/Scrum', value: 'Agile/Scrum' },
+      { id: 'kanban', label: '🌊 Kanban', value: 'Kanban' },
+      { id: 'waterfall', label: '📋 Waterfall', value: 'Waterfall' },
+      { id: 'lean', label: '🎯 Lean', value: 'Lean' },
+      { id: 'design-thinking', label: '🧩 Design Thinking', value: 'Design Thinking' }
     ],
-    categoryId: 'work-patterns',
-    description: 'Poziom transformacji'
+    areaId: 'process-methodology',
+    description: 'Preferowana metodologia pracy'
   },
   {
-    id: 'availability',
-    name: 'Dostępność',
-    iconName: 'Clock',
-    emoji: '📅',
-    type: 'toggle',
-    options: [
-      { id: 'a1', label: 'A1 (Minimalna)', value: '1' },
-      { id: 'a2', label: 'A2 (Ograniczona)', value: '2' },
-      { id: 'a3', label: 'A3 (Standardowa)', value: '3' },
-      { id: 'a4', label: 'A4 (Zwiększona)', value: '4' },
-      { id: 'a5', label: 'A5 (Pełna)', value: '5' }
-    ],
-    categoryId: 'work-patterns',
-    description: 'Poziom dostępności'
-  },
-  {
-    id: 'synergy',
-    name: 'Synergia',
+    id: 'work-pace',
+    name: 'Tempo Pracy',
     iconName: 'Zap',
     emoji: '⚡',
     type: 'toggle',
     options: [
-      { id: 's1', label: 'S1 (Podstawowa)', value: '1' },
-      { id: 's2', label: 'S2 (Umiarkowana)', value: '2' },
-      { id: 's3', label: 'S3 (Znacząca)', value: '3' },
-      { id: 's4', label: 'S4 (Wysoka)', value: '4' },
-      { id: 's5', label: 'S5 (Maksymalna)', value: '5' }
+      { id: 'fast', label: '⚡ Szybkie (wysokie tempo, krótkie terminy)', value: 'Szybkie' },
+      { id: 'stable', label: '⏱️ Stabilne (zrównoważone tempo)', value: 'Stabilne' },
+      { id: 'reflective', label: '🧘 Refleksyjne (dokładność ważniejsza niż szybkość)', value: 'Refleksyjne' },
+      { id: 'adaptive', label: '🔄 Adaptacyjne (zmienne w zależności od potrzeb)', value: 'Adaptacyjne' }
     ],
-    categoryId: 'work-patterns',
-    description: 'Poziom synergii w pracy zespołowej'
+    areaId: 'process-methodology',
+    description: 'Preferowane tempo pracy'
   },
   {
-    id: 'focusTime',
-    name: 'Czas Skupienia',
-    iconName: 'Target',
+    id: 'focus-level',
+    name: 'Poziom Skupienia',
+    iconName: 'Focus',
     emoji: '🎯',
-    type: 'slider',
-    min: 1,
-    max: 5,
-    step: 0.5,
-    defaultValue: 2,
-    categoryId: 'work-patterns',
-    description: 'Preferowana długość bloków skupienia (w godzinach)'
-  },
-  {
-    id: 'meetingPreference',
-    name: 'Preferencje Spotkań',
-    iconName: 'Users',
-    emoji: '👥',
     type: 'toggle',
     options: [
-      { id: 'min', label: '⏱️ Minimalne', value: 'Min' },
-      { id: 'mod', label: '⚖️ Umiarkowane', value: 'Mod' },
-      { id: 'freq', label: '📅 Częste', value: 'Freq' }
+      { id: 'sequential', label: '🎯 Sekwencyjny (jedno zadanie na raz)', value: 'Sekwencyjny' },
+      { id: 'balanced', label: '🔄 Zbalansowany (priorytetyzacja z umiarem)', value: 'Zbalansowany' },
+      { id: 'multitasking', label: '🔀 Multitasking (wiele zadań jednocześnie)', value: 'Multitasking' }
     ],
-    categoryId: 'work-patterns',
-    description: 'Preferowana częstotliwość spotkań'
+    areaId: 'process-methodology',
+    description: 'Preferowany sposób skupienia na zadaniach'
   },
   {
-    id: 'decisionMaking',
+    id: 'tech-preferences',
+    name: 'Preferencje Technologiczne',
+    iconName: 'Tool',
+    emoji: '💻',
+    type: 'toggle',
+    options: [
+      { id: 'os', label: '💻 System operacyjny', value: 'System operacyjny' },
+      { id: 'mobile', label: '📱 Narzędzia mobilne', value: 'Narzędzia mobilne' },
+      { id: 'software', label: '🛠️ Preferencje oprogramowania', value: 'Preferencje oprogramowania' }
+    ],
+    subOptions: [
+      { id: 'windows', label: 'Windows', value: 'Windows', parentOptionId: 'os' },
+      { id: 'macos', label: 'MacOS', value: 'MacOS', parentOptionId: 'os' },
+      { id: 'linux', label: 'Linux', value: 'Linux', parentOptionId: 'os' },
+      { id: 'ios', label: 'iOS', value: 'iOS', parentOptionId: 'mobile' },
+      { id: 'android', label: 'Android', value: 'Android', parentOptionId: 'mobile' },
+      { id: 'no-preference', label: 'Brak preferencji', value: 'Brak preferencji', parentOptionId: 'mobile' }
+    ],
+    areaId: 'process-methodology',
+    description: 'Preferencje dotyczące technologii i narzędzi'
+  }
+]
+
+// Segmenty dla obszaru Komunikacja i Decyzje
+const communicationDecisionsSegments: Segment[] = [
+  {
+    id: 'communication-style',
+    name: 'Styl Komunikacji',
+    iconName: 'MessageSquare',
+    emoji: '🎯',
+    type: 'toggle',
+    options: [
+      { id: 'direct', label: '🎯 Bezpośredni (konkretny i rzeczowy)', value: 'Bezpośredni' },
+      { id: 'diplomatic', label: '🤝 Dyplomatyczny (taktowny i relacyjny)', value: 'Dyplomatyczny' },
+      { id: 'analytical', label: '📊 Analityczny (oparty na danych)', value: 'Analityczny' },
+      { id: 'expressive', label: '🎨 Ekspresyjny (kreatywny i opisowy)', value: 'Ekspresyjny' }
+    ],
+    areaId: 'communication-decisions',
+    description: 'Preferowany styl komunikacji'
+  },
+  {
+    id: 'feedback-style',
+    name: 'Styl Feedbacku',
+    iconName: 'MessageCircle',
+    emoji: '🎯',
+    type: 'toggle',
+    options: [
+      { id: 'direct', label: '🎯 Bezpośredni (szczery i natychmiastowy)', value: 'Bezpośredni' },
+      { id: 'gentle', label: '🕊️ Łagodny (wspierający i konstruktywny)', value: 'Łagodny' },
+      { id: 'structural', label: '📋 Strukturalny (szczegółowy i uzasadniony)', value: 'Strukturalny' },
+      { id: 'bidirectional', label: '🔄 Dwukierunkowy (interaktywna wymiana)', value: 'Dwukierunkowy' }
+    ],
+    areaId: 'communication-decisions',
+    description: 'Preferowany styl otrzymywania i dawania feedbacku'
+  },
+  {
+    id: 'decision-making',
     name: 'Podejmowanie Decyzji',
     iconName: 'GitMerge',
-    emoji: '🧩',
+    emoji: '🧠',
     type: 'toggle',
     options: [
-      { id: 'independent', label: '🧍 Niezależne', value: 'I' },
-      { id: 'collaborative', label: '👥 Wspólne', value: 'C' },
-      { id: 'hybrid', label: '🔄 Hybrydowe', value: 'H' }
+      { id: 'independent', label: '🧠 Niezależne (indywidualne)', value: 'Niezależne' },
+      { id: 'team', label: '🤝 Zespołowe (konsensus)', value: 'Zespołowe' },
+      { id: 'data-driven', label: '📊 Oparte na danych (analityczne)', value: 'Oparte na danych' },
+      { id: 'hierarchical', label: '🎯 Hierarchiczne (oparte na autorytetach)', value: 'Hierarchiczne' },
+      { id: 'adaptive', label: '🔄 Adaptacyjne (zależne od kontekstu)', value: 'Adaptacyjne' }
     ],
-    categoryId: 'work-patterns',
+    areaId: 'communication-decisions',
     description: 'Preferowany styl podejmowania decyzji'
   }
 ]
 
-// Location Segments
-const locationSegments: Segment[] = [
+// Segmenty dla obszaru Rozwój i Adaptacja
+const developmentAdaptationSegments: Segment[] = [
   {
-    id: 'location',
-    name: 'Lokalizacja',
-    iconName: 'Globe',
-    emoji: '🌍',
+    id: 'learning-style',
+    name: 'Styl Uczenia Się',
+    iconName: 'BookOpen',
+    emoji: '🛠️',
     type: 'toggle',
     options: [
-      { id: 'urban', label: '🏙️ Miejska', value: 'U' },
-      { id: 'suburban', label: '🏘️ Podmiejska', value: 'S' },
-      { id: 'rural', label: '🌳 Wiejska', value: 'R' },
-      { id: 'remote', label: '🏝️ Zdalna', value: 'RM' }
+      { id: 'practical', label: '🛠️ Praktyczny (nauka przez działanie)', value: 'Praktyczny' },
+      { id: 'theoretical', label: '📚 Teoretyczny (nauka przez studiowanie)', value: 'Teoretyczny' },
+      { id: 'mixed', label: '🔄 Mieszany (równowaga teorii i praktyki)', value: 'Mieszany' },
+      { id: 'social', label: '👥 Społeczny (nauka przez interakcje)', value: 'Społeczny' }
     ],
-    categoryId: 'location',
-    description: 'Preferowany typ lokalizacji'
+    areaId: 'development-adaptation',
+    description: 'Preferowany styl uczenia się'
   },
   {
-    id: 'locationMobility',
-    name: 'Mobilność Lokalizacyjna',
-    iconName: 'Rocket',
-    emoji: '🚀',
+    id: 'problem-solving',
+    name: 'Rozwiązywanie Problemów',
+    iconName: 'PuzzlePiece',
+    emoji: '🔍',
     type: 'toggle',
     options: [
-      { id: 'fixed', label: '📍 Stała', value: '0' },
-      { id: 'local', label: '🚗 Lokalna', value: '1' },
-      { id: 'regional', label: '✈️ Regionalna', value: '2' },
-      { id: 'global', label: '🌎 Globalna', value: '3' }
+      { id: 'analytical', label: '🔍 Analityczne (systematyczne podejście)', value: 'Analityczne' },
+      { id: 'creative', label: '🎨 Kreatywne (niestandardowe rozwiązania)', value: 'Kreatywne' },
+      { id: 'team', label: '🤝 Zespołowe (wspólne generowanie rozwiązań)', value: 'Zespołowe' },
+      { id: 'adaptive', label: '🔄 Adaptacyjne (elastyczne dopasowanie metody)', value: 'Adaptacyjne' }
     ],
-    categoryId: 'location',
-    description: 'Preferowany poziom mobilności lokalizacyjnej'
+    areaId: 'development-adaptation',
+    description: 'Preferowany styl rozwiązywania problemów'
   },
   {
-    id: 'environmentType',
-    name: 'Typ Środowiska',
-    iconName: 'Mountain',
-    emoji: '🏞️',
+    id: 'change-management',
+    name: 'Zarządzanie Zmianą',
+    iconName: 'RefreshCw',
+    emoji: '🛡️',
     type: 'toggle',
     options: [
-      { id: 'indoor', label: '🏠 Wewnętrzne', value: 'I' },
-      { id: 'outdoor', label: '🌳 Zewnętrzne', value: 'O' },
-      { id: 'mixed', label: '🔄 Mieszane', value: 'M' }
+      { id: 'resilient', label: '🛡️ Odporny (stabilny w obliczu zmian)', value: 'Odporny' },
+      { id: 'preventive', label: '⚠️ Zapobiegawczy (przygotowany na zmiany)', value: 'Zapobiegawczy' },
+      { id: 'adaptive', label: '🧘 Adaptacyjny (płynnie dostosowujący się)', value: 'Adaptacyjny' },
+      { id: 'initiating', label: '🚀 Inicjujący (wprowadzający zmiany)', value: 'Inicjujący' }
     ],
-    categoryId: 'location',
-    description: 'Preferowany typ środowiska pracy'
+    areaId: 'development-adaptation',
+    description: 'Preferowany styl radzenia sobie ze zmianami'
   },
   {
-    id: 'climatePreference',
-    name: 'Preferencje Klimatyczne',
-    iconName: 'Sun',
-    emoji: '☀️',
+    id: 'innovation',
+    name: 'Innowacyjność',
+    iconName: 'Lightbulb',
+    emoji: '🏛️',
     type: 'toggle',
     options: [
-      { id: 'warm', label: '☀️ Ciepły', value: 'W' },
-      { id: 'cold', label: '❄️ Zimny', value: 'C' },
-      { id: 'temperate', label: '🌤️ Umiarkowany', value: 'T' },
-      { id: 'any', label: '🌍 Dowolny', value: 'A' }
+      { id: 'conservative', label: '🏛️ Konserwatywny (sprawdzone rozwiązania)', value: 'Konserwatywny' },
+      { id: 'moderate', label: '⚖️ Umiarkowany (selektywne innowacje)', value: 'Umiarkowany' },
+      { id: 'innovative', label: '🚀 Innowacyjny (częste testowanie nowości)', value: 'Innowacyjny' },
+      { id: 'pioneering', label: '💡 Pionierski (tworzenie nowych rozwiązań)', value: 'Pionierski' }
     ],
-    categoryId: 'location',
-    description: 'Preferowany klimat'
+    areaId: 'development-adaptation',
+    description: 'Preferowany poziom innowacyjności'
   }
 ]
 
-// Tech & Tools Segments
-const techToolsSegments: Segment[] = [
-  {
-    id: 'system',
-    name: 'System',
-    iconName: 'Terminal',
-    emoji: '💻',
-    type: 'toggle',
-    options: [
-      { id: 'win', label: '🪟 Windows', value: 'W' },
-      { id: 'mac', label: '🍎 Mac', value: 'M' },
-      { id: 'linux', label: '🐧 Linux', value: 'L' },
-      { id: 'cross', label: '🔄 Cross-platform', value: 'X' }
-    ],
-    categoryId: 'tech-tools',
-    description: 'Preferowany system operacyjny'
-  },
-  {
-    id: 'frontend',
-    name: 'Frontend',
-    iconName: 'Layout',
-    emoji: '🖥️',
-    type: 'toggle',
-    options: [
-      { id: 'react', label: '⚛️ React', value: 'R' },
-      { id: 'vue', label: '🟢 Vue', value: 'V' },
-      { id: 'angular', label: '🔴 Angular', value: 'A' },
-      { id: 'other', label: '🔧 Inne', value: 'O' }
-    ],
-    categoryId: 'tech-tools',
-    description: 'Preferowane technologie frontendowe'
-  },
-  {
-    id: 'backend',
-    name: 'Backend',
-    iconName: 'Server',
-    emoji: '⚙️',
-    type: 'toggle',
-    options: [
-      { id: 'node', label: '🟢 Node.js', value: 'N' },
-      { id: 'python', label: '🐍 Python', value: 'P' },
-      { id: 'java', label: '☕ Java', value: 'J' },
-      { id: 'other', label: '🔧 Inne', value: 'O' }
-    ],
-    categoryId: 'tech-tools',
-    description: 'Preferowane technologie backendowe'
-  },
-  {
-    id: 'mobile',
-    name: 'Mobile',
-    iconName: 'Smartphone',
-    emoji: '📱',
-    type: 'toggle',
-    options: [
-      { id: 'ios', label: '🍎 iOS', value: 'I' },
-      { id: 'android', label: '🤖 Android', value: 'A' },
-      { id: 'cross', label: '🔄 Cross-platform', value: 'X' }
-    ],
-    categoryId: 'tech-tools',
-    description: 'Preferowane technologie mobilne'
-  },
-  {
-    id: 'cloud',
-    name: 'Cloud',
-    iconName: 'Cloud',
-    emoji: '☁️',
-    type: 'toggle',
-    options: [
-      { id: 'aws', label: '🟠 AWS', value: 'A' },
-      { id: 'azure', label: '🔵 Azure', value: 'Z' },
-      { id: 'gcp', label: '🟢 GCP', value: 'G' },
-      { id: 'other', label: '🔧 Inne', value: 'O' }
-    ],
-    categoryId: 'tech-tools',
-    description: 'Preferowane technologie chmurowe'
-  },
-  {
-    id: 'skillLevel',
-    name: 'Poziom Umiejętności',
-    iconName: 'BarChart',
-    emoji: '📊',
-    type: 'toggle',
-    options: [
-      { id: 'junior', label: '🌱 Junior', value: 'J' },
-      { id: 'mid', label: '🌿 Mid-level', value: 'M' },
-      { id: 'senior', label: '🌳 Senior', value: 'S' },
-      { id: 'expert', label: '🌲 Expert', value: 'E' }
-    ],
-    categoryId: 'tech-tools',
-    description: 'Poziom umiejętności technicznych'
-  }
-]
-
-// Personal Preference Segments
-const personalSegments: Segment[] = [
-  {
-    id: 'workStyle',
-    name: 'Styl Pracy',
-    iconName: 'Compass',
-    emoji: '🧭',
-    type: 'toggle',
-    options: [
-      { id: 'sprint', label: '🔥 Sprint', value: 'Sprint' },
-      { id: 'flow', label: '🌊 Flow', value: 'Flow' },
-      { id: 'burst', label: '🚀 Burst', value: 'Burst' },
-      { id: 'steady', label: '🐌 Steady', value: 'Steady' }
-    ],
-    categoryId: 'personal',
-    description: 'Preferowany styl pracy i energia'
-  },
-  {
-    id: 'soundscape',
-    name: 'Preferencje Dźwiękowe',
-    iconName: 'Music',
-    emoji: '🎵',
-    type: 'toggle',
-    options: [
-      { id: 'silence', label: '🔇 Cisza', value: 'S' },
-      { id: 'ambient', label: '🌧️ Ambient', value: 'A' },
-      { id: 'music', label: '🎧 Muzyka', value: 'M' },
-      { id: 'noise', label: '🔊 Szum', value: 'N' }
-    ],
-    categoryId: 'personal',
-    description: 'Preferowane otoczenie dźwiękowe'
-  },
-  {
-    id: 'superpower',
-    name: 'Supermoce',
-    iconName: 'Star',
-    emoji: '⭐',
-    type: 'input',
-    categoryId: 'personal',
-    description: 'Twoje unikalne mocne strony'
-  },
-  {
-    id: 'fuel',
-    name: 'Paliwo',
-    iconName: 'Coffee',
-    emoji: '☕',
-    type: 'toggle',
-    options: [
-      { id: 'coffee', label: '☕ Kawa', value: 'C' },
-      { id: 'tea', label: '🍵 Herbata', value: 'T' },
-      { id: 'water', label: '💧 Woda', value: 'W' },
-      { id: 'energy', label: '⚡ Napoje energetyczne', value: 'E' },
-      { id: 'none', label: '❌ Nic', value: 'N' }
-    ],
-    categoryId: 'personal',
-    description: 'Preferowany napój podczas pracy'
-  },
-  {
-    id: 'teamAnimal',
-    name: 'Zwierzę Zespołowe',
-    iconName: 'Dog',
-    emoji: '🦊',
-    type: 'toggle',
-    options: [
-      { id: 'wolf', label: '🐺 Wilk', value: 'W' },
-      { id: 'owl', label: '🦉 Sowa', value: 'O' },
-      { id: 'dolphin', label: '🐬 Delfin', value: 'D' },
-      { id: 'bee', label: '🐝 Pszczoła', value: 'B' },
-      { id: 'lion', label: '🦁 Lew', value: 'L' }
-    ],
-    categoryId: 'personal',
-    description: 'Twój styl pracy w zespole'
-  },
-  {
-    id: 'gamificationLevel',
-    name: 'Poziom Gamifikacji',
-    iconName: 'Gamepad2',
-    emoji: '🎮',
-    type: 'toggle',
-    options: [
-      { id: 'competitive', label: '🏆 Rywalizacyjny', value: 'C' },
-      { id: 'collaborative', label: '🤝 Współpracujący', value: 'Co' },
-      { id: 'casual', label: '🎲 Casualowy', value: 'Ca' },
-      { id: 'none', label: '❌ Żaden', value: 'N' }
-    ],
-    categoryId: 'personal',
-    description: 'Preferowany poziom gamifikacji w pracy'
-  },
-  {
-    id: 'communicationStyle',
-    name: 'Styl Komunikacji',
-    iconName: 'MessageSquare',
-    emoji: '💬',
-    type: 'toggle',
-    options: [
-      { id: 'direct', label: '🎯 Bezpośredni', value: 'D' },
-      { id: 'diplomatic', label: '🕊️ Dyplomatyczny', value: 'Dp' },
-      { id: 'detailed', label: '📋 Szczegółowy', value: 'Dt' },
-      { id: 'minimal', label: '⚡ Minimalny', value: 'M' }
-    ],
-    categoryId: 'personal',
-    description: 'Preferowany styl komunikacji'
-  },
-  {
-    id: 'futuristFactor',
-    name: 'Czynnik Futurystyczny',
-    iconName: 'Sparkles',
-    emoji: '🔮',
-    type: 'toggle',
-    options: [
-      { id: 'early', label: '🚀 Early Adopter', value: 'EA' },
-      { id: 'mainstream', label: '🌊 Mainstream', value: 'M' },
-      { id: 'conservative', label: '🏛️ Konserwatywny', value: 'C' }
-    ],
-    categoryId: 'personal',
-    description: 'Stosunek do nowych technologii'
-  },
-  {
-    id: 'diversity',
-    name: 'Preferencje Różnorodności',
-    iconName: 'Palette',
-    emoji: '🌈',
-    type: 'toggle',
-    options: [
-      { id: 'high', label: '🌈 Wysoki Priorytet', value: 'H' },
-      { id: 'medium', label: '🔄 Średni Priorytet', value: 'M' },
-      { id: 'low', label: '⚪ Niski Priorytet', value: 'L' }
-    ],
-    categoryId: 'personal',
-    description: 'Stosunek do różnorodności w zespole'
-  },
-  {
-    id: 'impact',
-    name: 'Poziom Wpływu',
-    iconName: 'Leaf',
-    emoji: '🌱',
-    type: 'toggle',
-    options: [
-      { id: 'mission', label: '🌍 Mission-driven', value: 'M' },
-      { id: 'impact', label: '💫 Impact-aware', value: 'I' },
-      { id: 'traditional', label: '📊 Traditional', value: 'T' }
-    ],
-    categoryId: 'personal',
-    description: 'Preferowany poziom wpływu społecznego'
-  },
-  {
-    id: 'workLifeBalance',
-    name: 'Równowaga Praca-Życie',
-    iconName: 'Scale',
-    emoji: '⚖️',
-    type: 'toggle',
-    options: [
-      { id: 'work', label: '💼 Work-focused', value: 'W' },
-      { id: 'balanced', label: '⚖️ Balanced', value: 'B' },
-      { id: 'life', label: '🏖️ Life-focused', value: 'L' }
-    ],
-    categoryId: 'personal',
-    description: 'Preferowana równowaga między pracą a życiem prywatnym'
-  }
-]
-
-// Microsegment Groups
-export const microsegmentGroups: MicrosegmentGroup[] = [
-  {
-    id: 'work-style-group',
-    name: 'Styl Pracy',
-    iconName: 'Compass',
-    segmentIds: ['workStyle', 'soundscape', 'superpower', 'fuel'],
-    categoryId: 'personal',
-    description: 'Preferencje dotyczące stylu pracy'
-  },
-  {
-    id: 'team-group',
-    name: 'Preferencje Zespołowe',
-    iconName: 'Users',
-    segmentIds: ['teamAnimal', 'gamificationLevel', 'communicationStyle'],
-    categoryId: 'personal',
-    description: 'Preferencje dotyczące pracy zespołowej'
-  },
-  {
-    id: 'tech-stack-group',
-    name: 'Stos Technologiczny',
-    iconName: 'Layers',
-    segmentIds: ['frontend', 'backend', 'mobile', 'cloud'],
-    categoryId: 'tech-tools',
-    description: 'Preferowane technologie'
-  },
-  {
-    id: 'values-group',
-    name: 'Wartości',
-    iconName: 'Heart',
-    segmentIds: ['futuristFactor', 'diversity', 'impact'],
-    categoryId: 'personal',
-    description: 'Wartości i preferencje społeczne'
-  }
-]
-
-// Combine all segments
+// Wszystkie segmenty
 export const segments: Segment[] = [
-  ...workEnvironmentSegments,
-  ...workPatternsSegments,
-  ...locationSegments,
-  ...techToolsSegments,
-  ...personalSegments
+  ...workOrganizationSegments,
+  ...locationMobilitySegments,
+  ...collaborationRelationsSegments,
+  ...timeAvailabilitySegments,
+  ...processMethodologySegments,
+  ...communicationDecisionsSegments,
+  ...developmentAdaptationSegments
 ]
+
+// Sprawdźmy, czy wszystkie segmenty mają poprawnie ustawione właściwości type i options
+segments.forEach(segment => {
+  if (!segment.type) {
+    console.error(`Segment ${segment.name} (${segment.id}) has no type property`);
+  }
+  if (segment.type !== 'input' && segment.type !== 'slider' && !segment.options) {
+    console.error(`Segment ${segment.name} (${segment.id}) has no options property`);
+  }
+});
+
+// Dodajmy console.log, aby zobaczyć, czy wszystkie segmenty są poprawnie zdefiniowane
+console.log('workOrganizationSegments:', workOrganizationSegments.length);
+console.log('locationMobilitySegments:', locationMobilitySegments.length);
+console.log('collaborationRelationsSegments:', collaborationRelationsSegments.length);
+console.log('timeAvailabilitySegments:', timeAvailabilitySegments.length);
+console.log('processMethodologySegments:', processMethodologySegments.length);
+console.log('communicationDecisionsSegments:', communicationDecisionsSegments.length);
+console.log('developmentAdaptationSegments:', developmentAdaptationSegments.length);

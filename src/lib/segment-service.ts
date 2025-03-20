@@ -1,66 +1,43 @@
-import { categories, segments, microsegmentGroups } from './segment-data'
+import { areas, segments } from './segment-data'
 import { 
-  SegmentCategory, 
+  Area, 
   Segment, 
-  MicrosegmentGroup, 
   SegmentWithIcon,
-  CategoryWithIcon,
-  MicrosegmentGroupWithIcon
+  AreaWithIcon,
+  SegmentOption,
+  SubOption
 } from './segment-types'
 import * as Icons from 'lucide-react'
 import React from 'react'
 
 // Helper to convert icon name to component
 function getIconComponent(iconName: string): React.ReactNode {
-  return Icons[iconName] || Icons.HelpCircle
+  const IconComponent = Icons[iconName] || Icons.HelpCircle;
+  return React.createElement(IconComponent);
 }
 
 /**
- * Get all categories with their icon components
+ * Get all areas with their icon components
  * This function could be replaced with a database query in the future
  */
-export function getAllCategories(): CategoryWithIcon[] {
-  return categories.map(category => ({
-    ...category,
-    icon: getIconComponent(category.iconName)
+export function getAllAreas(): AreaWithIcon[] {
+  return areas.map(area => ({
+    ...area,
+    icon: getIconComponent(area.iconName)
   }))
 }
 
 /**
- * Get segments by category ID with their icon components
+ * Get segments by area ID with their icon components
  * This function could be replaced with a database query in the future
  */
-export function getSegmentsByCategory(categoryId: string): SegmentWithIcon[] {
+export function getSegmentsByArea(areaId: string): SegmentWithIcon[] {
   return segments
-    .filter(segment => segment.categoryId === categoryId)
+    .filter(segment => segment.areaId === areaId)
     .map(segment => ({
       ...segment,
       icon: getIconComponent(segment.iconName)
     }))
-}
-
-/**
- * Get microsegment groups by category ID with their icon components and segments
- * This function could be replaced with a database query in the future
- */
-export function getMicrosegmentGroups(categoryId: string): MicrosegmentGroupWithIcon[] {
-  return microsegmentGroups
-    .filter(group => group.categoryId === categoryId)
-    .map(group => {
-      const segmentsWithIcons: SegmentWithIcon[] = group.segmentIds
-        .map(id => segments.find(s => s.id === id))
-        .filter((segment): segment is Segment => segment !== undefined)
-        .map(segment => ({
-          ...segment,
-          icon: getIconComponent(segment.iconName)
-        }))
-      
-      return {
-        ...group,
-        icon: getIconComponent(group.iconName),
-        segments: segmentsWithIcons
-      }
-    })
 }
 
 /**
@@ -89,62 +66,27 @@ export function getAllSegments(): SegmentWithIcon[] {
 }
 
 /**
- * Get a category by ID with its icon component
+ * Get an area by ID with its icon component
  * This function could be replaced with a database query in the future
  */
-export function getCategoryById(id: string): CategoryWithIcon | null {
-  const category = categories.find(c => c.id === id)
-  if (!category) return null
+export function getAreaById(id: string): AreaWithIcon | null {
+  const area = areas.find(a => a.id === id)
+  if (!area) return null
   
   return {
-    ...category,
-    icon: getIconComponent(category.iconName)
+    ...area,
+    icon: getIconComponent(area.iconName)
   }
 }
 
 /**
- * Get a microsegment group by ID with its icon component and segments
+ * Get sub-options for a segment option
  * This function could be replaced with a database query in the future
  */
-export function getMicrosegmentGroupById(id: string): MicrosegmentGroupWithIcon | null {
-  const group = microsegmentGroups.find(g => g.id === id)
-  if (!group) return null
+export function getSubOptionsForOption(segment: Segment, optionId: string): SubOption[] {
+  if (!segment.subOptions) return []
   
-  const segmentsWithIcons: SegmentWithIcon[] = group.segmentIds
-    .map(id => segments.find(s => s.id === id))
-    .filter((segment): segment is Segment => segment !== undefined)
-    .map(segment => ({
-      ...segment,
-      icon: getIconComponent(segment.iconName)
-    }))
-  
-  return {
-    ...group,
-    icon: getIconComponent(group.iconName),
-    segments: segmentsWithIcons
-  }
-}
-
-/**
- * Get all microsegment groups with their icon components and segments
- * This function could be replaced with a database query in the future
- */
-export function getAllMicrosegmentGroups(): MicrosegmentGroupWithIcon[] {
-  return microsegmentGroups.map(group => {
-    const segmentsWithIcons: SegmentWithIcon[] = group.segmentIds
-      .map(id => segments.find(s => s.id === id))
-      .filter((segment): segment is Segment => segment !== undefined)
-      .map(segment => ({
-        ...segment,
-        icon: getIconComponent(segment.iconName)
-      }))
-    
-    return {
-      ...group,
-      icon: getIconComponent(group.iconName),
-      segments: segmentsWithIcons
-    }
-  })
+  return segment.subOptions.filter(subOption => subOption.parentOptionId === optionId)
 }
 
 /**
@@ -152,13 +94,13 @@ export function getAllMicrosegmentGroups(): MicrosegmentGroupWithIcon[] {
  * This function could be replaced with a database insert in the future
  */
 export function addSegment(segment: Omit<Segment, 'id'>): SegmentWithIcon {
-  const id = generateId(segment.name)
+  const newId = generateId(segment.name)
   const newSegment: Segment = {
-    ...segment,
-    id
+    id: newId,
+    ...segment
   }
   
-  // In a real database, this would be a transaction
+  // In a real app, this would be a database insert
   segments.push(newSegment)
   
   return {
@@ -180,7 +122,7 @@ export function updateSegment(id: string, segmentData: Partial<Segment>): Segmen
     ...segmentData
   }
   
-  // In a real database, this would be a transaction
+  // In a real app, this would be a database update
   segments[index] = updatedSegment
   
   return {
@@ -197,125 +139,102 @@ export function removeSegment(id: string): boolean {
   const index = segments.findIndex(s => s.id === id)
   if (index === -1) return false
   
-  // In a real database, this would be a transaction with cascading deletes
-  // Remove segment from all microsegment groups
-  microsegmentGroups.forEach(group => {
-    const segmentIndex = group.segmentIds.indexOf(id)
-    if (segmentIndex !== -1) {
-      group.segmentIds.splice(segmentIndex, 1)
-    }
-  })
-  
-  // Remove the segment
+  // In a real app, this would be a database delete
   segments.splice(index, 1)
   
   return true
 }
 
 /**
- * Add a new microsegment group
+ * Add a new area
  * This function could be replaced with a database insert in the future
  */
-export function addMicrosegmentGroup(group: Omit<MicrosegmentGroup, 'id'>): MicrosegmentGroupWithIcon {
-  const id = generateId(group.name)
-  const newGroup: MicrosegmentGroup = {
-    ...group,
-    id
+export function addArea(area: Omit<Area, 'id'>): AreaWithIcon {
+  const newId = generateId(area.name)
+  const newArea: Area = {
+    id: newId,
+    ...area
   }
   
-  // In a real database, this would be a transaction
-  microsegmentGroups.push(newGroup)
-  
-  const segmentsWithIcons: SegmentWithIcon[] = newGroup.segmentIds
-    .map(id => segments.find(s => s.id === id))
-    .filter((segment): segment is Segment => segment !== undefined)
-    .map(segment => ({
-      ...segment,
-      icon: getIconComponent(segment.iconName)
-    }))
+  // In a real app, this would be a database insert
+  areas.push(newArea)
   
   return {
-    ...newGroup,
-    icon: getIconComponent(newGroup.iconName),
-    segments: segmentsWithIcons
+    ...newArea,
+    icon: getIconComponent(newArea.iconName)
   }
 }
 
 /**
- * Update an existing microsegment group
+ * Update an existing area
  * This function could be replaced with a database update in the future
  */
-export function updateMicrosegmentGroup(id: string, groupData: Partial<MicrosegmentGroup>): MicrosegmentGroupWithIcon | null {
-  const index = microsegmentGroups.findIndex(g => g.id === id)
+export function updateArea(id: string, areaData: Partial<Area>): AreaWithIcon | null {
+  const index = areas.findIndex(a => a.id === id)
   if (index === -1) return null
   
-  const updatedGroup: MicrosegmentGroup = {
-    ...microsegmentGroups[index],
-    ...groupData
+  const updatedArea: Area = {
+    ...areas[index],
+    ...areaData
   }
   
-  // In a real database, this would be a transaction
-  microsegmentGroups[index] = updatedGroup
-  
-  const segmentsWithIcons: SegmentWithIcon[] = updatedGroup.segmentIds
-    .map(id => segments.find(s => s.id === id))
-    .filter((segment): segment is Segment => segment !== undefined)
-    .map(segment => ({
-      ...segment,
-      icon: getIconComponent(segment.iconName)
-    }))
+  // In a real app, this would be a database update
+  areas[index] = updatedArea
   
   return {
-    ...updatedGroup,
-    icon: getIconComponent(updatedGroup.iconName),
-    segments: segmentsWithIcons
+    ...updatedArea,
+    icon: getIconComponent(updatedArea.iconName)
   }
 }
 
 /**
- * Remove a microsegment group
+ * Remove an area
  * This function could be replaced with a database delete in the future
  */
-export function removeMicrosegmentGroup(id: string): boolean {
-  const index = microsegmentGroups.findIndex(g => g.id === id)
+export function removeArea(id: string): boolean {
+  const index = areas.findIndex(a => a.id === id)
   if (index === -1) return false
   
-  // In a real database, this would be a transaction
-  microsegmentGroups.splice(index, 1)
+  // In a real app, this would be a database delete
+  areas.splice(index, 1)
   
   return true
 }
 
 /**
- * Add a segment to a microsegment group
+ * Add a sub-option to a segment
  * This function could be replaced with a database insert in the future
  */
-export function addSegmentToGroup(groupId: string, segmentId: string): boolean {
-  const group = microsegmentGroups.find(g => g.id === groupId)
-  if (!group) return false
+export function addSubOption(segmentId: string, subOption: Omit<SubOption, 'id'>): boolean {
+  const segment = segments.find(s => s.id === segmentId)
+  if (!segment) return false
   
-  if (group.segmentIds.includes(segmentId)) return true
+  const newId = generateId(subOption.label)
+  const newSubOption: SubOption = {
+    id: newId,
+    ...subOption
+  }
   
-  // In a real database, this would be a transaction
-  group.segmentIds.push(segmentId)
+  if (!segment.subOptions) {
+    segment.subOptions = []
+  }
   
+  segment.subOptions.push(newSubOption)
   return true
 }
 
 /**
- * Remove a segment from a microsegment group
+ * Remove a sub-option from a segment
  * This function could be replaced with a database delete in the future
  */
-export function removeSegmentFromGroup(groupId: string, segmentId: string): boolean {
-  const group = microsegmentGroups.find(g => g.id === groupId)
-  if (!group) return false
+export function removeSubOption(segmentId: string, subOptionId: string): boolean {
+  const segment = segments.find(s => s.id === segmentId)
+  if (!segment || !segment.subOptions) return false
   
-  const index = group.segmentIds.indexOf(segmentId)
+  const index = segment.subOptions.findIndex(so => so.id === subOptionId)
   if (index === -1) return false
   
-  // In a real database, this would be a transaction
-  group.segmentIds.splice(index, 1)
-  
+  segment.subOptions.splice(index, 1)
   return true
 }
 
@@ -325,7 +244,7 @@ export function removeSegmentFromGroup(groupId: string, segmentId: string): bool
 function generateId(name: string): string {
   return name
     .toLowerCase()
-    .replace(/[^\w\s]/g, '')
     .replace(/\s+/g, '-')
-    .concat('-', Math.floor(Math.random() * 10000).toString())
+    .replace(/[^a-z0-9-]/g, '')
+    .concat('-', Math.floor(Math.random() * 1000).toString())
 }

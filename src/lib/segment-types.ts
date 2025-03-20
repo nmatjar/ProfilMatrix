@@ -7,55 +7,52 @@ export interface SegmentOption {
   emoji?: string
 }
 
+export interface SubOption {
+  id: string
+  label: string
+  value: string
+  emoji?: string
+  parentOptionId: string // ID opcji nadrzędnej
+}
+
 export interface Segment {
   id: string
   name: string
-  iconName: string // Store icon name instead of React component
+  iconName: string
   emoji?: string
   type: 'toggle' | 'slider' | 'input' | 'select'
   options?: SegmentOption[]
+  subOptions?: SubOption[] // Subopcje dla segmentu
   min?: number
   max?: number
   step?: number
   defaultValue?: string | number
-  categoryId: string // Reference by ID instead of embedding
+  areaId: string // Powiązanie z obszarem zamiast kategorią
   description?: string
 }
 
-export interface SegmentCategory {
+export interface Area {
   id: string
   name: string
   iconName: string
-  description?: string
-}
-
-export interface MicrosegmentGroup {
-  id: string
-  name: string
-  iconName: string
-  segmentIds: string[] // Reference segments by ID
-  categoryId: string
+  emoji?: string
   description?: string
 }
 
 export interface ActiveSegment {
   id: string
   value: string | number
-  segmentId: string // Reference by ID instead of embedding
+  segmentId: string
   visible: boolean
   order?: number
+  subOptionId?: string // Opcjonalnie ID wybranej subopcji
 }
 
-// Extended interfaces with icon components (for UI use)
+// Interfejsy z komponentami ikon (dla UI)
 export interface SegmentWithIcon extends Segment {
   icon: ReactNode
 }
 
-export interface CategoryWithIcon extends SegmentCategory {
+export interface AreaWithIcon extends Area {
   icon: ReactNode
-}
-
-export interface MicrosegmentGroupWithIcon extends Omit<MicrosegmentGroup, 'segmentIds'> {
-  icon: ReactNode
-  segments: SegmentWithIcon[]
 }

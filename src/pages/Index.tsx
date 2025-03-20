@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from 'react-router-dom';
+import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/segment-types';
+import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
 
 interface ActiveSegment {
   id: string;
@@ -25,376 +27,105 @@ interface MainArea {
   icon: React.ReactNode;
 }
 
-interface Category {
-  id: string;
-  name: string;
-  icon: React.ReactNode;
-  options?: { id: string; label: string; value: string }[];
-  type?: string;
-  subCategories?: { id: string; name: string; icon: React.ReactNode; options: { id: string; label: string; value: string }[] }[];
-}
+// Map to associate segments with their parent areas
+const segmentToAreaMap: Record<string, string> = {};
 
-interface CategoryWithIcon extends Category {
-  icon: React.ReactNode;
-}
+// Initialize the area-segment mapping
+getAllAreas().forEach(area => {
+  getSegmentsByArea(area.id).forEach(segment => {
+    segmentToAreaMap[segment.id] = area.id;
+  });
+});
 
 const mainAreas: MainArea[] = [
   {
-    id: 'environment',
-    name: 'Środowisko',
-    description: 'System i narzędzia',
-    emoji: '🖥️',
+    id: 'work-organization',
+    name: 'Praca i Organizacja',
+    description: 'Środowisko, kultura i struktura organizacyjna',
+    emoji: '💼',
+    icon: <Building className="h-5 w-5" />
+  },
+  {
+    id: 'location-mobility',
+    name: 'Lokalizacja i Mobilność',
+    description: 'Miejsce pracy i elastyczność lokalizacyjna',
+    emoji: '📍',
     icon: <Globe className="h-5 w-5" />
   },
   {
-    id: 'team',
-    name: 'Zespół',
-    description: 'Współpraca i role',
+    id: 'collaboration-relations',
+    name: 'Współpraca i Relacje',
+    description: 'Dynamika zespołu i interakcje',
     emoji: '👥',
     icon: <Users className="h-5 w-5" />
   },
   {
-    id: 'time',
-    name: 'Czas',
-    description: 'Godziny i dostępność',
+    id: 'time-availability',
+    name: 'Czas i Dostępność',
+    description: 'Harmonogram i organizacja czasu',
     emoji: '⏰',
     icon: <Clock className="h-5 w-5" />
   },
   {
-    id: 'workStyle',
-    name: 'Styl pracy',
-    description: 'Podejście do zadań',
-    emoji: '🛠️',
-    icon: <Target className="h-5 w-5" />
+    id: 'process-methodology',
+    name: 'Proces i Metodologia',
+    description: 'Podejście do zadań i procesów',
+    emoji: '🧠',
+    icon: <Brain className="h-5 w-5" />
   },
   {
-    id: 'communication',
-    name: 'Komunikacja',
-    description: 'Sposób komunikacji',
+    id: 'communication-decisions',
+    name: 'Komunikacja i Decyzje',
+    description: 'Style komunikacji i podejmowania decyzji',
     emoji: '💬',
     icon: <MessageSquare className="h-5 w-5" />
   },
   {
-    id: 'adaptation',
-    name: 'Adaptacja',
-    description: 'Elastyczność i zmiany',
+    id: 'development-adaptation',
+    name: 'Rozwój i Adaptacja',
+    description: 'Rozwój zawodowy i adaptacja do zmian',
     emoji: '🔄',
     icon: <RefreshCw className="h-5 w-5" />
-  },
-  {
-    id: 'innovation',
-    name: 'Innowacja',
-    description: 'Kreatywność i pomysły',
-    emoji: '💡',
-    icon: <Lightbulb className="h-5 w-5" />
-  },
-  {
-    id: 'personal',
-    name: 'Osobiste',
-    description: 'Preferencje osobiste',
-    emoji: '👤',
-    icon: <User className="h-5 w-5" />
   }
 ];
 
-// Mapowanie kategorii do obszarów
-const categoryToAreaMap: Record<string, string> = {
-  // Środowisko
-  'workplace': 'environment',
-  'os': 'environment',
-  'hardware': 'environment',
-  'workPlace': 'environment',
-  'ide': 'environment',
-  'terminal': 'environment',
-  'browser': 'environment',
-  'mobility': 'environment',
-  'officeType': 'environment',
-  
-  // Zespół
-  'teamSize': 'team',
-  'teamRole': 'team',
-  'teamStructure': 'team',
-  'projectManagement': 'team',
-  
-  // Czas
-  'workHours': 'time',
-  'workSchedule': 'time',
-  'timeManagement': 'time',
-  
-  // Styl pracy
-  'workStyle': 'workStyle',
-  'focusLevel': 'workStyle',
-  'workEnvironment': 'workStyle',
-  'workLocation': 'workStyle',
-  
-  // Komunikacja
-  'communicationStyle': 'communication',
-  'communicationFrequency': 'communication',
-  'feedbackStyle': 'communication',
-  
-  // Adaptacja
-  'adaptability': 'adaptation',
-  'stressResponse': 'adaptation',
-  'learningStyle': 'adaptation',
-  
-  // Innowacja
-  'innovationStyle': 'innovation',
-  'problemSolving': 'innovation',
-  'creativity': 'innovation',
-  
-  // Osobiste
-  'personality': 'personal',
-  'motivation': 'personal',
-  'values': 'personal',
-  'interests': 'personal'
-};
-
-const categories = [
-  {
-    id: "workplace",
-    name: "Typ Miejsca Pracy",
-    icon: <Building className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "corporate", label: "🏢 Korporacja", value: "🏢" },
-      { id: "remote", label: "🏡 Remote", value: "🏡" },
-      { id: "creative", label: "🎨 Kreatywne", value: "🎨" },
-      { id: "social", label: "🤝 Społeczne", value: "🤝" }
-    ]
-  },
-  {
-    id: "mobility",
-    name: "Mobilność",
-    icon: <ArrowUpRight className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "f1", label: "F1 (Stała)", value: "F1" },
-      { id: "f3", label: "F3 (Elastyczna)", value: "F3" },
-      { id: "f5", label: "F5 (Pełna)", value: "F5" }
-    ]
-  },
-  {
-    id: "culture",
-    name: "Kultura Pracy",
-    icon: <Users className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "startup", label: "🚀 Startup", value: "🚀" },
-      { id: "corporate", label: "👔 Korporacyjna", value: "👔" },
-      { id: "hybrid", label: "🔄 Hybrydowa", value: "🔄" },
-      { id: "innovative", label: "💡 Innowacyjna", value: "💡" }
-    ]
-  },
-  {
-    id: "teamSize",
-    name: "Wielkość Zespołu",
-    icon: <Users className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "solo", label: "👤 Solo", value: "solo" },
-      { id: "small", label: "👥 Mały (2-5)", value: "small" },
-      { id: "medium", label: "👥👥 Średni (6-15)", value: "medium" },
-      { id: "large", label: "👥👥👥 Duży (16+)", value: "large" }
-    ]
-  },
-  {
-    id: "communicationStyle",
-    name: "Styl Komunikacji",
-    icon: <MessageSquare className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "direct", label: "🎯 Bezpośredni", value: "direct" },
-      { id: "diplomatic", label: "🤝 Dyplomatyczny", value: "diplomatic" },
-      { id: "detailed", label: "📋 Szczegółowy", value: "detailed" },
-      { id: "concise", label: "✂️ Zwięzły", value: "concise" }
-    ]
-  },
-  {
-    id: "feedbackStyle",
-    name: "Styl Feedbacku",
-    icon: <MessageSquare className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "direct", label: "🎯 Bezpośredni", value: "direct" },
-      { id: "gentle", label: "🕊️ Łagodny", value: "gentle" },
-      { id: "balanced", label: "⚖️ Zrównoważony", value: "balanced" },
-      { id: "detailed", label: "📋 Szczegółowy", value: "detailed" }
-    ]
-  },
-  {
-    id: "decisionMaking",
-    name: "Podejmowanie Decyzji",
-    icon: <Target className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "independent", label: "🧠 Niezależne", value: "independent" },
-      { id: "collaborative", label: "🤝 Zespołowe", value: "collaborative" },
-      { id: "data-driven", label: "📊 Oparte na danych", value: "data-driven" },
-      { id: "intuitive", label: "💫 Intuicyjne", value: "intuitive" }
-    ]
-  },
-  {
-    id: "learningStyle",
-    name: "Styl Uczenia Się",
-    icon: <Lightbulb className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "hands-on", label: "🛠️ Praktyczny", value: "hands-on" },
-      { id: "theoretical", label: "📚 Teoretyczny", value: "theoretical" },
-      { id: "visual", label: "👁️ Wizualny", value: "visual" },
-      { id: "social", label: "👥 Społeczny", value: "social" }
-    ]
-  },
-  {
-    id: "workPace",
-    name: "Tempo Pracy",
-    icon: <Clock className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "fast", label: "⚡ Szybkie", value: "fast" },
-      { id: "steady", label: "⏱️ Stabilne", value: "steady" },
-      { id: "methodical", label: "📐 Metodyczne", value: "methodical" },
-      { id: "flexible", label: "🔄 Elastyczne", value: "flexible" }
-    ]
-  },
-  {
-    id: "problemSolving",
-    name: "Rozwiązywanie Problemów",
-    icon: <Lightbulb className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "analytical", label: "🔍 Analityczne", value: "analytical" },
-      { id: "creative", label: "🎨 Kreatywne", value: "creative" },
-      { id: "practical", label: "🛠️ Praktyczne", value: "practical" },
-      { id: "collaborative", label: "👥 Zespołowe", value: "collaborative" }
-    ]
-  },
-  {
-    id: "projectPreference",
-    name: "Preferencje Projektowe",
-    icon: <Target className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "short-term", label: "⏱️ Krótkoterminowe", value: "short-term" },
-      { id: "long-term", label: "📅 Długoterminowe", value: "long-term" },
-      { id: "varied", label: "🔄 Zróżnicowane", value: "varied" },
-      { id: "specialized", label: "🎯 Specjalistyczne", value: "specialized" }
-    ]
-  },
-  {
-    id: "stressManagement",
-    name: "Zarządzanie Stresem",
-    icon: <Zap className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "resilient", label: "🛡️ Odporny", value: "resilient" },
-      { id: "preventive", label: "⚠️ Zapobiegawczy", value: "preventive" },
-      { id: "adaptive", label: "🔄 Adaptacyjny", value: "adaptive" },
-      { id: "balanced", label: "⚖️ Zrównoważony", value: "balanced" }
-    ]
-  },
-  {
-    id: "availability",
-    name: "Dostępność",
-    icon: <Clock className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "a1", label: "A1 (Minimalna)", value: "1" },
-      { id: "a2", label: "A2 (Ograniczona)", value: "2" },
-      { id: "a3", label: "A3 (Standardowa)", value: "3" },
-      { id: "a4", label: "A4 (Zwiększona)", value: "4" },
-      { id: "a5", label: "A5 (Pełna)", value: "5" }
-    ]
-  },
-  {
-    id: "synergy",
-    name: "Synergia",
-    icon: <Zap className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "s1", label: "S1 (Podstawowa)", value: "1" },
-      { id: "s2", label: "S2 (Umiarkowana)", value: "2" },
-      { id: "s3", label: "S3 (Znacząca)", value: "3" },
-      { id: "s4", label: "S4 (Wysoka)", value: "4" },
-      { id: "s5", label: "S5 (Maksymalna)", value: "5" }
-    ]
-  },
-  {
-    id: "innovationLevel",
-    name: "Poziom Innowacyjności",
-    icon: <Lightbulb className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "conservative", label: "🏛️ Konserwatywny", value: "conservative" },
-      { id: "moderate", label: "⚖️ Umiarkowany", value: "moderate" },
-      { id: "innovative", label: "💡 Innowacyjny", value: "innovative" },
-      { id: "disruptive", label: "🚀 Przełomowy", value: "disruptive" }
-    ]
-  },
-  {
-    id: "workHours",
-    name: "Godziny Pracy",
-    icon: <Clock className="h-5 w-5 mr-2" />,
-    type: "input"
-  },
-  {
-    id: "location",
-    name: "Lokalizacja",
-    icon: <Globe className="h-5 w-5 mr-2" />,
-    type: "input"
-  },
-  {
-    id: "additionalPreferences",
-    name: "Dodatkowe Preferencje",
-    icon: <Gem className="h-5 w-5 mr-2" />,
-    subCategories: [
-      {
-        id: "system",
-        name: "System",
-        icon: <Terminal className="h-4 w-4 mr-2" />,
-        options: [
-          { id: "win", label: "Windows", value: "Win" },
-          { id: "mac", label: "MacOS", value: "Mac" },
-          { id: "linux", label: "Linux", value: "Linux" }
-        ]
-      },
-      {
-        id: "workSchedule",
-        name: "Godziny pracy",
-        icon: <Clock className="h-4 w-4 mr-2" />,
-        options: [
-          { id: "early", label: "6-14", value: "6-14" },
-          { id: "standard", label: "9-17", value: "9-17" },
-          { id: "late", label: "12-20", value: "12-20" },
-          { id: "flexible", label: "Elastyczne", value: "Flex" }
-        ]
-      }
-    ]
-  },
-  {
-    id: "officeType",
-    name: "Typ Biura",
-    icon: <Building className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "openSpace", label: "🏢 Open Space", value: "openSpace" },
-      { id: "privateOffice", label: "🏠 Prywatne Biuro", value: "privateOffice" },
-      { id: "sharedOffice", label: "🤝 Współdzielone Biuro", value: "sharedOffice" },
-      { id: "coworking", label: "🌐 Coworking", value: "coworking" }
-    ]
-  },
-  {
-    id: "dressCode",
-    name: "Dress Code",
-    icon: <Palette className="h-5 w-5 mr-2" />,
-    options: [
-      { id: "formal", label: "🕺 Formalny", value: "formal" },
-      { id: "businessCasual", label: "👕 Business Casual", value: "businessCasual" },
-      { id: "smartCasual", label: "👖 Smart Casual", value: "smartCasual" },
-      { id: "casual", label: "😎 Casual", value: "casual" }
-    ]
-  }
-];
-
-function getCategoriesByArea(areaId: string): Category[] {
-  return categories.filter(category => categoryToAreaMap[category.id] === areaId);
-}
-
-function getSegmentsByArea(areaId: string): Category[] {
-  return categories.filter(segment => categoryToAreaMap[segment.id] === areaId);
+function getSegmentsByAreaId(areaId: string): SegmentWithIcon[] {
+  console.log('Getting segments for area:', areaId);
+  const segments = getSegmentsByArea(areaId);
+  console.log('Found segments:', segments);
+  return segments;
 }
 
 const Index = () => {
   const { toast } = useToast();
   const [profile, setProfile] = useState("");
   const [activeSegments, setActiveSegments] = useState<ActiveSegment[]>([]);
-  const [selections, setSelections] = useState<Record<string, any>>({});
+  const [selections, setSelections] = useState<Record<string, string | number>>({});
   const [activeCategory, setActiveCategory] = useState(0);
-  const [selectedArea, setSelectedArea] = useState('environment');
+  const [selectedArea, setSelectedArea] = useState('work-organization');
+
+  // Dodajmy console.log, aby zobaczyć wszystkie segmenty
+  useEffect(() => {
+    console.log('All segments from segment-service for work-organization:', getSegmentsByArea('work-organization'));
+    console.log('All areas from segment-service:', getAllAreas());
+    
+    // Sprawdźmy, czy wszystkie segmenty mają poprawnie ustawione właściwości type i options
+    const allAreas = getAllAreas();
+    allAreas.forEach(area => {
+      const areaSegments = getSegmentsByArea(area.id);
+      console.log(`Area ${area.name} (${area.id}) has ${areaSegments.length} segments`);
+      
+      // Sprawdź, czy wszystkie segmenty mają właściwości type i options
+      areaSegments.forEach(segment => {
+        if (!segment.type) {
+          console.error(`Segment ${segment.name} (${segment.id}) has no type property`);
+        }
+        if (segment.type !== 'input' && segment.type !== 'slider' && !segment.options) {
+          console.error(`Segment ${segment.name} (${segment.id}) has no options property`);
+        }
+      });
+    });
+  }, []);
 
   const handleOptionSelect = (categoryId: string, value: string) => {
     console.log(`Selected ${categoryId}: ${value}`);
@@ -442,13 +173,13 @@ const Index = () => {
               onClick={() => {
                 setSelectedArea(area.id);
                 // Ustaw aktywną kategorię na pierwszą z wybranego obszaru
-                const areaCategories = getCategoriesByArea(area.id);
+                const areaCategories = getSegmentsByAreaId(area.id);
                 if (areaCategories.length > 0) {
-                  setActiveCategory(categories.findIndex(c => c.id === areaCategories[0].id));
+                  setActiveCategory(areaCategories.findIndex(c => c.id === areaCategories[0].id));
                 }
               }}
             >
-              {area.icon}
+              {React.isValidElement(area.icon) ? area.icon : null}
               <div className="flex flex-col items-start ml-2">
                 <span className="font-medium">{area.name}</span>
                 <span className="text-xs opacity-70 text-left">{area.emoji} {area.description}</span>
@@ -461,21 +192,22 @@ const Index = () => {
   };
 
   const renderCategoryMenu = () => {
-    const areaCategories = getCategoriesByArea(selectedArea);
+    const areaCategories = getSegmentsByAreaId(selectedArea);
+    console.log('Area categories:', areaCategories);
     
     return (
       <div className="mb-4">
         <h3 className="text-md font-medium mb-2">Kategorie</h3>
         <div className="flex flex-col space-y-1">
           {areaCategories.map((category, index) => {
-            const categoryIndex = categories.findIndex(c => c.id === category.id);
+            const categoryIndex = areaCategories.findIndex(c => c.id === category.id);
             return (
               <button
                 key={category.id}
                 className={`flex items-center p-2 border border-green-700 rounded ${categoryIndex === activeCategory ? 'bg-green-900 bg-opacity-30' : 'bg-black'}`}
                 onClick={() => setActiveCategory(categoryIndex)}
               >
-                {category.icon}
+                {React.isValidElement(category.icon) ? category.icon : null}
                 <span className="ml-2">{category.name}</span>
               </button>
             );
@@ -487,14 +219,17 @@ const Index = () => {
 
   const renderCategoryOptions = () => {
     // Pobierz wszystkie kategorie z aktualnie wybranego obszaru
-    const areaCategories = getCategoriesByArea(selectedArea);
+    const areaCategories = getSegmentsByAreaId(selectedArea);
+    console.log('Rendering options for area categories:', areaCategories);
     
     return (
       <div className="space-y-8">
-        {areaCategories.map((category) => (
+        {areaCategories.map((category) => {
+          console.log('Rendering category:', category);
+          return (
           <div key={category.id} className="mb-6">
             <h2 className="text-xl font-bold mb-4 flex items-center">
-              {category.icon}
+              {React.isValidElement(category.icon) ? category.icon : null}
               <span className="ml-2">{category.name}</span>
             </h2>
             
@@ -510,18 +245,15 @@ const Index = () => {
             ) : category.type === "slider" ? (
               <div className="mb-4">
                 <Slider
-                  defaultValue={[selections[category.id] || 0]}
-                  max={100}
-                  step={1}
+                  defaultValue={[category.defaultValue as number || 50]}
+                  min={category.min || 0}
+                  max={category.max || 100}
+                  step={category.step || 1}
                   onValueChange={(value) => handleSliderChange(value, category.id)}
-                  className="w-full"
                 />
-                <div className="text-center mt-2">
-                  {selections[category.id] || 0}%
-                </div>
               </div>
             ) : category.options ? (
-              <div className="grid grid-cols-1 gap-2">
+              <div className="mb-4">
                 <ToggleGroup type="single" variant="outline" className="flex flex-col space-y-1">
                   {category.options.map((option) => (
                     <ToggleGroupItem
@@ -536,33 +268,14 @@ const Index = () => {
                   ))}
                 </ToggleGroup>
               </div>
-            ) : category.subCategories ? (
-              <div className="space-y-4">
-                {category.subCategories.map((subCategory) => (
-                  <div key={subCategory.id} className="mb-4">
-                    <div className="flex items-center mb-2">
-                      {subCategory.icon}
-                      <h4 className="text-md font-medium ml-2">{subCategory.name}</h4>
-                    </div>
-                    <ToggleGroup type="single" variant="outline" className="flex flex-col space-y-1">
-                      {subCategory.options.map((option) => (
-                        <ToggleGroupItem
-                          key={option.id}
-                          value={option.value}
-                          className="flex items-center justify-start p-2 border border-green-700"
-                          onClick={() => handleOptionSelect(subCategory.id, option.value)}
-                          data-state={selections[subCategory.id] === option.value ? "on" : "off"}
-                        >
-                          <span>{option.label}</span>
-                        </ToggleGroupItem>
-                      ))}
-                    </ToggleGroup>
-                  </div>
-                ))}
+            ) : (
+              <div className="mb-4">
+                <p className="text-red-500">Brak opcji dla tego segmentu</p>
               </div>
-            ) : null}
+            )}
           </div>
-        ))}
+          );
+        })}
       </div>
     );
   };
@@ -602,20 +315,21 @@ const Index = () => {
 
   const handleNextCategory = () => {
     // Znajdź następną kategorię w tym samym obszarze
-    const areaCategories = getCategoriesByArea(selectedArea);
-    const currentIndex = areaCategories.findIndex(c => c.id === categories[activeCategory].id);
+    const areaCategories = getSegmentsByAreaId(selectedArea);
+    const currentIndex = areaCategories.findIndex(c => c.id === areaCategories[activeCategory].id);
+    
     if (currentIndex < areaCategories.length - 1) {
       // Jeśli nie jest to ostatnia kategoria w obszarze, przejdź do następnej
-      setActiveCategory(categories.findIndex(c => c.id === areaCategories[currentIndex + 1].id));
+      setActiveCategory(areaCategories.findIndex(c => c.id === areaCategories[currentIndex + 1].id));
     } else if (areaCategories.length > 0) {
       // Jeśli jest to ostatnia kategoria, przejdź do następnego obszaru
       const areaIndex = mainAreas.findIndex(a => a.id === selectedArea);
       if (areaIndex < mainAreas.length - 1) {
         const nextArea = mainAreas[areaIndex + 1].id;
         setSelectedArea(nextArea);
-        const nextAreaCategories = getCategoriesByArea(nextArea);
+        const nextAreaCategories = getSegmentsByAreaId(nextArea);
         if (nextAreaCategories.length > 0) {
-          setActiveCategory(categories.findIndex(c => c.id === nextAreaCategories[0].id));
+          setActiveCategory(nextAreaCategories.findIndex(c => c.id === nextAreaCategories[0].id));
         }
       }
     }
@@ -623,20 +337,21 @@ const Index = () => {
 
   const handlePrevCategory = () => {
     // Znajdź poprzednią kategorię w tym samym obszarze
-    const areaCategories = getCategoriesByArea(selectedArea);
-    const currentIndex = areaCategories.findIndex(c => c.id === categories[activeCategory].id);
+    const areaCategories = getSegmentsByAreaId(selectedArea);
+    const currentIndex = areaCategories.findIndex(c => c.id === areaCategories[activeCategory].id);
+    
     if (currentIndex > 0) {
       // Jeśli nie jest to pierwsza kategoria w obszarze, przejdź do poprzedniej
-      setActiveCategory(categories.findIndex(c => c.id === areaCategories[currentIndex - 1].id));
+      setActiveCategory(areaCategories.findIndex(c => c.id === areaCategories[currentIndex - 1].id));
     } else if (areaCategories.length > 0) {
       // Jeśli jest to pierwsza kategoria, przejdź do poprzedniego obszaru
       const areaIndex = mainAreas.findIndex(a => a.id === selectedArea);
       if (areaIndex > 0) {
         const prevArea = mainAreas[areaIndex - 1].id;
         setSelectedArea(prevArea);
-        const prevAreaCategories = getCategoriesByArea(prevArea);
+        const prevAreaCategories = getSegmentsByAreaId(prevArea);
         if (prevAreaCategories.length > 0) {
-          setActiveCategory(categories.findIndex(c => c.id === prevAreaCategories[prevAreaCategories.length - 1].id));
+          setActiveCategory(prevAreaCategories.findIndex(c => c.id === prevAreaCategories[prevAreaCategories.length - 1].id));
         }
       }
     }
@@ -774,7 +489,7 @@ const Index = () => {
     console.log('Initializing default segments');
     
     // Pobierz wszystkie kategorie z danych
-    const allCategories = categories.map(cat => cat.id);
+    const allCategories = getSegmentsByAreaId('environment').map(cat => cat.id);
     console.log('All categories:', allCategories);
     
     // Utwórz domyślne segmenty dla wszystkich kategorii
