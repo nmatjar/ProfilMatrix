@@ -1,0 +1,242 @@
+[
+  {
+    "id": "work-purpose",
+    "name": "Cel Pracy",
+    "iconName": "Target",
+    "emoji": "🎯",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "financial",
+        "label": "Finansowy",
+        "value": "Finansowy",
+        "description": "Praca głównie dla korzyści finansowych"
+      },
+      {
+        "id": "career",
+        "label": "Kariera",
+        "value": "Kariera",
+        "description": "Praca dla rozwoju kariery i osiągnięć"
+      },
+      {
+        "id": "passion",
+        "label": "Pasja",
+        "value": "Pasja",
+        "description": "Praca z pasji i zainteresowania"
+      },
+      {
+        "id": "impact",
+        "label": "Wpływ",
+        "value": "Wpływ",
+        "description": "Praca dla pozytywnego wpływu na świat"
+      }
+    ],
+    "areaId": "work-values",
+    "description": "Główny cel wykonywania pracy",
+    "code": "WP",
+    "valueMap": {
+      "Finansowy": "F",
+      "Kariera": "C",
+      "Pasja": "P",
+      "Wpływ": "I"
+    },
+    "reverseValueMap": {
+      "F": "Finansowy",
+      "C": "Kariera",
+      "P": "Pasja",
+      "I": "Wpływ"
+    }
+  },
+  {
+    "id": "work-ethics",
+    "name": "Etyka Pracy",
+    "iconName": "Shield",
+    "emoji": "🛡️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "integrity",
+        "label": "Uczciwość",
+        "value": "Uczciwość",
+        "description": "Priorytet dla uczciwości i transparentności"
+      },
+      {
+        "id": "responsibility",
+        "label": "Odpowiedzialność",
+        "value": "Odpowiedzialność",
+        "description": "Priorytet dla odpowiedzialności i niezawodności"
+      },
+      {
+        "id": "excellence",
+        "label": "Doskonałość",
+        "value": "Doskonałość",
+        "description": "Priorytet dla jakości i doskonałości"
+      },
+      {
+        "id": "fairness",
+        "label": "Sprawiedliwość",
+        "value": "Sprawiedliwość",
+        "description": "Priorytet dla sprawiedliwości i równości"
+      }
+    ],
+    "areaId": "work-values",
+    "description": "Najważniejsze wartości etyczne w pracy",
+    "code": "WE",
+    "valueMap": {
+      "Uczciwość": "I",
+      "Odpowiedzialność": "R",
+      "Doskonałość": "E",
+      "Sprawiedliwość": "F"
+    },
+    "reverseValueMap": {
+      "I": "Uczciwość",
+      "R": "Odpowiedzialność",
+      "E": "Doskonałość",
+      "F": "Sprawiedliwość"
+    }
+  },
+  {
+    "id": "work-culture",
+    "name": "Kultura Pracy",
+    "iconName": "Users",
+    "emoji": "👥",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "collaborative",
+        "label": "Współpracująca",
+        "value": "Współpracująca",
+        "description": "Kultura oparta na współpracy i wsparciu"
+      },
+      {
+        "id": "competitive",
+        "label": "Konkurencyjna",
+        "value": "Konkurencyjna",
+        "description": "Kultura oparta na konkurencji i osiągnięciach"
+      },
+      {
+        "id": "innovative",
+        "label": "Innowacyjna",
+        "value": "Innowacyjna",
+        "description": "Kultura oparta na innowacji i kreatywności"
+      },
+      {
+        "id": "traditional",
+        "label": "Tradycyjna",
+        "value": "Tradycyjna",
+        "description": "Kultura oparta na tradycji i stabilności"
+      }
+    ],
+    "areaId": "work-values",
+    "description": "Preferowana kultura organizacyjna",
+    "code": "WC",
+    "valueMap": {
+      "Współpracująca": "C",
+      "Konkurencyjna": "K",
+      "Innowacyjna": "I",
+      "Tradycyjna": "T"
+    },
+    "reverseValueMap": {
+      "C": "Współpracująca",
+      "K": "Konkurencyjna",
+      "I": "Innowacyjna",
+      "T": "Tradycyjna"
+    }
+  },
+  {
+    "id": "work-balance",
+    "name": "Równowaga Praca-Życie",
+    "iconName": "LifeBuoy",
+    "emoji": "⚖️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "work-focused",
+        "label": "Skupienie na pracy",
+        "value": "Skupienie na pracy",
+        "description": "Priorytet dla rozwoju zawodowego"
+      },
+      {
+        "id": "balanced",
+        "label": "Zrównoważona",
+        "value": "Zrównoważona",
+        "description": "Równy podział czasu między pracę i życie prywatne"
+      },
+      {
+        "id": "life-focused",
+        "label": "Skupienie na życiu",
+        "value": "Skupienie na życiu",
+        "description": "Priorytet dla życia prywatnego"
+      },
+      {
+        "id": "integrated",
+        "label": "Zintegrowana",
+        "value": "Zintegrowana",
+        "description": "Integracja pracy z życiem prywatnym"
+      }
+    ],
+    "areaId": "work-values",
+    "description": "Preferowana równowaga między pracą a życiem prywatnym",
+    "code": "WB",
+    "valueMap": {
+      "Skupienie na pracy": "W",
+      "Zrównoważona": "B",
+      "Skupienie na życiu": "L",
+      "Zintegrowana": "I"
+    },
+    "reverseValueMap": {
+      "W": "Skupienie na pracy",
+      "B": "Zrównoważona",
+      "L": "Skupienie na życiu",
+      "I": "Zintegrowana"
+    }
+  },
+  {
+    "id": "social-responsibility",
+    "name": "Odpowiedzialność Społeczna",
+    "iconName": "Globe",
+    "emoji": "🌍",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "environmental",
+        "label": "Środowiskowa",
+        "value": "Środowiskowa",
+        "description": "Troska o środowisko naturalne"
+      },
+      {
+        "id": "social",
+        "label": "Społeczna",
+        "value": "Społeczna",
+        "description": "Troska o społeczności lokalne"
+      },
+      {
+        "id": "ethical",
+        "label": "Etyczna",
+        "value": "Etyczna",
+        "description": "Troska o etyczne praktyki biznesowe"
+      },
+      {
+        "id": "philanthropic",
+        "label": "Filantropijna",
+        "value": "Filantropijna",
+        "description": "Troska o działalność charytatywną"
+      }
+    ],
+    "areaId": "work-values",
+    "description": "Preferowane obszary odpowiedzialności społecznej firmy",
+    "code": "SR",
+    "valueMap": {
+      "Środowiskowa": "E",
+      "Społeczna": "S",
+      "Etyczna": "T",
+      "Filantropijna": "P"
+    },
+    "reverseValueMap": {
+      "E": "Środowiskowa",
+      "S": "Społeczna",
+      "T": "Etyczna",
+      "P": "Filantropijna"
+    }
+  }
+]

@@ -1,0 +1,326 @@
+[
+  {
+    "id": "continent",
+    "name": "Kontynent",
+    "iconName": "Globe",
+    "emoji": "🌎",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "europe",
+        "label": "Europa",
+        "value": "Europa",
+        "description": "Kraje europejskie"
+      },
+      {
+        "id": "north-america",
+        "label": "Ameryka Północna",
+        "value": "Ameryka Północna",
+        "description": "USA, Kanada, Meksyk"
+      },
+      {
+        "id": "south-america",
+        "label": "Ameryka Południowa",
+        "value": "Ameryka Południowa",
+        "description": "Kraje Ameryki Południowej"
+      },
+      {
+        "id": "asia",
+        "label": "Azja",
+        "value": "Azja",
+        "description": "Kraje azjatyckie"
+      },
+      {
+        "id": "africa",
+        "label": "Afryka",
+        "value": "Afryka",
+        "description": "Kraje afrykańskie"
+      },
+      {
+        "id": "australia",
+        "label": "Australia i Oceania",
+        "value": "Australia i Oceania",
+        "description": "Australia, Nowa Zelandia i wyspy Oceanii"
+      }
+    ],
+    "areaId": "location-mobility",
+    "description": "Kontynent, na którym znajduje się Twoja lokalizacja",
+    "code": "CON",
+    "valueMap": {
+      "Europa": "EU",
+      "Ameryka Północna": "NA",
+      "Ameryka Południowa": "SA",
+      "Azja": "AS",
+      "Afryka": "AF",
+      "Australia i Oceania": "OC"
+    },
+    "reverseValueMap": {
+      "EU": "Europa",
+      "NA": "Ameryka Północna",
+      "SA": "Ameryka Południowa",
+      "AS": "Azja",
+      "AF": "Afryka",
+      "OC": "Australia i Oceania"
+    }
+  },
+  {
+    "id": "country",
+    "name": "Kraj",
+    "iconName": "Flag",
+    "emoji": "🏳️",
+    "type": "input",
+    "areaId": "location-mobility",
+    "description": "Kraj, w którym się znajdujesz lub preferujesz pracować",
+    "code": "COU",
+    "formatTemplate": "{value}"
+  },
+  {
+    "id": "region",
+    "name": "Region/Województwo",
+    "iconName": "Map",
+    "emoji": "🗺️",
+    "type": "input",
+    "areaId": "location-mobility",
+    "description": "Region, województwo lub stan",
+    "code": "REG",
+    "formatTemplate": "{value}"
+  },
+  {
+    "id": "city",
+    "name": "Miasto",
+    "iconName": "Building",
+    "emoji": "🏙️",
+    "type": "input",
+    "areaId": "location-mobility",
+    "description": "Miasto, w którym się znajdujesz lub preferujesz pracować",
+    "code": "CIT",
+    "formatTemplate": "{value}"
+  },
+  {
+    "id": "district",
+    "name": "Dzielnica",
+    "iconName": "Home",
+    "emoji": "🏘️",
+    "type": "input",
+    "areaId": "location-mobility",
+    "description": "Dzielnica lub część miasta",
+    "code": "DIS",
+    "formatTemplate": "{value}"
+  },
+  {
+    "id": "timezone",
+    "name": "Strefa Czasowa",
+    "iconName": "Clock",
+    "emoji": "🕒",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "utc-8",
+        "label": "UTC-8 (PST)",
+        "value": "UTC-8",
+        "description": "Pacyficzny czas standardowy (np. Los Angeles, San Francisco)"
+      },
+      {
+        "id": "utc-5",
+        "label": "UTC-5 (EST)",
+        "value": "UTC-5",
+        "description": "Wschodni czas standardowy (np. Nowy Jork, Miami)"
+      },
+      {
+        "id": "utc-1",
+        "label": "UTC-1",
+        "value": "UTC-1",
+        "description": "Azory, Wyspy Zielonego Przylądka"
+      },
+      {
+        "id": "utc",
+        "label": "UTC+0 (GMT)",
+        "value": "UTC+0",
+        "description": "Czas uniwersalny (np. Londyn, Lizbona)"
+      },
+      {
+        "id": "utc+1",
+        "label": "UTC+1 (CET)",
+        "value": "UTC+1",
+        "description": "Czas środkowoeuropejski (np. Warszawa, Berlin, Paryż)"
+      },
+      {
+        "id": "utc+2",
+        "label": "UTC+2 (EET)",
+        "value": "UTC+2",
+        "description": "Czas wschodnioeuropejski (np. Ateny, Bukareszt)"
+      },
+      {
+        "id": "utc+3",
+        "label": "UTC+3",
+        "value": "UTC+3",
+        "description": "Moskwa, Stambuł"
+      },
+      {
+        "id": "utc+5.5",
+        "label": "UTC+5:30",
+        "value": "UTC+5:30",
+        "description": "Indie"
+      },
+      {
+        "id": "utc+8",
+        "label": "UTC+8",
+        "value": "UTC+8",
+        "description": "Chiny, Singapur, Hongkong"
+      },
+      {
+        "id": "utc+9",
+        "label": "UTC+9",
+        "value": "UTC+9",
+        "description": "Japonia, Korea Południowa"
+      },
+      {
+        "id": "utc+10",
+        "label": "UTC+10",
+        "value": "UTC+10",
+        "description": "Wschodnia Australia"
+      }
+    ],
+    "areaId": "location-mobility",
+    "description": "Twoja strefa czasowa",
+    "code": "TZ",
+    "valueMap": {
+      "UTC-8": "PST",
+      "UTC-5": "EST",
+      "UTC-1": "AZOT",
+      "UTC+0": "GMT",
+      "UTC+1": "CET",
+      "UTC+2": "EET",
+      "UTC+3": "MSK",
+      "UTC+5:30": "IST",
+      "UTC+8": "CST",
+      "UTC+9": "JST",
+      "UTC+10": "AEST"
+    },
+    "reverseValueMap": {
+      "PST": "UTC-8",
+      "EST": "UTC-5",
+      "AZOT": "UTC-1",
+      "GMT": "UTC+0",
+      "CET": "UTC+1",
+      "EET": "UTC+2",
+      "MSK": "UTC+3",
+      "IST": "UTC+5:30",
+      "CST": "UTC+8",
+      "JST": "UTC+9",
+      "AEST": "UTC+10"
+    }
+  },
+  {
+    "id": "mobility-level",
+    "name": "Mobilność",
+    "iconName": "Move",
+    "emoji": "🚶",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "fixed",
+        "label": "Stała lokalizacja",
+        "value": "Stała lokalizacja",
+        "description": "Preferuję pracę w jednej, stałej lokalizacji"
+      },
+      {
+        "id": "limited",
+        "label": "Ograniczona mobilność",
+        "value": "Ograniczona mobilność",
+        "description": "Mogę okazjonalnie zmieniać lokalizację pracy"
+      },
+      {
+        "id": "regular",
+        "label": "Regularna mobilność",
+        "value": "Regularna mobilność",
+        "description": "Jestem gotów/gotowa regularnie zmieniać lokalizację"
+      },
+      {
+        "id": "full",
+        "label": "Pełna mobilność",
+        "value": "Pełna mobilność",
+        "description": "Jestem otwarty/a na częste zmiany lokalizacji"
+      },
+      {
+        "id": "nomad",
+        "label": "Nomadyzm cyfrowy",
+        "value": "Nomadyzm cyfrowy",
+        "description": "Preferuję pracę z różnych lokalizacji, w stylu nomady cyfrowego"
+      }
+    ],
+    "areaId": "location-mobility",
+    "description": "Twój preferowany poziom mobilności w pracy",
+    "code": "MOB",
+    "valueMap": {
+      "Stała lokalizacja": "F",
+      "Ograniczona mobilność": "L",
+      "Regularna mobilność": "R",
+      "Pełna mobilność": "P",
+      "Nomadyzm cyfrowy": "N"
+    },
+    "reverseValueMap": {
+      "F": "Stała lokalizacja",
+      "L": "Ograniczona mobilność",
+      "R": "Regularna mobilność",
+      "P": "Pełna mobilność",
+      "N": "Nomadyzm cyfrowy"
+    }
+  },
+  {
+    "id": "business-travel",
+    "name": "Podróże Służbowe",
+    "iconName": "Plane",
+    "emoji": "✈️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "none",
+        "label": "Brak podróży",
+        "value": "Brak podróży",
+        "description": "Nie chcę podróżować służbowo"
+      },
+      {
+        "id": "rare",
+        "label": "Sporadyczne podróże",
+        "value": "Sporadyczne podróże",
+        "description": "Akceptuję okazjonalne podróże służbowe (kilka razy w roku)"
+      },
+      {
+        "id": "regular-domestic",
+        "label": "Regularne krajowe",
+        "value": "Regularne krajowe",
+        "description": "Jestem gotów/gotowa na regularne podróże w obrębie kraju"
+      },
+      {
+        "id": "regular-international",
+        "label": "Regularne międzynarodowe",
+        "value": "Regularne międzynarodowe",
+        "description": "Akceptuję regularne podróże międzynarodowe"
+      },
+      {
+        "id": "frequent-global",
+        "label": "Częste globalne",
+        "value": "Częste globalne",
+        "description": "Jestem otwarty/a na częste podróże po całym świecie"
+      }
+    ],
+    "areaId": "location-mobility",
+    "description": "Twoja preferowana częstotliwość podróży służbowych",
+    "code": "TRA",
+    "valueMap": {
+      "Brak podróży": "N",
+      "Sporadyczne podróże": "R",
+      "Regularne krajowe": "D",
+      "Regularne międzynarodowe": "I",
+      "Częste globalne": "G"
+    },
+    "reverseValueMap": {
+      "N": "Brak podróży",
+      "R": "Sporadyczne podróże",
+      "D": "Regularne krajowe",
+      "I": "Regularne międzynarodowe",
+      "G": "Częste globalne"
+    }
+  }
+]

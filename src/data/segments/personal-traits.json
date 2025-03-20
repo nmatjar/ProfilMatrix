@@ -1,0 +1,426 @@
+[
+  {
+    "id": "personality-type",
+    "name": "Typ Osobowości",
+    "iconName": "User",
+    "emoji": "👤",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "introvert",
+        "label": "Introwertyk",
+        "value": "Introwertyk",
+        "description": "Preferuję spokojne, refleksyjne środowisko"
+      },
+      {
+        "id": "extrovert",
+        "label": "Ekstrawertyk",
+        "value": "Ekstrawertyk",
+        "description": "Preferuję dynamiczne, społeczne środowisko"
+      },
+      {
+        "id": "ambivert",
+        "label": "Ambiwertyk",
+        "value": "Ambiwertyk",
+        "description": "Balans między introwertyzmem a ekstrawertyzmem"
+      }
+    ],
+    "areaId": "personal-traits",
+    "description": "Typ osobowości w kontekście energii społecznej",
+    "code": "PT",
+    "valueMap": {
+      "Introwertyk": "I",
+      "Ekstrawertyk": "E",
+      "Ambiwertyk": "A"
+    },
+    "reverseValueMap": {
+      "I": "Introwertyk",
+      "E": "Ekstrawertyk",
+      "A": "Ambiwertyk"
+    }
+  },
+  {
+    "id": "stress-management",
+    "name": "Zarządzanie Stresem",
+    "iconName": "Activity",
+    "emoji": "📊",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "proactive",
+        "label": "Proaktywne",
+        "value": "Proaktywne",
+        "description": "Aktywne zapobieganie i zarządzanie stresem"
+      },
+      {
+        "id": "adaptive",
+        "label": "Adaptacyjne",
+        "value": "Adaptacyjne",
+        "description": "Elastyczne dostosowywanie się do sytuacji stresowych"
+      },
+      {
+        "id": "reactive",
+        "label": "Reaktywne",
+        "value": "Reaktywne",
+        "description": "Reagowanie na stres po jego wystąpieniu"
+      },
+      {
+        "id": "avoidant",
+        "label": "Unikające",
+        "value": "Unikające",
+        "description": "Unikanie sytuacji stresowych"
+      }
+    ],
+    "areaId": "personal-traits",
+    "description": "Preferowany styl zarządzania stresem",
+    "code": "SM",
+    "valueMap": {
+      "Proaktywne": "P",
+      "Adaptacyjne": "A",
+      "Reaktywne": "R",
+      "Unikające": "V"
+    },
+    "reverseValueMap": {
+      "P": "Proaktywne",
+      "A": "Adaptacyjne",
+      "R": "Reaktywne",
+      "V": "Unikające"
+    }
+  },
+  {
+    "id": "adaptability",
+    "name": "Adaptacyjność",
+    "iconName": "RefreshCw",
+    "emoji": "🔄",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "high",
+        "label": "Wysoka",
+        "value": "Wysoka",
+        "description": "Szybkie dostosowywanie się do zmian"
+      },
+      {
+        "id": "moderate",
+        "label": "Umiarkowana",
+        "value": "Umiarkowana",
+        "description": "Umiarkowane tempo dostosowywania się do zmian"
+      },
+      {
+        "id": "selective",
+        "label": "Selektywna",
+        "value": "Selektywna",
+        "description": "Dostosowywanie się tylko do wybranych zmian"
+      },
+      {
+        "id": "traditional",
+        "label": "Tradycyjna",
+        "value": "Tradycyjna",
+        "description": "Preferowanie stabilności i przewidywalności"
+      }
+    ],
+    "areaId": "personal-traits",
+    "description": "Zdolność do adaptacji do nowych sytuacji i zmian",
+    "code": "AD",
+    "valueMap": {
+      "Wysoka": "H",
+      "Umiarkowana": "M",
+      "Selektywna": "S",
+      "Tradycyjna": "T"
+    },
+    "reverseValueMap": {
+      "H": "Wysoka",
+      "M": "Umiarkowana",
+      "S": "Selektywna",
+      "T": "Tradycyjna"
+    }
+  },
+  {
+    "id": "creativity",
+    "name": "Kreatywność",
+    "iconName": "Lightbulb",
+    "emoji": "💡",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "innovative",
+        "label": "Innowacyjna",
+        "value": "Innowacyjna",
+        "description": "Tworzenie nowych, oryginalnych pomysłów"
+      },
+      {
+        "id": "adaptive",
+        "label": "Adaptacyjna",
+        "value": "Adaptacyjna",
+        "description": "Dostosowywanie istniejących rozwiązań do nowych sytuacji"
+      },
+      {
+        "id": "practical",
+        "label": "Praktyczna",
+        "value": "Praktyczna",
+        "description": "Tworzenie praktycznych, użytecznych rozwiązań"
+      },
+      {
+        "id": "conceptual",
+        "label": "Koncepcyjna",
+        "value": "Koncepcyjna",
+        "description": "Tworzenie abstrakcyjnych koncepcji i teorii"
+      }
+    ],
+    "areaId": "personal-traits",
+    "description": "Preferowany styl kreatywności",
+    "code": "CR",
+    "valueMap": {
+      "Innowacyjna": "I",
+      "Adaptacyjna": "A",
+      "Praktyczna": "P",
+      "Koncepcyjna": "C"
+    },
+    "reverseValueMap": {
+      "I": "Innowacyjna",
+      "A": "Adaptacyjna",
+      "P": "Praktyczna",
+      "C": "Koncepcyjna"
+    }
+  },
+  {
+    "id": "risk-attitude",
+    "name": "Podejście do Ryzyka",
+    "iconName": "TrendingUp",
+    "emoji": "📈",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "risk-averse",
+        "label": "Unikające",
+        "value": "Unikające",
+        "description": "Preferowanie bezpiecznych, sprawdzonych rozwiązań"
+      },
+      {
+        "id": "risk-neutral",
+        "label": "Neutralne",
+        "value": "Neutralne",
+        "description": "Zrównoważone podejście do ryzyka"
+      },
+      {
+        "id": "risk-seeking",
+        "label": "Poszukujące",
+        "value": "Poszukujące",
+        "description": "Gotowość do podejmowania ryzykownych decyzji"
+      },
+      {
+        "id": "calculated",
+        "label": "Kalkulowane",
+        "value": "Kalkulowane",
+        "description": "Podejmowanie ryzyka po dokładnej analizie"
+      }
+    ],
+    "areaId": "personal-traits",
+    "description": "Stosunek do podejmowania ryzyka",
+    "code": "RA",
+    "valueMap": {
+      "Unikające": "A",
+      "Neutralne": "N",
+      "Poszukujące": "S",
+      "Kalkulowane": "C"
+    },
+    "reverseValueMap": {
+      "A": "Unikające",
+      "N": "Neutralne",
+      "S": "Poszukujące",
+      "C": "Kalkulowane"
+    }
+  },
+  {
+    "id": "learning-style",
+    "name": "Styl Uczenia Się",
+    "iconName": "BookOpen",
+    "emoji": "📖",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "visual",
+        "label": "Wizualny",
+        "value": "Wizualny",
+        "description": "Uczenie się poprzez obrazy, diagramy, wykresy"
+      },
+      {
+        "id": "auditory",
+        "label": "Słuchowy",
+        "value": "Słuchowy",
+        "description": "Uczenie się poprzez słuchanie, dyskusje"
+      },
+      {
+        "id": "kinesthetic",
+        "label": "Kinestetyczny",
+        "value": "Kinestetyczny",
+        "description": "Uczenie się poprzez praktykę, doświadczenie"
+      },
+      {
+        "id": "reading",
+        "label": "Czytanie/Pisanie",
+        "value": "Czytanie/Pisanie",
+        "description": "Uczenie się poprzez czytanie i pisanie"
+      }
+    ],
+    "areaId": "personal-traits",
+    "description": "Preferowany sposób przyswajania nowej wiedzy",
+    "code": "LS",
+    "valueMap": {
+      "Wizualny": "V",
+      "Słuchowy": "A",
+      "Kinestetyczny": "K",
+      "Czytanie/Pisanie": "R"
+    },
+    "reverseValueMap": {
+      "V": "Wizualny",
+      "A": "Słuchowy",
+      "K": "Kinestetyczny",
+      "R": "Czytanie/Pisanie"
+    }
+  },
+  {
+    "id": "motivation-drivers",
+    "name": "Motywatory",
+    "iconName": "Star",
+    "emoji": "⭐",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "achievement",
+        "label": "Osiągnięcia",
+        "value": "Osiągnięcia",
+        "description": "Motywacja przez osiąganie celów i sukcesów"
+      },
+      {
+        "id": "recognition",
+        "label": "Uznanie",
+        "value": "Uznanie",
+        "description": "Motywacja przez otrzymywanie uznania i pochwał"
+      },
+      {
+        "id": "growth",
+        "label": "Rozwój",
+        "value": "Rozwój",
+        "description": "Motywacja przez możliwości rozwoju i nauki"
+      },
+      {
+        "id": "purpose",
+        "label": "Cel",
+        "value": "Cel",
+        "description": "Motywacja przez poczucie sensu i celu"
+      }
+    ],
+    "areaId": "personal-traits",
+    "description": "Główne czynniki motywujące do działania",
+    "code": "MD",
+    "valueMap": {
+      "Osiągnięcia": "A",
+      "Uznanie": "R",
+      "Rozwój": "G",
+      "Cel": "P"
+    },
+    "reverseValueMap": {
+      "A": "Osiągnięcia",
+      "R": "Uznanie",
+      "G": "Rozwój",
+      "P": "Cel"
+    }
+  },
+  {
+    "id": "emotional-intelligence",
+    "name": "Inteligencja Emocjonalna",
+    "iconName": "Heart",
+    "emoji": "❤️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "self-awareness",
+        "label": "Samoświadomość",
+        "value": "Samoświadomość",
+        "description": "Świadomość własnych emocji i ich wpływu"
+      },
+      {
+        "id": "self-regulation",
+        "label": "Samoregulacja",
+        "value": "Samoregulacja",
+        "description": "Zdolność do kontrolowania własnych emocji"
+      },
+      {
+        "id": "empathy",
+        "label": "Empatia",
+        "value": "Empatia",
+        "description": "Zdolność do rozumienia emocji innych"
+      },
+      {
+        "id": "social-skills",
+        "label": "Umiejętności społeczne",
+        "value": "Umiejętności społeczne",
+        "description": "Zdolność do budowania relacji i współpracy"
+      }
+    ],
+    "areaId": "personal-traits",
+    "description": "Najsilniejszy aspekt inteligencji emocjonalnej",
+    "code": "EI",
+    "valueMap": {
+      "Samoświadomość": "A",
+      "Samoregulacja": "R",
+      "Empatia": "E",
+      "Umiejętności społeczne": "S"
+    },
+    "reverseValueMap": {
+      "A": "Samoświadomość",
+      "R": "Samoregulacja",
+      "E": "Empatia",
+      "S": "Umiejętności społeczne"
+    }
+  },
+  {
+    "id": "conflict-resolution",
+    "name": "Rozwiązywanie Konfliktów",
+    "iconName": "Shuffle",
+    "emoji": "🔄",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "collaborative",
+        "label": "Współpracujące",
+        "value": "Współpracujące",
+        "description": "Dążenie do rozwiązań korzystnych dla wszystkich stron"
+      },
+      {
+        "id": "compromising",
+        "label": "Kompromisowe",
+        "value": "Kompromisowe",
+        "description": "Szukanie rozwiązań częściowo satysfakcjonujących obie strony"
+      },
+      {
+        "id": "accommodating",
+        "label": "Dostosowujące",
+        "value": "Dostosowujące",
+        "description": "Ustępowanie dla dobra relacji"
+      },
+      {
+        "id": "assertive",
+        "label": "Asertywne",
+        "value": "Asertywne",
+        "description": "Stanowcze wyrażanie swoich potrzeb i oczekiwań"
+      }
+    ],
+    "areaId": "personal-traits",
+    "description": "Preferowany styl rozwiązywania konfliktów",
+    "code": "CR",
+    "valueMap": {
+      "Współpracujące": "C",
+      "Kompromisowe": "K",
+      "Dostosowujące": "A",
+      "Asertywne": "S"
+    },
+    "reverseValueMap": {
+      "C": "Współpracujące",
+      "K": "Kompromisowe",
+      "A": "Dostosowujące",
+      "S": "Asertywne"
+    }
+  }
+]

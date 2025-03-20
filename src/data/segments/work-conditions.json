@@ -1,0 +1,225 @@
+[
+  {
+    "id": "salary-range",
+    "name": "Przedział Wynagrodzenia",
+    "iconName": "DollarSign",
+    "emoji": "💰",
+    "type": "slider",
+    "min": 0,
+    "max": 100000,
+    "step": 1000,
+    "unit": "PLN",
+    "areaId": "work-conditions",
+    "description": "Oczekiwany przedział wynagrodzenia miesięcznego brutto",
+    "code": "SR",
+    "formatTemplate": "{value} {unit}"
+  },
+  {
+    "id": "employment-type",
+    "name": "Forma Zatrudnienia",
+    "iconName": "FileText",
+    "emoji": "📄",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "employment",
+        "label": "Umowa o pracę",
+        "value": "Umowa o pracę",
+        "description": "Preferuję umowę o pracę"
+      },
+      {
+        "id": "b2b",
+        "label": "Kontrakt B2B",
+        "value": "Kontrakt B2B",
+        "description": "Preferuję kontrakt B2B"
+      },
+      {
+        "id": "commission",
+        "label": "Umowa zlecenie",
+        "value": "Umowa zlecenie",
+        "description": "Preferuję umowę zlecenie"
+      },
+      {
+        "id": "work",
+        "label": "Umowa o dzieło",
+        "value": "Umowa o dzieło",
+        "description": "Preferuję umowę o dzieło"
+      }
+    ],
+    "areaId": "work-conditions",
+    "description": "Preferowana forma zatrudnienia",
+    "code": "ET",
+    "valueMap": {
+      "Umowa o pracę": "E",
+      "Kontrakt B2B": "B",
+      "Umowa zlecenie": "C",
+      "Umowa o dzieło": "W"
+    },
+    "reverseValueMap": {
+      "E": "Umowa o pracę",
+      "B": "Kontrakt B2B",
+      "C": "Umowa zlecenie",
+      "W": "Umowa o dzieło"
+    }
+  },
+  {
+    "id": "contract-duration",
+    "name": "Czas Trwania Umowy",
+    "iconName": "Calendar",
+    "emoji": "📅",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "trial",
+        "label": "Okres próbny",
+        "value": "Okres próbny",
+        "description": "Umowa na okres próbny"
+      },
+      {
+        "id": "fixed",
+        "label": "Określony",
+        "value": "Określony",
+        "description": "Umowa na czas określony"
+      },
+      {
+        "id": "indefinite",
+        "label": "Nieokreślony",
+        "value": "Nieokreślony",
+        "description": "Umowa na czas nieokreślony"
+      },
+      {
+        "id": "project",
+        "label": "Projektowy",
+        "value": "Projektowy",
+        "description": "Umowa na czas trwania projektu"
+      }
+    ],
+    "areaId": "work-conditions",
+    "description": "Preferowany czas trwania umowy",
+    "code": "CD",
+    "valueMap": {
+      "Okres próbny": "T",
+      "Określony": "F",
+      "Nieokreślony": "I",
+      "Projektowy": "P"
+    },
+    "reverseValueMap": {
+      "T": "Okres próbny",
+      "F": "Określony",
+      "I": "Nieokreślony",
+      "P": "Projektowy"
+    }
+  },
+  {
+    "id": "benefits",
+    "name": "Benefity",
+    "iconName": "Gift",
+    "emoji": "🎁",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "healthcare",
+        "label": "Opieka zdrowotna",
+        "value": "Opieka zdrowotna",
+        "description": "Prywatna opieka zdrowotna"
+      },
+      {
+        "id": "sports",
+        "label": "Karta sportowa",
+        "value": "Karta sportowa",
+        "description": "Karta sportowa (np. MultiSport)"
+      },
+      {
+        "id": "education",
+        "label": "Szkolenia",
+        "value": "Szkolenia",
+        "description": "Szkolenia i rozwój zawodowy"
+      },
+      {
+        "id": "food",
+        "label": "Posiłki",
+        "value": "Posiłki",
+        "description": "Dofinansowanie posiłków"
+      },
+      {
+        "id": "insurance",
+        "label": "Ubezpieczenie",
+        "value": "Ubezpieczenie",
+        "description": "Dodatkowe ubezpieczenie"
+      },
+      {
+        "id": "retirement",
+        "label": "Emerytura",
+        "value": "Emerytura",
+        "description": "Dodatkowy program emerytalny"
+      }
+    ],
+    "areaId": "work-conditions",
+    "description": "Preferowane benefity pozapłacowe",
+    "code": "BEN",
+    "valueMap": {
+      "Opieka zdrowotna": "H",
+      "Karta sportowa": "S",
+      "Szkolenia": "E",
+      "Posiłki": "F",
+      "Ubezpieczenie": "I",
+      "Emerytura": "R"
+    },
+    "reverseValueMap": {
+      "H": "Opieka zdrowotna",
+      "S": "Karta sportowa",
+      "E": "Szkolenia",
+      "F": "Posiłki",
+      "I": "Ubezpieczenie",
+      "R": "Emerytura"
+    }
+  },
+  {
+    "id": "vacation",
+    "name": "Urlop",
+    "iconName": "Sun",
+    "emoji": "🏖️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "standard",
+        "label": "Standardowy",
+        "value": "Standardowy",
+        "description": "Standardowy wymiar urlopu (20-26 dni)"
+      },
+      {
+        "id": "extended",
+        "label": "Rozszerzony",
+        "value": "Rozszerzony",
+        "description": "Rozszerzony wymiar urlopu (27-30 dni)"
+      },
+      {
+        "id": "flexible",
+        "label": "Elastyczny",
+        "value": "Elastyczny",
+        "description": "Elastyczny urlop (np. nielimitowany)"
+      },
+      {
+        "id": "sabbatical",
+        "label": "Sabbatical",
+        "value": "Sabbatical",
+        "description": "Możliwość dłuższego urlopu (sabbatical)"
+      }
+    ],
+    "areaId": "work-conditions",
+    "description": "Preferowany wymiar i rodzaj urlopu",
+    "code": "VAC",
+    "valueMap": {
+      "Standardowy": "S",
+      "Rozszerzony": "E",
+      "Elastyczny": "F",
+      "Sabbatical": "B"
+    },
+    "reverseValueMap": {
+      "S": "Standardowy",
+      "E": "Rozszerzony",
+      "F": "Elastyczny",
+      "B": "Sabbatical"
+    }
+  }
+]

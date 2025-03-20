@@ -1,0 +1,242 @@
+[
+  {
+    "id": "work-autonomy",
+    "name": "Autonomia Pracy",
+    "iconName": "Shield",
+    "emoji": "🛡️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "highly-directed",
+        "label": "Silnie kierowana",
+        "value": "Silnie kierowana",
+        "description": "Preferuję pracę z jasnymi instrukcjami i nadzorem"
+      },
+      {
+        "id": "guided",
+        "label": "Kierowana",
+        "value": "Kierowana",
+        "description": "Preferuję pracę z ogólnymi wytycznymi i okresowym nadzorem"
+      },
+      {
+        "id": "autonomous",
+        "label": "Autonomiczna",
+        "value": "Autonomiczna",
+        "description": "Preferuję autonomiczną pracę z minimalnymi wytycznymi"
+      },
+      {
+        "id": "fully-independent",
+        "label": "W pełni niezależna",
+        "value": "W pełni niezależna",
+        "description": "Preferuję w pełni niezależną pracę bez nadzoru"
+      }
+    ],
+    "areaId": "work-style",
+    "description": "Preferowany poziom autonomii w pracy",
+    "code": "WA",
+    "valueMap": {
+      "Silnie kierowana": "D",
+      "Kierowana": "G",
+      "Autonomiczna": "A",
+      "W pełni niezależna": "I"
+    },
+    "reverseValueMap": {
+      "D": "Silnie kierowana",
+      "G": "Kierowana",
+      "A": "Autonomiczna",
+      "I": "W pełni niezależna"
+    }
+  },
+  {
+    "id": "decision-making",
+    "name": "Podejmowanie Decyzji",
+    "iconName": "GitMerge",
+    "emoji": "🔀",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "analytical",
+        "label": "Analityczne",
+        "value": "Analityczne",
+        "description": "Preferuję podejmowanie decyzji w oparciu o dokładną analizę danych"
+      },
+      {
+        "id": "intuitive",
+        "label": "Intuicyjne",
+        "value": "Intuicyjne",
+        "description": "Preferuję podejmowanie decyzji w oparciu o intuicję i doświadczenie"
+      },
+      {
+        "id": "collaborative",
+        "label": "Współpracujące",
+        "value": "Współpracujące",
+        "description": "Preferuję podejmowanie decyzji poprzez współpracę i konsensus"
+      },
+      {
+        "id": "decisive",
+        "label": "Zdecydowane",
+        "value": "Zdecydowane",
+        "description": "Preferuję szybkie i zdecydowane podejmowanie decyzji"
+      }
+    ],
+    "areaId": "work-style",
+    "description": "Preferowany styl podejmowania decyzji",
+    "code": "DM",
+    "valueMap": {
+      "Analityczne": "A",
+      "Intuicyjne": "I",
+      "Współpracujące": "C",
+      "Zdecydowane": "D"
+    },
+    "reverseValueMap": {
+      "A": "Analityczne",
+      "I": "Intuicyjne",
+      "C": "Współpracujące",
+      "D": "Zdecydowane"
+    }
+  },
+  {
+    "id": "work-pace",
+    "name": "Tempo Pracy",
+    "iconName": "Clock",
+    "emoji": "⏱️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "methodical",
+        "label": "Metodyczne",
+        "value": "Metodyczne",
+        "description": "Preferuję metodyczne, dokładne tempo pracy"
+      },
+      {
+        "id": "steady",
+        "label": "Stabilne",
+        "value": "Stabilne",
+        "description": "Preferuję stabilne, przewidywalne tempo pracy"
+      },
+      {
+        "id": "dynamic",
+        "label": "Dynamiczne",
+        "value": "Dynamiczne",
+        "description": "Preferuję dynamiczne tempo pracy z okresowymi spiętrzeniami"
+      },
+      {
+        "id": "fast-paced",
+        "label": "Szybkie",
+        "value": "Szybkie",
+        "description": "Preferuję szybkie tempo pracy i działanie pod presją"
+      }
+    ],
+    "areaId": "work-style",
+    "description": "Preferowane tempo pracy",
+    "code": "WP",
+    "valueMap": {
+      "Metodyczne": "M",
+      "Stabilne": "S",
+      "Dynamiczne": "D",
+      "Szybkie": "F"
+    },
+    "reverseValueMap": {
+      "M": "Metodyczne",
+      "S": "Stabilne",
+      "D": "Dynamiczne",
+      "F": "Szybkie"
+    }
+  },
+  {
+    "id": "focus-style",
+    "name": "Styl Skupienia",
+    "iconName": "Target",
+    "emoji": "🎯",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "single-task",
+        "label": "Pojedyncze zadanie",
+        "value": "Pojedyncze zadanie",
+        "description": "Preferuję skupienie się na jednym zadaniu naraz"
+      },
+      {
+        "id": "sequential",
+        "label": "Sekwencyjny",
+        "value": "Sekwencyjny",
+        "description": "Preferuję sekwencyjne wykonywanie zadań"
+      },
+      {
+        "id": "batch",
+        "label": "Grupowy",
+        "value": "Grupowy",
+        "description": "Preferuję grupowanie podobnych zadań"
+      },
+      {
+        "id": "multitasking",
+        "label": "Wielozadaniowy",
+        "value": "Wielozadaniowy",
+        "description": "Preferuję pracę nad wieloma zadaniami jednocześnie"
+      }
+    ],
+    "areaId": "work-style",
+    "description": "Preferowany styl skupienia i zarządzania zadaniami",
+    "code": "FS",
+    "valueMap": {
+      "Pojedyncze zadanie": "S",
+      "Sekwencyjny": "Q",
+      "Grupowy": "B",
+      "Wielozadaniowy": "M"
+    },
+    "reverseValueMap": {
+      "S": "Pojedyncze zadanie",
+      "Q": "Sekwencyjny",
+      "B": "Grupowy",
+      "M": "Wielozadaniowy"
+    }
+  },
+  {
+    "id": "problem-solving",
+    "name": "Rozwiązywanie Problemów",
+    "iconName": "Tool",
+    "emoji": "🔧",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "analytical",
+        "label": "Analityczne",
+        "value": "Analityczne",
+        "description": "Preferuję analityczne podejście do rozwiązywania problemów"
+      },
+      {
+        "id": "creative",
+        "label": "Kreatywne",
+        "value": "Kreatywne",
+        "description": "Preferuję kreatywne podejście do rozwiązywania problemów"
+      },
+      {
+        "id": "collaborative",
+        "label": "Współpracujące",
+        "value": "Współpracujące",
+        "description": "Preferuję współpracujące podejście do rozwiązywania problemów"
+      },
+      {
+        "id": "practical",
+        "label": "Praktyczne",
+        "value": "Praktyczne",
+        "description": "Preferuję praktyczne podejście do rozwiązywania problemów"
+      }
+    ],
+    "areaId": "work-style",
+    "description": "Preferowany styl rozwiązywania problemów",
+    "code": "PS",
+    "valueMap": {
+      "Analityczne": "A",
+      "Kreatywne": "C",
+      "Współpracujące": "T",
+      "Praktyczne": "P"
+    },
+    "reverseValueMap": {
+      "A": "Analityczne",
+      "C": "Kreatywne",
+      "T": "Współpracujące",
+      "P": "Praktyczne"
+    }
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "id": "career-path",
+    "name": "Ścieżka Kariery",
+    "iconName": "TrendingUp",
+    "emoji": "📈",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "specialist",
+        "label": "Specjalistyczna",
+        "value": "Specjalistyczna",
+        "description": "Rozwój w kierunku eksperta w danej dziedzinie"
+      },
+      {
+        "id": "management",
+        "label": "Menedżerska",
+        "value": "Menedżerska",
+        "description": "Rozwój w kierunku zarządzania zespołem"
+      },
+      {
+        "id": "project",
+        "label": "Projektowa",
+        "value": "Projektowa",
+        "description": "Rozwój w kierunku zarządzania projektami"
+      },
+      {
+        "id": "entrepreneurial",
+        "label": "Przedsiębiorcza",
+        "value": "Przedsiębiorcza",
+        "description": "Rozwój w kierunku przedsiębiorczości i innowacji"
+      }
+    ],
+    "areaId": "work-development",
+    "description": "Preferowana ścieżka rozwoju kariery",
+    "code": "CP",
+    "valueMap": {
+      "Specjalistyczna": "S",
+      "Menedżerska": "M",
+      "Projektowa": "P",
+      "Przedsiębiorcza": "E"
+    },
+    "reverseValueMap": {
+      "S": "Specjalistyczna",
+      "M": "Menedżerska",
+      "P": "Projektowa",
+      "E": "Przedsiębiorcza"
+    }
+  },
+  {
+    "id": "learning-opportunities",
+    "name": "Możliwości Nauki",
+    "iconName": "Book",
+    "emoji": "📚",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "formal",
+        "label": "Formalne",
+        "value": "Formalne",
+        "description": "Formalne szkolenia, kursy i certyfikacje"
+      },
+      {
+        "id": "mentoring",
+        "label": "Mentoring",
+        "value": "Mentoring",
+        "description": "Mentoring i coaching"
+      },
+      {
+        "id": "self-directed",
+        "label": "Samokierowane",
+        "value": "Samokierowane",
+        "description": "Samodzielna nauka i rozwój"
+      },
+      {
+        "id": "on-the-job",
+        "label": "W praktyce",
+        "value": "W praktyce",
+        "description": "Nauka poprzez praktykę i doświadczenie"
+      }
+    ],
+    "areaId": "work-development",
+    "description": "Preferowane sposoby nauki i rozwoju",
+    "code": "LO",
+    "valueMap": {
+      "Formalne": "F",
+      "Mentoring": "M",
+      "Samokierowane": "S",
+      "W praktyce": "O"
+    },
+    "reverseValueMap": {
+      "F": "Formalne",
+      "M": "Mentoring",
+      "S": "Samokierowane",
+      "O": "W praktyce"
+    }
+  },
+  {
+    "id": "skill-development",
+    "name": "Rozwój Umiejętności",
+    "iconName": "Tool",
+    "emoji": "🛠️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "technical",
+        "label": "Techniczne",
+        "value": "Techniczne",
+        "description": "Rozwój umiejętności technicznych"
+      },
+      {
+        "id": "soft",
+        "label": "Miękkie",
+        "value": "Miękkie",
+        "description": "Rozwój umiejętności miękkich"
+      },
+      {
+        "id": "leadership",
+        "label": "Przywódcze",
+        "value": "Przywódcze",
+        "description": "Rozwój umiejętności przywódczych"
+      },
+      {
+        "id": "business",
+        "label": "Biznesowe",
+        "value": "Biznesowe",
+        "description": "Rozwój umiejętności biznesowych"
+      }
+    ],
+    "areaId": "work-development",
+    "description": "Preferowane obszary rozwoju umiejętności",
+    "code": "SD",
+    "valueMap": {
+      "Techniczne": "T",
+      "Miękkie": "S",
+      "Przywódcze": "L",
+      "Biznesowe": "B"
+    },
+    "reverseValueMap": {
+      "T": "Techniczne",
+      "S": "Miękkie",
+      "L": "Przywódcze",
+      "B": "Biznesowe"
+    }
+  },
+  {
+    "id": "feedback-frequency",
+    "name": "Częstotliwość Feedbacku",
+    "iconName": "MessageCircle",
+    "emoji": "💬",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "continuous",
+        "label": "Ciągły",
+        "value": "Ciągły",
+        "description": "Ciągły feedback w trakcie pracy"
+      },
+      {
+        "id": "regular",
+        "label": "Regularny",
+        "value": "Regularny",
+        "description": "Regularny feedback (np. cotygodniowy)"
+      },
+      {
+        "id": "milestone",
+        "label": "Po kamieniach milowych",
+        "value": "Po kamieniach milowych",
+        "description": "Feedback po osiągnięciu kamieni milowych"
+      },
+      {
+        "id": "formal",
+        "label": "Formalny",
+        "value": "Formalny",
+        "description": "Formalny feedback (np. kwartalne oceny)"
+      }
+    ],
+    "areaId": "work-development",
+    "description": "Preferowana częstotliwość otrzymywania feedbacku",
+    "code": "FF",
+    "valueMap": {
+      "Ciągły": "C",
+      "Regularny": "R",
+      "Po kamieniach milowych": "M",
+      "Formalny": "F"
+    },
+    "reverseValueMap": {
+      "C": "Ciągły",
+      "R": "Regularny",
+      "M": "Po kamieniach milowych",
+      "F": "Formalny"
+    }
+  },
+  {
+    "id": "promotion-opportunities",
+    "name": "Możliwości Awansu",
+    "iconName": "Award",
+    "emoji": "🏆",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "regular",
+        "label": "Regularne",
+        "value": "Regularne",
+        "description": "Regularne możliwości awansu"
+      },
+      {
+        "id": "merit-based",
+        "label": "Oparte na zasługach",
+        "value": "Oparte na zasługach",
+        "description": "Awanse oparte na zasługach i wynikach"
+      },
+      {
+        "id": "tenure-based",
+        "label": "Oparte na stażu",
+        "value": "Oparte na stażu",
+        "description": "Awanse oparte na stażu pracy"
+      },
+      {
+        "id": "project-based",
+        "label": "Projektowe",
+        "value": "Projektowe",
+        "description": "Awanse związane z realizacją projektów"
+      }
+    ],
+    "areaId": "work-development",
+    "description": "Preferowany system awansów",
+    "code": "PO",
+    "valueMap": {
+      "Regularne": "R",
+      "Oparte na zasługach": "M",
+      "Oparte na stażu": "T",
+      "Projektowe": "P"
+    },
+    "reverseValueMap": {
+      "R": "Regularne",
+      "M": "Oparte na zasługach",
+      "T": "Oparte na stażu",
+      "P": "Projektowe"
+    }
+  }
+]

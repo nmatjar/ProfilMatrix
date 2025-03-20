@@ -61,5 +61,12 @@
     "iconName": "User",
     "emoji": "👤",
     "description": "Indywidualne cechy charakteru i preferencje"
+  },
+  { 
+    "id": "tech-stack", 
+    "name": "Stack Technologiczny", 
+    "iconName": "Code",
+    "emoji": "💻",
+    "description": "Preferowane technologie, języki i narzędzia programistyczne"
   }
 ]

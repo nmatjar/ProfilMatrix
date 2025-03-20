@@ -1,0 +1,242 @@
+[
+  {
+    "id": "work-hours",
+    "name": "Godziny Pracy",
+    "iconName": "Clock",
+    "emoji": "🕘",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "standard",
+        "label": "Standardowe (9-17)",
+        "value": "Standardowe (9-17)",
+        "description": "Preferuję standardowe godziny pracy od 9 do 17"
+      },
+      {
+        "id": "flexible",
+        "label": "Elastyczne",
+        "value": "Elastyczne",
+        "description": "Preferuję elastyczne godziny pracy"
+      },
+      {
+        "id": "shifts",
+        "label": "Zmianowe",
+        "value": "Zmianowe",
+        "description": "Jestem gotów/gotowa pracować w systemie zmianowym"
+      },
+      {
+        "id": "night",
+        "label": "Nocne",
+        "value": "Nocne",
+        "description": "Jestem gotów/gotowa pracować w nocy"
+      }
+    ],
+    "areaId": "work-time",
+    "description": "Preferowane godziny pracy",
+    "code": "WH",
+    "valueMap": {
+      "Standardowe (9-17)": "S",
+      "Elastyczne": "E",
+      "Zmianowe": "Z",
+      "Nocne": "N"
+    },
+    "reverseValueMap": {
+      "S": "Standardowe (9-17)",
+      "E": "Elastyczne",
+      "Z": "Zmianowe",
+      "N": "Nocne"
+    }
+  },
+  {
+    "id": "work-week",
+    "name": "Tydzień Pracy",
+    "iconName": "Calendar",
+    "emoji": "📅",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "standard",
+        "label": "Standardowy (pon-pt)",
+        "value": "Standardowy (pon-pt)",
+        "description": "Preferuję standardowy tydzień pracy od poniedziałku do piątku"
+      },
+      {
+        "id": "weekend",
+        "label": "Z weekendami",
+        "value": "Z weekendami",
+        "description": "Jestem gotów/gotowa pracować w weekendy"
+      },
+      {
+        "id": "compressed",
+        "label": "Skompresowany",
+        "value": "Skompresowany",
+        "description": "Preferuję skompresowany tydzień pracy (np. 4 dni po 10 godzin)"
+      },
+      {
+        "id": "flexible",
+        "label": "Elastyczny",
+        "value": "Elastyczny",
+        "description": "Preferuję elastyczny tydzień pracy"
+      }
+    ],
+    "areaId": "work-time",
+    "description": "Preferowany układ tygodnia pracy",
+    "code": "WW",
+    "valueMap": {
+      "Standardowy (pon-pt)": "S",
+      "Z weekendami": "W",
+      "Skompresowany": "K",
+      "Elastyczny": "E"
+    },
+    "reverseValueMap": {
+      "S": "Standardowy (pon-pt)",
+      "W": "Z weekendami",
+      "K": "Skompresowany",
+      "E": "Elastyczny"
+    }
+  },
+  {
+    "id": "work-time-model",
+    "name": "Model Czasu Pracy",
+    "iconName": "Clock",
+    "emoji": "⏱️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "full-time",
+        "label": "Pełny etat",
+        "value": "Pełny etat",
+        "description": "Preferuję pracę na pełny etat"
+      },
+      {
+        "id": "part-time",
+        "label": "Niepełny etat",
+        "value": "Niepełny etat",
+        "description": "Preferuję pracę na niepełny etat"
+      },
+      {
+        "id": "project",
+        "label": "Projektowy",
+        "value": "Projektowy",
+        "description": "Preferuję pracę projektową"
+      },
+      {
+        "id": "flexible",
+        "label": "Elastyczny",
+        "value": "Elastyczny",
+        "description": "Preferuję elastyczny model czasu pracy"
+      }
+    ],
+    "areaId": "work-time",
+    "description": "Preferowany model czasu pracy",
+    "code": "WTM",
+    "valueMap": {
+      "Pełny etat": "F",
+      "Niepełny etat": "P",
+      "Projektowy": "R",
+      "Elastyczny": "E"
+    },
+    "reverseValueMap": {
+      "F": "Pełny etat",
+      "P": "Niepełny etat",
+      "R": "Projektowy",
+      "E": "Elastyczny"
+    }
+  },
+  {
+    "id": "overtime",
+    "name": "Nadgodziny",
+    "iconName": "Clock",
+    "emoji": "🕙",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "never",
+        "label": "Nigdy",
+        "value": "Nigdy",
+        "description": "Nie chcę pracować w nadgodzinach"
+      },
+      {
+        "id": "occasionally",
+        "label": "Okazjonalnie",
+        "value": "Okazjonalnie",
+        "description": "Jestem gotów/gotowa okazjonalnie pracować w nadgodzinach"
+      },
+      {
+        "id": "regularly",
+        "label": "Regularnie",
+        "value": "Regularnie",
+        "description": "Jestem gotów/gotowa regularnie pracować w nadgodzinach"
+      },
+      {
+        "id": "as-needed",
+        "label": "Według potrzeb",
+        "value": "Według potrzeb",
+        "description": "Jestem gotów/gotowa pracować w nadgodzinach według potrzeb"
+      }
+    ],
+    "areaId": "work-time",
+    "description": "Preferowany stosunek do nadgodzin",
+    "code": "OT",
+    "valueMap": {
+      "Nigdy": "N",
+      "Okazjonalnie": "O",
+      "Regularnie": "R",
+      "Według potrzeb": "P"
+    },
+    "reverseValueMap": {
+      "N": "Nigdy",
+      "O": "Okazjonalnie",
+      "R": "Regularnie",
+      "P": "Według potrzeb"
+    }
+  },
+  {
+    "id": "availability",
+    "name": "Dostępność",
+    "iconName": "Phone",
+    "emoji": "📱",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "work-hours",
+        "label": "Tylko w godzinach pracy",
+        "value": "Tylko w godzinach pracy",
+        "description": "Jestem dostępny/a tylko w godzinach pracy"
+      },
+      {
+        "id": "extended",
+        "label": "Rozszerzona",
+        "value": "Rozszerzona",
+        "description": "Jestem dostępny/a w rozszerzonych godzinach"
+      },
+      {
+        "id": "on-call",
+        "label": "Dyżurna",
+        "value": "Dyżurna",
+        "description": "Jestem gotów/gotowa pełnić dyżury"
+      },
+      {
+        "id": "always",
+        "label": "Zawsze",
+        "value": "Zawsze",
+        "description": "Jestem dostępny/a praktycznie zawsze"
+      }
+    ],
+    "areaId": "work-time",
+    "description": "Preferowana dostępność poza standardowymi godzinami pracy",
+    "code": "AV",
+    "valueMap": {
+      "Tylko w godzinach pracy": "W",
+      "Rozszerzona": "R",
+      "Dyżurna": "D",
+      "Zawsze": "A"
+    },
+    "reverseValueMap": {
+      "W": "Tylko w godzinach pracy",
+      "R": "Rozszerzona",
+      "D": "Dyżurna",
+      "A": "Zawsze"
+    }
+  }
+]

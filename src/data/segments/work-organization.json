@@ -1,0 +1,211 @@
+[
+  {
+    "id": "organization-type",
+    "name": "Typ Organizacji",
+    "iconName": "Building",
+    "emoji": "🏢",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "corporation",
+        "label": "🏢 Korporacja",
+        "value": "Korporacja"
+      },
+      {
+        "id": "startup",
+        "label": "🚀 Startup/Scaleup",
+        "value": "Startup/Scaleup"
+      },
+      {
+        "id": "public",
+        "label": "🏛️ Instytucja publiczna",
+        "value": "Instytucja publiczna"
+      },
+      {
+        "id": "education",
+        "label": "🎓 Uczelnia/Edukacja",
+        "value": "Uczelnia/Edukacja"
+      },
+      {
+        "id": "ngo",
+        "label": "🤝 NGO/Non-profit",
+        "value": "NGO/Non-profit"
+      }
+    ],
+    "areaId": "work-organization",
+    "description": "Typ organizacji, w której chcesz pracować",
+    "code": "ORG",
+    "valueMap": {
+      "Korporacja": "K",
+      "Startup/Scaleup": "S",
+      "Instytucja publiczna": "P",
+      "Uczelnia/Edukacja": "E",
+      "NGO/Non-profit": "N"
+    },
+    "reverseValueMap": {
+      "K": "Korporacja",
+      "S": "Startup/Scaleup",
+      "P": "Instytucja publiczna",
+      "E": "Uczelnia/Edukacja",
+      "N": "NGO/Non-profit"
+    }
+  },
+  {
+    "id": "work-format",
+    "name": "Format Pracy",
+    "iconName": "Home",
+    "emoji": "🏠💻",
+    "type": "select",
+    "options": [
+      {
+        "id": "onsite",
+        "label": "🏢 Stacjonarny",
+        "value": "Stacjonarny"
+      },
+      {
+        "id": "remote",
+        "label": "🏠 Zdalny",
+        "value": "Zdalny"
+      },
+      {
+        "id": "hybrid-fixed",
+        "label": "🔄 Hybrydowy (określony)",
+        "value": "Hybrydowy (określony)"
+      },
+      {
+        "id": "hybrid-flexible",
+        "label": "📊 Hybrydowy (elastyczny)",
+        "value": "Hybrydowy (elastyczny)"
+      }
+    ],
+    "subOptions": [
+      {
+        "id": "hybrid-1-4",
+        "label": "1 dzień zdalnie / 4 dni w biurze",
+        "value": "1z/4b",
+        "parentOptionId": "hybrid-fixed"
+      },
+      {
+        "id": "hybrid-2-3",
+        "label": "2 dni zdalnie / 3 dni w biurze",
+        "value": "2z/3b",
+        "parentOptionId": "hybrid-fixed"
+      },
+      {
+        "id": "hybrid-3-2",
+        "label": "3 dni zdalnie / 2 dni w biurze",
+        "value": "3z/2b",
+        "parentOptionId": "hybrid-fixed"
+      },
+      {
+        "id": "hybrid-4-1",
+        "label": "4 dni zdalnie / 1 dzień w biurze",
+        "value": "4z/1b",
+        "parentOptionId": "hybrid-fixed"
+      }
+    ],
+    "areaId": "work-organization",
+    "description": "Preferowany format pracy (stacjonarny, zdalny, hybrydowy)",
+    "code": "WF",
+    "valueMap": {
+      "Stacjonarny": "S",
+      "Zdalny": "Z",
+      "Hybrydowy (określony)": "HO",
+      "Hybrydowy (elastyczny)": "HE"
+    },
+    "reverseValueMap": {
+      "S": "Stacjonarny",
+      "Z": "Zdalny",
+      "HO": "Hybrydowy (określony)",
+      "HE": "Hybrydowy (elastyczny)"
+    }
+  },
+  {
+    "id": "organizational-culture",
+    "name": "Kultura Organizacyjna",
+    "iconName": "Users",
+    "emoji": "👔",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "formal",
+        "label": "👔 Formalna/Hierarchiczna",
+        "value": "Formalna/Hierarchiczna"
+      },
+      {
+        "id": "moderate",
+        "label": "👕 Umiarkowana/Zbalansowana",
+        "value": "Umiarkowana/Zbalansowana"
+      },
+      {
+        "id": "flexible",
+        "label": "👚 Elastyczna/Płaska",
+        "value": "Elastyczna/Płaska"
+      },
+      {
+        "id": "creative",
+        "label": "🎨 Kreatywna/Swobodna",
+        "value": "Kreatywna/Swobodna"
+      }
+    ],
+    "areaId": "work-organization",
+    "description": "Preferowana kultura organizacyjna w miejscu pracy",
+    "code": "OC",
+    "valueMap": {
+      "Formalna/Hierarchiczna": "F",
+      "Umiarkowana/Zbalansowana": "U",
+      "Elastyczna/Płaska": "E",
+      "Kreatywna/Swobodna": "K"
+    },
+    "reverseValueMap": {
+      "F": "Formalna/Hierarchiczna",
+      "U": "Umiarkowana/Zbalansowana",
+      "E": "Elastyczna/Płaska",
+      "K": "Kreatywna/Swobodna"
+    }
+  },
+  {
+    "id": "office-space",
+    "name": "Przestrzeń Biurowa",
+    "iconName": "Home",
+    "emoji": "🏟️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "open-space",
+        "label": "🏟️ Open Space",
+        "value": "Open Space"
+      },
+      {
+        "id": "closed-office",
+        "label": "🚪 Biuro zamknięte",
+        "value": "Biuro zamknięte"
+      },
+      {
+        "id": "flexible-space",
+        "label": "🏠 Flexible Space",
+        "value": "Flexible Space"
+      },
+      {
+        "id": "hot-desking",
+        "label": "🛋️ Hot-desking",
+        "value": "Hot-desking"
+      }
+    ],
+    "areaId": "work-organization",
+    "description": "Preferowana przestrzeń biurowa",
+    "code": "OS",
+    "valueMap": {
+      "Open Space": "O",
+      "Biuro zamknięte": "B",
+      "Flexible Space": "F",
+      "Hot-desking": "H"
+    },
+    "reverseValueMap": {
+      "O": "Open Space",
+      "B": "Biuro zamknięte",
+      "F": "Flexible Space",
+      "H": "Hot-desking"
+    }
+  }
+]

@@ -1,0 +1,290 @@
+[
+  {
+    "id": "team-size",
+    "name": "Wielkość Zespołu",
+    "iconName": "Users",
+    "emoji": "👥",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "solo",
+        "label": "Solo (1 osoba)",
+        "value": "Solo (1 osoba)",
+        "description": "Preferuję pracę samodzielną"
+      },
+      {
+        "id": "small",
+        "label": "Mały (2-5 osób)",
+        "value": "Mały (2-5 osób)",
+        "description": "Preferuję pracę w małym zespole (2-5 osób)"
+      },
+      {
+        "id": "medium",
+        "label": "Średni (6-15 osób)",
+        "value": "Średni (6-15 osób)",
+        "description": "Preferuję pracę w średnim zespole (6-15 osób)"
+      },
+      {
+        "id": "large",
+        "label": "Duży (16+ osób)",
+        "value": "Duży (16+ osób)",
+        "description": "Preferuję pracę w dużym zespole (16+ osób)"
+      }
+    ],
+    "areaId": "work-environment",
+    "description": "Preferowana wielkość zespołu",
+    "code": "TS",
+    "valueMap": {
+      "Solo (1 osoba)": "S",
+      "Mały (2-5 osób)": "M",
+      "Średni (6-15 osób)": "R",
+      "Duży (16+ osób)": "L"
+    },
+    "reverseValueMap": {
+      "S": "Solo (1 osoba)",
+      "M": "Mały (2-5 osób)",
+      "R": "Średni (6-15 osób)",
+      "L": "Duży (16+ osób)"
+    }
+  },
+  {
+    "id": "team-diversity",
+    "name": "Różnorodność Zespołu",
+    "iconName": "Globe",
+    "emoji": "🌈",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "homogeneous",
+        "label": "Homogeniczny",
+        "value": "Homogeniczny",
+        "description": "Preferuję pracę w zespole o podobnym doświadczeniu i umiejętnościach"
+      },
+      {
+        "id": "mixed-skills",
+        "label": "Zróżnicowane umiejętności",
+        "value": "Zróżnicowane umiejętności",
+        "description": "Preferuję pracę w zespole o zróżnicowanych umiejętnościach"
+      },
+      {
+        "id": "mixed-experience",
+        "label": "Zróżnicowane doświadczenie",
+        "value": "Zróżnicowane doświadczenie",
+        "description": "Preferuję pracę w zespole o zróżnicowanym doświadczeniu"
+      },
+      {
+        "id": "diverse",
+        "label": "Pełna różnorodność",
+        "value": "Pełna różnorodność",
+        "description": "Preferuję pracę w zespole o pełnej różnorodności (umiejętności, doświadczenie, pochodzenie)"
+      }
+    ],
+    "areaId": "work-environment",
+    "description": "Preferowana różnorodność zespołu",
+    "code": "TD",
+    "valueMap": {
+      "Homogeniczny": "H",
+      "Zróżnicowane umiejętności": "S",
+      "Zróżnicowane doświadczenie": "E",
+      "Pełna różnorodność": "D"
+    },
+    "reverseValueMap": {
+      "H": "Homogeniczny",
+      "S": "Zróżnicowane umiejętności",
+      "E": "Zróżnicowane doświadczenie",
+      "D": "Pełna różnorodność"
+    }
+  },
+  {
+    "id": "communication-style",
+    "name": "Styl Komunikacji",
+    "iconName": "MessageCircle",
+    "emoji": "💬",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "direct",
+        "label": "Bezpośredni",
+        "value": "Bezpośredni",
+        "description": "Preferuję bezpośrednią, konkretną komunikację"
+      },
+      {
+        "id": "diplomatic",
+        "label": "Dyplomatyczny",
+        "value": "Dyplomatyczny",
+        "description": "Preferuję dyplomatyczną, taktowną komunikację"
+      },
+      {
+        "id": "collaborative",
+        "label": "Współpracujący",
+        "value": "Współpracujący",
+        "description": "Preferuję komunikację opartą na współpracy i konsensusie"
+      },
+      {
+        "id": "detailed",
+        "label": "Szczegółowy",
+        "value": "Szczegółowy",
+        "description": "Preferuję szczegółową, dokładną komunikację"
+      }
+    ],
+    "areaId": "work-environment",
+    "description": "Preferowany styl komunikacji w zespole",
+    "code": "CS",
+    "valueMap": {
+      "Bezpośredni": "D",
+      "Dyplomatyczny": "P",
+      "Współpracujący": "C",
+      "Szczegółowy": "T"
+    },
+    "reverseValueMap": {
+      "D": "Bezpośredni",
+      "P": "Dyplomatyczny",
+      "C": "Współpracujący",
+      "T": "Szczegółowy"
+    }
+  },
+  {
+    "id": "communication-frequency",
+    "name": "Częstotliwość Komunikacji",
+    "iconName": "Calendar",
+    "emoji": "📊",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "minimal",
+        "label": "Minimalna",
+        "value": "Minimalna",
+        "description": "Preferuję minimalną komunikację, tylko gdy jest to niezbędne"
+      },
+      {
+        "id": "moderate",
+        "label": "Umiarkowana",
+        "value": "Umiarkowana",
+        "description": "Preferuję umiarkowaną komunikację, regularne spotkania"
+      },
+      {
+        "id": "frequent",
+        "label": "Częsta",
+        "value": "Częsta",
+        "description": "Preferuję częstą komunikację i aktualizacje"
+      },
+      {
+        "id": "constant",
+        "label": "Stała",
+        "value": "Stała",
+        "description": "Preferuję stałą komunikację i ciągłe aktualizacje"
+      }
+    ],
+    "areaId": "work-environment",
+    "description": "Preferowana częstotliwość komunikacji w zespole",
+    "code": "CF",
+    "valueMap": {
+      "Minimalna": "M",
+      "Umiarkowana": "O",
+      "Częsta": "F",
+      "Stała": "C"
+    },
+    "reverseValueMap": {
+      "M": "Minimalna",
+      "O": "Umiarkowana",
+      "F": "Częsta",
+      "C": "Stała"
+    }
+  },
+  {
+    "id": "meeting-preference",
+    "name": "Preferencje Spotkań",
+    "iconName": "Users",
+    "emoji": "👥",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "minimal",
+        "label": "Minimalne",
+        "value": "Minimalne",
+        "description": "Preferuję minimalne spotkania, tylko gdy są niezbędne"
+      },
+      {
+        "id": "structured",
+        "label": "Ustrukturyzowane",
+        "value": "Ustrukturyzowane",
+        "description": "Preferuję ustrukturyzowane spotkania z agendą"
+      },
+      {
+        "id": "regular",
+        "label": "Regularne",
+        "value": "Regularne",
+        "description": "Preferuję regularne spotkania zespołu"
+      },
+      {
+        "id": "frequent",
+        "label": "Częste",
+        "value": "Częste",
+        "description": "Preferuję częste spotkania i dyskusje"
+      }
+    ],
+    "areaId": "work-environment",
+    "description": "Preferowany styl i częstotliwość spotkań",
+    "code": "MP",
+    "valueMap": {
+      "Minimalne": "M",
+      "Ustrukturyzowane": "S",
+      "Regularne": "R",
+      "Częste": "F"
+    },
+    "reverseValueMap": {
+      "M": "Minimalne",
+      "S": "Ustrukturyzowane",
+      "R": "Regularne",
+      "F": "Częste"
+    }
+  },
+  {
+    "id": "feedback-style",
+    "name": "Styl Feedbacku",
+    "iconName": "MessageCircle",
+    "emoji": "📝",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "direct",
+        "label": "Bezpośredni",
+        "value": "Bezpośredni",
+        "description": "Preferuję bezpośredni, konkretny feedback"
+      },
+      {
+        "id": "constructive",
+        "label": "Konstruktywny",
+        "value": "Konstruktywny",
+        "description": "Preferuję konstruktywny feedback z sugestiami poprawy"
+      },
+      {
+        "id": "positive",
+        "label": "Pozytywny",
+        "value": "Pozytywny",
+        "description": "Preferuję pozytywny feedback skupiony na mocnych stronach"
+      },
+      {
+        "id": "balanced",
+        "label": "Zbalansowany",
+        "value": "Zbalansowany",
+        "description": "Preferuję zbalansowany feedback (mocne i słabe strony)"
+      }
+    ],
+    "areaId": "work-environment",
+    "description": "Preferowany styl otrzymywania i dawania feedbacku",
+    "code": "FS",
+    "valueMap": {
+      "Bezpośredni": "D",
+      "Konstruktywny": "C",
+      "Pozytywny": "P",
+      "Zbalansowany": "B"
+    },
+    "reverseValueMap": {
+      "D": "Bezpośredni",
+      "C": "Konstruktywny",
+      "P": "Pozytywny",
+      "B": "Zbalansowany"
+    }
+  }
+]

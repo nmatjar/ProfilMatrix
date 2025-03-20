@@ -1,0 +1,383 @@
+[
+  {
+    "id": "programming-languages",
+    "name": "Języki Programowania",
+    "iconName": "Code",
+    "emoji": "💻",
+    "type": "multi-select",
+    "options": [
+      {
+        "id": "javascript",
+        "label": "JavaScript",
+        "value": "JavaScript"
+      },
+      {
+        "id": "typescript",
+        "label": "TypeScript",
+        "value": "TypeScript"
+      },
+      {
+        "id": "python",
+        "label": "Python",
+        "value": "Python"
+      },
+      {
+        "id": "java",
+        "label": "Java",
+        "value": "Java"
+      },
+      {
+        "id": "csharp",
+        "label": "C#",
+        "value": "C#"
+      },
+      {
+        "id": "cpp",
+        "label": "C++",
+        "value": "C++"
+      },
+      {
+        "id": "go",
+        "label": "Go",
+        "value": "Go"
+      },
+      {
+        "id": "rust",
+        "label": "Rust",
+        "value": "Rust"
+      },
+      {
+        "id": "php",
+        "label": "PHP",
+        "value": "PHP"
+      },
+      {
+        "id": "ruby",
+        "label": "Ruby",
+        "value": "Ruby"
+      },
+      {
+        "id": "swift",
+        "label": "Swift",
+        "value": "Swift"
+      },
+      {
+        "id": "kotlin",
+        "label": "Kotlin",
+        "value": "Kotlin"
+      }
+    ],
+    "areaId": "tech-stack",
+    "description": "Preferowane języki programowania",
+    "code": "PL",
+    "valueMap": {
+      "JavaScript": "JS",
+      "TypeScript": "TS",
+      "Python": "PY",
+      "Java": "JV",
+      "C#": "CS",
+      "C++": "CP",
+      "Go": "GO",
+      "Rust": "RS",
+      "PHP": "PP",
+      "Ruby": "RB",
+      "Swift": "SW",
+      "Kotlin": "KT"
+    },
+    "reverseValueMap": {
+      "JS": "JavaScript",
+      "TS": "TypeScript",
+      "PY": "Python",
+      "JV": "Java",
+      "CS": "C#",
+      "CP": "C++",
+      "GO": "Go",
+      "RS": "Rust",
+      "PP": "PHP",
+      "RB": "Ruby",
+      "SW": "Swift",
+      "KT": "Kotlin"
+    }
+  },
+  {
+    "id": "frontend-frameworks",
+    "name": "Frameworki Frontend",
+    "iconName": "Layout",
+    "emoji": "🖥️",
+    "type": "multi-select",
+    "options": [
+      {
+        "id": "react",
+        "label": "React",
+        "value": "React"
+      },
+      {
+        "id": "angular",
+        "label": "Angular",
+        "value": "Angular"
+      },
+      {
+        "id": "vue",
+        "label": "Vue.js",
+        "value": "Vue.js"
+      },
+      {
+        "id": "svelte",
+        "label": "Svelte",
+        "value": "Svelte"
+      },
+      {
+        "id": "nextjs",
+        "label": "Next.js",
+        "value": "Next.js"
+      },
+      {
+        "id": "nuxtjs",
+        "label": "Nuxt.js",
+        "value": "Nuxt.js"
+      }
+    ],
+    "areaId": "tech-stack",
+    "description": "Preferowane frameworki frontendowe",
+    "code": "FF",
+    "valueMap": {
+      "React": "RE",
+      "Angular": "AN",
+      "Vue.js": "VU",
+      "Svelte": "SV",
+      "Next.js": "NX",
+      "Nuxt.js": "NU"
+    },
+    "reverseValueMap": {
+      "RE": "React",
+      "AN": "Angular",
+      "VU": "Vue.js",
+      "SV": "Svelte",
+      "NX": "Next.js",
+      "NU": "Nuxt.js"
+    }
+  },
+  {
+    "id": "backend-frameworks",
+    "name": "Frameworki Backend",
+    "iconName": "Server",
+    "emoji": "🖧",
+    "type": "multi-select",
+    "options": [
+      {
+        "id": "nodejs",
+        "label": "Node.js",
+        "value": "Node.js"
+      },
+      {
+        "id": "express",
+        "label": "Express",
+        "value": "Express"
+      },
+      {
+        "id": "django",
+        "label": "Django",
+        "value": "Django"
+      },
+      {
+        "id": "flask",
+        "label": "Flask",
+        "value": "Flask"
+      },
+      {
+        "id": "spring",
+        "label": "Spring",
+        "value": "Spring"
+      },
+      {
+        "id": "laravel",
+        "label": "Laravel",
+        "value": "Laravel"
+      },
+      {
+        "id": "rails",
+        "label": "Ruby on Rails",
+        "value": "Ruby on Rails"
+      },
+      {
+        "id": "dotnet",
+        "label": ".NET",
+        "value": ".NET"
+      }
+    ],
+    "areaId": "tech-stack",
+    "description": "Preferowane frameworki backendowe",
+    "code": "BF",
+    "valueMap": {
+      "Node.js": "NJ",
+      "Express": "EX",
+      "Django": "DJ",
+      "Flask": "FL",
+      "Spring": "SP",
+      "Laravel": "LR",
+      "Ruby on Rails": "RR",
+      ".NET": "DN"
+    },
+    "reverseValueMap": {
+      "NJ": "Node.js",
+      "EX": "Express",
+      "DJ": "Django",
+      "FL": "Flask",
+      "SP": "Spring",
+      "LR": "Laravel",
+      "RR": "Ruby on Rails",
+      "DN": ".NET"
+    }
+  },
+  {
+    "id": "databases",
+    "name": "Bazy Danych",
+    "iconName": "Database",
+    "emoji": "🗄️",
+    "type": "multi-select",
+    "options": [
+      {
+        "id": "mysql",
+        "label": "MySQL",
+        "value": "MySQL"
+      },
+      {
+        "id": "postgresql",
+        "label": "PostgreSQL",
+        "value": "PostgreSQL"
+      },
+      {
+        "id": "mongodb",
+        "label": "MongoDB",
+        "value": "MongoDB"
+      },
+      {
+        "id": "sqlite",
+        "label": "SQLite",
+        "value": "SQLite"
+      },
+      {
+        "id": "redis",
+        "label": "Redis",
+        "value": "Redis"
+      },
+      {
+        "id": "oracle",
+        "label": "Oracle",
+        "value": "Oracle"
+      },
+      {
+        "id": "mssql",
+        "label": "MS SQL Server",
+        "value": "MS SQL Server"
+      }
+    ],
+    "areaId": "tech-stack",
+    "description": "Preferowane bazy danych",
+    "code": "DB",
+    "valueMap": {
+      "MySQL": "MY",
+      "PostgreSQL": "PG",
+      "MongoDB": "MG",
+      "SQLite": "SL",
+      "Redis": "RD",
+      "Oracle": "OR",
+      "MS SQL Server": "MS"
+    },
+    "reverseValueMap": {
+      "MY": "MySQL",
+      "PG": "PostgreSQL",
+      "MG": "MongoDB",
+      "SL": "SQLite",
+      "RD": "Redis",
+      "OR": "Oracle",
+      "MS": "MS SQL Server"
+    }
+  },
+  {
+    "id": "dev-tools",
+    "name": "Narzędzia Developerskie",
+    "iconName": "Tool",
+    "emoji": "🔧",
+    "type": "multi-select",
+    "options": [
+      {
+        "id": "git",
+        "label": "Git",
+        "value": "Git"
+      },
+      {
+        "id": "docker",
+        "label": "Docker",
+        "value": "Docker"
+      },
+      {
+        "id": "kubernetes",
+        "label": "Kubernetes",
+        "value": "Kubernetes"
+      },
+      {
+        "id": "jenkins",
+        "label": "Jenkins",
+        "value": "Jenkins"
+      },
+      {
+        "id": "github-actions",
+        "label": "GitHub Actions",
+        "value": "GitHub Actions"
+      },
+      {
+        "id": "gitlab-ci",
+        "label": "GitLab CI",
+        "value": "GitLab CI"
+      },
+      {
+        "id": "jira",
+        "label": "Jira",
+        "value": "Jira"
+      },
+      {
+        "id": "confluence",
+        "label": "Confluence",
+        "value": "Confluence"
+      },
+      {
+        "id": "vscode",
+        "label": "VS Code",
+        "value": "VS Code"
+      },
+      {
+        "id": "intellij",
+        "label": "IntelliJ IDEA",
+        "value": "IntelliJ IDEA"
+      }
+    ],
+    "areaId": "tech-stack",
+    "description": "Preferowane narzędzia developerskie",
+    "code": "DT",
+    "valueMap": {
+      "Git": "GT",
+      "Docker": "DK",
+      "Kubernetes": "KB",
+      "Jenkins": "JK",
+      "GitHub Actions": "GA",
+      "GitLab CI": "GL",
+      "Jira": "JR",
+      "Confluence": "CF",
+      "VS Code": "VS",
+      "IntelliJ IDEA": "IJ"
+    },
+    "reverseValueMap": {
+      "GT": "Git",
+      "DK": "Docker",
+      "KB": "Kubernetes",
+      "JK": "Jenkins",
+      "GA": "GitHub Actions",
+      "GL": "GitLab CI",
+      "JR": "Jira",
+      "CF": "Confluence",
+      "VS": "VS Code",
+      "IJ": "IntelliJ IDEA"
+    }
+  }
+]
