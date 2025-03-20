@@ -7,6 +7,13 @@
     "description": "Środowisko, kultura i struktura organizacyjna"
   },
   { 
+    "id": "work-intimacy", 
+    "name": "Relacje i Granice", 
+    "iconName": "Heart",
+    "emoji": "💕",
+    "description": "Podejście do relacji i granic w środowisku pracy"
+  },
+  { 
     "id": "location-mobility", 
     "name": "Lokalizacja i Mobilność", 
     "iconName": "MapPin",

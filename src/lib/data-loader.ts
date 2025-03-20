@@ -14,6 +14,7 @@ import workDevelopmentSegments from '../data/segments/work-development.json'
 import workValuesSegments from '../data/segments/work-values.json'
 import personalTraitsSegments from '../data/segments/personal-traits.json'
 import techStackSegments from '../data/segments/tech-stack.json'
+import workIntimacySegments from '../data/segments/work-intimacy.json'
 
 // Funkcja do wczytywania obszarów z pliku JSON
 export function loadAreas(): Area[] {
@@ -41,6 +42,7 @@ export function loadSegments(): Segment[] {
     // Łączymy segmenty ze wszystkich plików
     const allSegments = [
       ...workOrganizationSegments,
+      ...workIntimacySegments,
       ...locationMobilitySegments,
       ...workEnvironmentSegments,
       ...workTimeSegments,

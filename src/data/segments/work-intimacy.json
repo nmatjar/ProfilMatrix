@@ -1,0 +1,162 @@
+[
+  {
+    "id": "workplace-relationships",
+    "name": "Relacje w Pracy",
+    "iconName": "Heart",
+    "emoji": "💕",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "no-relationships",
+        "label": "🚫 Brak Relacji",
+        "value": "BrakRelacji",
+        "description": "Preferuję całkowity rozdział życia prywatnego od zawodowego"
+      },
+      {
+        "id": "open-relationships",
+        "label": "💝 Otwartość",
+        "value": "Otwartość",
+        "description": "Jestem otwarty/a na relacje w miejscu pracy"
+      },
+      {
+        "id": "selective-relationships",
+        "label": "🎯 Selektywność",
+        "value": "Selektywność",
+        "description": "Rozważam relacje tylko w określonych warunkach"
+      }
+    ],
+    "areaId": "work-intimacy",
+    "description": "Podejście do relacji intymnych w kontekście pracy",
+    "code": "WR",
+    "valueMap": {
+      "BrakRelacji": "🚫",
+      "Otwartość": "💕",
+      "Selektywność": "🎯"
+    },
+    "reverseValueMap": {
+      "🚫": "BrakRelacji",
+      "💕": "Otwartość",
+      "🎯": "Selektywność"
+    }
+  },
+  {
+    "id": "workplace-boundaries",
+    "name": "Granice w Pracy",
+    "iconName": "Shield",
+    "emoji": "🛡️",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "strict-boundaries",
+        "label": "🔒 Ścisłe",
+        "value": "Ścisłe",
+        "description": "Utrzymuję ścisłe granice profesjonalne"
+      },
+      {
+        "id": "flexible-boundaries",
+        "label": "🔓 Elastyczne",
+        "value": "Elastyczne",
+        "description": "Dopuszczam elastyczne granice w zależności od sytuacji"
+      },
+      {
+        "id": "situational-boundaries",
+        "label": "⚖️ Sytuacyjne",
+        "value": "Sytuacyjne",
+        "description": "Dostosowuję granice do konkretnej sytuacji i osób"
+      }
+    ],
+    "areaId": "work-intimacy",
+    "description": "Preferowane granice w relacjach zawodowych",
+    "code": "WB",
+    "valueMap": {
+      "Ścisłe": "🔒",
+      "Elastyczne": "🔓",
+      "Sytuacyjne": "⚖️"
+    },
+    "reverseValueMap": {
+      "🔒": "Ścisłe",
+      "🔓": "Elastyczne",
+      "⚖️": "Sytuacyjne"
+    }
+  },
+  {
+    "id": "workplace-flirting",
+    "name": "Flirt w Pracy",
+    "iconName": "Sparkles",
+    "emoji": "✨",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "no-flirting",
+        "label": "❌ Nigdy",
+        "value": "Nigdy",
+        "description": "Całkowicie wykluczam flirtowanie w miejscu pracy"
+      },
+      {
+        "id": "subtle-flirting",
+        "label": "🌟 Subtelnie",
+        "value": "Subtelnie",
+        "description": "Akceptuję delikatny, kulturalny flirt"
+      },
+      {
+        "id": "open-flirting",
+        "label": "💫 Otwarcie",
+        "value": "Otwarcie",
+        "description": "Jestem otwarty/a na flirtowanie w pracy"
+      }
+    ],
+    "areaId": "work-intimacy",
+    "description": "Stosunek do flirtowania w środowisku pracy",
+    "code": "WF",
+    "valueMap": {
+      "Nigdy": "❌",
+      "Subtelnie": "🌟",
+      "Otwarcie": "🌛"
+    },
+    "reverseValueMap": {
+      "❌": "Nigdy",
+      "🌟": "Subtelnie",
+      "🌛": "Otwarcie"
+    }
+  },
+  {
+    "id": "workplace-attraction",
+    "name": "Atrakcyjność w Pracy",
+    "iconName": "Flame",
+    "emoji": "🔥",
+    "type": "toggle",
+    "options": [
+      {
+        "id": "professional-only",
+        "label": "👔 Profesjonalnie",
+        "value": "Profesjonalnie",
+        "description": "Skupiam się wyłącznie na profesjonalnym wizerunku"
+      },
+      {
+        "id": "natural-attraction",
+        "label": "🌺 Naturalnie",
+        "value": "Naturalnie",
+        "description": "Pozwalam na naturalną atrakcyjność"
+      },
+      {
+        "id": "conscious-attraction",
+        "label": "💫 Świadomie",
+        "value": "Świadomie",
+        "description": "Świadomie dbam o atrakcyjność w pracy"
+      }
+    ],
+    "areaId": "work-intimacy",
+    "description": "Podejście do atrakcyjności w miejscu pracy",
+    "code": "WA",
+    "valueMap": {
+      "Profesjonalnie": "👔",
+      "Naturalnie": "🌺",
+      "Świadomie": "✨"
+    },
+    "reverseValueMap": {
+      "👔": "Profesjonalnie",
+      "🌺": "Naturalnie",
+      "✨": "Świadomie"
+    }
+  }
+]
