@@ -282,13 +282,13 @@ const Index = () => {
 
   const renderAreaMenu = () => {
     return (
-      <div className="mb-6">
+      <div className="mb-4 md:mb-6">
         <h2 className="text-lg font-semibold mb-2">Wybierz obszar</h2>
-        <div className="grid grid-cols-1 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-2">
           {mainAreas.map((area) => (
             <button
               key={area.id}
-              className={`flex items-center justify-start p-3 h-auto border border-green-700 rounded ${selectedArea === area.id ? 'bg-green-900 bg-opacity-30' : 'bg-black'}`}
+              className={`flex flex-col md:flex-row items-start md:items-center justify-start p-2 md:p-3 h-auto border border-green-700 rounded ${selectedArea === area.id ? 'bg-green-900 bg-opacity-30' : 'bg-black'}`}
               onClick={() => {
                 setSelectedArea(area.id);
                 // Ustaw aktywną kategorię na pierwszą z wybranego obszaru
@@ -298,10 +298,12 @@ const Index = () => {
                 }
               }}
             >
-              {React.isValidElement(area.icon) ? area.icon : null}
-              <div className="flex flex-col items-start ml-2">
-                <span className="font-medium">{area.name}</span>
-                <span className="text-xs opacity-70 text-left">{area.emoji} {area.description}</span>
+              <span className="flex items-center justify-center md:justify-start w-full md:w-auto mb-1 md:mb-0">
+                {React.isValidElement(area.icon) ? area.icon : null}
+              </span>
+              <div className="flex flex-col items-center md:items-start md:ml-2 w-full">
+                <span className="font-medium text-center md:text-left text-sm md:text-base">{area.name}</span>
+                <span className="text-xs opacity-70 text-center md:text-left hidden md:block">{area.emoji} {area.description}</span>
               </div>
             </button>
           ))}
@@ -339,16 +341,16 @@ const Index = () => {
   const renderCategoryOptions = () => {
     // Pobierz wszystkie kategorie z aktualnie wybranego obszaru
     const areaCategories = getSegmentsByAreaId(selectedArea);
-    // Debug: Usunięto komunikat
     
     return (
-      <div className="space-y-8">
+      <div className="space-y-6">
         {areaCategories.map((category) => {
-          // Debug: Usunięto komunikat
           return (
-          <div key={category.id} className="mb-6">
-            <h2 className="text-xl font-bold mb-4 flex items-center">
-              {React.isValidElement(category.icon) ? category.icon : null}
+          <div key={category.id} className="mb-4">
+            <h2 className="text-lg md:text-xl font-bold mb-3 flex items-center">
+              <span className="flex items-center justify-center">
+                {React.isValidElement(category.icon) ? category.icon : null}
+              </span>
               <span className="ml-2">{category.name}</span>
             </h2>
             
@@ -380,7 +382,7 @@ const Index = () => {
                     <ToggleGroup 
                       type="multiple" 
                       variant="outline" 
-                      className="flex flex-wrap gap-2"
+                      className="flex flex-wrap gap-1 md:gap-2"
                       value={Array.isArray(selections[category.id]) ? 
                               selections[category.id] as string[] : 
                               []}
@@ -453,7 +455,7 @@ const Index = () => {
                             <TooltipTrigger asChild>
                               <ToggleGroupItem
                                 value={option.value}
-                                className="flex items-center justify-start p-2 border border-green-700"
+                                className="flex items-center justify-start p-1 md:p-2 text-xs md:text-sm border border-green-700"
                                 data-state={isSelected ? "on" : "off"}
                               >
                                 <span>{formatOptionLabel(option.label)}</span>
@@ -475,13 +477,13 @@ const Index = () => {
                   </div>
                 ) : (
                   // Dla zwykłych segmentów, zachowujemy obecne zachowanie (single)
-                  <ToggleGroup type="single" variant="outline" className="flex flex-wrap gap-2">
+                  <ToggleGroup type="single" variant="outline" className="flex flex-wrap gap-1 md:gap-2">
                     {category.options.map((option) => (
                       <Tooltip key={option.id}>
                         <TooltipTrigger asChild>
                           <ToggleGroupItem
                             value={option.value}
-                            className="flex items-center justify-start p-2 border border-green-700"
+                            className="flex items-center justify-start p-1 md:p-2 text-xs md:text-sm border border-green-700"
                             onClick={() => handleOptionSelect(category.id, option.value)}
                             data-state={selections[category.id] === option.value ? "on" : "off"}
                           >
@@ -1049,15 +1051,15 @@ const Index = () => {
           </div>
         </header>
 
-        <div className="flex-1 flex">
-          {/* Menu kategorii po lewej */}
-          <div className="w-1/4 border-r border-green-900 p-4">
+        <div className="flex-1 flex flex-col md:flex-row">
+          {/* Menu kategorii po lewej - na mobilnych u góry */}
+          <div className="w-full md:w-1/4 md:border-r border-green-900 p-2 md:p-4">
             {renderAreaMenu()}
           </div>
 
-          {/* Zawartość po prawej */}
-          <div className="w-3/4 p-6">
-            <div className="max-w-2xl mx-auto space-y-8">
+          {/* Zawartość po prawej - na mobilnych poniżej */}
+          <div className="w-full md:w-3/4 p-3 md:p-6">
+            <div className="max-w-2xl mx-auto space-y-6">
               <div className="border border-green-900 rounded-md p-6 bg-black bg-opacity-90 backdrop-blur-sm">
                 {renderCategoryOptions()}
                 {renderNavigationButtons()}
