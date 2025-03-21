@@ -29,7 +29,7 @@ export function loadAreas(): Area[] {
     
     return areasData as Area[]
   } catch (error) {
-    console.error('Błąd podczas wczytywania obszarów:', error)
+    // Błąd podczas wczytywania obszarów
     return []
   }
 }
@@ -62,7 +62,7 @@ export function loadSegments(): Segment[] {
     
     return allSegments
   } catch (error) {
-    console.error('Błąd podczas wczytywania segmentów:', error)
+    // Błąd podczas wczytywania segmentów
     return []
   }
 }
@@ -98,11 +98,11 @@ export function loadSegmentsByArea(areaId: string): Segment[] {
       case 'narzedzia-kreatywne':
         return narzedziaKreatywneSegments as Segment[]
       default:
-        console.warn(`Nieznany obszar: ${areaId}. Zwracam pustą tablicę.`)
+        // Nieznany obszar
         return []
     }
   } catch (error) {
-    console.error(`Błąd podczas wczytywania segmentów dla obszaru ${areaId}:`, error)
+    // Błąd podczas wczytywania segmentów dla obszaru
     return []
   }
 }
@@ -111,7 +111,7 @@ export function loadSegmentsByArea(areaId: string): Segment[] {
 // Ta funkcja będzie zaimplementowana w przyszłości, gdy będziemy mieli
 // możliwość zapisywania danych do plików JSON po stronie klienta
 export function saveAreas(areas: Area[]): boolean {
-  console.log('Zapisywanie obszarów:', areas)
+  // Zapisywanie obszarów
   // Tutaj będzie implementacja zapisywania do pliku
   return true
 }
@@ -120,7 +120,7 @@ export function saveAreas(areas: Area[]): boolean {
 // Ta funkcja będzie zaimplementowana w przyszłości, gdy będziemy mieli
 // możliwość zapisywania danych do plików JSON po stronie klienta
 export function saveSegments(segments: Segment[]): boolean {
-  console.log('Zapisywanie segmentów:', segments)
+  // Zapisywanie segmentów
   // Tutaj będzie implementacja zapisywania do pliku
   return true
 }

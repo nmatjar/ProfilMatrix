@@ -4,7 +4,7 @@
     "name": "Typ Osobowości",
     "iconName": "User",
     "emoji": "👤",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "introvert",
@@ -44,7 +44,7 @@
     "name": "Zarządzanie Stresem",
     "iconName": "Activity",
     "emoji": "📊",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "proactive",
@@ -84,7 +84,7 @@
     "name": "Adaptacyjność",
     "iconName": "RefreshCw",
     "emoji": "🔄",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "high",
@@ -132,7 +132,7 @@
     "name": "Kreatywność",
     "iconName": "Lightbulb",
     "emoji": "💡",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "innovative",
@@ -180,7 +180,7 @@
     "name": "Podejście do Ryzyka",
     "iconName": "TrendingUp",
     "emoji": "📈",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "risk-averse",
@@ -220,7 +220,7 @@
     "name": "Styl Uczenia Się",
     "iconName": "BookOpen",
     "emoji": "📖",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "visual",
@@ -268,7 +268,7 @@
     "name": "Motywatory",
     "iconName": "Star",
     "emoji": "⭐",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "achievement",
@@ -316,7 +316,7 @@
     "name": "Inteligencja Emocjonalna",
     "iconName": "Heart",
     "emoji": "❤️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "self-awareness",
@@ -364,7 +364,7 @@
     "name": "Rozwiązywanie Konfliktów",
     "iconName": "Shuffle",
     "emoji": "🔄",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "collaborative",

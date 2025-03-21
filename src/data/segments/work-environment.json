@@ -4,7 +4,7 @@
     "name": "Wielkość Zespołu",
     "iconName": "Users",
     "emoji": "👥",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "solo",
@@ -52,7 +52,7 @@
     "name": "Różnorodność Zespołu",
     "iconName": "Globe",
     "emoji": "🌍",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "homogeneous",
@@ -100,7 +100,7 @@
     "name": "Lokalizacja Pracy",
     "iconName": "Map",
     "emoji": "🗺️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "office",
@@ -148,7 +148,7 @@
     "name": "Styl Komunikacji",
     "iconName": "MessageCircle",
     "emoji": "💬",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "formal",
@@ -196,7 +196,7 @@
     "name": "Częstotliwość Komunikacji",
     "iconName": "Calendar",
     "emoji": "📊",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "minimal",
@@ -244,7 +244,7 @@
     "name": "Kanał Komunikacji",
     "iconName": "Phone",
     "emoji": "📱",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "text",

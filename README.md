@@ -465,6 +465,26 @@ describe('AreaView', () => {
 })
 ```
 
+## ☕ Wsparcie Projektu
+
+<p align="center">
+  <a href="https://buycoffee.to/mat" target="_blank">
+    <img src="https://img.shields.io/badge/Wesprzyj%20rozwój-buycoffee.to%2Fmat-orange?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Wsparcie Projektu"/>
+  </a>
+</p>
+
+ProfileCoder jest projektem open-source, rozwijany z pasją przez społeczność. Twoje wsparcie pomaga nam:
+
+- 🚀 Rozwijać nowe funkcjonalności
+- 🛠️ Utrzymywać infrastrukturę
+- 📚 Tworzyć dokumentację
+- 🐛 Naprawiać błędy
+- 🌐 Budować społeczność wokół projektu
+
+Jeśli korzystasz z ProfileCoder i chcesz wesprzeć jego dalszy rozwój, rozważ [kupienie kawy dla twórcy](https://buycoffee.to/mat). Każde wsparcie, nawet najmniejsze, ma ogromne znaczenie i motywuje do dalszego rozwijania narzędzia, które pomaga kodować DNA zawodowe.
+
+*"Kod DNA wypełniony jest kawą, pasją i wsparciem społeczności."*
+
 ### System Generowania Kodu DNA
 
 #### 1. Struktura Kodu DNA

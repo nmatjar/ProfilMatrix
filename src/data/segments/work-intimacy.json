@@ -4,7 +4,7 @@
     "name": "Relacje w Pracy",
     "iconName": "Heart",
     "emoji": "💕",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "no-relationships",
@@ -44,7 +44,7 @@
     "name": "Granice w Pracy",
     "iconName": "Shield",
     "emoji": "🛡️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "strict-boundaries",
@@ -84,7 +84,7 @@
     "name": "Flirt w Pracy",
     "iconName": "Sparkles",
     "emoji": "✨",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "no-flirting",
@@ -124,7 +124,7 @@
     "name": "Atrakcyjność w Pracy",
     "iconName": "Flame",
     "emoji": "🔥",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "professional-only",

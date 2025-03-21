@@ -108,7 +108,7 @@ export function groupSegmentsByArea(
     result[area.id] = []
   })
   
-  console.log(`Grouping ${activeSegments.length} active segments`)
+  // Grupowanie aktywnych segmentów
   let skippedSegments = 0
   
   // Grupuj aktywne segmenty według obszarów
@@ -116,7 +116,7 @@ export function groupSegmentsByArea(
     const segmentData = segments.find(s => s.id === segment.segmentId)
     
     if (!segmentData) {
-      console.log(`No segment data found for segment: ${segment.segmentId}`)
+      // Brak danych dla segmentu
       skippedSegments++
       return
     }
@@ -130,7 +130,7 @@ export function groupSegmentsByArea(
     })
   })
   
-  console.log(`Skipped ${skippedSegments} segments due to missing data`)
+  // Pominięto segmenty z powodu brakujących danych
   
   return result
 }
@@ -155,7 +155,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
       // Znajdź obszar na podstawie emoji
       const area = areas.find(a => a.emoji === areaEmoji)
       if (!area) {
-        console.log(`Nie znaleziono obszaru dla emoji: ${areaEmoji}`)
+        // Brak obszaru dla emoji
         return
       }
       
@@ -177,7 +177,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
             segmentEmoji
           })
         } else {
-          console.log(`Nie znaleziono segmentu dla emoji: ${segmentEmoji}`)
+          // Brak segmentu dla emoji
           // Dodaj kod nawet jeśli nie ma segmentu, aby zachować wszystkie informacje
           parsedCodes.push({
             code: '???',
@@ -198,7 +198,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
         })
       }
     } catch (error) {
-      console.error('Błąd podczas parsowania segmentu:', segment, error)
+      // Błąd podczas parsowania segmentu
     }
   })
   

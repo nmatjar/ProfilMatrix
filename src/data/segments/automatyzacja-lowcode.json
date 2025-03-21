@@ -5,7 +5,7 @@
     "iconName": "PuzzlePiece",
     "emoji": "🧩",
     "code": "NC",
-    "type": "select",
+    "type": "multiselect",
     "description": "Korzystanie z platform no-code",
     "options": [
       {
@@ -61,7 +61,7 @@
     "iconName": "Bot",
     "emoji": "🤖",
     "code": "AP",
-    "type": "select",
+    "type": "multiselect",
     "description": "Narzędzia do automatyzacji procesów",
     "options": [
       {
@@ -117,7 +117,7 @@
     "iconName": "LineChart",
     "emoji": "📊",
     "code": "DD",
-    "type": "select",
+    "type": "multiselect",
     "description": "Tworzenie i korzystanie z dashboardów danych",
     "options": [
       {
@@ -173,7 +173,7 @@
     "iconName": "Clock",
     "emoji": "⏱️",
     "code": "NP",
-    "type": "select",
+    "type": "multiselect",
     "description": "Narzędzia zwiększające produktywność",
     "options": [
       {
@@ -229,7 +229,7 @@
     "iconName": "ClipboardCheck",
     "emoji": "📝",
     "code": "FA",
-    "type": "select",
+    "type": "multiselect",
     "description": "Tworzenie i zarządzanie formularzami",
     "options": [
       {

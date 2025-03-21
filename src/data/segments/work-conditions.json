@@ -67,7 +67,7 @@
     "name": "Czas Trwania Umowy",
     "iconName": "Calendar",
     "emoji": "📅",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "trial",
@@ -115,7 +115,7 @@
     "name": "Benefity",
     "iconName": "Gift",
     "emoji": "🎁",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "healthcare",
@@ -179,7 +179,7 @@
     "name": "Urlop",
     "iconName": "Sun",
     "emoji": "🏖️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "standard",

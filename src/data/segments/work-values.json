@@ -4,7 +4,7 @@
     "name": "Cel Pracy",
     "iconName": "Target",
     "emoji": "🎯",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "financial",
@@ -52,7 +52,7 @@
     "name": "Etyka Pracy",
     "iconName": "Shield",
     "emoji": "🛡️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "integrity",
@@ -100,7 +100,7 @@
     "name": "Kultura Pracy",
     "iconName": "Users",
     "emoji": "👥",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "collaborative",
@@ -148,7 +148,7 @@
     "name": "Równowaga Praca-Życie",
     "iconName": "LifeBuoy",
     "emoji": "⚖️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "work-focused",
@@ -196,7 +196,7 @@
     "name": "Odpowiedzialność Społeczna",
     "iconName": "Globe",
     "emoji": "🌍",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "environmental",

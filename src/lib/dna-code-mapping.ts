@@ -63,7 +63,7 @@ export function groupSegmentsByArea(
     result[category.id] = []
   })
   
-  console.log(`Grouping ${activeSegments.length} active segments`)
+  // Grupowanie aktywnych segmentów
   let skippedSegments = 0
   
   // Grupuj aktywne segmenty według obszarów
@@ -71,7 +71,7 @@ export function groupSegmentsByArea(
     const segmentData = allSegments.find(s => s.id === segment.segmentId)
     
     if (!segmentData) {
-      console.log(`No segment data found for segment: ${segment.segmentId}`)
+      // Brak danych dla segmentu
       skippedSegments++
       return
     }
@@ -85,7 +85,7 @@ export function groupSegmentsByArea(
     })
   })
   
-  console.log(`Skipped ${skippedSegments} segments due to missing data`)
+  // Pominięto segmenty z powodu brakujących danych
   
   return result
 }
@@ -105,36 +105,36 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
   
   // Podziel kod DNA na segmenty (obszary)
   const dnaSegments = dnaCode.split('▪')
-  console.log('Podzielone segmenty DNA:', dnaSegments)
+  // Podzielone segmenty DNA
   
   dnaSegments.forEach(segmentStr => {
     try {
-      console.log('Przetwarzanie segmentu:', segmentStr)
+      // Przetwarzanie segmentu
       // Wyodrębnij emoji obszaru i zawartość w nawiasach klamrowych
       const areaMatch = segmentStr.match(/^\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)\{(.+)\}\s*$/u)
       if (!areaMatch) {
-        console.log('Nie znaleziono dopasowania dla obszaru:', segmentStr)
+        // Brak dopasowania dla obszaru
         return
       }
       
       const [, areaEmoji, codesStr] = areaMatch
-      console.log('Znaleziono emoji obszaru:', areaEmoji, 'i kody:', codesStr)
+      // Znaleziono emoji obszaru i kody
       
       // Znajdź obszar na podstawie emoji
       const area = areas.find(a => a.emoji === areaEmoji.trim())
       if (!area) {
-        console.log(`Nie znaleziono obszaru dla emoji: ${areaEmoji}`)
+        // Brak obszaru dla emoji
         return
       }
       
       // Podziel kody na segmenty oddzielone średnikiem
       const segmentCodes = codesStr.split(';')
-      console.log('Podzielone kody segmentów:', segmentCodes)
+      // Podzielone kody segmentów
       
       const parsedCodes = []
       
       for (const segmentCodeStr of segmentCodes) {
-        console.log('Przetwarzanie kodu segmentu:', segmentCodeStr)
+        // Przetwarzanie kodu segmentu
         // Wyodrębnij emoji segmentu, kod segmentu i wartość
         // Wzorce: 
         // 1. emoji + kod + wartość (np. 🏟️WPF)
@@ -152,7 +152,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
         if (emojiValueMatch) {
           // Format emoji=emoji lub emoji=emoji+emoji+emoji
           [, segmentEmoji, segmentValue] = emojiValueMatch
-          console.log('Znaleziono format emoji=emoji:', segmentEmoji, '=', segmentValue)
+          // Znaleziono format emoji=emoji
 
           // Sprawdzamy czy mamy multiselect z +
           const isMultiSelect = segmentValue.includes('+')
@@ -166,17 +166,17 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
             
             // Jeśli to multiselect, dodajemy każdą wartość jako osobny element
             if (isMultiSelect) {
-              console.log(`Wykryto multiselect w emoji=emoji: ${segmentValue}`);
+              // Wykryto multiselect w emoji=emoji
               const valuesList = segmentValue.split('+');
               
               for (const singleValue of valuesList) {
-                console.log(`Przetwarzanie wartości multiselect: ${singleValue}`);
+                // Przetwarzanie wartości multiselect
                 
                 // Pobieramy zdekodowane wartości dla każdego pojedynczego emoji
                 let singleDecodedValue = singleValue;
                 let singleDescription = "Brak opisu";
                 
-                console.log(`Dekodowanie wartości multiselect: ${singleValue} dla segmentu ${segmentCode}`);
+                // Dekodowanie wartości multiselect
                 
                 // Pobieramy pełną definicję segmentu z wszystkimi opcjami
                 const fullSegment = allSegments.find(s => s.code === segmentCode);
@@ -185,7 +185,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
                   // Jeśli segment ma reverseValueMap, użyjemy go do dekodowania
                   if (fullSegment.reverseValueMap && fullSegment.reverseValueMap[singleValue]) {
                     singleDecodedValue = fullSegment.reverseValueMap[singleValue];
-                    console.log(`Zdekodowano ${singleValue} na ${singleDecodedValue}`);
+                    // Zdekodowano wartość
                     
                     // Próbujemy znaleźć opis w opcjach segmentu
                     const option = fullSegment.options?.find(o => 
@@ -193,11 +193,11 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
                       
                     if (option) {
                       singleDescription = option.description || "Brak opisu";
-                      console.log(`Znaleziono opis: ${singleDescription}`);
+                      // Znaleziono opis
                     }
                   }
                 } else {
-                  console.log(`Nie znaleziono pełnej definicji segmentu: ${segmentCode}`);
+                  // Brak pełnej definicji segmentu
                 }
                 
                 parsedCodes.push({
@@ -222,7 +222,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
           if (textValueMatch) {
             // Format emoji=kod
             [, segmentEmoji, segmentValue] = textValueMatch
-            console.log('Znaleziono format emoji=kod:', segmentEmoji, '=', segmentValue)
+            // Znaleziono format emoji=kod
             
             // Szukamy segmentu na podstawie emoji
             const segmentsForArea = allSegments.filter(s => s.areaId === area.id)
@@ -231,22 +231,22 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
             if (matchingSegment) {
               segmentCode = matchingSegment.code
             } else {
-              console.log(`Nie znaleziono segmentu dla emoji: ${segmentEmoji} w obszarze: ${area.id}`)
+              // Brak segmentu dla emoji w obszarze
               continue
             }
           } else {
             // Próbujemy stary format: emoji + kod + wartość
             const oldFormatMatch = segmentCodeStr.match(/\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)([A-Z]+)([A-Z0-9]+)\s*/u)
             if (!oldFormatMatch) {
-              console.log('Nie znaleziono dopasowania dla kodu segmentu:', segmentCodeStr)
+              // Brak dopasowania dla kodu segmentu
               continue
             }
             [, segmentEmoji, segmentCode, segmentValue] = oldFormatMatch
-            console.log('Znaleziono stary format:', segmentEmoji, segmentCode, segmentValue)
+            // Znaleziono stary format
           }
         }
         
-        console.log('Kod segmentu:', segmentCode, 'i wartość:', segmentValue)
+        // Informacja o kodzie segmentu i jego wartości
         
         // Znajdź segment na podstawie kodu
         const foundSegment = allSegments.find(s => s.code === segmentCode)
@@ -257,7 +257,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
           
           // Sprawdź, czy to multiselect z wartościami rozdzielonymi znakiem +
           if (segmentValue.includes('+')) {
-            console.log(`Wykryto wartość multiselect z separatorem +: ${segmentValue}`);
+            // Wykryto wartość multiselect z separatorem +
             
             // Podziel wartość na poszczególne elementy
             const values = segmentValue.split('+');
@@ -390,42 +390,42 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
 
 // Funkcja do pobierania kodu DNA dla wartości segmentu
 export function getDNACodeForValue(segmentId: string, value: string | number | string[]): string {
-  console.log(`[DEBUG getDNACodeForValue] POCZĄTEK segmentId: ${segmentId}, value:`, value, 'type:', typeof value, 'isArray:', Array.isArray(value));
+  // Generacja kodu DNA dla segmentu
   
   const segment = allSegments.find(s => s.id === segmentId)
   
   if (!segment) {
-    console.log(`[DEBUG getDNACodeForValue] Nie znaleziono segmentu o ID ${segmentId}`);
+    // Nie znaleziono segmentu
     return value.toString()
   }
   
-  console.log(`[DEBUG getDNACodeForValue] Znaleziono segment: ${segment.name}, typ: ${segment.type}`);
+  // Znaleziono segment
   
   // Jeśli wartość jest pusta lub undefined, zwróć pusty string
   if (value === undefined || value === null || value === '') {
-    console.log(`[DEBUG getDNACodeForValue] Wartość jest pusta dla segmentu ${segmentId}`);
+    // Wartość jest pusta
     return ''
   }
   
   // Obsługa tablicy wartości dla multiselect
   if (Array.isArray(value)) {
-    console.log(`[DEBUG getDNACodeForValue] TABLICA dla segmentu ${segmentId} - ilość elementów: ${value.length}`);
+    // Przetwarzanie tablicy wartości
     
     if (value.length === 0) {
-      console.log(`[DEBUG getDNACodeForValue] Pusta tablica dla segmentu ${segmentId}, zwracam pusty string`);
+      // Pusta tablica wartości
       return ''
     }
     
-    console.log(`[DEBUG getDNACodeForValue] segmentId: ${segmentId}, value:`, JSON.stringify(value));
+    // Wartość segmentu
     
     // Mapuj każdą wartość i łącz je znakiem +
     if (segment.valueMap) {
-      console.log(`[DEBUG getDNACodeForValue] Znaleziono valueMap dla segmentu ${segmentId}:`, JSON.stringify(segment.valueMap));
+      // Wykorzystanie valueMap dla segmentu
       
       // Dodajemy sortowanie, żeby wyniki były zawsze w tej samej kolejności
       const mappedValues = value.map(v => {
         const mappedValue = segment.valueMap?.[v] || v;
-        console.log(`[DEBUG getDNACodeForValue] Mapowanie wartości '${v}' -> '${mappedValue}'`);
+        // Mapowanie wartości na emoji
         return {
           original: v,
           mapped: mappedValue
@@ -434,7 +434,7 @@ export function getDNACodeForValue(segmentId: string, value: string | number | s
       
       // Sprawdzamy, czy wszystkie wartości zostały poprawnie zmapowane
       if (mappedValues.some(item => item.mapped === item.original && segment.valueMap && Object.keys(segment.valueMap).includes(item.original))) {
-        console.log(`[DEBUG getDNACodeForValue] UWAGA: Niektóre wartości nie zostały poprawnie zmapowane!`);
+        // Niektóre wartości nie zostały zmapowane
       }
       
       // Sortujemy według oryginalnej wartości, aby zachować stabilną kolejność
@@ -442,18 +442,18 @@ export function getDNACodeForValue(segmentId: string, value: string | number | s
       
       // Łączymy posortowane wartości znakiem +
       const result = mappedValues.map(item => {
-        console.log(`[DEBUG getDNACodeForValue] Finalne mapowanie '${item.original}' na '${item.mapped}'`);
+        // Finalne mapowanie wartości
         return item.mapped;
       }).join('+');
       
-      console.log(`[DEBUG getDNACodeForValue] Wynik dla multiselect:`, result);
+      // Finalny wynik dla multiselect
       return result;
     }
     
     // Jeśli nie ma valueMap, po prostu sortujemy i łączymy wartości
-    console.log(`[DEBUG getDNACodeForValue] Brak valueMap dla segmentu ${segmentId}, łączę wartości bezpośrednio`);
+    // Brak valueMap, użycie bezpośrednich wartości
     const result = [...value].sort().join('+');
-    console.log(`[DEBUG getDNACodeForValue] Wynik sortowania i łączenia:`, result);
+    // Wynik łączenia wartości;
     return result
   }
   

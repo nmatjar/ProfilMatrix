@@ -5,7 +5,7 @@
     "iconName": "Monitor",
     "emoji": "🖥️",
     "code": "UC",
-    "type": "select",
+    "type": "multiselect",
     "description": "Urządzenia używane na co dzień",
     "options": [
       {
@@ -69,7 +69,7 @@
     "iconName": "FileText",
     "emoji": "📝",
     "code": "AB",
-    "type": "select",
+    "type": "multiselect",
     "description": "Umiejętność korzystania z podstawowych aplikacji biurowych",
     "options": [
       {
@@ -125,7 +125,7 @@
     "iconName": "MessageSquare",
     "emoji": "💬",
     "code": "KM",
-    "type": "select",
+    "type": "multiselect",
     "description": "Używane aplikacje do komunikacji",
     "options": [
       {
@@ -189,7 +189,7 @@
     "iconName": "Globe",
     "emoji": "🌐",
     "code": "IN",
-    "type": "select",
+    "type": "multiselect",
     "description": "Korzystanie z internetu",
     "options": [
       {
@@ -245,7 +245,7 @@
     "iconName": "Cloud",
     "emoji": "☁️",
     "code": "DC",
-    "type": "select",
+    "type": "multiselect",
     "description": "Korzystanie z usług chmurowych",
     "options": [
       {
@@ -301,7 +301,7 @@
     "iconName": "Users",
     "emoji": "👥",
     "code": "MS",
-    "type": "select",
+    "type": "multiselect",
     "description": "Aktywność w mediach społecznościowych",
     "options": [
       {

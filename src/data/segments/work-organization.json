@@ -4,7 +4,7 @@
     "name": "Typ Organizacji",
     "iconName": "Building",
     "emoji": "🏢",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "corporation",
@@ -55,7 +55,7 @@
     "name": "Format Pracy",
     "iconName": "Home",
     "emoji": "🏠💻",
-    "type": "select",
+    "type": "multiselect",
     "options": [
       {
         "id": "onsite",
@@ -125,7 +125,7 @@
     "name": "Kultura Organizacyjna",
     "iconName": "Users",
     "emoji": "👔",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "formal",
@@ -169,7 +169,7 @@
     "name": "Przestrzeń Biurowa",
     "iconName": "Home",
     "emoji": "🏟️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "open-space",
