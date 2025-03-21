@@ -4,7 +4,7 @@
     "name": "Autonomia Pracy",
     "iconName": "Shield",
     "emoji": "🛡️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "highly-directed",
@@ -52,7 +52,7 @@
     "name": "Podejmowanie Decyzji",
     "iconName": "GitMerge",
     "emoji": "🔀",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "analytical",
@@ -100,7 +100,7 @@
     "name": "Tempo Pracy",
     "iconName": "Clock",
     "emoji": "⏱️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "methodical",
@@ -148,7 +148,7 @@
     "name": "Styl Skupienia",
     "iconName": "Target",
     "emoji": "🎯",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "single-task",
@@ -196,7 +196,7 @@
     "name": "Rozwiązywanie Problemów",
     "iconName": "Tool",
     "emoji": "🔧",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "analytical",

@@ -5,7 +5,7 @@
     "iconName": "Image",
     "emoji": "🖌️",
     "code": "EG",
-    "type": "select",
+    "type": "multiselect",
     "description": "Umiejętność edycji grafiki i tworzenia projektów",
     "options": [
       {
@@ -61,7 +61,7 @@
     "iconName": "Video",
     "emoji": "🎬",
     "code": "EW",
-    "type": "select",
+    "type": "multiselect",
     "description": "Edycja i montaż materiałów wideo",
     "options": [
       {
@@ -117,7 +117,7 @@
     "iconName": "Music",
     "emoji": "🎵",
     "code": "NA",
-    "type": "select",
+    "type": "multiselect",
     "description": "Edycja i produkcja dźwięku",
     "options": [
       {
@@ -173,7 +173,7 @@
     "iconName": "Camera",
     "emoji": "📷",
     "code": "SK",
-    "type": "select",
+    "type": "multiselect",
     "description": "Umiejętność obsługi sprzętu dla twórców",
     "options": [
       {
@@ -237,7 +237,7 @@
     "iconName": "Layout",
     "emoji": "🎨",
     "code": "PR",
-    "type": "select",
+    "type": "multiselect",
     "description": "Umiejętności projektowania i designu",
     "options": [
       {
@@ -293,7 +293,7 @@
     "iconName": "Upload",
     "emoji": "📤",
     "code": "PT",
-    "type": "select",
+    "type": "multiselect",
     "description": "Umiejętność publikowania treści w różnych formatach",
     "options": [
       {

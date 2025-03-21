@@ -57,6 +57,16 @@ export function decodeDNAValue(code: string, value: string): string {
   const segment = segments.find(s => s.code === code)
   if (!segment) return value // Jeśli nie znaleziono segmentu, zwróć oryginalną wartość
   
+  // Sprawdź czy wartość zawiera + (wielokrotny wybór)
+  if (value.includes('+') && segment.type === 'multiselect' && segment.reverseValueMap) {
+    // Podziel wartości po znaku + i zdekoduj każdą z nich
+    const values = value.split('+')
+    const decodedValues = values.map(val => {
+      return segment.reverseValueMap && segment.reverseValueMap[val] ? segment.reverseValueMap[val] : val
+    })
+    return decodedValues.join(', ')
+  }
+  
   // Jeśli istnieje reverseValueMap, użyj go do dekodowania
   if (segment.reverseValueMap && segment.reverseValueMap[value]) {
     return segment.reverseValueMap[value]
@@ -89,9 +99,9 @@ export function decodeDNAValue(code: string, value: string): string {
 
 // Funkcja do grupowania segmentów według obszarów
 export function groupSegmentsByArea(
-  activeSegments: { id: string, segmentId: string, value: string, visible: boolean, order?: number }[]
-): Record<string, { segmentId: string, value: string | number }[]> {
-  const result: Record<string, { segmentId: string, value: string | number }[]> = {}
+  activeSegments: { id: string, segmentId: string, value: string | string[] | number, visible: boolean, order?: number }[]
+): Record<string, { segmentId: string, value: string | string[] | number }[]> {
+  const result: Record<string, { segmentId: string, value: string | string[] | number }[]> = {}
   
   // Inicjalizuj kategorie
   areas.forEach(area => {
@@ -196,13 +206,24 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
 }
 
 // Funkcja do pobierania kodu DNA dla wartości segmentu
-export function getDNACodeForValue(segmentId: string, value: string | number): string {
+export function getDNACodeForValue(segmentId: string, value: string | number | string[]): string {
   const segment = segments.find(s => s.id === segmentId)
   
   if (!segment) return value.toString()
   
   // Jeśli wartość jest pusta lub undefined, zwróć pusty string
   if (value === undefined || value === null || value === '') return ''
+  
+  // Obsługa tablicy wartości dla multiselect
+  if (Array.isArray(value)) {
+    if (value.length === 0) return ''
+    
+    // Mapuj każdą wartość i łącz je znakiem +
+    if (segment.valueMap) {
+      return value.map(v => segment.valueMap[v] || v).join('+')
+    }
+    return value.join('+')
+  }
   
   // Jeśli istnieje mapowanie wartości, użyj go
   if (segment.valueMap && typeof value === 'string' && segment.valueMap[value]) {
@@ -239,9 +260,9 @@ export function getDNACodeForValue(segmentId: string, value: string | number): s
 }
 
 // Funkcja do generowania pełnego kodu DNA
-export function generateDNACode(activeSegments: { id: string, segmentId: string, value: string, visible: boolean, order?: number }[]): string {
+export function generateDNACode(activeSegments: { id: string, segmentId: string, value: string | string[], visible: boolean, order?: number }[]): string {
   // Grupuj segmenty według obszarów
-  const groupedSegments = groupSegmentsByArea(activeSegments)
+  const groupedSegments = groupSegmentsByArea(activeSegments as any)
   
   // Tablica na segmenty kodu DNA
   const dnaSegments = []

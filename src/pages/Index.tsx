@@ -26,7 +26,7 @@ import { segments as allSegments } from "@/lib/segment-data";
 interface ActiveSegment {
   id: string;
   segmentId: string;
-  value: string;
+  value: string | string[];
   visible: boolean;
   order?: number;
 }
@@ -70,9 +70,10 @@ const Index = () => {
   const [profile, setProfile] = useState("");
   const [parsedDnaCode, setParsedDnaCode] = useState<ParsedDNASegment[]>([]);
   const [activeSegments, setActiveSegments] = useState<ActiveSegment[]>([]);
-  const [selections, setSelections] = useState<Record<string, string | number>>({});
+  const [selections, setSelections] = useState<Record<string, string | number | string[]>>({});
   const [activeCategory, setActiveCategory] = useState(0);
   const [selectedArea, setSelectedArea] = useState(mainAreas[0].id);
+  // Usunięto globalny przełącznik multiselect
 
   const handleAreaChange = useCallback((areaId: string) => {
     setSelectedArea(areaId);
@@ -84,8 +85,43 @@ const Index = () => {
     onAreaChange: handleAreaChange,
   });
 
-  // Dodajmy console.log, aby zobaczyć wszystkie segmenty
+  // Wczytaj zapisany stan aplikacji przy inicjalizacji
   useEffect(() => {
+    // Wczytaj aktywne segmenty z localStorage
+    const savedSegments = localStorage.getItem('activeSegments');
+    if (savedSegments) {
+      try {
+        const parsedSegments = JSON.parse(savedSegments) as ActiveSegment[];
+        console.log('[DEBUG] Wczytano aktywne segmenty z localStorage:', parsedSegments);
+        setActiveSegments(parsedSegments);
+        
+        // Odtwórz stan selections na podstawie aktywnych segmentów
+        const newSelections: Record<string, string | number | string[]> = {};
+        parsedSegments.forEach(segment => {
+          newSelections[segment.segmentId] = segment.value;
+        });
+        
+        console.log('[DEBUG] Odtworzono stan selections:', newSelections);
+        setSelections(newSelections);
+        
+        // Generuj kod DNA na podstawie wczytanych segmentów
+        const segmentsByArea = groupSegmentsByArea(parsedSegments);
+        ensureAllSegmentsMapped();
+        const areaCodes = Object.entries(segmentsByArea)
+          .map(([areaId, segments]) => {
+            return formatDNACode(areaId, segments) || null;
+          })
+          .filter(Boolean);
+          
+        const fullDNACode = areaCodes.join(' ▪ ');
+        console.log('[DEBUG] Wygenerowany kod DNA z zapisanych segmentów:', fullDNACode);
+        setProfile(fullDNACode);
+      } catch (error) {
+        console.error('Błąd podczas parsowania zapisanych segmentów:', error);
+      }
+    }
+    
+    // Sprawdzanie poprawności segmentów
     console.log('All segments from segment-service for work-organization:', getSegmentsByArea('work-organization'));
     console.log('All areas from segment-service:', getAllAreas());
     
@@ -110,35 +146,146 @@ const Index = () => {
   const handleOptionSelect = (categoryId: string, value: string) => {
     console.log(`Selected ${categoryId}: ${value}`);
     
-    // Update selections
-    setSelections(prev => {
-      const updated = { ...prev, [categoryId]: value };
-      console.log('Updated selections:', updated);
-      return updated;
-    });
+    // Używam naszej funkcji pomocniczej do sprawdzenia, czy segment powinien obsługiwać multiselect
+    const isMultiselect = isSegmentMultiselect(categoryId);
+    console.log(`Multiselect status dla ${categoryId}: ${isMultiselect}`);
     
-    // Update active segments
-    const updatedSegments = [...activeSegments];
-    const segmentIndex = updatedSegments.findIndex(s => s.segmentId === categoryId);
+    // Sprawdźmy, czy segment jest w ogóle zdefiniowany
+    const segmentDef = allSegments.find(s => s.id === categoryId);
+    if (!segmentDef) {
+      console.error(`Segment o ID ${categoryId} nie został znaleziony!`);
+      return;
+    }
+    console.log(`Znaleziony segment: ${segmentDef.name}, typ: ${segmentDef.type}`);
+    
+    // Update selections
+    let selectionUpdate;
+    
+    if (isMultiselect) {
+      // Dla multiselect, pobierz aktualną wartość z selections
+      const prevValue = selections[categoryId];
+      let currentValue = [];
+      
+      // Jeśli poprzednia wartość to tablica, użyj jej
+      if (Array.isArray(prevValue)) {
+        currentValue = [...prevValue];
+      } 
+      // Jeśli był to pojedynczy string, przekształć na tablicę
+      else if (prevValue) {
+        currentValue = [prevValue.toString()];
+      }
+      
+      // Jeśli wartość już istnieje, usuń ją; w przeciwnym razie dodaj
+      if (currentValue.includes(value)) {
+        selectionUpdate = { [categoryId]: currentValue.filter(v => v !== value) };
+      } else {
+        selectionUpdate = { [categoryId]: [...currentValue, value] };
+      }
+    } else {
+      // Dla segmentów typu select, ustaw bezpośrednio nową wartość
+      selectionUpdate = { [categoryId]: value };
+    }
+    
+    // Aktualizuj stan selections
+    const newSelections = { ...selections, ...selectionUpdate };
+    console.log('Updated selections:', newSelections);
+    setSelections(newSelections);
+    
+    // Update active segments - używając tej samej logiki co dla selections, aby zapewnić spójność
+    let updatedValue;
+    
+    // Użyj wartości z selectionUpdate, aby zachować spójność
+    if (isMultiselect) {
+      updatedValue = selectionUpdate[categoryId]; // To już jest tablica
+    } else {
+      updatedValue = value; // Dla select używamy bezpośrednio wartości
+    }
+    
+    // Znajdź indeks segmentu w activeSegments, jeśli istnieje
+    const segmentIndex = activeSegments.findIndex(s => s.segmentId === categoryId);
+    let updatedSegments = [...activeSegments];
     
     if (segmentIndex >= 0) {
+      // Segment już istnieje - aktualizuj jego wartość
       updatedSegments[segmentIndex] = {
         ...updatedSegments[segmentIndex],
-        value: value
+        value: updatedValue
       };
+      
+      console.log(
+        `[DEBUG] Aktualizuję istniejący segment ${categoryId}:`, 
+        'nowa wartość:', updatedValue, 
+        'typ wartości:', typeof updatedValue, 
+        'isArray:', Array.isArray(updatedValue)
+      );
     } else {
+      // Segment nie istnieje - dodaj go
       updatedSegments.push({
         id: `active-${categoryId}`,
         segmentId: categoryId,
-        value: value,
+        value: updatedValue,
         visible: true,
         order: updatedSegments.length
       });
+      
+      console.log(
+        `[DEBUG] Dodaję nowy segment ${categoryId}:`, 
+        'wartość:', updatedValue, 
+        'typ wartości:', typeof updatedValue, 
+        'isArray:', Array.isArray(updatedValue)
+      );
     }
     
     console.log('Updated active segments:', updatedSegments);
-    setActiveSegments(updatedSegments);
+    
+    // Zapisz stan w localStorage
     localStorage.setItem('activeSegments', JSON.stringify(updatedSegments));
+    
+    // Ustaw aktywne segmenty 
+    setActiveSegments(updatedSegments);
+    
+    // Generuj profil bezpośrednio, ale z użyciem zaktualizowanych danych
+    // Nie czekamy na aktualizację stanu, tylko bezpośrednio używamy naszych świeżych danych
+    const segmentsByArea = groupSegmentsByArea(updatedSegments as { 
+      id: string, 
+      segmentId: string, 
+      value: string | string[], 
+      visible: boolean, 
+      order?: number 
+    }[]);
+    
+    // Debug - sprawdź segmentsByArea po grupowaniu
+    console.log('[DEBUG manualGenerate] segmentsByArea:', JSON.stringify(segmentsByArea, null, 2));
+    
+    // Upewnij się, że wszystkie segmenty mają mapowania DNA
+    ensureAllSegmentsMapped();
+    
+    // Generuj kod dla każdego obszaru
+    const areaCodes = Object.entries(segmentsByArea)
+      .map(([areaId, segments]) => {
+        console.log(`[DEBUG manualGenerate] Generowanie kodu dla obszaru ${areaId} z ${segments.length} segmentami`);
+        const formattedCode = formatDNACode(areaId, segments);
+        console.log(`[DEBUG manualGenerate] Wygenerowany kod dla obszaru ${areaId}:`, formattedCode);
+        return formattedCode ? formattedCode : null;
+      })
+      .filter(Boolean); // Usuń puste kody
+    
+    console.log('[DEBUG manualGenerate] Wszystkie kody obszarów:', areaCodes);
+    
+    // Połącz kody obszarów w jeden string z separatorem ▪
+    const fullDNACode = areaCodes.join(' ▪ ');
+    
+    console.log('[DEBUG manualGenerate] Pełny kod DNA:', fullDNACode);
+    
+    // Ustaw kod DNA natychmiast
+    setProfile(fullDNACode);
+  };
+
+    // Funkcja pomocnicza do sprawdzania czy segment powinien być w trybie multiselect
+  const isSegmentMultiselect = (segmentId: string): boolean => {
+    // Sprawdza, czy segment jest zdefiniowany jako multiselect
+    const segment = allSegments.find(s => s.id === segmentId);
+    return segment?.type === 'multiselect';
   };
 
   const renderAreaMenu = () => {
@@ -234,31 +381,136 @@ const Index = () => {
               </div>
             ) : category.options ? (
               <div className="mb-4">
-                <ToggleGroup type="single" variant="outline" className="flex flex-wrap gap-2">
-                  {category.options.map((option) => (
-                    <Tooltip key={option.id}>
-                      <TooltipTrigger asChild>
-                        <ToggleGroupItem
-                          value={option.value}
-                          className="flex items-center justify-start p-2 border border-green-700"
-                          onClick={() => handleOptionSelect(category.id, option.value)}
-                          data-state={selections[category.id] === option.value ? "on" : "off"}
+                {isSegmentMultiselect(category.id) ? (
+                  // Dla multiselect, używamy ToggleGroup typu multiple
+                  <div>
+                    <div className="text-sm text-green-500 mb-2">Możesz wybrać wiele opcji</div>
+                    <ToggleGroup 
+                      type="multiple" 
+                      variant="outline" 
+                      className="flex flex-wrap gap-2"
+                      value={Array.isArray(selections[category.id]) ? 
+                              selections[category.id] as string[] : 
+                              []}
+                      onValueChange={(values) => {
+                        console.log(`[DEBUG ToggleGroup] Zmiana wartości dla ${category.id}:`, values, 
+                          'valueType:', typeof values, 'isArray:', Array.isArray(values));
+                        
+                        // Zabezpieczenie przed pustymi wartościami
+                        const safeValues = Array.isArray(values) ? values : [];
+                        
+                        console.log(`[DEBUG ToggleGroup] Bezpieczne wartości dla ${category.id}:`, safeValues);
+                        
+                        // Aktualizacja wyborów na podstawie nowych wartości
+                        const newSelections = { ...selections, [category.id]: safeValues };
+                        setSelections(newSelections);
+                        
+                        // Ręczna aktualizacja activeSegments
+                        const segmentIndex = activeSegments.findIndex(s => s.segmentId === category.id);
+                        let updatedSegments = [...activeSegments];
+                        
+                        if (segmentIndex >= 0) {
+                          updatedSegments[segmentIndex] = {
+                            ...updatedSegments[segmentIndex],
+                            value: safeValues
+                          };
+                        } else {
+                          // Jeśli segment nie istnieje, dodaj go
+                          updatedSegments.push({
+                            id: `active-${category.id}`,
+                            segmentId: category.id,
+                            value: safeValues,
+                            visible: true,
+                            order: updatedSegments.length
+                          });
+                        }
+                        
+                        console.log(`[DEBUG ToggleGroup] Aktualizacja activeSegments dla ${category.id}:`, 
+                          'nowa wartość:', safeValues, 'isArray:', Array.isArray(safeValues));
+                        
+                        // Zapisz aktualizacje
+                        setActiveSegments(updatedSegments);
+                        localStorage.setItem('activeSegments', JSON.stringify(updatedSegments));
+                        
+                        // Generuj kod DNA ręcznie z użyciem aktualnych danych
+                        const segmentsByArea = groupSegmentsByArea(updatedSegments);
+                        ensureAllSegmentsMapped();
+                        
+                        // Generuj kod dla każdego obszaru
+                        const areaCodes = Object.entries(segmentsByArea)
+                          .map(([areaId, segments]) => {
+                            console.log(`[DEBUG ToggleGroup] Generowanie kodu dla obszaru ${areaId}`);
+                            const formattedCode = formatDNACode(areaId, segments);
+                            return formattedCode ? formattedCode : null;
+                          })
+                          .filter(Boolean);
+                        
+                        // Połącz kody obszarów w jeden string
+                        const fullDNACode = areaCodes.join(' ▪ ');
+                        
+                        // Ustaw kod DNA
+                        setProfile(fullDNACode);
+                      }}
+                    >
+                      {category.options.map((option) => {
+                        // Sprawdź, czy opcja jest wybrana
+                        const isSelected = Array.isArray(selections[category.id]) 
+                          ? (selections[category.id] as string[])?.includes(option.value)
+                          : false;
+                        
+                        return (
+                          <Tooltip key={option.id}>
+                            <TooltipTrigger asChild>
+                              <ToggleGroupItem
+                                value={option.value}
+                                className="flex items-center justify-start p-2 border border-green-700"
+                                data-state={isSelected ? "on" : "off"}
+                              >
+                                <span>{formatOptionLabel(option.label)}</span>
+                                {extractDescription(option.label) && (
+                                  <Info className="h-4 w-4 ml-1 text-green-400 opacity-70" />
+                                )}
+                              </ToggleGroupItem>
+                            </TooltipTrigger>
+                            <TooltipContent 
+                              className="bg-black border border-green-700 text-green-400 p-2"
+                              side="top"
+                            >
+                              {option.description || extractDescription(option.label)}
+                            </TooltipContent>
+                          </Tooltip>
+                        );
+                      })}
+                    </ToggleGroup>
+                  </div>
+                ) : (
+                  // Dla zwykłych segmentów, zachowujemy obecne zachowanie (single)
+                  <ToggleGroup type="single" variant="outline" className="flex flex-wrap gap-2">
+                    {category.options.map((option) => (
+                      <Tooltip key={option.id}>
+                        <TooltipTrigger asChild>
+                          <ToggleGroupItem
+                            value={option.value}
+                            className="flex items-center justify-start p-2 border border-green-700"
+                            onClick={() => handleOptionSelect(category.id, option.value)}
+                            data-state={selections[category.id] === option.value ? "on" : "off"}
+                          >
+                            <span>{formatOptionLabel(option.label)}</span>
+                            {extractDescription(option.label) && (
+                              <Info className="h-4 w-4 ml-1 text-green-400 opacity-70" />
+                            )}
+                          </ToggleGroupItem>
+                        </TooltipTrigger>
+                        <TooltipContent 
+                          className="bg-black border border-green-700 text-green-400 p-2"
+                          side="top"
                         >
-                          <span>{formatOptionLabel(option.label)}</span>
-                          {extractDescription(option.label) && (
-                            <Info className="h-4 w-4 ml-1 text-green-400 opacity-70" />
-                          )}
-                        </ToggleGroupItem>
-                      </TooltipTrigger>
-                      <TooltipContent 
-                        className="bg-black border border-green-700 text-green-400 p-2"
-                        side="top"
-                      >
-                        {option.description || extractDescription(option.label)}
-                      </TooltipContent>
-                    </Tooltip>
-                  ))}
-                </ToggleGroup>
+                          {option.description || extractDescription(option.label)}
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </ToggleGroup>
+                )}
               </div>
             ) : (
               <div className="mb-4">
@@ -425,22 +677,58 @@ const Index = () => {
 
   // Funkcja do generowania profilu na podstawie wybranych opcji
   const generateProfile = () => {
+    console.log('[DEBUG generateProfile] START funkcji generateProfile');
+    
     // Upewnij się, że wszystkie segmenty mają mapowania DNA
     ensureAllSegmentsMapped();
     
-    // Pogrupuj segmenty według obszarów
-    const segmentsByArea = groupSegmentsByArea(activeSegments);
+    // Debug - sprawdź stan activeSegments przed grupowaniem
+    console.log('[DEBUG generateProfile] activeSegments:', JSON.stringify(activeSegments, null, 2));
+    
+    // Sprawdź każdy segment przed grupowaniem
+    activeSegments.forEach(segment => {
+      console.log(
+        `[DEBUG generateProfile] Segment ${segment.segmentId}:`,
+        'wartość:', segment.value,
+        'typ wartości:', typeof segment.value,
+        'isArray:', Array.isArray(segment.value)
+      );
+      
+      // Sprawdź, czy segment ma prawidłową wartość
+      if (segment.value === undefined || segment.value === null || 
+          (Array.isArray(segment.value) && segment.value.length === 0)) {
+        console.warn(`[DEBUG generateProfile] Segment ${segment.segmentId} ma pustą wartość!`);
+      }
+    });
+    
+    // Pogrupuj segmenty według obszarów - typowanie zgodne z nowym interfejsem
+    const segmentsByArea = groupSegmentsByArea(activeSegments as { 
+      id: string, 
+      segmentId: string, 
+      value: string | string[], 
+      visible: boolean, 
+      order?: number 
+    }[]);
+    
+    // Debug - sprawdź segmentsByArea po grupowaniu
+    console.log('[DEBUG generateProfile] segmentsByArea:', JSON.stringify(segmentsByArea, null, 2));
     
     // Generuj kod dla każdego obszaru
     const areaCodes = Object.entries(segmentsByArea)
       .map(([areaId, segments]) => {
+        console.log(`[DEBUG generateProfile] Generowanie kodu dla obszaru ${areaId} z ${segments.length} segmentami`);
         const formattedCode = formatDNACode(areaId, segments);
+        console.log(`[DEBUG generateProfile] Wygenerowany kod dla obszaru ${areaId}:`, formattedCode);
         return formattedCode ? formattedCode : null;
       })
       .filter(Boolean); // Usuń puste kody
     
+    console.log('[DEBUG generateProfile] Wszystkie kody obszarów:', areaCodes);
+    
     // Połącz kody obszarów w jeden string z separatorem ▪
     const fullDNACode = areaCodes.join(' ▪ ');
+    
+    console.log('[DEBUG generateProfile] Pełny kod DNA:', fullDNACode);
     
     // Ustaw kod DNA
     setProfile(fullDNACode);
@@ -613,10 +901,28 @@ const Index = () => {
     // Map current selections to active segments
     const updatedSegments = activeSegments.map(segment => {
       if (segment.segmentId in selections) {
-        return {
-          ...segment,
-          value: selections[segment.segmentId].toString()
-        };
+        // Sprawdzamy typ segmentu, aby określić, jak mamy obsłużyć wartość
+        const segmentDef = allSegments.find(s => s.id === segment.segmentId);
+        const isMultiselect = segmentDef?.type === 'multiselect';
+        
+        if (isMultiselect) {
+          // Dla multiselect, nie konwertujemy wartości, tylko przekazujemy tablicę
+          const value = selections[segment.segmentId];
+          console.log(`[DEBUG] Segment ${segment.segmentId} - value:`, value, 'isArray:', Array.isArray(value));
+          const result = {
+            ...segment,
+            value: Array.isArray(value) ? value : (value ? [value.toString()] : [])
+          };
+          console.log(`[DEBUG] Zaktualizowany segment:`, result);
+          return result;
+        } else {
+          // Dla innych typów segmetów, zachowujemy dotychczasową logikę
+          const value = selections[segment.segmentId];
+          return {
+            ...segment,
+            value: (typeof value === 'number' || typeof value === 'string') ? value.toString() : value[0].toString()
+          };
+        }
       }
       return segment;
     });
@@ -626,13 +932,25 @@ const Index = () => {
   }, [selections]);
 
   // Funkcja formatująca kod DNA
-  const formatDNACode = (areaId: string, segments: { segmentId: string, value: string | number }[]) => {
+  const formatDNACode = (areaId: string, segments: { segmentId: string, value: string | number | string[] }[]) => {
+    console.log(`[DEBUG formatDNACode] START dla obszaru ${areaId} z ${segments.length} segmentami`);
+    
     // Upewnij się, że wszystkie segmenty mają ustawione segmentEmoji
     const updatedMappings = ensureSegmentEmojis()
     
     const areaMapping = dnaCategories.find(c => c.id === areaId)
     const areaEmoji = areaMapping?.emoji || '🔹'
-    console.log('Formatowanie kodu DNA dla obszaru:', areaId, 'z emoji:', areaEmoji)
+    console.log('[DEBUG formatDNACode] Obszar:', areaId, 'emoji:', areaEmoji);
+    
+    // Sprawdź, czy wszystkie segmenty mają wartości
+    segments.forEach(segment => {
+      console.log(
+        `[DEBUG formatDNACode] Segment ${segment.segmentId}:`,
+        'wartość:', segment.value,
+        'typ wartości:', typeof segment.value,
+        'isArray:', Array.isArray(segment.value)
+      );
+    });
     
     const segmentPairs = segments.map(segment => {
       // Znajdź mapowanie dla segmentu z zaktualizowanych mappingów
@@ -649,7 +967,12 @@ const Index = () => {
         return ''
       }
       
+      // Debug logowanie dla multiselect
+      console.log('formatDNACode - segment value:', segment.segmentId, segment.value, 'type:', typeof segment.value, 'isArray:', Array.isArray(segment.value));
+      
       const valueCode = getDNACodeForValue(segment.segmentId, segment.value)
+      console.log('Wygenerowany valueCode:', valueCode);
+      
       if (!valueCode) {
         console.log('Nie znaleziono kodu wartości dla segmentu:', segment.segmentId, 'z wartością:', segment.value)
         return ''
@@ -673,8 +996,14 @@ const Index = () => {
     // Upewnij się, że wszystkie segmenty mają mapowania DNA
     ensureAllSegmentsMapped();
     
-    // Pogrupuj segmenty według obszarów
-    const segmentsByArea = groupSegmentsByArea(activeSegments);
+    // Pogrupuj segmenty według obszarów - typowanie zgodne z nowym interfejsem
+    const segmentsByArea = groupSegmentsByArea(activeSegments as { 
+      id: string, 
+      segmentId: string, 
+      value: string | string[], 
+      visible: boolean, 
+      order?: number 
+    }[]);
     console.log('Segmenty pogrupowane według obszarów:', JSON.stringify(segmentsByArea, null, 2));
     
     // Generuj kod dla każdego obszaru

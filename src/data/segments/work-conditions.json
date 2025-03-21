@@ -19,7 +19,7 @@
     "name": "Forma Zatrudnienia",
     "iconName": "FileText",
     "emoji": "📄",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "employment",

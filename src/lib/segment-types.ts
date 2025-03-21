@@ -21,7 +21,7 @@ export interface Segment {
   name: string
   iconName: string
   emoji?: string
-  type: 'toggle' | 'slider' | 'input' | 'select'
+  type: 'toggle' | 'slider' | 'input' | 'select' | 'multiselect'
   options?: SegmentOption[]
   subOptions?: SubOption[] // Subopcje dla segmentu
   min?: number
@@ -48,7 +48,7 @@ export interface Area {
 
 export interface ActiveSegment {
   id: string
-  value: string | number
+  value: string | number | string[] // Dodana obsługa tablicy stringów dla multiselect
   segmentId: string
   visible: boolean
   order?: number

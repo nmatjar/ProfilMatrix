@@ -4,7 +4,7 @@
     "name": "Ścieżka Kariery",
     "iconName": "TrendingUp",
     "emoji": "📈",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "specialist",
@@ -52,7 +52,7 @@
     "name": "Możliwości Nauki",
     "iconName": "Book",
     "emoji": "📚",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "formal",
@@ -100,7 +100,7 @@
     "name": "Rozwój Umiejętności",
     "iconName": "Tool",
     "emoji": "🛠️",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "technical",
@@ -148,7 +148,7 @@
     "name": "Częstotliwość Feedbacku",
     "iconName": "MessageCircle",
     "emoji": "💬",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "continuous",
@@ -196,7 +196,7 @@
     "name": "Możliwości Awansu",
     "iconName": "Award",
     "emoji": "🏆",
-    "type": "toggle",
+    "type": "multiselect",
     "options": [
       {
         "id": "regular",

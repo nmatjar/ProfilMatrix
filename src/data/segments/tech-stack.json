@@ -4,7 +4,7 @@
     "name": "Języki Programowania",
     "iconName": "Code",
     "emoji": "💻",
-    "type": "multi-select",
+    "type": "multiselect",
     "options": [
       { "id": "javascript", "label": "🟨 JavaScript", "value": "JavaScript" },
       { "id": "typescript", "label": "🔷 TypeScript", "value": "TypeScript" },
@@ -56,7 +56,7 @@
     "name": "Frameworki Frontend",
     "iconName": "Layout",
     "emoji": "🖥️",
-    "type": "multi-select",
+    "type": "multiselect",
     "options": [
       { "id": "react", "label": "⚛️ React", "value": "React" },
       { "id": "angular", "label": "🅰️ Angular", "value": "Angular" },
@@ -90,7 +90,7 @@
     "name": "Frameworki Backend",
     "iconName": "Server",
     "emoji": "🖧",
-    "type": "multi-select",
+    "type": "multiselect",
     "options": [
       { "id": "nodejs", "label": "🟢 Node.js", "value": "Node.js" },
       { "id": "express", "label": "⚡ Express", "value": "Express" },
@@ -130,7 +130,7 @@
     "name": "Bazy Danych",
     "iconName": "Database",
     "emoji": "🗄️",
-    "type": "multi-select",
+    "type": "multiselect",
     "options": [
       { "id": "mysql", "label": "🐬 MySQL", "value": "MySQL" },
       { "id": "postgresql", "label": "🐘 PostgreSQL", "value": "PostgreSQL" },
@@ -167,7 +167,7 @@
     "name": "Narzędzia Developerskie",
     "iconName": "Tool",
     "emoji": "🔧",
-    "type": "multi-select",
+    "type": "multiselect",
     "options": [
       { "id": "git", "label": "🔄 Git", "value": "Git" },
       { "id": "docker", "label": "🐳 Docker", "value": "Docker" },
