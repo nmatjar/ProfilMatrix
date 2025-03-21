@@ -114,25 +114,103 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
       for (const segmentCodeStr of segmentCodes) {
         console.log('Przetwarzanie kodu segmentu:', segmentCodeStr)
         // Wyodrębnij emoji segmentu, kod segmentu i wartość
-        // Nowy wzorzec: emoji + kod + wartość
-        const codeMatch = segmentCodeStr.match(/\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)([A-Z]+)([A-Z0-9]+)\s*/u)
-        if (!codeMatch) {
-          console.log('Nie znaleziono dopasowania dla kodu segmentu:', segmentCodeStr)
-          continue
+        // Wzorce: 
+        // 1. emoji + kod + wartość (np. 🏟️WPF)
+        // 2. emoji = wartość (np. 🏟️=F)
+        let segmentEmoji, segmentCode, segmentValue
+        
+        // Obsługujemy trzy formaty:
+        // 1. emoji=emoji (np. 🛡️=👨‍💼) - nowy format z emoji dla wartości
+        // 2. emoji=kod (np. 🏟️=F) - format z literowym kodem wartości
+        // 3. emojikodwartość (np. 🏟️WPF) - stary format
+        
+        // Próbujemy najpierw format emoji=emoji
+        const emojiValueMatch = segmentCodeStr.match(/\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)\s*=\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F\u200D]+)\s*/u)
+        
+        if (emojiValueMatch) {
+          // Format emoji=emoji
+          [, segmentEmoji, segmentValue] = emojiValueMatch
+          console.log('Znaleziono format emoji=emoji:', segmentEmoji, '=', segmentValue)
+          
+          // Szukamy segmentu na podstawie emoji
+          const segmentsForArea = allSegments.filter(s => s.areaId === area.id)
+          const matchingSegment = segmentsForArea.find(s => s.emoji === segmentEmoji)
+          
+          if (matchingSegment) {
+            segmentCode = matchingSegment.code
+          } else {
+            console.log(`Nie znaleziono segmentu dla emoji: ${segmentEmoji} w obszarze: ${area.id}`)
+            continue
+          }
+        } else {
+          // Próbujemy format emoji=kod
+          const textValueMatch = segmentCodeStr.match(/\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)\s*=\s*([A-Z0-9]+)\s*/u)
+          
+          if (textValueMatch) {
+            // Format emoji=kod
+            [, segmentEmoji, segmentValue] = textValueMatch
+            console.log('Znaleziono format emoji=kod:', segmentEmoji, '=', segmentValue)
+            
+            // Szukamy segmentu na podstawie emoji
+            const segmentsForArea = allSegments.filter(s => s.areaId === area.id)
+            const matchingSegment = segmentsForArea.find(s => s.emoji === segmentEmoji)
+            
+            if (matchingSegment) {
+              segmentCode = matchingSegment.code
+            } else {
+              console.log(`Nie znaleziono segmentu dla emoji: ${segmentEmoji} w obszarze: ${area.id}`)
+              continue
+            }
+          } else {
+            // Próbujemy stary format: emoji + kod + wartość
+            const oldFormatMatch = segmentCodeStr.match(/\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)([A-Z]+)([A-Z0-9]+)\s*/u)
+            if (!oldFormatMatch) {
+              console.log('Nie znaleziono dopasowania dla kodu segmentu:', segmentCodeStr)
+              continue
+            }
+            [, segmentEmoji, segmentCode, segmentValue] = oldFormatMatch
+            console.log('Znaleziono stary format:', segmentEmoji, segmentCode, segmentValue)
+          }
         }
         
-        const [, segmentEmoji, segmentCode, valueCode] = codeMatch
-        console.log('Znaleziono emoji segmentu:', segmentEmoji, 'kod segmentu:', segmentCode, 'i wartość:', valueCode)
+        console.log('Kod segmentu:', segmentCode, 'i wartość:', segmentValue)
         
         // Znajdź segment na podstawie kodu
         const foundSegment = allSegments.find(s => s.code === segmentCode)
         
         if (foundSegment) {
+          let decodedValue = segmentValue
+          let description = "Brak opisu"
+          
+          // Sprawdź czy wartość jest emoji i czy segment ma reverseValueMap
+          if (foundSegment.reverseValueMap && /[\p{Emoji}\p{Emoji_Presentation}\uFE0F\u200D]/u.test(segmentValue)) {
+            // Jeśli mamy reverseValueMap, to odkoduj emoji wartości na tekst
+            if (foundSegment.reverseValueMap[segmentValue]) {
+              decodedValue = foundSegment.reverseValueMap[segmentValue]
+              
+              // Znajdź opis w opcjach
+              const option = foundSegment.options?.find(o => o.value === decodedValue || o.id === decodedValue.toLowerCase())
+              if (option) {
+                description = option.description || "Brak opisu"
+              }
+            }
+          } else {
+            // Dla wartości tekstowych, szukaj bezpośrednio w options
+            const option = foundSegment.options?.find(o => 
+              o.id === segmentValue.toLowerCase() || 
+              o.value === segmentValue)
+            
+            if (option) {
+              decodedValue = option.value || option.label || segmentValue
+              description = option.description || "Brak opisu"
+            }
+          }
+          
           parsedCodes.push({
             code: segmentCode,
-            value: valueCode,
-            decodedValue: decodeDNAValue(segmentCode, valueCode),
-            description: foundSegment.description || '',
+            value: segmentValue,
+            decodedValue: decodedValue,
+            description: description,
             segmentEmoji: segmentEmoji
           })
         } else {

@@ -2,7 +2,7 @@
 
 ## Wprowadzenie
 
-Ten dokument opisuje mechanizm generowania kodu profilu w aplikacji ProfileCoder. Kod profilu to zwięzła reprezentacja wyborów użytkownika dotyczących różnych aspektów jego preferencji zawodowych, stylu pracy i innych cech.
+Ten dokument opisuje mechanizm generowania kodu profilu (kodu DNA) w aplikacji ProfileCoder. Kod DNA to zwięzła reprezentacja wyborów użytkownika dotyczących różnych aspektów jego preferencji zawodowych, stylu pracy, wartości i innych cech osobistych.
 
 ## Przechowywanie Danych
 
@@ -12,23 +12,23 @@ Ten dokument opisuje mechanizm generowania kodu profilu w aplikacji ProfileCoder
    - Obiekt przechowujący wybory użytkownika
    - Klucze: ID segmentów
    - Wartości: wybrane opcje (string, number)
-   - Przykład: `{ 'workplace': '🏢', 'teamSize': 'S', 'workHours': 40 }`
+   - Przykład: `{ 'work-purpose': '💰', 'work-ethics': '✅', 'workHours': 40 }`
 
 2. **activeSegments**
    - Tablica obiektów reprezentujących aktywne segmenty
    - Każdy obiekt zawiera:
-     - `id`: unikalny identyfikator (np. `active-workplace`)
-     - `segmentId`: ID segmentu (np. `workplace`)
-     - `value`: wybrana wartość (string)
+     - `id`: unikalny identyfikator (np. `active-work-purpose`)
+     - `segmentId`: ID segmentu (np. `work-purpose`)
+     - `value`: wybrana wartość (string lub number)
      - `visible`: czy segment jest widoczny (boolean)
      - `order`: kolejność wyświetlania (number)
    - Przykład:
      ```javascript
      [
        {
-         id: 'active-workplace',
-         segmentId: 'workplace',
-         value: '🏢',
+         id: 'active-work-purpose',
+         segmentId: 'work-purpose',
+         value: '💰',
          visible: true,
          order: 0
        }
@@ -47,207 +47,343 @@ Ten dokument opisuje mechanizm generowania kodu profilu w aplikacji ProfileCoder
 
 ### Obsługa Zmian Użytkownika
 
-1. **Suwaki (handleSliderChange)**
+Aplikacja obsługuje różne typy segmentów, w tym:
+
+1. **Segmenty typu toggle (przełączniki)**
    ```javascript
-   const handleSliderChange = (value: number[], categoryId: string) => {
+   const handleToggleChange = (value: string, segmentId: string) => {
+     // Znajdź segment w danych
+     const segment = findSegmentById(segmentId);
+     // Znajdź odpowiadający emoji dla wybranej wartości
+     const mappedValue = segment.valueMap[value];
+     
+     // Aktualizacja stanu selections
      setSelections(prev => ({
        ...prev,
-       [categoryId]: value[0]
+       [segmentId]: mappedValue
      }));
      
      // Aktualizacja activeSegments
+     updateActiveSegment(segmentId, mappedValue);
+   };
+   ```
+
+2. **Segmenty typu slider (suwaki)**
+   ```javascript
+   const handleSliderChange = (value: number[], segmentId: string) => {
+     const numericValue = value[0];
+     
+     // Aktualizacja stanu selections
+     setSelections(prev => ({
+       ...prev,
+       [segmentId]: numericValue
+     }));
+     
+     // Aktualizacja activeSegments
+     updateActiveSegment(segmentId, numericValue.toString());
+   };
+   ```
+
+3. **Pomocnicza funkcja aktualizująca activeSegments**
+   ```javascript
+   const updateActiveSegment = (segmentId: string, value: string) => {
      const updatedSegments = [...activeSegments];
-     const segmentIndex = updatedSegments.findIndex(s => s.segmentId === categoryId);
+     const segmentIndex = updatedSegments.findIndex(s => s.segmentId === segmentId);
      
      if (segmentIndex >= 0) {
+       // Aktualizacja istniejącego segmentu
        updatedSegments[segmentIndex] = {
          ...updatedSegments[segmentIndex],
-         value: value[0].toString()
+         value
        };
      } else {
+       // Dodanie nowego segmentu
        updatedSegments.push({
-         id: `active-${categoryId}`,
-         segmentId: categoryId,
-         value: value[0].toString(),
+         id: `active-${segmentId}`,
+         segmentId,
+         value,
          visible: true,
          order: updatedSegments.length
        });
      }
      
+     // Aktualizacja stanu i localStorage
      setActiveSegments(updatedSegments);
      localStorage.setItem('activeSegments', JSON.stringify(updatedSegments));
-   };
-   ```
-
-2. **Pola tekstowe (handleInputChange)**
-   ```javascript
-   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
-     const value = e.target.value;
-     
-     setSelections(prev => ({
-       ...prev,
-       [categoryId]: value
-     }));
-     
-     // Aktualizacja activeSegments
-     // (podobny kod jak w handleSliderChange)
    };
    ```
 
 ### Synchronizacja Stanów
 
 - Efekt `useEffect` obserwuje zmiany w `selections` i aktualizuje `activeSegments`
-- Konwersja wartości liczbowych na string przy zapisie do `activeSegments`
-- Zapisanie zaktualizowanych segmentów do localStorage
+- Dla wartości liczbowych, wartości są konwertowane na string przy zapisie do `activeSegments`
+- Dla segmentów typu toggle, używane są wartości z mapy `valueMap` segmentu
 
-## Generowanie Kodu Profilu
+## Generowanie Kodu DNA
 
-### Grupy Kategorii
+### Struktura Kodu DNA
 
-Predefiniowane grupy kategorii w tablicy `groupDefinitions`:
+Kod DNA jest generowany według następującego formatu:
 
-```javascript
-const groupDefinitions = [
-  // ŚRODOWISKO PRACY
-  { 
-    name: 'environment', 
-    categories: ['workplace', 'officeType', 'culture'], 
-    emoji: '🏢', 
-    format: '{workplace}{officeType}·{culture}',
-    description: 'Środowisko pracy'
-  },
-  
-  // ZESPÓŁ
-  { 
-    name: 'team', 
-    categories: ['teamSize', 'communicationStyle', 'availability'], 
-    emoji: '👥', 
-    format: '{teamSize}·{communicationStyle}·{availability}',
-    description: 'Zespół i współpraca'
-  },
-  
-  // ... pozostałe grupy
-];
+```
+[emoji_obszaru]{[emoji_segmentu][kod_segmentu][wartość];[emoji_segmentu][kod_segmentu][wartość]...}▪[emoji_obszaru]{...}
 ```
 
-Każda grupa zawiera:
-- `name`: nazwa grupy
-- `categories`: tablica ID segmentów należących do grupy
-- `emoji`: emoji reprezentujące grupę
-- `format`: szablon formatowania kodu dla grupy
-- `description`: opis grupy
+Gdzie:
+- `[emoji_obszaru]` - emoji reprezentujące obszar (np. ❤️ dla "Wartości Zawodowe")
+- `[emoji_segmentu]` - emoji reprezentujące segment (np. 🎯 dla "Cel Pracy")
+- `[kod_segmentu]` - 2-literowy kod segmentu (np. "WP" dla "Work Purpose")
+- `[wartość]` - wartość wybrana przez użytkownika (emoji lub tekst)
 
-### Proces Generowania Kodu
+### Proces Generowania Kodu DNA
 
-1. **Identyfikacja aktywnych segmentów**
+1. **Grupowanie segmentów według obszarów**
    ```javascript
-   const activeSegmentIds = new Set(
-     activeSegments.filter(s => s.visible).map(s => s.segmentId)
-   );
-   ```
-
-2. **Sprawdzenie aktywnych kategorii w grupach**
-   ```javascript
-   const hasActiveCategories = (categories) => {
-     return categories.some(category => 
-       activeSegmentIds.has(category) && 
-       selections[category] && 
-       selections[category].toString().trim() !== ''
-     );
-   };
-   ```
-
-3. **Formatowanie kodu dla każdej grupy**
-   ```javascript
-   const formatGroupCode = (group) => {
-     let format = group.format;
+   // Funkcja z dna-code-mapping.ts
+   function groupSegmentsByArea(activeSegments, allSegments, areas) {
+     const result = {};
      
-     // Zastąp placeholdery wartościami
-     group.categories.forEach(category => {
-       const value = selections[category] || "";
-       format = format.replace(`{${category}}`, value);
+     // Dla każdego aktywnego segmentu
+     activeSegments.forEach(activeSeg => {
+       // Znajdź pełną definicję segmentu
+       const segment = allSegments.find(s => s.id === activeSeg.segmentId);
+       if (!segment) return;
+       
+       // Pobierz obszar do którego należy segment
+       const areaId = segment.areaId;
+       
+       // Dodaj segment do odpowiedniego obszaru
+       if (!result[areaId]) {
+         result[areaId] = [];
+       }
+       
+       result[areaId].push({
+         segmentId: activeSeg.segmentId,
+         value: activeSeg.value
+       });
      });
      
-     // Usuń puste wartości i popraw separatory
-     format = format
-       .replace(/·+/g, '·')         // Zamień wielokrotne kropki na jedną
-       .replace(/^·|·$/g, '')       // Usuń kropki na początku i końcu
-       .replace(/·+$/g, '')         // Usuń kropki na końcu
-       .replace(/^·+/, '')          // Usuń kropki na początku
-       .replace(/·+/g, '·');        // Jeszcze raz upewnij się, że nie ma podwójnych kropek
-     
-     return `${group.emoji} ${format}`;
-   };
-   ```
-
-4. **Generowanie kodu dla każdej grupy**
-   ```javascript
-   groupDefinitions.forEach(group => {
-     if (hasActiveCategories(group.categories)) {
-       const groupCode = formatGroupCode(group);
-       if (groupCode.trim() !== group.emoji) { // Dodaj tylko jeśli nie jest to sam emoji
-         codeSegments.push(groupCode);
-       }
-     }
-   });
-   ```
-
-5. **Obsługa kategorii spoza zdefiniowanych grup**
-   ```javascript
-   const definedCategories = new Set(
-     groupDefinitions.flatMap(group => group.categories)
-   );
-   
-   const otherActiveCategories = Array.from(activeSegmentIds)
-     .filter(category => 
-       !definedCategories.has(category) && 
-       selections[category] && 
-       selections[category].toString().trim() !== ''
-     );
-   
-   if (otherActiveCategories.length > 0) {
-     const otherCode = otherActiveCategories
-       .map(category => `${category.charAt(0).toUpperCase()}${selections[category]}`)
-       .join('·');
-     
-     codeSegments.push(`⚙️ ${otherCode}`);
+     return result;
    }
    ```
 
-6. **Łączenie segmentów kodu**
+2. **Tworzenie kodu dla każdego segmentu**
    ```javascript
-   const code = codeSegments.filter(Boolean).join(" | ");
+   // Dla każdego segmentu w obszarze
+   function createSegmentCodes(segmentsInArea, allSegments) {
+     return segmentsInArea.map(activeSeg => {
+       // Znajdź pełną definicję segmentu
+       const segment = allSegments.find(s => s.id === activeSeg.segmentId);
+       if (!segment) return '';
+       
+       // Stwórz kod segmentu: [emoji][kod][wartość]
+       return `${segment.emoji}${segment.code}${activeSeg.value}`;
+     }).join(';'); // Połącz segmenty średnikami
+   }
    ```
 
-## Struktura Wynikowego Kodu Profilu
+3. **Generowanie pełnego kodu DNA**
+   ```javascript
+   function generateDNACode(activeSegments, allSegments, areas) {
+     // Grupowanie segmentów według obszarów
+     const groupedSegments = groupSegmentsByArea(activeSegments, allSegments, areas);
+     
+     // Generowanie kodu dla każdego obszaru
+     const areaCodes = Object.entries(groupedSegments).map(([areaId, segments]) => {
+       // Znajdź obszar
+       const area = areas.find(a => a.id === areaId);
+       if (!area) return '';
+       
+       // Generuj kod segmentów dla tego obszaru
+       const segmentCodes = createSegmentCodes(segments, allSegments);
+       
+       // Format: [emoji_obszaru]{segmenty}
+       return `${area.emoji}{${segmentCodes}}`;
+     });
+     
+     // Połącz obszary znakiem ▪
+     return areaCodes.join('▪');
+   }
+   ```
 
-Format: `[EMOJI_GRUPY] [WARTOŚCI_GRUPY] | [EMOJI_GRUPY] [WARTOŚCI_GRUPY] | ...`
+### Obsługa wartości w kodzie DNA
 
-Przykłady:
-- `🏢 C·C3 | 👥 S·D·4 | ⏱️ 40h·9-17·⚡`
-- `🏢 O·C3 | 👥 S·D·4 | ⏱️ 40h·9-17·⚡ | 🧠 🛠️·🔍·🧠 | 💬 🎯·A`
+Dla każdego segmentu, wartość użytkownika jest mapowana na odpowiadający jej kod:
 
-Gdzie:
-- Sekcje są oddzielone separatorem ` | `
-- Każda sekcja zaczyna się od emoji grupy
-- Wartości wewnątrz sekcji są oddzielone kropką (·)
-- Kategorie spoza zdefiniowanych grup są oznaczone emoji ⚙️
+```javascript
+// Przykład segmentu z work-values.json
+{
+  "id": "work-purpose",
+  "code": "WP",
+  "valueMap": {
+    "Finansowy": "💰",
+    "Kariera": "📈",
+    "Pasja": "❤️",
+    "Wpływ": "🌍"
+  }
+}
+```
 
-## Obszary do Potencjalnej Optymalizacji
+Gdy użytkownik wybiera "Finansowy" jako cel pracy, w kodzie DNA pojawi się: `🎯WP💰`
 
-1. **Aktualizacja grup kategorii**
-   - Dodanie nowych segmentów do odpowiednich grup
-   - Weryfikacja przypisań istniejących segmentów
+## Przykład Pełnego Procesu
 
-2. **Format kodu**
-   - Poprawa czytelności i intuicyjności
-   - Dodanie legendy lub wyjaśnień znaczenia symboli
+1. **Użytkownik wybiera wartości w obszarze "Wartości Zawodowe"**
+   - Cel Pracy: Finansowy (💰)
+   - Etyka Pracy: Uczciwość (✅)
 
-3. **Obsługa nowych typów segmentów**
-   - Zapewnienie poprawnej obsługi wszystkich typów segmentów
+2. **Aktualizacja stanu `selections`**
+   ```javascript
+   { 
+     'work-purpose': '💰', 
+     'work-ethics': '✅'
+   }
+   ```
 
-4. **Wydajność**
-   - Optymalizacja generowania kodu przy dużej liczbie segmentów
+3. **Aktualizacja stanu `activeSegments`**
+   ```javascript
+   [
+     {
+       id: 'active-work-purpose',
+       segmentId: 'work-purpose',
+       value: '💰',
+       visible: true,
+       order: 0
+     },
+     {
+       id: 'active-work-ethics',
+       segmentId: 'work-ethics',
+       value: '✅',
+       visible: true,
+       order: 1
+     }
+   ]
+   ```
 
-5. **Zarządzanie stanem**
-   - Eliminacja potencjalnych niespójności między `selections` i `activeSegments`
+4. **Grupowanie segmentów według obszarów**
+   ```javascript
+   {
+     'work-values': [
+       { segmentId: 'work-purpose', value: '💰' },
+       { segmentId: 'work-ethics', value: '✅' }
+     ]
+   }
+   ```
+
+5. **Tworzenie kodu dla obszaru "Wartości Zawodowe"**
+   - Segment "Cel Pracy": `🎯WP💰`
+   - Segment "Etyka Pracy": `🛡️WE✅`
+   - Kod obszaru: `❤️{🎯WP💰;🛡️WE✅}`
+
+6. **Finalny kod DNA**
+   ```
+   ❤️{🎯WP💰;🛡️WE✅}
+   ```
+   
+   Jeśli użytkownik wybierze również segmenty z innych obszarów, zostaną one dodane z odpowiednimi separatorami:
+   ```
+   ❤️{🎯WP💰;🛡️WE✅}▪📊{📊WS⚡;⏱️WH40}
+   ```
+
+## Dekodowanie Kodu DNA
+
+Dekodowanie (parsowanie) kodu DNA to proces odwrotny do generowania, umożliwiający wyświetlenie pełnych informacji na podstawie kompaktowego kodu.
+
+### Proces Dekodowania
+
+1. **Podział kodu na obszary**
+   ```javascript
+   // Funkcja z dna-code-mapping.ts
+   function parseDNACode(dnaCode, allSegments) {
+     // Podział kodu na obszary (po znaku ▪)
+     const dnaSegments = dnaCode.split('▪');
+     
+     // Tablica na wyniki parsowania
+     const result = [];
+     
+     // Dla każdego obszaru
+     dnaSegments.forEach(segment => {
+       // Wyodrębnij emoji obszaru i zawartość w {}
+       const areaMatch = segment.match(/(.+?)\{(.+?)\}/);
+       if (!areaMatch) return;
+       
+       const [_, areaEmoji, segmentsContent] = areaMatch;
+       
+       // Podziel segmenty w obszarze (po znaku ;)
+       const segmentParts = segmentsContent.split(';');
+       
+       // Parsuj każdy segment
+       segmentParts.forEach(segmentPart => {
+         // Znajdź segment na podstawie emoji i kodu
+         const segmentMatch = segmentPart.match(/(.)(..)(.+)/);
+         if (!segmentMatch) return;
+         
+         const [__, segmentEmoji, segmentCode, value] = segmentMatch;
+         
+         // Znajdź definicję segmentu w danych
+         const segmentDef = allSegments.find(s => 
+           s.code === segmentCode && s.emoji === segmentEmoji
+         );
+         
+         if (segmentDef) {
+           // Dodaj zdekodowany segment do wyniku
+           result.push({
+             segmentId: segmentDef.id,
+             segmentName: segmentDef.name,
+             areaEmoji,
+             code: segmentCode,
+             value,
+             displayValue: segmentDef.reverseValueMap?.[value] || value
+           });
+         }
+       });
+     });
+     
+     return result;
+   }
+   ```
+
+2. **Dekodowanie wartości**
+   
+   Wartości w kodzie DNA są dekodowane przy użyciu `reverseValueMap` segmentu:
+   ```javascript
+   // Przykładowy reverseValueMap z segmentu
+   "reverseValueMap": {
+     "💰": "Finansowy",
+     "📈": "Kariera",
+     "❤️": "Pasja",
+     "🌍": "Wpływ"
+   }
+   ```
+
+3. **Wyświetlanie zdekodowanych danych**
+   
+   Zdekodowane segmenty są wyświetlane w postaci czytelnej listy z podziałem na obszary, pokazując pełne nazwy segmentów i ich wartości.
+
+## Wizualizacja Kodu DNA
+
+Kod DNA jest wizualizowany w interfejsie użytkownika jako kolorowy, sformatowany tekst:
+
+- Każdy obszar ma własny kolor tła
+- Emoji obszarów są wyraźnie wyświetlane
+- Segmenty są zaznaczone z użyciem emoji
+- Kody DNA można kopiować i udostępniać
+- Strona dekodowania DNA pozwala na wklejenie kodu i wyświetlenie pełnych informacji
+
+Implementacja wizualizacji znajduje się w:
+- `src/components/DNACodeDisplay.tsx` - wyświetlanie kodu DNA
+- `src/pages/DNADecoderPage.tsx` - strona do dekodowania kodu DNA
+
+## Podsumowanie
+
+Mechanizm generowania i dekodowania kodu DNA w ProfileCoder pozwala na kompaktową reprezentację preferencji użytkownika. Kod jest czytelny zarówno dla ludzi, jak i dla maszyn, co ułatwia jego udostępnianie i analizowanie. System jest elastyczny i można go łatwo rozszerzać o nowe obszary i segmenty.
+
+Główne zalety nowego formatu kodu DNA:
+
+1. **Przejrzysta struktura** - podział na obszary i segmenty ułatwia czytanie i interpretację kodu
+2. **Rozszerzalność** - dodawanie nowych obszarów i segmentów nie wymaga zmian w architekturze formatu
+3. **Wizualna czytelność** - zastosowanie emoji dla obszarów i segmentów ułatwia szybką interpretację
+4. **Spójność mapowania** - każdy segment ma jednoznaczne mapowanie w obu kierunkach (valueMap i reverseValueMap)
+5. **Efektywne dekodowanie** - format umożliwia łatwe parsowanie i odtworzenie pełnych informacji
+
+Dzięki temu rozwiązaniu, użytkownicy mogą łatwo udostępniać swoje profile, a aplikacja może efektywnie przechowywać i analizować preferencje użytkowników.

@@ -12,8 +12,8 @@ export function DNACodeDisplay({ rawCode }: DNACodeDisplayProps) {
     return (
       <div className="dna-code-display">
         <div className="raw-code">
-          <h3>Wygenerowany Profil DNA:</h3>
-          <pre>Brak kodu DNA</pre>
+          <h3 className="text-green-400">Wygenerowany Profil DNA:</h3>
+          <pre className="text-white">Brak kodu DNA</pre>
         </div>
       </div>
     )
@@ -37,7 +37,7 @@ export function DNACodeDisplay({ rawCode }: DNACodeDisplayProps) {
         if (textBefore.includes('{') || textBefore.includes('▪')) {
           isFirstEmojiInSegment = true
         }
-        parts.push(<span key={`text-${lastIndex}`}>{textBefore}</span>)
+        parts.push(<span key={`text-${lastIndex}`} className="text-white">{textBefore}</span>)
       }
       
       // Dodaj emoji z wyróżnieniem
@@ -50,7 +50,7 @@ export function DNACodeDisplay({ rawCode }: DNACodeDisplayProps) {
       // Jeśli to pierwsze emoji w segmencie i następny znak to nie { ani =, dodaj znak =
       const nextChar = rawCode[match.index + match[0].length]
       if (isFirstEmojiInSegment && nextChar !== '{' && nextChar !== '=') {
-        parts.push(<span key={`equals-${match.index}`}>=</span>)
+        parts.push(<span key={`equals-${match.index}`} className="text-white">=</span>)
       }
       
       isFirstEmojiInSegment = false
@@ -59,7 +59,7 @@ export function DNACodeDisplay({ rawCode }: DNACodeDisplayProps) {
     
     // Dodaj pozostały tekst
     if (lastIndex < rawCode.length) {
-      parts.push(<span key={`text-${lastIndex}`}>{rawCode.substring(lastIndex)}</span>)
+      parts.push(<span key={`text-${lastIndex}`} className="text-white">{rawCode.substring(lastIndex)}</span>)
     }
     
     return parts
@@ -85,8 +85,8 @@ export function DNACodeDisplay({ rawCode }: DNACodeDisplayProps) {
   return (
     <div className="dna-code-display">
       <div className="raw-code">
-        <h3>Wygenerowany Profil DNA:</h3>
-        <pre className="text-wrap leading-relaxed">
+        <h3 className="text-green-400">Wygenerowany Profil DNA:</h3>
+        <pre className="text-wrap leading-relaxed text-white">
           {formatMultilineCode(rawCode)}
         </pre>
         <input type="hidden" id="raw-dna-code" value={rawCode} />

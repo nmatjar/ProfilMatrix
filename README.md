@@ -18,11 +18,66 @@ Efektem jest unikalny kod - Twoje "DNA Zawodowe" - który w zwięzłej formie pr
 ## 🔍 Kluczowe Funkcje
 
 - **Interaktywny kreator profilu** - intuicyjny interfejs z kategoryzowanymi opcjami
-- **Generowanie kodu DNA Zawodowego** - np. `💼 O3·C3 | 👥 S·D·4 | ⏱️ 40h·9-17·⚡`
+- **Generowanie kodu DNA Zawodowego** - np. `❤️{🎯WP💰;🛡️WE✅}▪📊{📊WS⚡;⏱️WH40}`
 - **Zarządzanie segmentami** - możliwość dostosowania dostępnych kategorii i opcji
 - **Kopiowanie do schowka** - szybkie udostępnianie wygenerowanego kodu
 - **Responsywny design** - działa na urządzeniach mobilnych i desktopowych
 - **Estetyczny interfejs** - inspirowany terminalem, z nowoczesnym twistem
+
+## 🔮 Przykładowe Kody DNA
+
+Poniżej znajdują się przykłady kodów DNA dla różnych profili zawodowych:
+
+### 👨‍💻 Developer zorientowany na finanse z elastycznym czasem pracy
+
+```
+❤️{🎯WP💰;🛡️WE✅}▪📊{📊WS⚡;⏱️WH40}▪💼{🏢WLA;💯WC⭐}
+```
+
+**Dekodowanie:**
+- ❤️ Wartości Zawodowe:
+  - 🎯WP💰: Cel Pracy - Finansowy
+  - 🛡️WE✅: Etyka Pracy - Uczciwość
+- 📊 Ścieżka Zawodowa:
+  - 📊WS⚡: Styl Pracy - Intensywny
+  - ⏱️WH40: Godziny Pracy - 40h tygodniowo
+- 💼 Środowisko Pracy:
+  - 🏢WLA: Lokalizacja - Dowolna
+  - 💯WC⭐: Kultura - Zorientowana na Wyniki
+
+### 👩‍🎤 Manager kreatywny zorientowany na zespół
+
+```
+❤️{🎯WP🌍;🛡️WE🤝}▪👥{👥TS🙌;💬CS🙋}▪📊{📊WS💡;⏱️WH30}
+```
+
+**Dekodowanie:**
+- ❤️ Wartości Zawodowe:
+  - 🎯WP🌍: Cel Pracy - Wpływ Społeczny
+  - 🛡️WE🤝: Etyka Pracy - Współpraca
+- 👥 Zespół:
+  - 👥TS🙌: Rozmiar Zespołu - Mały
+  - 💬CS🙋: Styl Komunikacji - Bezpośredni
+- 📊 Ścieżka Zawodowa:
+  - 📊WS💡: Styl Pracy - Kreatywny
+  - ⏱️WH30: Godziny Pracy - 30h tygodniowo
+
+### 👩‍⚕️ Specjalista z branży medycznej zorientowany na strukturę
+
+```
+❤️{🎯WP❤️;🛡️WE📖}▪📊{📊WS📊;⏱️WH45}▪👥{👥TSM;💬CS📝}
+```
+
+**Dekodowanie:**
+- ❤️ Wartości Zawodowe:
+  - 🎯WP❤️: Cel Pracy - Pasja
+  - 🛡️WE📖: Etyka Pracy - Standardy
+- 📊 Ścieżka Zawodowa:
+  - 📊WS📊: Styl Pracy - Zorganizowany
+  - ⏱️WH45: Godziny Pracy - 45h tygodniowo
+- 👥 Zespół:
+  - 👥TSM: Rozmiar Zespołu - Średni
+  - 💬CS📝: Styl Komunikacji - Formalny
 
 ## 💡 Zastosowania
 

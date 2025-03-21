@@ -14,7 +14,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
-import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu, Info, Coffee, Keyboard } from "lucide-react";
+import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu, Info, Coffee, Keyboard, FileSearch } from "lucide-react";
 import { KeyboardShortcutsInfo } from "@/components/KeyboardShortcutsInfo";
 import { Link } from 'react-router-dom';
 import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/segment-types';
@@ -781,13 +781,22 @@ const Index = () => {
         <footer className="border-t border-green-900 p-4 text-center text-xs bg-black bg-opacity-90">
           <div className="flex justify-between items-center">
             <p>Profile Coder v1.0 | Nawigacja: Klawiatura [←][→] lub Przyciski</p>
-            <Link 
-              to="/segment-manager" 
-              className="flex items-center text-green-500 hover:text-green-400 transition-colors"
-            >
-              <Settings className="h-4 w-4 mr-1" />
-              <span>Zarządzaj Segmentami</span>
-            </Link>
+            <div className="flex items-center space-x-4">
+              <Link 
+                to="/dna-decoder" 
+                className="flex items-center text-green-500 hover:text-green-400 transition-colors"
+              >
+                <FileSearch className="h-4 w-4 mr-1" />
+                <span>Dekoder DNA</span>
+              </Link>
+              <Link 
+                to="/segment-manager" 
+                className="flex items-center text-green-500 hover:text-green-400 transition-colors"
+              >
+                <Settings className="h-4 w-4 mr-1" />
+                <span>Zarządzaj Segmentami</span>
+              </Link>
+            </div>
           </div>
         </footer>
       </div>
