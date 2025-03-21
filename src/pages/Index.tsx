@@ -1035,7 +1035,7 @@ const Index = () => {
           <div className="max-w-1xl mx-auto flex justify-between items-center">
             <h1 className="text-2xl font-bold flex items-center">
               <Terminal className="h-7 w-7 mr-2" />
-              {"ProfileCoder_v1.0"}
+              {"ProfilMatrix"}
             </h1>
             
             <Button 
@@ -1098,7 +1098,7 @@ const Index = () => {
 
         <footer className="border-t border-green-900 p-4 text-center text-xs bg-black bg-opacity-90">
           <div className="flex justify-between items-center">
-            <p>Profile Coder v1.0 | Nawigacja: Klawiatura [←][→] lub Przyciski</p>
+            <p>ProfilMatrix v1.0 | Nawigacja: Klawiatura [←][→] lub Przyciski</p>
             <div className="flex items-center space-x-4">
               <Link 
                 to="/dna-decoder" 

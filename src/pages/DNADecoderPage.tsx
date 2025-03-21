@@ -110,7 +110,7 @@ export function DNADecoderPage() {
       text += "\n"
     })
 
-    text += "\nWygenerowano przez ProfileCoder"
+    text += "\nWygenerowano przez ProfilMatrix"
     setDescriptiveText(text)
   }
 
@@ -258,7 +258,7 @@ export function DNADecoderPage() {
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <div className="flex items-center">
               <Terminal className="h-7 w-7 mr-2" />
-              <h1 className="text-2xl font-bold">ProfileCoder_v1.0</h1>
+              <h1 className="text-2xl font-bold">ProfilMatrix</h1>
             </div>
             <Link to="/">
               <Button variant="outline" size="sm" className="border-green-700 hover:bg-green-900 hover:bg-opacity-30 flex items-center">
@@ -497,7 +497,7 @@ export function DNADecoderPage() {
     
         <footer className="border-t border-green-900 p-4 text-center text-xs bg-black bg-opacity-90">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <p>Profile Coder v1.0</p>
+            <p>ProfilMatrix</p>
             <div className="flex items-center space-x-4">
               <Link 
                 to="/" 

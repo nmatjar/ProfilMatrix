@@ -23,7 +23,7 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
         <DialogHeader>
           <DialogTitle className="text-2xl font-terminal flex items-center gap-2">
             <Terminal className="h-6 w-6 text-green-400" />
-            <span className="font-mono">ProfileCoder_v1.0</span>
+            <span className="font-mono">ProfilMatrix_v1.0</span>
             <div className="ml-2 px-2 py-1 bg-green-900 bg-opacity-30 rounded text-sm font-mono">ALPHA</div>
           </DialogTitle>
           <DialogDescription className="text-green-400 font-mono mt-2 border-b border-green-900 pb-2">
@@ -37,7 +37,7 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
             <div>
               <h3 className="font-bold">Co to jest?</h3>
               <p className="opacity-90 mt-1">
-                ProfileCoder to narzędzie do wizualnego tworzenia i zarządzania profilami osobowości, umiejętności i preferencji
+                ProfilMatrix to narzędzie do wizualnego tworzenia i zarządzania profilami osobowości, umiejętności i preferencji
                 zawodowych poprzez system kodowania DNA. Łączy ono łatwość użycia graficznego interfejsu z precyzją kodowania
                 tekstowego, pozwalając na tworzenie złożonych profili w standardowym formacie.
               </p>
@@ -107,7 +107,7 @@ export function AboutModal({ open, onOpenChange }: AboutModalProps) {
               </a>
             </div>
           </div>
-          <div>© 2025 ProfileCoder</div>
+          <div>© 2025 ProfilMatrix</div>
         </div>
 
         <DialogFooter>
