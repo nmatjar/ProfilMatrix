@@ -8,7 +8,11 @@ import { parseDNACode, ParsedDNASegment } from "@/lib/dna-code-mapping"
 import { segments as allSegments } from "@/lib/segment-data"
 import { Link } from 'react-router-dom'
 import { DNACodeDisplay } from "@/components/DNACodeDisplay"
-import { Brain, Code, Copy, CopyCheck, FileText, Home, RefreshCw, Terminal } from "lucide-react"
+import { DNATreeVisualizer } from "@/components/DNATreeVisualizer"
+import { DNATileVisualizer } from "@/components/DNATileVisualizer"
+import { DNARadarVisualizer } from "@/components/DNARadarVisualizer"
+import { DNADecodingAnimation } from "@/components/DNADecodingAnimation"
+import { Brain, Code, Copy, CopyCheck, FileText, Home, RefreshCw, Terminal, Grid, Network, Activity } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
@@ -19,7 +23,9 @@ export function DNADecoderPage() {
   const [descriptiveText, setDescriptiveText] = useState<string>("")
   const [copied, setCopied] = useState<boolean>(false)
   const [activeTab, setActiveTab] = useState<string>("decoded")
+  const [activeVisTab, setActiveVisTab] = useState<string>("tree")
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [showDecodingAnimation, setShowDecodingAnimation] = useState<boolean>(false)
 
   useEffect(() => {
     if (dnaCode) {
@@ -92,6 +98,11 @@ export function DNADecoderPage() {
     }
 
     setIsLoading(true)
+    // Pokazujemy animację dekodowania zamiast bezpośredniego przetwarzania
+    setShowDecodingAnimation(true)
+  }
+
+  const handleDecodingComplete = () => {
     try {
       const parsed = parseDNACode(dnaCode)
       setParsedDna(parsed)
@@ -111,6 +122,7 @@ export function DNADecoderPage() {
       })
     } finally {
       setIsLoading(false)
+      setShowDecodingAnimation(false)
     }
   }
 
@@ -185,6 +197,11 @@ export function DNADecoderPage() {
   return (
     <TooltipProvider>
       <div className="min-h-screen bg-black text-green-500 flex flex-col">
+        <DNADecodingAnimation 
+          isDecoding={showDecodingAnimation} 
+          onComplete={handleDecodingComplete} 
+          dnaCode={dnaCode} 
+        />
         <header className="border-b border-green-900 p-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <div className="flex items-center">
@@ -254,14 +271,21 @@ export function DNADecoderPage() {
 
               <div className="lg:col-span-2">
                 <Tabs defaultValue="decoded" value={activeTab} onValueChange={setActiveTab}>
-                  <TabsList className="grid grid-cols-3 mb-4 bg-black border border-green-900">
+                  <TabsList className="grid grid-cols-4 mb-4 bg-black border border-green-900">
                     <TabsTrigger value="decoded" className="data-[state=active]:bg-green-900 data-[state=active]:bg-opacity-30 data-[state=active]:text-green-400">
+                      <Code size={16} className="mr-1 hidden md:block" />
                       Zdekodowany profil
                     </TabsTrigger>
+                    <TabsTrigger value="visualize" className="data-[state=active]:bg-green-900 data-[state=active]:bg-opacity-30 data-[state=active]:text-green-400">
+                      <Activity size={16} className="mr-1 hidden md:block" />
+                      Wizualizacje
+                    </TabsTrigger>
                     <TabsTrigger value="formatted" className="data-[state=active]:bg-green-900 data-[state=active]:bg-opacity-30 data-[state=active]:text-green-400">
+                      <Terminal size={16} className="mr-1 hidden md:block" />
                       Sformatowany kod
                     </TabsTrigger>
                     <TabsTrigger value="text" className="data-[state=active]:bg-green-900 data-[state=active]:bg-opacity-30 data-[state=active]:text-green-400">
+                      <FileText size={16} className="mr-1 hidden md:block" />
                       Opis do LLM
                     </TabsTrigger>
                   </TabsList>
@@ -278,6 +302,50 @@ export function DNADecoderPage() {
                         <ScrollArea className="h-96 rounded-md pr-4">
                           {renderParsedSegments()}
                         </ScrollArea>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+
+                  <TabsContent value="visualize" className="mt-0">
+                    <Card className="border border-green-700 rounded-md bg-black bg-opacity-90">
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-lg font-bold">Wizualizacje DNA</CardTitle>
+                        <CardDescription className="text-gray-300">
+                          Różne sposoby wizualizacji profilu DNA
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <Tabs defaultValue="tree" value={activeVisTab} onValueChange={setActiveVisTab}>
+                          <TabsList className="grid grid-cols-3 mb-4 bg-black border border-green-900">
+                            <TabsTrigger value="tree" className="data-[state=active]:bg-green-900 data-[state=active]:bg-opacity-30 data-[state=active]:text-green-400">
+                              <Network size={16} className="mr-1 hidden md:block" />
+                              Drzewo DNA
+                            </TabsTrigger>
+                            <TabsTrigger value="tiles" className="data-[state=active]:bg-green-900 data-[state=active]:bg-opacity-30 data-[state=active]:text-green-400">
+                              <Grid size={16} className="mr-1 hidden md:block" />
+                              Kafelki
+                            </TabsTrigger>
+                            <TabsTrigger value="radar" className="data-[state=active]:bg-green-900 data-[state=active]:bg-opacity-30 data-[state=active]:text-green-400">
+                              <Activity size={16} className="mr-1 hidden md:block" />
+                              Radar
+                            </TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="tree" className="mt-0">
+                            <ScrollArea className="h-96 rounded-md pr-4">
+                              <DNATreeVisualizer parsedDna={parsedDna} />
+                            </ScrollArea>
+                          </TabsContent>
+                          <TabsContent value="tiles" className="mt-0">
+                            <ScrollArea className="h-96 rounded-md pr-4">
+                              <DNATileVisualizer parsedDna={parsedDna} />
+                            </ScrollArea>
+                          </TabsContent>
+                          <TabsContent value="radar" className="mt-0">
+                            <ScrollArea className="h-96 rounded-md pr-4">
+                              <DNARadarVisualizer parsedDna={parsedDna} />
+                            </ScrollArea>
+                          </TabsContent>
+                        </Tabs>
                       </CardContent>
                     </Card>
                   </TabsContent>
