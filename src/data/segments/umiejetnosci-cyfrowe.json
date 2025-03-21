@@ -1,0 +1,362 @@
+[
+  {
+    "id": "urzadzenia-codzienne",
+    "name": "Urządzenia Codzienne",
+    "iconName": "Monitor",
+    "emoji": "🖥️",
+    "code": "UC",
+    "type": "select",
+    "description": "Urządzenia używane na co dzień",
+    "options": [
+      {
+        "id": "pc-windows",
+        "label": "🖥️ PC Windows",
+        "value": "PC Windows",
+        "description": "Komputer stacjonarny lub laptop z systemem Windows"
+      },
+      {
+        "id": "mac",
+        "label": "🍎 Mac",
+        "value": "Mac",
+        "description": "Komputer MacBook lub iMac z systemem macOS"
+      },
+      {
+        "id": "linux",
+        "label": "🐧 Linux",
+        "value": "Linux",
+        "description": "Komputer z systemem Linux"
+      },
+      {
+        "id": "android",
+        "label": "🤖 Android",
+        "value": "Android",
+        "description": "Smartfon lub tablet z systemem Android"
+      },
+      {
+        "id": "ios",
+        "label": "📱 iOS",
+        "value": "iOS",
+        "description": "iPhone lub iPad z systemem iOS/iPadOS"
+      },
+      {
+        "id": "chromeOS",
+        "label": "�� ChromeOS",
+        "value": "ChromeOS",
+        "description": "Chromebook lub urządzenie z systemem ChromeOS"
+      }
+    ],
+    "valueMap": {
+      "PC Windows": "🖥️",
+      "Mac": "🍎",
+      "Linux": "🐧",
+      "Android": "🤖",
+      "iOS": "📱",
+      "ChromeOS": "🌐"
+    },
+    "reverseValueMap": {
+      "🖥️": "PC Windows",
+      "🍎": "Mac",
+      "🐧": "Linux",
+      "🤖": "Android",
+      "📱": "iOS",
+      "🌐": "ChromeOS"
+    },
+    "areaId": "umiejetnosci-cyfrowe"
+  },
+  {
+    "id": "aplikacje-biurowe",
+    "name": "Aplikacje Biurowe",
+    "iconName": "FileText",
+    "emoji": "📝",
+    "code": "AB",
+    "type": "select",
+    "description": "Umiejętność korzystania z podstawowych aplikacji biurowych",
+    "options": [
+      {
+        "id": "ms-office",
+        "label": "📊 Microsoft Office",
+        "value": "Microsoft Office",
+        "description": "Word, Excel, PowerPoint, Outlook"
+      },
+      {
+        "id": "google-workspace",
+        "label": "📑 Google Workspace",
+        "value": "Google Workspace",
+        "description": "Dokumenty, Arkusze, Prezentacje Google"
+      },
+      {
+        "id": "libre-office",
+        "label": "📓 LibreOffice",
+        "value": "LibreOffice",
+        "description": "Darmowy pakiet biurowy"
+      },
+      {
+        "id": "apple-iwork",
+        "label": "📱 Apple iWork",
+        "value": "Apple iWork",
+        "description": "Pages, Numbers, Keynote"
+      },
+      {
+        "id": "only-online",
+        "label": "☁️ Tylko narzędzia online",
+        "value": "Tylko narzędzia online",
+        "description": "Korzystanie wyłącznie z aplikacji webowych"
+      }
+    ],
+    "valueMap": {
+      "Microsoft Office": "📊",
+      "Google Workspace": "📑",
+      "LibreOffice": "📓",
+      "Apple iWork": "📱",
+      "Tylko narzędzia online": "☁️"
+    },
+    "reverseValueMap": {
+      "📊": "Microsoft Office",
+      "📑": "Google Workspace",
+      "📓": "LibreOffice",
+      "📱": "Apple iWork",
+      "☁️": "Tylko narzędzia online"
+    },
+    "areaId": "umiejetnosci-cyfrowe"
+  },
+  {
+    "id": "komunikatory",
+    "name": "Komunikatory",
+    "iconName": "MessageSquare",
+    "emoji": "💬",
+    "code": "KM",
+    "type": "select",
+    "description": "Używane aplikacje do komunikacji",
+    "options": [
+      {
+        "id": "teams",
+        "label": "👥 Microsoft Teams",
+        "value": "Microsoft Teams",
+        "description": "Komunikator firmowy Microsoft"
+      },
+      {
+        "id": "slack",
+        "label": "📣 Slack",
+        "value": "Slack",
+        "description": "Komunikator dla zespołów"
+      },
+      {
+        "id": "whatsapp",
+        "label": "📱 WhatsApp",
+        "value": "WhatsApp",
+        "description": "Komunikator mobilny"
+      },
+      {
+        "id": "messenger",
+        "label": "💬 Messenger",
+        "value": "Messenger",
+        "description": "Komunikator Facebook"
+      },
+      {
+        "id": "discord",
+        "label": "🎮 Discord",
+        "value": "Discord",
+        "description": "Komunikator dla społeczności"
+      },
+      {
+        "id": "telegram",
+        "label": "📬 Telegram",
+        "value": "Telegram",
+        "description": "Bezpieczny komunikator"
+      }
+    ],
+    "valueMap": {
+      "Microsoft Teams": "👥",
+      "Slack": "📣",
+      "WhatsApp": "📱",
+      "Messenger": "💬",
+      "Discord": "🎮",
+      "Telegram": "📬"
+    },
+    "reverseValueMap": {
+      "👥": "Microsoft Teams",
+      "📣": "Slack",
+      "📱": "WhatsApp",
+      "💬": "Messenger",
+      "🎮": "Discord",
+      "📬": "Telegram"
+    },
+    "areaId": "umiejetnosci-cyfrowe"
+  },
+  {
+    "id": "internet",
+    "name": "Internet",
+    "iconName": "Globe",
+    "emoji": "🌐",
+    "code": "IN",
+    "type": "select",
+    "description": "Korzystanie z internetu",
+    "options": [
+      {
+        "id": "google-chrome",
+        "label": "🌐 Google Chrome",
+        "value": "Google Chrome",
+        "description": "Przeglądarka Chrome"
+      },
+      {
+        "id": "firefox",
+        "label": "🦊 Firefox",
+        "value": "Firefox",
+        "description": "Przeglądarka Firefox"
+      },
+      {
+        "id": "edge",
+        "label": "🔷 Microsoft Edge",
+        "value": "Microsoft Edge",
+        "description": "Przeglądarka Edge"
+      },
+      {
+        "id": "safari",
+        "label": "🧭 Safari",
+        "value": "Safari",
+        "description": "Przeglądarka Apple"
+      },
+      {
+        "id": "opera",
+        "label": "🔴 Opera",
+        "value": "Opera",
+        "description": "Przeglądarka Opera"
+      }
+    ],
+    "valueMap": {
+      "Google Chrome": "🌐",
+      "Firefox": "🦊",
+      "Microsoft Edge": "🔷",
+      "Safari": "🧭",
+      "Opera": "🔴"
+    },
+    "reverseValueMap": {
+      "🌐": "Google Chrome",
+      "🦊": "Firefox",
+      "🔷": "Microsoft Edge",
+      "🧭": "Safari",
+      "🔴": "Opera"
+    },
+    "areaId": "umiejetnosci-cyfrowe"
+  },
+  {
+    "id": "dane-chmurowe",
+    "name": "Dane i Chmura",
+    "iconName": "Cloud",
+    "emoji": "☁️",
+    "code": "DC",
+    "type": "select",
+    "description": "Korzystanie z usług chmurowych",
+    "options": [
+      {
+        "id": "google-drive",
+        "label": "📁 Google Drive",
+        "value": "Google Drive",
+        "description": "Dysk Google"
+      },
+      {
+        "id": "onedrive",
+        "label": "☁️ OneDrive",
+        "value": "OneDrive",
+        "description": "Dysk Microsoft"
+      },
+      {
+        "id": "dropbox",
+        "label": "📦 Dropbox",
+        "value": "Dropbox",
+        "description": "Usługa Dropbox"
+      },
+      {
+        "id": "icloud",
+        "label": "☁️ iCloud",
+        "value": "iCloud",
+        "description": "Chmura Apple"
+      },
+      {
+        "id": "backup",
+        "label": "🔒 Kopie zapasowe",
+        "value": "Backup",
+        "description": "Tworzenie kopii zapasowych"
+      }
+    ],
+    "valueMap": {
+      "Google Drive": "📁",
+      "OneDrive": "☁️",
+      "Dropbox": "📦",
+      "iCloud": "☁️",
+      "Backup": "🔒"
+    },
+    "reverseValueMap": {
+      "📁": "Google Drive",
+      "☁️": "OneDrive",
+      "📦": "Dropbox",
+      "☁️": "iCloud",
+      "🔒": "Backup"
+    },
+    "areaId": "umiejetnosci-cyfrowe"
+  },
+  {
+    "id": "media-spolecznosciowe",
+    "name": "Media Społecznościowe",
+    "iconName": "Users",
+    "emoji": "👥",
+    "code": "MS",
+    "type": "select",
+    "description": "Aktywność w mediach społecznościowych",
+    "options": [
+      {
+        "id": "facebook",
+        "label": "📱 Facebook",
+        "value": "Facebook",
+        "description": "Korzystanie z Facebooka"
+      },
+      {
+        "id": "instagram",
+        "label": "📷 Instagram",
+        "value": "Instagram",
+        "description": "Korzystanie z Instagrama"
+      },
+      {
+        "id": "twitter",
+        "label": "🐦 Twitter/X",
+        "value": "Twitter/X",
+        "description": "Korzystanie z Twitter/X"
+      },
+      {
+        "id": "linkedin",
+        "label": "👔 LinkedIn",
+        "value": "LinkedIn",
+        "description": "Korzystanie z LinkedIn"
+      },
+      {
+        "id": "youtube",
+        "label": "📺 YouTube",
+        "value": "YouTube",
+        "description": "Korzystanie z YouTube"
+      },
+      {
+        "id": "tiktok",
+        "label": "🎵 TikTok",
+        "value": "TikTok",
+        "description": "Korzystanie z TikTok"
+      }
+    ],
+    "valueMap": {
+      "Facebook": "📱",
+      "Instagram": "��",
+      "Twitter/X": "🐦",
+      "LinkedIn": "👔",
+      "YouTube": "📺",
+      "TikTok": "🎵"
+    },
+    "reverseValueMap": {
+      "📱": "Facebook",
+      "📷": "Instagram",
+      "🐦": "Twitter/X",
+      "👔": "LinkedIn",
+      "📺": "YouTube",
+      "🎵": "TikTok"
+    },
+    "areaId": "umiejetnosci-cyfrowe"
+  }
+]

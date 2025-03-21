@@ -1,0 +1,282 @@
+[
+  {
+    "id": "platformy-no-code",
+    "name": "Platformy No-Code",
+    "iconName": "PuzzlePiece",
+    "emoji": "🧩",
+    "code": "NC",
+    "type": "select",
+    "description": "Korzystanie z platform no-code",
+    "options": [
+      {
+        "id": "webflow",
+        "label": "🌊 Webflow",
+        "value": "Webflow",
+        "description": "Tworzenie stron bez kodowania"
+      },
+      {
+        "id": "bubble",
+        "label": "💭 Bubble",
+        "value": "Bubble",
+        "description": "Tworzenie aplikacji bez kodowania"
+      },
+      {
+        "id": "wix",
+        "label": "🧩 Wix",
+        "value": "Wix",
+        "description": "Kreator stron internetowych"
+      },
+      {
+        "id": "wordpress",
+        "label": "📝 WordPress",
+        "value": "WordPress",
+        "description": "System zarządzania treścią"
+      },
+      {
+        "id": "airtable",
+        "label": "📊 Airtable",
+        "value": "Airtable",
+        "description": "Baza danych dla nietechnicznych użytkowników"
+      }
+    ],
+    "valueMap": {
+      "Webflow": "🌊",
+      "Bubble": "💭",
+      "Wix": "🧩",
+      "WordPress": "📝",
+      "Airtable": "📊"
+    },
+    "reverseValueMap": {
+      "🌊": "Webflow",
+      "💭": "Bubble",
+      "🧩": "Wix",
+      "📝": "WordPress",
+      "📊": "Airtable"
+    },
+    "areaId": "automatyzacja-lowcode"
+  },
+  {
+    "id": "automatyzacja-procesow",
+    "name": "Automatyzacja Procesów",
+    "iconName": "Bot",
+    "emoji": "🤖",
+    "code": "AP",
+    "type": "select",
+    "description": "Narzędzia do automatyzacji procesów",
+    "options": [
+      {
+        "id": "zapier",
+        "label": "⚡ Zapier",
+        "value": "Zapier",
+        "description": "Automatyzacja między aplikacjami"
+      },
+      {
+        "id": "ifttt",
+        "label": "🔄 IFTTT",
+        "value": "IFTTT",
+        "description": "Proste automatyzacje (If This Then That)"
+      },
+      {
+        "id": "power-automate",
+        "label": "⚙️ Power Automate",
+        "value": "Power Automate",
+        "description": "Automatyzacja Microsoft"
+      },
+      {
+        "id": "make",
+        "label": "🔄 Make (Integromat)",
+        "value": "Make",
+        "description": "Zaawansowane automatyzacje"
+      },
+      {
+        "id": "n8n",
+        "label": "🌐 n8n",
+        "value": "n8n",
+        "description": "Otwarte narzędzie do automatyzacji"
+      }
+    ],
+    "valueMap": {
+      "Zapier": "⚡",
+      "IFTTT": "🔄",
+      "Power Automate": "⚙️",
+      "Make": "🔄",
+      "n8n": "🌐"
+    },
+    "reverseValueMap": {
+      "⚡": "Zapier",
+      "🔄": "IFTTT",
+      "⚙️": "Power Automate",
+      "🔄": "Make",
+      "��": "n8n"
+    },
+    "areaId": "automatyzacja-lowcode"
+  },
+  {
+    "id": "dashboardy-danych",
+    "name": "Dashboardy Danych",
+    "iconName": "LineChart",
+    "emoji": "📊",
+    "code": "DD",
+    "type": "select",
+    "description": "Tworzenie i korzystanie z dashboardów danych",
+    "options": [
+      {
+        "id": "power-bi",
+        "label": "📊 Power BI",
+        "value": "Power BI",
+        "description": "Narzędzie Microsoft do wizualizacji danych"
+      },
+      {
+        "id": "tableau",
+        "label": "📈 Tableau",
+        "value": "Tableau",
+        "description": "Zaawansowane wizualizacje danych"
+      },
+      {
+        "id": "looker-studio",
+        "label": "📉 Looker Studio",
+        "value": "Looker Studio",
+        "description": "Dawniej Google Data Studio"
+      },
+      {
+        "id": "excel-dashboards",
+        "label": "📗 Excel Dashboards",
+        "value": "Excel Dashboards",
+        "description": "Dashboardy w Excel"
+      },
+      {
+        "id": "klipfolio",
+        "label": "📌 Klipfolio",
+        "value": "Klipfolio",
+        "description": "Narzędzie do dashboardów"
+      }
+    ],
+    "valueMap": {
+      "Power BI": "📊",
+      "Tableau": "📈",
+      "Looker Studio": "📉",
+      "Excel Dashboards": "📗",
+      "Klipfolio": "📌"
+    },
+    "reverseValueMap": {
+      "📊": "Power BI",
+      "📈": "Tableau",
+      "📉": "Looker Studio",
+      "📗": "Excel Dashboards",
+      "📌": "Klipfolio"
+    },
+    "areaId": "automatyzacja-lowcode"
+  },
+  {
+    "id": "narzedzia-produktywnosci",
+    "name": "Narzędzia Produktywności",
+    "iconName": "Clock",
+    "emoji": "⏱️",
+    "code": "NP",
+    "type": "select",
+    "description": "Narzędzia zwiększające produktywność",
+    "options": [
+      {
+        "id": "notion",
+        "label": "📓 Notion",
+        "value": "Notion",
+        "description": "Wszechstronne narzędzie do notatek i organizacji"
+      },
+      {
+        "id": "trello",
+        "label": "📋 Trello",
+        "value": "Trello",
+        "description": "Zarządzanie zadaniami metodą Kanban"
+      },
+      {
+        "id": "asana",
+        "label": "✅ Asana",
+        "value": "Asana",
+        "description": "Zarządzanie projektami i zadaniami"
+      },
+      {
+        "id": "evernote",
+        "label": "🐘 Evernote",
+        "value": "Evernote",
+        "description": "Narzędzie do notatek"
+      },
+      {
+        "id": "clickup",
+        "label": "🚀 ClickUp",
+        "value": "ClickUp",
+        "description": "Platforma do zarządzania projektami"
+      }
+    ],
+    "valueMap": {
+      "Notion": "📓",
+      "Trello": "📋",
+      "Asana": "✅",
+      "Evernote": "🐘",
+      "ClickUp": "🚀"
+    },
+    "reverseValueMap": {
+      "📓": "Notion",
+      "📋": "Trello",
+      "✅": "Asana",
+      "🐘": "Evernote",
+      "🚀": "ClickUp"
+    },
+    "areaId": "automatyzacja-lowcode"
+  },
+  {
+    "id": "formularze-ankiety",
+    "name": "Formularze i Ankiety",
+    "iconName": "ClipboardCheck",
+    "emoji": "📝",
+    "code": "FA",
+    "type": "select",
+    "description": "Tworzenie i zarządzanie formularzami",
+    "options": [
+      {
+        "id": "google-forms",
+        "label": "📋 Google Forms",
+        "value": "Google Forms",
+        "description": "Formularze Google"
+      },
+      {
+        "id": "microsoft-forms",
+        "label": "📊 Microsoft Forms",
+        "value": "Microsoft Forms",
+        "description": "Formularze Microsoft"
+      },
+      {
+        "id": "surveymonkey",
+        "label": "🐵 SurveyMonkey",
+        "value": "SurveyMonkey",
+        "description": "Profesjonalne narzędzie do ankiet"
+      },
+      {
+        "id": "typeform",
+        "label": "🧩 Typeform",
+        "value": "Typeform",
+        "description": "Interaktywne formularze"
+      },
+      {
+        "id": "jotform",
+        "label": "📝 JotForm",
+        "value": "JotForm",
+        "description": "Wszechstronne narzędzie do formularzy"
+      }
+    ],
+    "valueMap": {
+      "Google Forms": "📋",
+      "Microsoft Forms": "📊",
+      "SurveyMonkey": "🐵",
+      "Typeform": "🧩",
+      "JotForm": "📝"
+    },
+    "reverseValueMap": {
+      "📋": "Google Forms",
+      "📊": "Microsoft Forms",
+      "🐵": "SurveyMonkey",
+      "🧩": "Typeform",
+      "📝": "JotForm"
+    },
+    "areaId": "automatyzacja-lowcode"
+  }
+]

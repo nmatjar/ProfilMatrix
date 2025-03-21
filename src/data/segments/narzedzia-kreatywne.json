@@ -1,0 +1,346 @@
+[
+  {
+    "id": "edycja-grafiki",
+    "name": "Edycja Grafiki",
+    "iconName": "Image",
+    "emoji": "🖌️",
+    "code": "EG",
+    "type": "select",
+    "description": "Umiejętność edycji grafiki i tworzenia projektów",
+    "options": [
+      {
+        "id": "photoshop",
+        "label": "🖌️ Photoshop",
+        "value": "Photoshop",
+        "description": "Profesjonalna edycja zdjęć i grafiki"
+      },
+      {
+        "id": "canva",
+        "label": "🎨 Canva",
+        "value": "Canva",
+        "description": "Prosta edycja grafiki dla niespecjalistów"
+      },
+      {
+        "id": "illustrator",
+        "label": "✒️ Illustrator",
+        "value": "Illustrator",
+        "description": "Tworzenie grafiki wektorowej"
+      },
+      {
+        "id": "gimp",
+        "label": "🧩 GIMP",
+        "value": "GIMP",
+        "description": "Darmowy program do edycji grafiki"
+      },
+      {
+        "id": "figma",
+        "label": "🔍 Figma",
+        "value": "Figma",
+        "description": "Projektowanie interfejsów i prototypowanie"
+      }
+    ],
+    "valueMap": {
+      "Photoshop": "🖌️",
+      "Canva": "🎨",
+      "Illustrator": "✒️",
+      "GIMP": "🧩",
+      "Figma": "🔍"
+    },
+    "reverseValueMap": {
+      "🖌️": "Photoshop",
+      "🎨": "Canva",
+      "✒️": "Illustrator",
+      "🧩": "GIMP",
+      "🔍": "Figma"
+    },
+    "areaId": "narzedzia-kreatywne"
+  },
+  {
+    "id": "edycja-wideo",
+    "name": "Edycja Wideo",
+    "iconName": "Video",
+    "emoji": "🎬",
+    "code": "EW",
+    "type": "select",
+    "description": "Edycja i montaż materiałów wideo",
+    "options": [
+      {
+        "id": "premiere-pro",
+        "label": "🎬 Premiere Pro",
+        "value": "Premiere Pro",
+        "description": "Profesjonalny montaż wideo Adobe"
+      },
+      {
+        "id": "final-cut",
+        "label": "🎥 Final Cut Pro",
+        "value": "Final Cut Pro",
+        "description": "Profesjonalny montaż wideo Apple"
+      },
+      {
+        "id": "davinci-resolve",
+        "label": "🎞️ DaVinci Resolve",
+        "value": "DaVinci Resolve",
+        "description": "Zaawansowany montaż wideo i korekcja kolorów"
+      },
+      {
+        "id": "imovie",
+        "label": "📱 iMovie",
+        "value": "iMovie",
+        "description": "Podstawowy montaż wideo Apple"
+      },
+      {
+        "id": "capcut",
+        "label": "✂️ CapCut",
+        "value": "CapCut",
+        "description": "Mobilna aplikacja do montażu wideo"
+      }
+    ],
+    "valueMap": {
+      "Premiere Pro": "🎬",
+      "Final Cut Pro": "🎥",
+      "DaVinci Resolve": "🎞️",
+      "iMovie": "📱",
+      "CapCut": "✂️"
+    },
+    "reverseValueMap": {
+      "🎬": "Premiere Pro",
+      "🎥": "Final Cut Pro",
+      "🎞️": "DaVinci Resolve",
+      "📱": "iMovie",
+      "✂️": "CapCut"
+    },
+    "areaId": "narzedzia-kreatywne"
+  },
+  {
+    "id": "narzedzia-audio",
+    "name": "Narzędzia Audio",
+    "iconName": "Music",
+    "emoji": "🎵",
+    "code": "NA",
+    "type": "select",
+    "description": "Edycja i produkcja dźwięku",
+    "options": [
+      {
+        "id": "audacity",
+        "label": "🔊 Audacity",
+        "value": "Audacity",
+        "description": "Darmowy edytor audio"
+      },
+      {
+        "id": "garageband",
+        "label": "🎸 GarageBand",
+        "value": "GarageBand",
+        "description": "Aplikacja Apple do tworzenia muzyki"
+      },
+      {
+        "id": "logic-pro",
+        "label": "🎹 Logic Pro",
+        "value": "Logic Pro",
+        "description": "Profesjonalna stacja robocza audio Apple"
+      },
+      {
+        "id": "ableton",
+        "label": "🎧 Ableton Live",
+        "value": "Ableton Live",
+        "description": "Profesjonalne oprogramowanie do produkcji muzyki"
+      },
+      {
+        "id": "audition",
+        "label": "🎙️ Adobe Audition",
+        "value": "Adobe Audition",
+        "description": "Profesjonalny edytor audio Adobe"
+      }
+    ],
+    "valueMap": {
+      "Audacity": "🔊",
+      "GarageBand": "🎸",
+      "Logic Pro": "🎹",
+      "Ableton Live": "🎧",
+      "Adobe Audition": "🎙️"
+    },
+    "reverseValueMap": {
+      "🔊": "Audacity",
+      "🎸": "GarageBand",
+      "🎹": "Logic Pro",
+      "🎧": "Ableton Live",
+      "🎙️": "Adobe Audition"
+    },
+    "areaId": "narzedzia-kreatywne"
+  },
+  {
+    "id": "sprzet-kreatywny",
+    "name": "Sprzęt Kreatywny",
+    "iconName": "Camera",
+    "emoji": "📷",
+    "code": "SK",
+    "type": "select",
+    "description": "Umiejętność obsługi sprzętu dla twórców",
+    "options": [
+      {
+        "id": "aparat-fotograficzny",
+        "label": "📷 Aparat fotograficzny",
+        "value": "Aparat fotograficzny",
+        "description": "Lustrzanka, bezlusterkowiec lub kompakt"
+      },
+      {
+        "id": "kamera-wideo",
+        "label": "🎥 Kamera wideo",
+        "value": "Kamera wideo",
+        "description": "Kamera do nagrywania wideo"
+      },
+      {
+        "id": "smartphone",
+        "label": "📱 Smartphone",
+        "value": "Smartphone",
+        "description": "Telefon do fotografii i wideo"
+      },
+      {
+        "id": "dron",
+        "label": "🚁 Dron",
+        "value": "Dron",
+        "description": "Dron do zdjęć i nagrań z powietrza"
+      },
+      {
+        "id": "gimbal",
+        "label": "🔄 Gimbal",
+        "value": "Gimbal",
+        "description": "Stabilizator do nagrywania"
+      },
+      {
+        "id": "mikrofon",
+        "label": "🎙️ Mikrofon",
+        "value": "Mikrofon",
+        "description": "Profesjonalny lub półprofesjonalny mikrofon"
+      }
+    ],
+    "valueMap": {
+      "Aparat fotograficzny": "📷",
+      "Kamera wideo": "🎥",
+      "Smartphone": "📱",
+      "Dron": "🚁",
+      "Gimbal": "🔄",
+      "Mikrofon": "🎙️"
+    },
+    "reverseValueMap": {
+      "📷": "Aparat fotograficzny",
+      "🎥": "Kamera wideo",
+      "📱": "Smartphone",
+      "🚁": "Dron",
+      "🔄": "Gimbal",
+      "🎙️": "Mikrofon"
+    },
+    "areaId": "narzedzia-kreatywne"
+  },
+  {
+    "id": "projektowanie",
+    "name": "Projektowanie",
+    "iconName": "Layout",
+    "emoji": "🎨",
+    "code": "PR",
+    "type": "select",
+    "description": "Umiejętności projektowania i designu",
+    "options": [
+      {
+        "id": "ux-ui",
+        "label": "🖥️ UX/UI Design",
+        "value": "UX/UI Design",
+        "description": "Projektowanie interfejsów użytkownika"
+      },
+      {
+        "id": "grafika",
+        "label": "🎨 Grafika komputerowa",
+        "value": "Grafika komputerowa",
+        "description": "Tworzenie grafiki cyfrowej"
+      },
+      {
+        "id": "animacja",
+        "label": "🎬 Animacja",
+        "value": "Animacja",
+        "description": "Tworzenie animacji cyfrowych"
+      },
+      {
+        "id": "modeling-3d",
+        "label": "🧊 Modeling 3D",
+        "value": "Modeling 3D",
+        "description": "Tworzenie modeli trójwymiarowych"
+      },
+      {
+        "id": "cad",
+        "label": "🏗️ CAD",
+        "value": "CAD",
+        "description": "Projektowanie wspomagane komputerowo"
+      }
+    ],
+    "valueMap": {
+      "UX/UI Design": "🖥️",
+      "Grafika komputerowa": "🎨",
+      "Animacja": "🎬",
+      "Modeling 3D": "🧊",
+      "CAD": "🏗️"
+    },
+    "reverseValueMap": {
+      "🖥️": "UX/UI Design",
+      "🎨": "Grafika komputerowa",
+      "🎬": "Animacja",
+      "🧊": "Modeling 3D",
+      "🏗️": "CAD"
+    },
+    "areaId": "narzedzia-kreatywne"
+  },
+  {
+    "id": "publikacja-tresci",
+    "name": "Publikacja Treści",
+    "iconName": "Upload",
+    "emoji": "📤",
+    "code": "PT",
+    "type": "select",
+    "description": "Umiejętność publikowania treści w różnych formatach",
+    "options": [
+      {
+        "id": "blog",
+        "label": "📝 Blog",
+        "value": "Blog",
+        "description": "Prowadzenie bloga lub publikacja artykułów"
+      },
+      {
+        "id": "podcast",
+        "label": "🎙️ Podcast",
+        "value": "Podcast",
+        "description": "Produkcja podcastów"
+      },
+      {
+        "id": "vlog",
+        "label": "📹 Vlog",
+        "value": "Vlog",
+        "description": "Prowadzenie wideobloga"
+      },
+      {
+        "id": "social-media",
+        "label": "📱 Social Media",
+        "value": "Social Media",
+        "description": "Tworzenie treści na media społecznościowe"
+      },
+      {
+        "id": "prezentacje",
+        "label": "📊 Prezentacje",
+        "value": "Prezentacje",
+        "description": "Tworzenie profesjonalnych prezentacji"
+      }
+    ],
+    "valueMap": {
+      "Blog": "📝",
+      "Podcast": "🎙️",
+      "Vlog": "📹",
+      "Social Media": "📱",
+      "Prezentacje": "📊"
+    },
+    "reverseValueMap": {
+      "📝": "Blog",
+      "🎙️": "Podcast",
+      "📹": "Vlog",
+      "📱": "Social Media",
+      "📊": "Prezentacje"
+    },
+    "areaId": "narzedzia-kreatywne"
+  }
+]

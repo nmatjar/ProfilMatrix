@@ -15,6 +15,9 @@ import workValuesSegments from '../data/segments/work-values.json'
 import personalTraitsSegments from '../data/segments/personal-traits.json'
 import techStackSegments from '../data/segments/tech-stack.json'
 import workIntimacySegments from '../data/segments/work-intimacy.json'
+import umiejetnosciCyfroweSegments from '../data/segments/umiejetnosci-cyfrowe.json'
+import automatyzacjaLowcodeSegments from '../data/segments/automatyzacja-lowcode.json'
+import narzedziaKreatywneSegments from '../data/segments/narzedzia-kreatywne.json'
 
 // Funkcja do wczytywania obszarów z pliku JSON
 export function loadAreas(): Area[] {
@@ -51,7 +54,10 @@ export function loadSegments(): Segment[] {
       ...workDevelopmentSegments,
       ...workValuesSegments,
       ...personalTraitsSegments,
-      ...techStackSegments
+      ...techStackSegments,
+      ...umiejetnosciCyfroweSegments,
+      ...automatyzacjaLowcodeSegments,
+      ...narzedziaKreatywneSegments
     ] as Segment[]
     
     return allSegments
@@ -85,6 +91,12 @@ export function loadSegmentsByArea(areaId: string): Segment[] {
         return personalTraitsSegments as Segment[]
       case 'tech-stack':
         return techStackSegments as Segment[]
+      case 'umiejetnosci-cyfrowe':
+        return umiejetnosciCyfroweSegments as Segment[]
+      case 'automatyzacja-lowcode':
+        return automatyzacjaLowcodeSegments as Segment[]
+      case 'narzedzia-kreatywne':
+        return narzedziaKreatywneSegments as Segment[]
       default:
         console.warn(`Nieznany obszar: ${areaId}. Zwracam pustą tablicę.`)
         return []

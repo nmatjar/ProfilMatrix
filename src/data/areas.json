@@ -75,5 +75,26 @@
     "iconName": "Code",
     "emoji": "💻",
     "description": "Preferowane technologie, języki i narzędzia programistyczne"
+  },
+  {
+    "id": "umiejetnosci-cyfrowe",
+    "name": "Umiejętności Cyfrowe",
+    "iconName": "Smartphone", 
+    "emoji": "📱",
+    "description": "Codzienna obsługa technologii i narzędzi cyfrowych"
+  },
+  {
+    "id": "automatyzacja-lowcode",
+    "name": "Automatyzacja i Low-Code",
+    "iconName": "Zap",
+    "emoji": "⚡",
+    "description": "Korzystanie z narzędzi automatyzacji i platform low-code/no-code"
+  },
+  {
+    "id": "narzedzia-kreatywne",
+    "name": "Narzędzia Kreatywne",
+    "iconName": "Brush",
+    "emoji": "🎨",
+    "description": "Umiejętności korzystania z narzędzi dla twórców i branży kreatywnej"
   }
 ]
