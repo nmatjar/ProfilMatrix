@@ -36,18 +36,18 @@
     "description": "Typ organizacji, w której chcesz pracować",
     "code": "ORG",
     "valueMap": {
-      "Korporacja": "K",
-      "Startup/Scaleup": "S",
-      "Instytucja publiczna": "P",
-      "Uczelnia/Edukacja": "E",
-      "NGO/Non-profit": "N"
+      "Korporacja": "🏢",
+      "Startup/Scaleup": "🚀",
+      "Instytucja publiczna": "🏛️",
+      "Uczelnia/Edukacja": "🎓",
+      "NGO/Non-profit": "🤝"
     },
     "reverseValueMap": {
-      "K": "Korporacja",
-      "S": "Startup/Scaleup",
-      "P": "Instytucja publiczna",
-      "E": "Uczelnia/Edukacja",
-      "N": "NGO/Non-profit"
+      "🏢": "Korporacja",
+      "🚀": "Startup/Scaleup",
+      "🏛️": "Instytucja publiczna",
+      "🎓": "Uczelnia/Edukacja",
+      "🤝": "NGO/Non-profit"
     }
   },
   {
@@ -108,16 +108,16 @@
     "description": "Preferowany format pracy (stacjonarny, zdalny, hybrydowy)",
     "code": "WF",
     "valueMap": {
-      "Stacjonarny": "S",
-      "Zdalny": "Z",
-      "Hybrydowy (określony)": "HO",
-      "Hybrydowy (elastyczny)": "HE"
+      "Stacjonarny": "🏢",
+      "Zdalny": "🏠",
+      "Hybrydowy (określony)": "🔄",
+      "Hybrydowy (elastyczny)": "📈"
     },
     "reverseValueMap": {
-      "S": "Stacjonarny",
-      "Z": "Zdalny",
-      "HO": "Hybrydowy (określony)",
-      "HE": "Hybrydowy (elastyczny)"
+      "🏢": "Stacjonarny",
+      "🏠": "Zdalny",
+      "🔄": "Hybrydowy (określony)",
+      "📈": "Hybrydowy (elastyczny)"
     }
   },
   {
@@ -152,16 +152,16 @@
     "description": "Preferowana kultura organizacyjna w miejscu pracy",
     "code": "OC",
     "valueMap": {
-      "Formalna/Hierarchiczna": "F",
-      "Umiarkowana/Zbalansowana": "U",
-      "Elastyczna/Płaska": "E",
-      "Kreatywna/Swobodna": "K"
+      "Formalna/Hierarchiczna": "👔",
+      "Umiarkowana/Zbalansowana": "👕",
+      "Elastyczna/Płaska": "👚",
+      "Kreatywna/Swobodna": "🎨"
     },
     "reverseValueMap": {
-      "F": "Formalna/Hierarchiczna",
-      "U": "Umiarkowana/Zbalansowana",
-      "E": "Elastyczna/Płaska",
-      "K": "Kreatywna/Swobodna"
+      "👔": "Formalna/Hierarchiczna",
+      "👕": "Umiarkowana/Zbalansowana",
+      "👚": "Elastyczna/Płaska",
+      "🎨": "Kreatywna/Swobodna"
     }
   },
   {
@@ -196,16 +196,16 @@
     "description": "Preferowana przestrzeń biurowa",
     "code": "OS",
     "valueMap": {
-      "Open Space": "O",
-      "Biuro zamknięte": "B",
-      "Flexible Space": "F",
-      "Hot-desking": "H"
+      "Open Space": "🏟️",
+      "Biuro zamknięte": "🚪",
+      "Flexible Space": "🏠",
+      "Hot-desking": "🛋️"
     },
     "reverseValueMap": {
-      "O": "Open Space",
-      "B": "Biuro zamknięte",
-      "F": "Flexible Space",
-      "H": "Hot-desking"
+      "🏟️": "Open Space",
+      "🚪": "Biuro zamknięte",
+      "🏠": "Flexible Space",
+      "🛋️": "Hot-desking"
     }
   }
 ]

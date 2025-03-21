@@ -29,14 +29,14 @@
     "description": "Typ osobowości w kontekście energii społecznej",
     "code": "PT",
     "valueMap": {
-      "Introwertyk": "I",
-      "Ekstrawertyk": "E",
-      "Ambiwertyk": "A"
+      "Introwertyk": "🧠",
+      "Ekstrawertyk": "🗣️",
+      "Ambiwertyk": "⚖️"
     },
     "reverseValueMap": {
-      "I": "Introwertyk",
-      "E": "Ekstrawertyk",
-      "A": "Ambiwertyk"
+      "🧠": "Introwertyk",
+      "🗣️": "Ekstrawertyk",
+      "⚖️": "Ambiwertyk"
     }
   },
   {
@@ -69,14 +69,14 @@
     "description": "Preferowany styl zarządzania stresem",
     "code": "SM",
     "valueMap": {
-      "Proaktywne": "P",
-      "Reaktywne": "R",
-      "Unikające": "A"
+      "Proaktywne": "🛡️",
+      "Reaktywne": "🧘",
+      "Unikające": "🚪"
     },
     "reverseValueMap": {
-      "P": "Proaktywne",
-      "R": "Reaktywne",
-      "A": "Unikające"
+      "🛡️": "Proaktywne",
+      "🧘": "Reaktywne",
+      "🚪": "Unikające"
     }
   },
   {
@@ -115,16 +115,16 @@
     "description": "Zdolność do adaptacji do nowych sytuacji i zmian",
     "code": "AD",
     "valueMap": {
-      "Wysoka": "H",
-      "Umiarkowana": "M",
-      "Selektywna": "S",
-      "Tradycyjna": "T"
+      "Wysoka": "⬆️",
+      "Umiarkowana": "⬇️",
+      "Selektywna": "🔍",
+      "Tradycyjna": "📜"
     },
     "reverseValueMap": {
-      "H": "Wysoka",
-      "M": "Umiarkowana",
-      "S": "Selektywna",
-      "T": "Tradycyjna"
+      "⬆️": "Wysoka",
+      "⬇️": "Umiarkowana",
+      "🔍": "Selektywna",
+      "📜": "Tradycyjna"
     }
   },
   {
@@ -163,16 +163,16 @@
     "description": "Preferowany styl kreatywności",
     "code": "CR",
     "valueMap": {
-      "Innowacyjna": "I",
-      "Adaptacyjna": "A",
-      "Praktyczna": "P",
-      "Koncepcyjna": "C"
+      "Innowacyjna": "💥",
+      "Adaptacyjna": "🔄",
+      "Praktyczna": "🔨",
+      "Koncepcyjna": "🤔"
     },
     "reverseValueMap": {
-      "I": "Innowacyjna",
-      "A": "Adaptacyjna",
-      "P": "Praktyczna",
-      "C": "Koncepcyjna"
+      "💥": "Innowacyjna",
+      "🔄": "Adaptacyjna",
+      "🔨": "Praktyczna",
+      "🤔": "Koncepcyjna"
     }
   },
   {
@@ -205,14 +205,14 @@
     "description": "Preferowane podejście do ryzyka",
     "code": "RA",
     "valueMap": {
-      "Unikające ryzyka": "A",
-      "Neutralne wobec ryzyka": "N",
-      "Poszukujące ryzyka": "S"
+      "Unikające ryzyka": "🛡️",
+      "Neutralne wobec ryzyka": "⚖️",
+      "Poszukujące ryzyka": "🎯"
     },
     "reverseValueMap": {
-      "A": "Unikające ryzyka",
-      "N": "Neutralne wobec ryzyka",
-      "S": "Poszukujące ryzyka"
+      "🛡️": "Unikające ryzyka",
+      "⚖️": "Neutralne wobec ryzyka",
+      "🎯": "Poszukujące ryzyka"
     }
   },
   {

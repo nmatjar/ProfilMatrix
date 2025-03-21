@@ -184,28 +184,28 @@
     "description": "Preferowane narzędzia developerskie",
     "code": "DT",
     "valueMap": {
-      "Git": "GT",
-      "Docker": "DK",
-      "Kubernetes": "KB",
-      "Jenkins": "JK",
-      "GitHub Actions": "GA",
-      "GitLab CI": "GL",
-      "Jira": "JR",
-      "Confluence": "CF",
-      "VS Code": "VS",
-      "IntelliJ IDEA": "IJ"
+      "Git": "🔄",
+      "Docker": "🐳",
+      "Kubernetes": "☸️",
+      "Jenkins": "🦵",
+      "GitHub Actions": "🐙",
+      "GitLab CI": "🦊",
+      "Jira": "🔵",
+      "Confluence": "📝",
+      "VS Code": "💻",
+      "IntelliJ IDEA": "🧠"
     },
     "reverseValueMap": {
-      "GT": "Git",
-      "DK": "Docker",
-      "KB": "Kubernetes",
-      "JK": "Jenkins",
-      "GA": "GitHub Actions",
-      "GL": "GitLab CI",
-      "JR": "Jira",
-      "CF": "Confluence",
-      "VS": "VS Code",
-      "IJ": "IntelliJ IDEA"
+      "🔄": "Git",
+      "🐳": "Docker",
+      "☸️": "Kubernetes",
+      "🦵": "Jenkins",
+      "🐙": "GitHub Actions",
+      "🦊": "GitLab CI",
+      "🔵": "Jira",
+      "📝": "Confluence",
+      "💻": "VS Code",
+      "🧠": "IntelliJ IDEA"
     }
   }
 ]

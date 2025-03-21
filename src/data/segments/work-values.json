@@ -35,16 +35,16 @@
     "description": "Główny cel wykonywania pracy",
     "code": "WP",
     "valueMap": {
-      "Finansowy": "F",
-      "Kariera": "C",
-      "Pasja": "P",
-      "Wpływ": "I"
+      "Finansowy": "💰",
+      "Kariera": "📈",
+      "Pasja": "❤️",
+      "Wpływ": "🌍"
     },
     "reverseValueMap": {
-      "F": "Finansowy",
-      "C": "Kariera",
-      "P": "Pasja",
-      "I": "Wpływ"
+      "💰": "Finansowy",
+      "📈": "Kariera",
+      "❤️": "Pasja",
+      "🌍": "Wpływ"
     }
   },
   {
@@ -83,16 +83,16 @@
     "description": "Najważniejsze wartości etyczne w pracy",
     "code": "WE",
     "valueMap": {
-      "Uczciwość": "I",
-      "Odpowiedzialność": "R",
-      "Doskonałość": "E",
-      "Sprawiedliwość": "F"
+      "Uczciwość": "✅",
+      "Odpowiedzialność": "📝",
+      "Doskonałość": "🌟",
+      "Sprawiedliwość": "⚖️"
     },
     "reverseValueMap": {
-      "I": "Uczciwość",
-      "R": "Odpowiedzialność",
-      "E": "Doskonałość",
-      "F": "Sprawiedliwość"
+      "✅": "Uczciwość",
+      "📝": "Odpowiedzialność",
+      "🌟": "Doskonałość",
+      "⚖️": "Sprawiedliwość"
     }
   },
   {
@@ -131,16 +131,16 @@
     "description": "Preferowana kultura organizacyjna",
     "code": "WC",
     "valueMap": {
-      "Współpracująca": "C",
-      "Konkurencyjna": "K",
-      "Innowacyjna": "I",
-      "Tradycyjna": "T"
+      "Współpracująca": "🤝",
+      "Konkurencyjna": "🏆",
+      "Innowacyjna": "💡",
+      "Tradycyjna": "🏛️"
     },
     "reverseValueMap": {
-      "C": "Współpracująca",
-      "K": "Konkurencyjna",
-      "I": "Innowacyjna",
-      "T": "Tradycyjna"
+      "🤝": "Współpracująca",
+      "🏆": "Konkurencyjna",
+      "💡": "Innowacyjna",
+      "🏛️": "Tradycyjna"
     }
   },
   {
@@ -179,16 +179,16 @@
     "description": "Preferowana równowaga między pracą a życiem prywatnym",
     "code": "WB",
     "valueMap": {
-      "Skupienie na pracy": "W",
-      "Zrównoważona": "B",
-      "Skupienie na życiu": "L",
-      "Zintegrowana": "I"
+      "Skupienie na pracy": "💼",
+      "Zrównoważona": "⚖️",
+      "Skupienie na życiu": "🏠",
+      "Zintegrowana": "🔄"
     },
     "reverseValueMap": {
-      "W": "Skupienie na pracy",
-      "B": "Zrównoważona",
-      "L": "Skupienie na życiu",
-      "I": "Zintegrowana"
+      "💼": "Skupienie na pracy",
+      "⚖️": "Zrównoważona",
+      "🏠": "Skupienie na życiu",
+      "🔄": "Zintegrowana"
     }
   },
   {

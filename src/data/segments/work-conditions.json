@@ -50,16 +50,16 @@
     "description": "Preferowana forma zatrudnienia",
     "code": "ET",
     "valueMap": {
-      "Umowa o pracę": "UOP",
-      "Kontrakt B2B": "B2B",
-      "Umowa zlecenie": "UZ",
-      "Umowa o dzieło": "UOD"
+      "Umowa o pracę": "📑",
+      "Kontrakt B2B": "🏢",
+      "Umowa zlecenie": "📝",
+      "Umowa o dzieło": "🎨"
     },
     "reverseValueMap": {
-      "UOP": "Umowa o pracę",
-      "B2B": "Kontrakt B2B",
-      "UZ": "Umowa zlecenie",
-      "UOD": "Umowa o dzieło"
+      "📑": "Umowa o pracę",
+      "🏢": "Kontrakt B2B",
+      "📝": "Umowa zlecenie",
+      "🎨": "Umowa o dzieło"
     }
   },
   {
@@ -98,16 +98,16 @@
     "description": "Preferowany czas trwania umowy",
     "code": "CD",
     "valueMap": {
-      "Okres próbny": "T",
-      "Określony": "F",
-      "Nieokreślony": "I",
-      "Projektowy": "P"
+      "Okres próbny": "🕒️",
+      "Określony": "📆",
+      "Nieokreślony": "🕰️",
+      "Projektowy": "📈"
     },
     "reverseValueMap": {
-      "T": "Okres próbny",
-      "F": "Określony",
-      "I": "Nieokreślony",
-      "P": "Projektowy"
+      "🕒️": "Okres próbny",
+      "📆": "Określony",
+      "🕰️": "Nieokreślony",
+      "📈": "Projektowy"
     }
   },
   {
@@ -158,20 +158,20 @@
     "description": "Preferowane benefity pozapłacowe",
     "code": "BEN",
     "valueMap": {
-      "Opieka zdrowotna": "H",
-      "Karta sportowa": "S",
-      "Szkolenia": "E",
-      "Posiłki": "F",
-      "Ubezpieczenie": "I",
-      "Emerytura": "R"
+      "Opieka zdrowotna": "🏥",
+      "Karta sportowa": "🏋️",
+      "Szkolenia": "📚",
+      "Posiłki": "🍴",
+      "Ubezpieczenie": "🛡️",
+      "Emerytura": "🏠"
     },
     "reverseValueMap": {
-      "H": "Opieka zdrowotna",
-      "S": "Karta sportowa",
-      "E": "Szkolenia",
-      "F": "Posiłki",
-      "I": "Ubezpieczenie",
-      "R": "Emerytura"
+      "🏥": "Opieka zdrowotna",
+      "🏋️": "Karta sportowa",
+      "📚": "Szkolenia",
+      "🍴": "Posiłki",
+      "🛡️": "Ubezpieczenie",
+      "🏠": "Emerytura"
     }
   },
   {

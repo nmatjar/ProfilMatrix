@@ -35,16 +35,16 @@
     "description": "Preferowana wielkość zespołu",
     "code": "TS",
     "valueMap": {
-      "Solo (1 osoba)": "S",
-      "Mały (2-5 osób)": "M",
-      "Średni (6-15 osób)": "R",
-      "Duży (16+ osób)": "L"
+      "Solo (1 osoba)": "🧑",
+      "Mały (2-5 osób)": "👥",
+      "Średni (6-15 osób)": "👨‍👩‍👧",
+      "Duży (16+ osób)": "👨‍👩‍👧‍👦"
     },
     "reverseValueMap": {
-      "S": "Solo (1 osoba)",
-      "M": "Mały (2-5 osób)",
-      "R": "Średni (6-15 osób)",
-      "L": "Duży (16+ osób)"
+      "🧑": "Solo (1 osoba)",
+      "👥": "Mały (2-5 osób)",
+      "👨‍👩‍👧": "Średni (6-15 osób)",
+      "👨‍👩‍👧‍👦": "Duży (16+ osób)"
     }
   },
   {
@@ -83,16 +83,16 @@
     "description": "Preferowana różnorodność zespołu",
     "code": "TD",
     "valueMap": {
-      "Jednorodny": "H",
-      "Zróżnicowane umiejętności": "S",
-      "Zróżnicowane doświadczenie": "E",
-      "W pełni zróżnicowany": "F"
+      "Jednorodny": "🧩",
+      "Zróżnicowane umiejętności": "🔧",
+      "Zróżnicowane doświadczenie": "📈",
+      "W pełni zróżnicowany": "🌈"
     },
     "reverseValueMap": {
-      "H": "Jednorodny",
-      "S": "Zróżnicowane umiejętności",
-      "E": "Zróżnicowane doświadczenie",
-      "F": "W pełni zróżnicowany"
+      "🧩": "Jednorodny",
+      "🔧": "Zróżnicowane umiejętności",
+      "📈": "Zróżnicowane doświadczenie",
+      "🌈": "W pełni zróżnicowany"
     }
   },
   {
@@ -131,16 +131,16 @@
     "description": "Preferowana lokalizacja pracy",
     "code": "WL",
     "valueMap": {
-      "Biuro": "O",
-      "Hybrydowa": "H",
-      "Zdalna (stała lokalizacja)": "R",
-      "Zdalna (elastyczna lokalizacja)": "F"
+      "Biuro": "🏢",
+      "Hybrydowa": "🔄",
+      "Zdalna (stała lokalizacja)": "🏠",
+      "Zdalna (elastyczna lokalizacja)": "🌎"
     },
     "reverseValueMap": {
-      "O": "Biuro",
-      "H": "Hybrydowa",
-      "R": "Zdalna (stała lokalizacja)",
-      "F": "Zdalna (elastyczna lokalizacja)"
+      "🏢": "Biuro",
+      "🔄": "Hybrydowa",
+      "🏠": "Zdalna (stała lokalizacja)",
+      "🌎": "Zdalna (elastyczna lokalizacja)"
     }
   },
   {
@@ -179,16 +179,16 @@
     "description": "Preferowany styl komunikacji w zespole",
     "code": "CS",
     "valueMap": {
-      "Formalny": "F",
-      "Półformalny": "S",
-      "Swobodny": "C",
-      "Mieszany": "M"
+      "Formalny": "📝",
+      "Półformalny": "📋",
+      "Swobodny": "🙂",
+      "Mieszany": "🔄"
     },
     "reverseValueMap": {
-      "F": "Formalny",
-      "S": "Półformalny",
-      "C": "Swobodny",
-      "M": "Mieszany"
+      "📝": "Formalny",
+      "📋": "Półformalny",
+      "🙂": "Swobodny",
+      "🔄": "Mieszany"
     }
   },
   {

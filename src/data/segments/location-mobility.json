@@ -47,20 +47,20 @@
     "description": "Kontynent, na którym znajduje się Twoja lokalizacja",
     "code": "CON",
     "valueMap": {
-      "Europa": "EU",
-      "Ameryka Północna": "NA",
-      "Ameryka Południowa": "SA",
-      "Azja": "AS",
-      "Afryka": "AF",
-      "Australia i Oceania": "AU"
+      "Europa": "🇪🇺",
+      "Ameryka Północna": "🇺🇸",
+      "Ameryka Południowa": "🇧🇷",
+      "Azja": "🇯🇵",
+      "Afryka": "🇿🇦",
+      "Australia i Oceania": "🇦🇺"
     },
     "reverseValueMap": {
-      "EU": "Europa",
-      "NA": "Ameryka Północna",
-      "SA": "Ameryka Południowa",
-      "AS": "Azja",
-      "AF": "Afryka",
-      "AU": "Australia i Oceania"
+      "🇪🇺": "Europa",
+      "🇺🇸": "Ameryka Północna",
+      "🇧🇷": "Ameryka Południowa",
+      "🇯🇵": "Azja",
+      "🇿🇦": "Afryka",
+      "🇦🇺": "Australia i Oceania"
     }
   },
   {
@@ -185,30 +185,30 @@
     "description": "Twoja strefa czasowa",
     "code": "TZ",
     "valueMap": {
-      "UTC-8": "PST",
-      "UTC-5": "EST",
-      "UTC-1": "AZOT",
-      "UTC+0": "GMT",
-      "UTC+1": "CET",
-      "UTC+2": "EET",
-      "UTC+3": "MSK",
-      "UTC+5:30": "IST",
-      "UTC+8": "CST",
-      "UTC+9": "JST",
-      "UTC+10": "AEST"
+      "UTC-8": "🌅",
+      "UTC-5": "🌄",
+      "UTC-1": "🌃",
+      "UTC+0": "⏰",
+      "UTC+1": "⌚",
+      "UTC+2": "⏱️",
+      "UTC+3": "⏲️",
+      "UTC+5:30": "🕐",
+      "UTC+8": "🕒",
+      "UTC+9": "🕓",
+      "UTC+10": "🕔"
     },
     "reverseValueMap": {
-      "PST": "UTC-8",
-      "EST": "UTC-5",
-      "AZOT": "UTC-1",
-      "GMT": "UTC+0",
-      "CET": "UTC+1",
-      "EET": "UTC+2",
-      "MSK": "UTC+3",
-      "IST": "UTC+5:30",
-      "CST": "UTC+8",
-      "JST": "UTC+9",
-      "AEST": "UTC+10"
+      "🌅": "UTC-8",
+      "🌄": "UTC-5",
+      "🌃": "UTC-1",
+      "⏰": "UTC+0",
+      "⌚": "UTC+1",
+      "⏱️": "UTC+2",
+      "⏲️": "UTC+3",
+      "🕐": "UTC+5:30",
+      "🕒": "UTC+8",
+      "🕓": "UTC+9",
+      "🕔": "UTC+10"
     }
   },
   {

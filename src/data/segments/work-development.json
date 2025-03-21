@@ -35,16 +35,16 @@
     "description": "Preferowana ścieżka rozwoju kariery",
     "code": "CP",
     "valueMap": {
-      "Specjalistyczna": "S",
-      "Menedżerska": "M",
-      "Projektowa": "P",
-      "Przedsiębiorcza": "E"
+      "Specjalistyczna": "🔍",
+      "Menedżerska": "👥",
+      "Projektowa": "📊",
+      "Przedsiębiorcza": "🚀"
     },
     "reverseValueMap": {
-      "S": "Specjalistyczna",
-      "M": "Menedżerska",
-      "P": "Projektowa",
-      "E": "Przedsiębiorcza"
+      "🔍": "Specjalistyczna",
+      "👥": "Menedżerska",
+      "📊": "Projektowa",
+      "🚀": "Przedsiębiorcza"
     }
   },
   {
@@ -83,16 +83,16 @@
     "description": "Preferowane sposoby nauki i rozwoju",
     "code": "LO",
     "valueMap": {
-      "Formalne": "F",
-      "Mentoring": "M",
-      "Samokierowane": "S",
-      "W praktyce": "O"
+      "Formalne": "🎓",
+      "Mentoring": "👨‍🏫",
+      "Samokierowane": "🧠",
+      "W praktyce": "💼"
     },
     "reverseValueMap": {
-      "F": "Formalne",
-      "M": "Mentoring",
-      "S": "Samokierowane",
-      "O": "W praktyce"
+      "🎓": "Formalne",
+      "👨‍🏫": "Mentoring",
+      "🧠": "Samokierowane",
+      "💼": "W praktyce"
     }
   },
   {
@@ -131,16 +131,16 @@
     "description": "Preferowane obszary rozwoju umiejętności",
     "code": "SD",
     "valueMap": {
-      "Techniczne": "T",
-      "Miękkie": "S",
-      "Przywódcze": "L",
-      "Biznesowe": "B"
+      "Techniczne": "💻",
+      "Miękkie": "🗣️",
+      "Przywódcze": "👑",
+      "Biznesowe": "📊"
     },
     "reverseValueMap": {
-      "T": "Techniczne",
-      "S": "Miękkie",
-      "L": "Przywódcze",
-      "B": "Biznesowe"
+      "💻": "Techniczne",
+      "🗣️": "Miękkie",
+      "👑": "Przywódcze",
+      "📊": "Biznesowe"
     }
   },
   {
@@ -179,16 +179,16 @@
     "description": "Preferowana częstotliwość otrzymywania feedbacku",
     "code": "FF",
     "valueMap": {
-      "Ciągły": "C",
-      "Regularny": "R",
-      "Po kamieniach milowych": "M",
-      "Formalny": "F"
+      "Ciągły": "🔄",
+      "Regularny": "📅",
+      "Po kamieniach milowych": "🏁",
+      "Formalny": "📝"
     },
     "reverseValueMap": {
-      "C": "Ciągły",
-      "R": "Regularny",
-      "M": "Po kamieniach milowych",
-      "F": "Formalny"
+      "🔄": "Ciągły",
+      "📅": "Regularny",
+      "🏁": "Po kamieniach milowych",
+      "📝": "Formalny"
     }
   },
   {

@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useKeyboardNavigation } from '@/hooks/use-keyboard-navigation';
+
+// Skróty klawiszowe:
+// - Strzałki (← →) lub klawisze VIM (h, l) - nawigacja między obszarami
+// - Cyfry (1-9) - szybki dostęp do obszarów
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Input } from "@/components/ui/input";
@@ -9,7 +14,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
-import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu, Info, Coffee } from "lucide-react";
+import { Terminal, Building, Home, Palette, Users, Globe, Clock, ArrowUpRight, Target, Sparkles, Zap, Gem, Bot, Smartphone, Lightbulb, Settings, MessageSquare, RefreshCw, Brain, User, ChevronLeft, ChevronRight, Cpu, Info, Coffee, Keyboard } from "lucide-react";
+import { KeyboardShortcutsInfo } from "@/components/KeyboardShortcutsInfo";
 import { Link } from 'react-router-dom';
 import { Area, Segment, SegmentOption, SubOption, SegmentWithIcon } from '@/lib/segment-types';
 import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
@@ -67,6 +73,16 @@ const Index = () => {
   const [selections, setSelections] = useState<Record<string, string | number>>({});
   const [activeCategory, setActiveCategory] = useState(0);
   const [selectedArea, setSelectedArea] = useState(mainAreas[0].id);
+
+  const handleAreaChange = useCallback((areaId: string) => {
+    setSelectedArea(areaId);
+  }, []);
+
+  useKeyboardNavigation({
+    areas: mainAreas,
+    currentAreaId: selectedArea,
+    onAreaChange: handleAreaChange,
+  });
 
   // Dodajmy console.log, aby zobaczyć wszystkie segmenty
   useEffect(() => {
@@ -759,6 +775,8 @@ const Index = () => {
             </div>
           </div>
         </div>
+
+        <KeyboardShortcutsInfo />
 
         <footer className="border-t border-green-900 p-4 text-center text-xs bg-black bg-opacity-90">
           <div className="flex justify-between items-center">
