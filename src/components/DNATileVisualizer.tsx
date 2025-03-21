@@ -37,7 +37,17 @@ export function DNATileVisualizer({ parsedDna }: DNATileVisualizerProps) {
                   </Badge>
                 </div>
                 
-                <div className="text-xl font-semibold text-white mb-2">{code.decodedValue}</div>
+                {code.decodedValue && code.decodedValue.includes(', ') ? (
+                  <div className="mb-2">
+                    {code.decodedValue.split(', ').map((val, i) => (
+                      <div key={i} className="text-white font-semibold bg-green-900 bg-opacity-20 px-2 py-1 rounded-md mb-1 text-sm">
+                        {val.trim()}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-xl font-semibold text-white mb-2">{code.decodedValue}</div>
+                )}
                 
                 <div className="text-sm text-gray-300 mt-3">
                   {code.description}

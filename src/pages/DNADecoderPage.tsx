@@ -30,7 +30,9 @@ export function DNADecoderPage() {
   useEffect(() => {
     if (dnaCode) {
       try {
+        console.log('Parsowanie kodu DNA w useEffect:', dnaCode);
         const parsed = parseDNACode(dnaCode)
+        console.log('Wynik parsowania w useEffect:', JSON.stringify(parsed, null, 2));
         setParsedDna(parsed)
         generateDescriptiveText(parsed)
       } catch (error) {
@@ -58,16 +60,52 @@ export function DNADecoderPage() {
     parsedDna.forEach(segment => {
       text += `## ${segment.areaName}\n`
       
-      segment.codes.forEach(code => {
-        // Znajdź pełne informacje o segmencie
-        const segmentInfo = allSegments.find(s => s.code === code.code)
-        if (segmentInfo) {
-          text += `- ${segmentInfo.name}: ${code.decodedValue}\n`
-          if (segmentInfo.description) {
-            text += `  ${segmentInfo.description}\n`
+      // Grupujemy kody według segmentu, aby zgrupować wartości z multiselecta
+      const groupedCodes = segment.codes.reduce((acc, code) => {
+        if (!acc[code.code]) {
+          acc[code.code] = {
+            segmentInfo: allSegments.find(s => s.code === code.code),
+            values: []
+          };
+        }
+        
+        // Sprawdź czy to multiselect (zawiera przecinki)
+        if (code.decodedValue.includes(', ')) {
+          // Dodaj każdą wartość osobno
+          code.decodedValue.split(', ').forEach(val => {
+            if (!acc[code.code].values.includes(val.trim())) {
+              acc[code.code].values.push(val.trim());
+            }
+          });
+        } else {
+          // Dodaj pojedynczą wartość
+          if (!acc[code.code].values.includes(code.decodedValue)) {
+            acc[code.code].values.push(code.decodedValue);
           }
         }
-      })
+        
+        return acc;
+      }, {} as Record<string, {segmentInfo: any, values: string[]}>);
+      
+      // Dodaj każdy segment z wszystkimi jego wartościami
+      Object.values(groupedCodes).forEach(({segmentInfo, values}) => {
+        if (segmentInfo) {
+          if (values.length > 1) {
+            // Dla multiselecta wypisz wszystkie wartości jako listę
+            text += `- ${segmentInfo.name}:\n`;
+            values.forEach(val => {
+              text += `  * ${val}\n`;
+            });
+          } else {
+            // Dla pojedynczej wartości standardowy format
+            text += `- ${segmentInfo.name}: ${values[0]}\n`;
+          }
+          
+          if (segmentInfo.description) {
+            text += `  ${segmentInfo.description}\n`;
+          }
+        }
+      });
       
       text += "\n"
     })
@@ -104,7 +142,9 @@ export function DNADecoderPage() {
 
   const handleDecodingComplete = () => {
     try {
+      console.log('Rozpoczynam dekodowanie kodu DNA:', dnaCode);
       const parsed = parseDNACode(dnaCode)
+      console.log('Zdekodowane segmenty:', JSON.stringify(parsed, null, 2));
       setParsedDna(parsed)
       generateDescriptiveText(parsed)
       setActiveTab("decoded")
@@ -176,6 +216,18 @@ export function DNADecoderPage() {
                           <span className="text-gray-400 mr-2 w-40">Zdekodowana wartość:</span>
                           <span className="text-white">{code.decodedValue}</span>
                         </div>
+                        {code.decodedValue && code.decodedValue.includes(', ') && (
+                          <div className="flex mt-1">
+                            <span className="text-gray-400 mr-2 w-40">Opcje:</span>
+                            <div className="flex flex-wrap gap-1">
+                              {code.decodedValue.split(', ').map((val, i) => (
+                                <span key={i} className="bg-green-900 bg-opacity-30 px-2 py-1 rounded text-white text-sm">
+                                  {val.trim()}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         {code.description && (
                           <div className="flex">
                             <span className="text-gray-400 mr-2 w-40">Opis:</span>

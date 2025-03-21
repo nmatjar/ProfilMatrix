@@ -95,6 +95,13 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
   if (!dnaCode) return []
   
   const result: ParsedDNASegment[] = []
+  const tmpParsedCodes: Record<string, Array<{
+    code: string;
+    value: string;
+    decodedValue: string;
+    description: string;
+    segmentEmoji?: string;
+  }>> = {}
   
   // Podziel kod DNA na segmenty (obszary)
   const dnaSegments = dnaCode.split('▪')
@@ -139,13 +146,16 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
         // 2. emoji=kod (np. 🏟️=F) - format z literowym kodem wartości
         // 3. emojikodwartość (np. 🏟️WPF) - stary format
         
-        // Próbujemy najpierw format emoji=emoji
-        const emojiValueMatch = segmentCodeStr.match(/\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)\s*=\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F\u200D]+)\s*/u)
+        // Próbujemy najpierw format emoji=emoji lub emoji=emoji+emoji+emoji (multiselect)
+        const emojiValueMatch = segmentCodeStr.match(/\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F]+)\s*=\s*([\p{Emoji}\p{Emoji_Presentation}\uFE0F\u200D\+]+)\s*/u)
         
         if (emojiValueMatch) {
-          // Format emoji=emoji
+          // Format emoji=emoji lub emoji=emoji+emoji+emoji
           [, segmentEmoji, segmentValue] = emojiValueMatch
           console.log('Znaleziono format emoji=emoji:', segmentEmoji, '=', segmentValue)
+
+          // Sprawdzamy czy mamy multiselect z +
+          const isMultiSelect = segmentValue.includes('+')
           
           // Szukamy segmentu na podstawie emoji
           const segmentsForArea = allSegments.filter(s => s.areaId === area.id)
@@ -153,6 +163,54 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
           
           if (matchingSegment) {
             segmentCode = matchingSegment.code
+            
+            // Jeśli to multiselect, dodajemy każdą wartość jako osobny element
+            if (isMultiSelect) {
+              console.log(`Wykryto multiselect w emoji=emoji: ${segmentValue}`);
+              const valuesList = segmentValue.split('+');
+              
+              for (const singleValue of valuesList) {
+                console.log(`Przetwarzanie wartości multiselect: ${singleValue}`);
+                
+                // Pobieramy zdekodowane wartości dla każdego pojedynczego emoji
+                let singleDecodedValue = singleValue;
+                let singleDescription = "Brak opisu";
+                
+                console.log(`Dekodowanie wartości multiselect: ${singleValue} dla segmentu ${segmentCode}`);
+                
+                // Pobieramy pełną definicję segmentu z wszystkimi opcjami
+                const fullSegment = allSegments.find(s => s.code === segmentCode);
+                
+                if (fullSegment) {
+                  // Jeśli segment ma reverseValueMap, użyjemy go do dekodowania
+                  if (fullSegment.reverseValueMap && fullSegment.reverseValueMap[singleValue]) {
+                    singleDecodedValue = fullSegment.reverseValueMap[singleValue];
+                    console.log(`Zdekodowano ${singleValue} na ${singleDecodedValue}`);
+                    
+                    // Próbujemy znaleźć opis w opcjach segmentu
+                    const option = fullSegment.options?.find(o => 
+                      o.value === singleDecodedValue || o.id === singleDecodedValue.toLowerCase());
+                      
+                    if (option) {
+                      singleDescription = option.description || "Brak opisu";
+                      console.log(`Znaleziono opis: ${singleDescription}`);
+                    }
+                  }
+                } else {
+                  console.log(`Nie znaleziono pełnej definicji segmentu: ${segmentCode}`);
+                }
+                
+                parsedCodes.push({
+                  code: segmentCode,
+                  value: singleValue,
+                  decodedValue: singleDecodedValue,
+                  description: singleDescription,
+                  segmentEmoji: segmentEmoji
+                });
+              }
+              // Przechodzimy do kolejnego segmentu, bo już dodaliśmy wszystkie wartości
+              continue;
+            }
           } else {
             console.log(`Nie znaleziono segmentu dla emoji: ${segmentEmoji} w obszarze: ${area.id}`)
             continue
@@ -204,6 +262,16 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
             // Podziel wartość na poszczególne elementy
             const values = segmentValue.split('+');
             
+            // Czyścimy tablicę parsedCodes jeśli to pierwszy multiselect dla tego segmentu
+            // aby uniknąć duplikatów kodów dla tego samego segmentu
+            const existingCodesForThisSegment = parsedCodes.filter(pc => pc.code === segmentCode);
+            if (existingCodesForThisSegment.length > 0) {
+              console.log(`Usunięto ${existingCodesForThisSegment.length} istniejących kodów dla segmentu ${segmentCode}`);
+              // Usuń istniejące kody dla tego segmentu - modyfikujemy zamiast przypisywać
+              // czyścimy array bez tworzenia nowego
+              parsedCodes.splice(0, parsedCodes.length, ...parsedCodes.filter(pc => pc.code !== segmentCode));
+            }
+            
             // Zamiast dodawać pojedynczy wpis dla całego segmentu,
             // dodaj osobny wpis dla każdej wartości w multiselect
             for (const val of values) {
@@ -218,7 +286,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
                   
                   // Znajdź opis w opcjach
                   const option = foundSegment.options?.find(o => o.value === singleDecodedValue || 
-                                                             o.id === singleDecodedValue.toLowerCase());
+                                                              o.id === singleDecodedValue.toLowerCase());
                   if (option) {
                     singleDescription = option.description || "Brak opisu";
                   }
@@ -243,8 +311,7 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
                 segmentEmoji: segmentEmoji
               });
               
-              console.log(`Dodano wpół kodu multiselect: ${segmentCode}, wartość: ${val}, 
-                zdekodowana: ${singleDecodedValue}`);
+              console.log(`Dodano kod multiselect: ${segmentCode}, wartość: ${val}, zdekodowana: ${singleDecodedValue}`);
             }
             
             // Nie dodawaj zbiorczo wszystkich wartości - każda jest już dodana osobno
@@ -290,17 +357,33 @@ export function parseDNACode(dnaCode: string): ParsedDNASegment[] {
       }
       
       if (parsedCodes.length > 0) {
-        result.push({
-          area: area.id,
-          areaName: area.name,
-          emoji: areaEmoji,
-          codes: parsedCodes
-        })
+        // Zamiast dodawać od razu do wyniku, zapisujemy do tymczasowej struktury
+        // aby później połączyć wszystkie segmenty tego samego obszaru
+        if (!tmpParsedCodes[area.id]) {
+          tmpParsedCodes[area.id] = [];
+        }
+        // Dodajemy wszystkie kody do tymczasowej struktury
+        tmpParsedCodes[area.id].push(...parsedCodes);
       }
     } catch (error) {
       console.error('Błąd podczas parsowania kodu DNA:', error)
     }
   })
+  
+  // Teraz budujemy ostateczną strukturę wynikową na podstawie tymczasowych danych
+  for (const [areaId, codes] of Object.entries(tmpParsedCodes)) {
+    if (codes.length > 0) {
+      const areaInfo = areas.find(a => a.id === areaId);
+      if (!areaInfo) continue;
+      
+      result.push({
+        area: areaId,
+        areaName: areaInfo.name,
+        emoji: areaInfo.emoji || '❓',
+        codes: codes
+      });
+    }
+  }
   
   return result
 }

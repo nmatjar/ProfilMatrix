@@ -47,9 +47,19 @@ export function DNATreeVisualizer({ parsedDna }: DNATreeVisualizerProps) {
                       </div>
                       <div className="text-center">
                         <div className="text-green-400 font-semibold mb-1">{code.code}</div>
-                        <div className="text-white font-medium">
-                          {code.decodedValue}
-                        </div>
+                        {code.decodedValue && code.decodedValue.includes(', ') ? (
+                          <div className="space-y-1">
+                            {code.decodedValue.split(', ').map((val, i) => (
+                              <div key={i} className="text-white font-medium bg-green-900 bg-opacity-20 px-2 py-1 rounded-md text-xs">
+                                {val.trim()}
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="text-white font-medium">
+                            {code.decodedValue}
+                          </div>
+                        )}
                         <div className="text-xs text-gray-400 mt-2 line-clamp-2">
                           {code.description}
                         </div>
