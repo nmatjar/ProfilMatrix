@@ -1,4 +1,4 @@
-# Dobre praktyki kodowania w projekcie ProfileCoder
+# Dobre praktyki kodowania w projekcie ProfileMatrix
 
 ## Renderowanie komponentów React
 
@@ -282,7 +282,7 @@
   <Mail className="h-4 w-4" />
   ```
 
-## Wytyczne designu dla ProfileCoder
+## Wytyczne designu dla ProfileMatrix
 
 ### Paleta kolorów
 

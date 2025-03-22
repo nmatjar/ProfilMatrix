@@ -1,4 +1,4 @@
-# Instrukcja dodawania nowego obszaru do ProfileCoder
+# Instrukcja dodawania nowego obszaru do ProfileMatrix
 
 ## 1. Struktura plików
 Aby dodać nowy obszar do aplikacji, należy zmodyfikować następujące pliki:

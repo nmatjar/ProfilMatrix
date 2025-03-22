@@ -2,7 +2,7 @@
 
 ## Przegląd
 
-Ten dokument przedstawia plan przeprogramowania obecnego systemu generowania kodu profilu w aplikacji ProfileCoder do formatu DNA. Plan zakłada etapowe wdrożenie, minimalizację ryzyka i zachowanie kompatybilności wstecznej.
+Ten dokument przedstawia plan przeprogramowania obecnego systemu generowania kodu profilu w aplikacji ProfileMatrix do formatu DNA. Plan zakłada etapowe wdrożenie, minimalizację ryzyka i zachowanie kompatybilności wstecznej.
 
 ## Fazy Implementacji
 
@@ -410,7 +410,7 @@ const renderFormatToggle = () => {
 
 ## Wnioski
 
-Implementacja formatu kodu DNA to znacząca zmiana w aplikacji ProfileCoder, która oferuje wiele korzyści w zakresie standaryzacji, gęstości informacji i potencjału algorytmicznego. Plan zakłada etapowe wdrożenie z zachowaniem kompatybilności wstecznej, co minimalizuje ryzyko i pozwala na iteracyjne udoskonalanie.
+Implementacja formatu kodu DNA to znacząca zmiana w aplikacji ProfileMatrix, która oferuje wiele korzyści w zakresie standaryzacji, gęstości informacji i potencjału algorytmicznego. Plan zakłada etapowe wdrożenie z zachowaniem kompatybilności wstecznej, co minimalizuje ryzyko i pozwala na iteracyjne udoskonalanie.
 
 Kluczem do sukcesu będzie dokładna dokumentacja formatu, intuicyjny interfejs użytkownika i solidne testowanie. Wdrożenie powinno być poprzedzone fazą beta, w której użytkownicy mogą wypróbować nowy format i dostarczyć informacji zwrotnych.
 

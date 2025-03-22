@@ -144,4 +144,4 @@ Możliwość dodawania mikrosegmentów jak:
    - Funkcje porównywania i dopasowywania profili
    - System rekomendacji oparty na kodzie DNA
 
-Format DNA oferuje interesujące możliwości rozszerzenia funkcjonalności aplikacji ProfileCoder, szczególnie w kierunku bardziej zaawansowanego dopasowywania profili i analizy kompatybilności. Jednocześnie wymaga starannego planowania implementacji, aby zachować intuicyjność i użyteczność dla końcowych użytkowników.
+Format DNA oferuje interesujące możliwości rozszerzenia funkcjonalności aplikacji ProfileMatrix, szczególnie w kierunku bardziej zaawansowanego dopasowywania profili i analizy kompatybilności. Jednocześnie wymaga starannego planowania implementacji, aby zachować intuicyjność i użyteczność dla końcowych użytkowników.

@@ -1,4 +1,4 @@
-# ProfileCoder - Twoje DNA Zawodowe
+# ProfileMatrix - Twoje DNA Zawodowe
 
 <p align="center">
   <img src="https://img.shields.io/badge/wersja-1.0-brightgreen" alt="Wersja 1.0"/>
@@ -9,11 +9,11 @@
 
 ## 🚀 O Projekcie
 
-**ProfileCoder** to innowacyjne narzędzie do tworzenia i kodowania spersonalizowanych profili zawodowych. Dzięki intuicyjnemu interfejsowi możesz precyzyjnie określić swoje preferencje dotyczące środowiska pracy, stylu komunikacji, zarządzania czasem i wielu innych aspektów życia zawodowego.
+**ProfileMatrix** to innowacyjne narzędzie do tworzenia i kodowania spersonalizowanych profili zawodowych. Dzięki intuicyjnemu interfejsowi możesz precyzyjnie określić swoje preferencje dotyczące środowiska pracy, stylu komunikacji, zarządzania czasem i wielu innych aspektów życia zawodowego.
 
 Efektem jest unikalny kod - Twoje "DNA Zawodowe" - który w zwięzłej formie przedstawia Twój idealny profil pracy. Ten kod można łatwo udostępniać, analizować lub przechowywać w systemach HR.
 
-![ProfileCoder Interface](/public/og-image.png)
+![ProfileMatrix Interface](/public/og-image.png)
 
 ## 🔍 Kluczowe Funkcje
 
@@ -81,7 +81,7 @@ Poniżej znajdują się przykłady kodów DNA dla różnych profili zawodowych:
 
 ## 💡 Zastosowania
 
-ProfileCoder znajduje zastosowanie w wielu obszarach związanych z pracą i zarządzaniem:
+ProfileMatrix znajduje zastosowanie w wielu obszarach związanych z pracą i zarządzaniem:
 
 ### 🔹 Rekrutacja i HR
 - Precyzyjne dopasowanie kandydatów do kultury organizacyjnej firmy
@@ -273,7 +273,7 @@ graph LR
 
 ```bash
 # Klonowanie repozytorium
-git clone https://github.com/twoj-username/ProfileCoder.git
+git clone https://github.com/twoj-username/ProfileMatrix.git
 
 # Instalacja zależności
 npm install
@@ -306,7 +306,7 @@ VITE_API_URL=http://localhost:3000
 VITE_DEBUG=true
 
 # .env.production
-VITE_API_URL=https://api.profilecoder.com
+VITE_API_URL=https://api.ProfileMatrix.com
 VITE_DEBUG=false
 ```
 
@@ -473,7 +473,7 @@ describe('AreaView', () => {
   </a>
 </p>
 
-ProfileCoder jest projektem open-source, rozwijany z pasją przez społeczność. Twoje wsparcie pomaga nam:
+ProfileMatrix jest projektem open-source, rozwijany z pasją przez społeczność. Twoje wsparcie pomaga nam:
 
 - 🚀 Rozwijać nowe funkcjonalności
 - 🛠️ Utrzymywać infrastrukturę
@@ -481,7 +481,7 @@ ProfileCoder jest projektem open-source, rozwijany z pasją przez społeczność
 - 🐛 Naprawiać błędy
 - 🌐 Budować społeczność wokół projektu
 
-Jeśli korzystasz z ProfileCoder i chcesz wesprzeć jego dalszy rozwój, rozważ [kupienie kawy dla twórcy](https://buycoffee.to/mat). Każde wsparcie, nawet najmniejsze, ma ogromne znaczenie i motywuje do dalszego rozwijania narzędzia, które pomaga kodować DNA zawodowe.
+Jeśli korzystasz z ProfileMatrix i chcesz wesprzeć jego dalszy rozwój, rozważ [kupienie kawy dla twórcy](https://buycoffee.to/mat). Każde wsparcie, nawet najmniejsze, ma ogromne znaczenie i motywuje do dalszego rozwijania narzędzia, które pomaga kodować DNA zawodowe.
 
 *"Kod DNA wypełniony jest kawą, pasją i wsparciem społeczności."*
 
@@ -596,7 +596,7 @@ export function DNACodeGenerator() {
 
 ## 🔮 Przyszłość Projektu
 
-ProfileCoder to dopiero początek. Oto co planujemy w przyszłości:
+ProfileMatrix to dopiero początek. Oto co planujemy w przyszłości:
 
 ### 📊 Analityka i Porównania
 - Możliwość porównywania profili między sobą
@@ -606,7 +606,7 @@ ProfileCoder to dopiero początek. Oto co planujemy w przyszłości:
 ### 🌐 Integracje
 - Integracja z popularnymi systemami ATS i HRIS
 - Eksport do różnych formatów (PDF, JSON, integracja z LinkedIn)
-- API dla deweloperów chcących zintegrować ProfileCoder z własnymi aplikacjami
+- API dla deweloperów chcących zintegrować ProfileMatrix z własnymi aplikacjami
 
 ### 🧠 Sztuczna Inteligencja
 - Rekomendacje oparte na AI dotyczące dopasowania do zespołu/organizacji
@@ -620,11 +620,11 @@ ProfileCoder to dopiero początek. Oto co planujemy w przyszłości:
 
 ## 🤝 Współpraca
 
-Jesteśmy otwarci na współpracę! Jeśli masz pomysł na ulepszenie ProfileCoder lub chcesz zgłosić błąd:
+Jesteśmy otwarci na współpracę! Jeśli masz pomysł na ulepszenie ProfileMatrix lub chcesz zgłosić błąd:
 
 1. Utwórz issue w repozytorium
 2. Zaproponuj zmiany poprzez pull request
-3. Skontaktuj się z nami bezpośrednio: contact@profilecoder.com
+3. Skontaktuj się z nami bezpośrednio: contact@ProfileMatrix.com
 
 ## 📜 Licencja
 
@@ -633,5 +633,5 @@ Ten projekt jest udostępniany na licencji MIT. Szczegóły znajdziesz w pliku L
 ---
 
 <p align="center">
-  <b>ProfileCoder</b> - Odkoduj swój idealny styl pracy
+  <b>ProfileMatrix</b> - Odkoduj swój idealny styl pracy
 </p>

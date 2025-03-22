@@ -1,8 +1,8 @@
-# Format kodu DNA w ProfileCoder
+# Format kodu DNA w ProfileMatrix
 
 ## Wprowadzenie
 
-Format DNA to nowy sposób reprezentacji profili w aplikacji ProfileCoder. Został zaprojektowany, aby być bardziej zwięzły, czytelny i elastyczny niż poprzedni format. Format DNA używa krótkich kodów i emotikonów do reprezentowania różnych atrybutów i preferencji użytkownika.
+Format DNA to nowy sposób reprezentacji profili w aplikacji ProfileMatrix. Został zaprojektowany, aby być bardziej zwięzły, czytelny i elastyczny niż poprzedni format. Format DNA używa krótkich kodów i emotikonów do reprezentowania różnych atrybutów i preferencji użytkownika.
 
 ## Struktura kodu DNA
 
@@ -139,7 +139,7 @@ Każdy obszar ma własny zestaw segmentów z unikalnymi kodami w aplikacji. Wszy
 
 ## Implementacja
 
-Format DNA jest zaimplementowany w aplikacji ProfileCoder w następujących plikach:
+Format DNA jest zaimplementowany w aplikacji ProfileMatrix w następujących plikach:
 
 1. `src/lib/dna-code-mapping.ts` - Definicje kodów DNA, funkcje parsowania i generowania kodu DNA.
 2. `src/components/DNACodeDisplay.tsx` - Komponent do wizualizacji kodu DNA z formatowaniem i kolorowaniem.
@@ -164,4 +164,4 @@ Szczegółowa instrukcja znajduje się w pliku `/docs/ADDING_NEW_AREA.md`.
 
 ## Podsumowanie
 
-Format DNA to zwięzły i elastyczny sposób reprezentacji profili użytkowników w aplikacji ProfileCoder. Dzięki wykorzystaniu emoji i krótkich kodów, format jest jednocześnie czytelny dla ludzi oraz łatwy do parsowania i generowania przez aplikację. System można łatwo rozszerzać o nowe obszary i segmenty, zachowując spójność całego kodu DNA.
+Format DNA to zwięzły i elastyczny sposób reprezentacji profili użytkowników w aplikacji ProfileMatrix. Dzięki wykorzystaniu emoji i krótkich kodów, format jest jednocześnie czytelny dla ludzi oraz łatwy do parsowania i generowania przez aplikację. System można łatwo rozszerzać o nowe obszary i segmenty, zachowując spójność całego kodu DNA.

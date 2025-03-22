@@ -23,7 +23,7 @@ export function SegmentManagerPage() {
         <div className="max-w-3xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold flex items-center">
             <Terminal className="h-6 w-6 mr-2" />
-            {">_ ProfileCoder_v1.0"}
+            {">_ ProfileMatrix"}
           </h1>
           <Link to="/" className="text-green-500 hover:text-green-400">
             Powrót do głównej

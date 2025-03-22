@@ -1,6 +1,6 @@
-# Database Migration Strategy for ProfileCoder
+# Database Migration Strategy for ProfileMatrix
 
-This document outlines the strategy for transitioning the ProfileCoder segment library from a file-based system to a database-backed solution.
+This document outlines the strategy for transitioning the ProfileMatrix segment library from a file-based system to a database-backed solution.
 
 ## Current Architecture
 

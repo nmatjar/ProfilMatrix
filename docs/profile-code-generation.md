@@ -2,7 +2,7 @@
 
 ## Wprowadzenie
 
-Ten dokument opisuje mechanizm generowania kodu profilu (kodu DNA) w aplikacji ProfileCoder. Kod DNA to zwięzła reprezentacja wyborów użytkownika dotyczących różnych aspektów jego preferencji zawodowych, stylu pracy, wartości i innych cech osobistych.
+Ten dokument opisuje mechanizm generowania kodu profilu (kodu DNA) w aplikacji ProfileMatrix. Kod DNA to zwięzła reprezentacja wyborów użytkownika dotyczących różnych aspektów jego preferencji zawodowych, stylu pracy, wartości i innych cech osobistych.
 
 ## Przechowywanie Danych
 
@@ -376,7 +376,7 @@ Implementacja wizualizacji znajduje się w:
 
 ## Podsumowanie
 
-Mechanizm generowania i dekodowania kodu DNA w ProfileCoder pozwala na kompaktową reprezentację preferencji użytkownika. Kod jest czytelny zarówno dla ludzi, jak i dla maszyn, co ułatwia jego udostępnianie i analizowanie. System jest elastyczny i można go łatwo rozszerzać o nowe obszary i segmenty.
+Mechanizm generowania i dekodowania kodu DNA w ProfileMatrix pozwala na kompaktową reprezentację preferencji użytkownika. Kod jest czytelny zarówno dla ludzi, jak i dla maszyn, co ułatwia jego udostępnianie i analizowanie. System jest elastyczny i można go łatwo rozszerzać o nowe obszary i segmenty.
 
 Główne zalety nowego formatu kodu DNA:
 
