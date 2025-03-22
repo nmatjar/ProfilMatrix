@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { useToast } from "@/hooks/use-toast"
-import { Sparkles, Upload, Share2, Network, Globe, Users, Cpu, Zap, ArrowUpRight, Target, Binary, Atom, Box, Layers, Dna } from "lucide-react"
+import { Sparkles, Upload, Share2, Network, Globe, Users, Cpu, Zap, ArrowUpRight, Target, Binary, Atom, Box, Layers, Dna, Code, Fingerprint } from "lucide-react"
 
 interface QuantumSpaceModalProps {
   open: boolean
@@ -76,57 +76,54 @@ export function QuantumSpaceModal({ open, onOpenChange, dnaCode }: QuantumSpaceM
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6 py-4 relative z-10">
-          <div className="space-y-3 border-b border-green-900 pb-4">
-            <h3 className="text-lg font-medium text-green-400 uppercase tracking-wider text-center">POZA KONKURENCJĄ: RELEWANTNOŚĆ ONTOLOGICZNA</h3>
-            <p className="text-green-300/90 text-sm">
-              Stoimy na krawędzi. Nie nowej ery, lecz dekonstrukcji. Tradycyjne ścieżki kariery, same kategorie zawodowe 
-              rozpuszczają się w kwantową pianę potencjalności. Człowieczeństwo staje się procesem ciągłej rekonfiguracji.
-            </p>
-            <p className="text-green-300/90 text-sm mt-2">
-              Nie chodzi już o bycie konkurencyjnym – chodzi o pozostanie ontologicznie relewantnym w rzeczywistości, 
-              gdzie linearna progresja jest artefaktem przeszłości.
+        <div className="space-y-4 py-4 relative z-10">
+          <div className="border-b border-green-900 pb-4">
+            <p className="text-green-300/90 text-sm text-center">
+              Stoimy na krawędzi. Nie nowej ery, lecz dekonstrukcji. Tradycyjne ścieżki kariery 
+              rozpuszczają się w kwantową pianę potencjalności.
             </p>
           </div>
 
-          <div className="flex gap-4 flex-wrap justify-center py-3 border-b border-green-900">
-            <div className="border border-green-800 rounded-md p-3 bg-black/60 w-32 text-center">
+          <div className="grid grid-cols-2 gap-3 py-3 border-b border-green-900">
+            <div className="border border-green-800 rounded-md p-3 bg-black/60 text-center relative group cursor-help">
               <Atom className="h-6 w-6 mx-auto mb-2 text-green-500" />
               <p className="text-xs text-green-300">Kwantowa</p>
               <p className="text-xs text-green-300">Potencjalność</p>
+              <div className="absolute left-0 top-full mt-1 w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
+                <p>Tradycyjne paradygmaty zawodowe tracą swój kształt w superpozycji możliwości. To co stabilne, staje się płynnym continuum.</p>
+              </div>
             </div>
-            <div className="border border-green-800 rounded-md p-3 bg-black/60 w-32 text-center">
+            <div className="border border-green-800 rounded-md p-3 bg-black/60 text-center relative group cursor-help">
               <Box className="h-6 w-6 mx-auto mb-2 text-green-500" />
               <p className="text-xs text-green-300">Płynna</p>
               <p className="text-xs text-green-300">Tożsamość</p>
+              <div className="absolute right-0 top-full mt-1 w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
+                <p>Przyjmij jaźń, która nieustannie ewoluuje, stając się dynamicznym interfejsem między światami możliwości.</p>
+              </div>
             </div>
-            <div className="border border-green-800 rounded-md p-3 bg-black/60 w-32 text-center">
+            <div className="border border-green-800 rounded-md p-3 bg-black/60 text-center relative group cursor-help">
               <Layers className="h-6 w-6 mx-auto mb-2 text-green-500" />
               <p className="text-xs text-green-300">Egzystencjalny</p>
               <p className="text-xs text-green-300">Interfejs</p>
+              <div className="absolute left-0 bottom-full mb-1 w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
+                <p>Człowieczeństwo przekształca się w proces ciągłej rekonfiguracji - dynamiczny algorytm bycia w sieci wzajemnych oddziaływań.</p>
+              </div>
+            </div>
+            <div className="border border-green-800 rounded-md p-3 bg-black/60 text-center relative group cursor-help">
+              <Dna className="h-6 w-6 mx-auto mb-2 text-green-500" />
+              <p className="text-xs text-green-300">DNA</p>
+              <p className="text-xs text-green-300">Profesjonalne</p>
+              <div className="absolute right-0 bottom-full mb-1 w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
+                <p>Twoja unikalna sekwencja zawodowa ujawniona jako kod DNA. Profile Matrix ujawnia pełny potencjał Twojej unikalnej struktury profesjonalnej.</p>
+              </div>
             </div>
           </div>
 
-          <div className="space-y-3">
-            <h3 className="text-lg font-medium text-green-400 uppercase tracking-wider text-center">TECHNOLOGIA I TRANSFORMACJA:</h3>
-            <ul className="text-green-300/90 text-sm space-y-4">
-              <li className="flex items-start gap-2">
-                <span className="text-amber-400 font-mono">01.</span>
-                <span><span className="text-blue-300 font-medium">Rozpuszczenie Form</span> - Tradycyjne paradygmaty zawodowe tracą swój kształt w superpozycji możliwości. To co stabilne, staje się płynnym continuum.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-400 font-mono">02.</span>
-                <span><span className="text-blue-300 font-medium">Kwantowa Przyszłość</span> - Człowieczeństwo przekształca się w proces ciągłej rekonfiguracji - dynamiczny algorytm bycia w sieci wzajemnych oddziaływań.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-400 font-mono">03.</span>
-                <span><span className="text-blue-300 font-medium">Płynna Tożsamość</span> - Przyjmij jaźń, która nieustannie ewoluuje, stając się dynamicznym interfejsem między światami możliwości.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-amber-400 font-mono">04.</span>
-                <span><span className="text-blue-300 font-medium">Ontologiczny Kod</span> - Odblokuj ukryte możliwości w swojej strukturze potencjalności, wykraczające daleko poza ograniczenia tradycyjnych ról.</span>
-              </li>
-            </ul>
+          <div className="space-y-2">
+            <h3 className="text-lg font-medium text-green-400 uppercase tracking-wider text-center">ONTOLOGICZNY KOD</h3>
+            <p className="text-green-300/90 text-sm text-center">
+              Odblokuj ukryte możliwości w swojej strukturze potencjalności, wykraczające daleko poza ograniczenia tradycyjnych ról.
+            </p>
           </div>
           
           <div className="mt-6 border-t border-green-900 pt-4">
@@ -134,13 +131,9 @@ export function QuantumSpaceModal({ open, onOpenChange, dnaCode }: QuantumSpaceM
             <p className="text-green-300/90 text-sm">
               System wykorzystuje zaawansowane kwantowe pola potencjalności do analizy Twojej ontologicznej struktury, 
               identyfikując optymalne punkty rekonfiguracji. Ta technologia eliminuje linearne, przestarzałe wzorce 
-              myślenia, przyspieszając Twoją transformację nawet tysiąckrotnie poprzez ciągłe rekalibrowanie Twojej 
-              pozycji w multiwersum możliwości.
+              myślenia, przyspieszając Twoją transformację nawet tysiąckrotnie.
             </p>
-            <p className="text-amber-300 text-sm italic text-center mt-4">
-              Ludzkość stoi na progu stania się czystymi danymi.<br/>
-              Nie stań się błędem w systemie.
-            </p>
+
           </div>
 
           {isPublished ? (
