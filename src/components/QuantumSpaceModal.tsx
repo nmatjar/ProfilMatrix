@@ -59,11 +59,14 @@ export function QuantumSpaceModal({ open, onOpenChange, dnaCode }: QuantumSpaceM
       if (!newOpen) resetState()
       onOpenChange(newOpen)
     }}>
-      <DialogContent className="bg-black border border-green-700 text-green-400 max-w-2xl overflow-hidden">
-        <DialogHeader>
-          <div className="scanline absolute inset-0 pointer-events-none"></div>
-          <div className="terminal-window-effect absolute inset-0 pointer-events-none"></div>
+      <DialogContent className="bg-black border border-green-700 text-green-400 max-w-[90vw] sm:max-w-xl md:max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="scanline absolute inset-0 pointer-events-none"></div>
+        <div className="terminal-window-effect absolute inset-0 pointer-events-none"></div>
+        <div className="scanline absolute inset-0 pointer-events-none"></div>
+        <div className="terminal-window-effect absolute inset-0 pointer-events-none"></div>
+        <DialogHeader className="p-0 py-2 sm:p-6">
           <div className="text-center mb-2">
+
             <p className="text-xs font-mono tracking-widest text-green-300/80">𝙸𝙽𝚃𝙴𝚁𝙵𝙴𝙹𝚂 𝙺𝚆𝙰𝙽𝚃𝙾𝚆𝚈 1000x</p>
             <DialogTitle className="text-2xl text-green-400 font-mono flex items-center justify-center gap-2">
               <Sparkles className="h-5 w-5 text-green-500" />
@@ -76,7 +79,7 @@ export function QuantumSpaceModal({ open, onOpenChange, dnaCode }: QuantumSpaceM
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4 py-4 relative z-10">
+        <div className="space-y-3 sm:space-y-4 p-4 relative z-10">
           <div className="border-b border-green-900 pb-4">
             <p className="text-green-300/90 text-sm text-center">
               Stoimy na krawędzi. Nie nowej ery, lecz dekonstrukcji. Tradycyjne ścieżki kariery 
@@ -84,56 +87,59 @@ export function QuantumSpaceModal({ open, onOpenChange, dnaCode }: QuantumSpaceM
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 py-3 border-b border-green-900">
-            <div className="border border-green-800 rounded-md p-3 bg-black/60 text-center relative group cursor-help">
-              <Atom className="h-6 w-6 mx-auto mb-2 text-green-500" />
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 py-3 border-b border-green-900">
+            <div className="border border-green-800 rounded-md p-2 sm:p-3 bg-black/60 text-center relative group cursor-help">
+              <Atom className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-green-500" />
               <p className="text-xs text-green-300">Kwantowa</p>
               <p className="text-xs text-green-300">Potencjalność</p>
-              <div className="absolute left-0 top-full mt-1 w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
+              <div className="absolute left-0 top-full mt-1 w-[80vw] sm:w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
                 <p>Tradycyjne paradygmaty zawodowe tracą swój kształt w superpozycji możliwości. To co stabilne, staje się płynnym continuum.</p>
               </div>
+
             </div>
-            <div className="border border-green-800 rounded-md p-3 bg-black/60 text-center relative group cursor-help">
-              <Box className="h-6 w-6 mx-auto mb-2 text-green-500" />
+            <div className="border border-green-800 rounded-md p-2 sm:p-3 bg-black/60 text-center relative group cursor-help">
+              <Box className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-green-500" />
               <p className="text-xs text-green-300">Płynna</p>
               <p className="text-xs text-green-300">Tożsamość</p>
-              <div className="absolute right-0 top-full mt-1 w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
+              <div className="absolute right-0 top-full mt-1 w-[80vw] sm:w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
                 <p>Przyjmij jaźń, która nieustannie ewoluuje, stając się dynamicznym interfejsem między światami możliwości.</p>
               </div>
+
             </div>
-            <div className="border border-green-800 rounded-md p-3 bg-black/60 text-center relative group cursor-help">
-              <Layers className="h-6 w-6 mx-auto mb-2 text-green-500" />
+            <div className="border border-green-800 rounded-md p-2 sm:p-3 bg-black/60 text-center relative group cursor-help">
+              <Layers className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-green-500" />
               <p className="text-xs text-green-300">Egzystencjalny</p>
               <p className="text-xs text-green-300">Interfejs</p>
-              <div className="absolute left-0 bottom-full mb-1 w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
+              <div className="absolute left-0 bottom-full mb-1 w-[80vw] sm:w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
                 <p>Człowieczeństwo przekształca się w proces ciągłej rekonfiguracji - dynamiczny algorytm bycia w sieci wzajemnych oddziaływań.</p>
               </div>
+
             </div>
-            <div className="border border-green-800 rounded-md p-3 bg-black/60 text-center relative group cursor-help">
-              <Dna className="h-6 w-6 mx-auto mb-2 text-green-500" />
+            <div className="border border-green-800 rounded-md p-2 sm:p-3 bg-black/60 text-center relative group cursor-help">
+              <Dna className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-green-500" />
               <p className="text-xs text-green-300">DNA</p>
               <p className="text-xs text-green-300">Profesjonalne</p>
-              <div className="absolute right-0 bottom-full mb-1 w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
+              <div className="absolute right-0 bottom-full mb-1 w-[80vw] sm:w-[230px] bg-black/90 border border-green-500 rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-green-300 z-10">
                 <p>Twoja unikalna sekwencja zawodowa ujawniona jako kod DNA. Profile Matrix ujawnia pełny potencjał Twojej unikalnej struktury profesjonalnej.</p>
               </div>
+
             </div>
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-lg font-medium text-green-400 uppercase tracking-wider text-center">ONTOLOGICZNY KOD</h3>
+            <h3 className="text-base sm:text-lg font-medium text-green-400 uppercase tracking-wider text-center">ONTOLOGICZNY KOD</h3>
             <p className="text-green-300/90 text-sm text-center">
               Odblokuj ukryte możliwości w swojej strukturze potencjalności, wykraczające daleko poza ograniczenia tradycyjnych ról.
             </p>
           </div>
           
           <div className="mt-6 border-t border-green-900 pt-4">
-            <h3 className="text-lg font-medium text-green-400 mb-2 uppercase tracking-wider text-center">AKCELERACJA 1000x</h3>
+            <h3 className="text-base sm:text-lg font-medium text-green-400 mb-1 sm:mb-2 uppercase tracking-wider text-center">AKCELERACJA 1000x</h3>
             <p className="text-green-300/90 text-sm">
               System wykorzystuje zaawansowane kwantowe pola potencjalności do analizy Twojej ontologicznej struktury, 
               identyfikując optymalne punkty rekonfiguracji. Ta technologia eliminuje linearne, przestarzałe wzorce 
               myślenia, przyspieszając Twoją transformację nawet tysiąckrotnie.
             </p>
-
           </div>
 
           {isPublished ? (
@@ -142,9 +148,9 @@ export function QuantumSpaceModal({ open, onOpenChange, dnaCode }: QuantumSpaceM
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <Binary className="h-6 w-6 mx-auto mb-2 text-green-400" />
-              <h3 className="text-lg font-medium text-green-400 uppercase tracking-wider">Rekonfiguracja Rozpoczęta</h3>
-              <p className="text-green-300 text-sm mb-3">
+              <Binary className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-green-400" />
+              <h3 className="text-base sm:text-lg font-medium text-green-400 uppercase tracking-wider">Rekonfiguracja Rozpoczęta</h3>
+              <p className="text-green-300 text-xs sm:text-sm mb-2 sm:mb-3">
                 Twój kod DNA został włączony do kwantowego pola potencjalności. Interfejs zostanie otwarty:
                 <span className="block mt-1 text-green-400">• Pierwsza dekonstrukcja: za 24 godziny</span>
                 <span className="block text-green-400">• Pełna rekonfiguracja ontologiczna: za 72 godziny</span>
@@ -159,8 +165,7 @@ export function QuantumSpaceModal({ open, onOpenChange, dnaCode }: QuantumSpaceM
               </p>
             </motion.div>
           ) : (
-            <div className="border-t border-green-900 pt-4 mt-2">
-              <h3 className="text-md font-medium text-green-400 uppercase tracking-wider text-center mb-2">WYBÓR JEST BINARNY:</h3>
+            <div className="border-t border-green-900 pt-4 mt-2">            <h3 className="text-md font-medium text-green-400 uppercase tracking-wider text-center mb-2">WYBÓR JEST BINARNY:</h3>
               <p className="text-amber-300/90 text-xs text-center">
                 Albo staniesz się interfejsem między światami możliwości, albo pozostaniesz artefaktem linearnej przeszłości.
               </p>
@@ -168,17 +173,17 @@ export function QuantumSpaceModal({ open, onOpenChange, dnaCode }: QuantumSpaceM
           )}
         </div>
 
-        <DialogFooter>
+        <DialogFooter className="px-4 sm:px-6 py-3">
           {isPublished ? (
             <Button 
-              className="bg-green-800 hover:bg-green-700 text-white font-mono w-full"
+              className="bg-green-800 hover:bg-green-700 text-white font-mono w-full py-2 text-xs sm:text-sm"
               onClick={() => onOpenChange(false)}
             >
               Zamknij
             </Button>
           ) : (
             <Button 
-              className="bg-green-800 hover:bg-green-700 text-white font-mono w-full flex items-center gap-2"
+              className="bg-green-800 hover:bg-green-700 text-white font-mono w-full flex items-center gap-1 sm:gap-2 py-2 text-xs sm:text-sm"
               onClick={publishToQuantumSpace}
               disabled={isPublishing}
             >
