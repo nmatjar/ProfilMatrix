@@ -10,10 +10,12 @@ interface DNACodeDisplayProps {
 export function DNACodeDisplay({ rawCode }: DNACodeDisplayProps) {
   if (!rawCode) {
     return (
-      <div className="dna-code-display">
-        <div className="raw-code">
-          <h3 className="text-green-400">Wygenerowany Profil DNA:</h3>
-          <pre className="text-white">Brak kodu DNA</pre>
+      <div className="dna-code-display terminal-container">
+        <div className="scanline"></div>
+        <div className="terminal-window-effect"></div>
+        <div className="terminal-content profile-section">
+          <h3 className="text-green-400 mb-2">Wygenerowany Profil DNA:</h3>
+          <pre>Brak kodu DNA</pre>
         </div>
       </div>
     )
@@ -40,9 +42,9 @@ export function DNACodeDisplay({ rawCode }: DNACodeDisplayProps) {
         parts.push(<span key={`text-${lastIndex}`} className="text-white">{textBefore}</span>)
       }
       
-      // Dodaj emoji z wyróżnieniem
+      // Dodaj emoji z wyróżnieniem i efektem terminala
       parts.push(
-        <span key={`emoji-${match.index}`} className="text-xl" style={{ color: '#4ade80' }}>
+        <span key={`emoji-${match.index}`} className="text-xl terminalGreenStyle">
           {match[0]}
         </span>
       )
@@ -83,12 +85,12 @@ export function DNACodeDisplay({ rawCode }: DNACodeDisplayProps) {
   }
 
   return (
-    <div className="dna-code-display">
-      <div className="raw-code">
-        <h3 className="text-green-400">Wygenerowany Profil DNA:</h3>
-        <pre className="text-wrap leading-relaxed text-white">
+    <div className="">
+      <div className="scanline"></div>
+      <div className="terminal-window-effect"></div>
+      <div className="terminal-content profile-section">
           {formatMultilineCode(rawCode)}
-        </pre>
+  
         <input type="hidden" id="raw-dna-code" value={rawCode} />
       </div>
     </div>

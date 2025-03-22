@@ -4,6 +4,111 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/sf-mono');
+
+/* Terminal Screen Styles */
+.terminal-container {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 10, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 
+              0 0 60px -20px rgba(0, 0, 0, 0.3), 
+              inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-content {
+  padding: 1.0rem;
+  font-family: 'SF Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  overflow: auto;
+  height: calc(100% - 2.5rem);
+  /* Classic terminal green glow effect */
+  color: #00ff00;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+  position: relative;
+  background-color: rgba(0, 10, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .terminal-content {
+    font-size: 1rem;
+  }
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(rgba(0, 255, 0, 0.04) 50%, rgba(0, 10, 0, 0.05) 50%);
+  background-size: 100% 4px;
+  z-index: 10;
+}
+
+.terminal-window-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 0, 0.05),
+    rgba(0, 255, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+/* Emoji and Text Styles */
+.profile-section {
+  margin-bottom: 0.75rem;
+  opacity: 0;
+  animation: slideUp 0.3s ease-out forwards;
+  /* Classic green terminal style */
+  font-family: 'SF Mono', monospace;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+/* Terminal green style applied directly to emojis */
+.terminalGreenStyle {
+  color: #00ff00;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 @layer base {
   :root {
