@@ -4,6 +4,8 @@
 
 This document outlines the licensing approach for ProfilMatrix standard, the adaptive professional profile specification system. ProfilMatrix uses a dual licensing model to balance open adoption with sustainable development and commercial applications.
 
+**Created by Mateusz Jarosiewicz**
+
 > **Note**: All versions of ProfilMatrix (1.0, 2.0, and 3.0) were developed simultaneously, with version 3.0 being the first and only officially published release. References to earlier versions are for feature-set differentiation rather than chronological releases.
 
 Our licensing strategy aims to:
@@ -213,16 +215,7 @@ A: The version numbers refer to feature sets rather than chronological releases.
 ## Contact
 
 For licensing inquiries:  
-licensing@profilmatrix.com
+contact@profilmatrix.com
 
 For technical questions:  
 support@profilmatrix.com
-
-ProfilMatrix Consortium  
-[profilmatrix.com](https://profilmatrix.com)
-
----
-
-© 2029 ProfilMatrix Consortium. All rights reserved.  
-ProfilMatrix is a trademark of ProfilMatrix Consortium.  
-This document is for informational purposes only and does not constitute a legal agreement.
