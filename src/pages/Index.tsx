@@ -23,6 +23,8 @@ import { getAllAreas, getSegmentsByArea } from '@/lib/segment-service';
 import { DNACodeDisplay } from "@/components/DNACodeDisplay";
 import { DNACodeMapping, ParsedDNASegment, dnaCategories, ensureAllSegmentsMapped, ensureSegmentEmojis, getDNACodeForValue, getDNAMappingForSegment, groupSegmentsByArea, parseDNACode } from "@/lib/dna-code-mapping";
 import { segments as allSegments } from "@/lib/segment-data";
+import { IntroAnimation } from "@/components/IntroAnimation";
+import { QuantumSpaceModal } from "@/components/QuantumSpaceModal";
 
 interface ActiveSegment {
   id: string;
@@ -75,6 +77,8 @@ const Index = () => {
   const [activeCategory, setActiveCategory] = useState(0);
   const [selectedArea, setSelectedArea] = useState(mainAreas[0].id);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
+  const [quantumModalOpen, setQuantumModalOpen] = useState(false);
   // Usunięto globalny przełącznik multiselect
 
   const handleAreaChange = useCallback((areaId: string) => {
@@ -87,6 +91,23 @@ const Index = () => {
     onAreaChange: handleAreaChange,
   });
 
+  // Sprawdź czy to pierwsze uruchomienie
+  useEffect(() => {
+    // Sprawdź czy aplikacja była już wcześniej uruchomiona
+    const hasSeenIntro = localStorage.getItem('hasSeenIntro');
+    
+    if (!hasSeenIntro) {
+      // Jeśli to pierwsze uruchomienie, pokaż intro
+      setShowIntro(true);
+    }
+  }, []);
+
+  // Obsługa zakończenia intro
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+    localStorage.setItem('hasSeenIntro', 'true');
+  };
+  
   // Wczytaj zapisany stan aplikacji przy inicjalizacji
   useEffect(() => {
     // Wczytaj aktywne segmenty z localStorage
@@ -1031,7 +1052,9 @@ const Index = () => {
 
   return (
     <TooltipProvider>
+      <IntroAnimation isVisible={showIntro} onComplete={handleIntroComplete} />
       <AboutModal open={aboutOpen} onOpenChange={setAboutOpen} />
+      <QuantumSpaceModal open={quantumModalOpen} onOpenChange={setQuantumModalOpen} dnaCode={profile} />
       <div className="min-h-screen bg-black text-green-500 flex flex-col">
         <header className="border-b border-green-900 p-4">
           <div className="max-w-1xl mx-auto flex justify-between items-center">
@@ -1040,14 +1063,25 @@ const Index = () => {
               {"ProfilMatrix"}
             </h1>
             
-            <Button 
-              variant="outline" 
-              className="border-green-700 hover:bg-green-900 hover:bg-opacity-30 font-mono flex items-center gap-2"
-              onClick={() => setAboutOpen(true)}
-            >
-              <HelpCircle className="h-4 w-4" />
-              <span>About</span>
-            </Button>
+            <div className="flex gap-3">
+              <Link to="/dna-decoder">
+                <Button 
+                  variant="outline" 
+                  className="border-green-700 hover:bg-green-900 hover:bg-opacity-30 font-mono flex items-center gap-2"
+                >
+                  <Brain className="h-4 w-4" />
+                  <span>Dekoder DNA</span>
+                </Button>
+              </Link>
+              <Button 
+                variant="outline" 
+                className="border-green-700 hover:bg-green-900 hover:bg-opacity-30 font-mono flex items-center gap-2"
+                onClick={() => setAboutOpen(true)}
+              >
+                <HelpCircle className="h-4 w-4" />
+                <span>About</span>
+              </Button>
+            </div>
           </div>
         </header>
 
@@ -1070,26 +1104,40 @@ const Index = () => {
                 <div className="mt-4 p-4 rounded border border-green-700 bg-black/50">
                   <DNACodeDisplay rawCode={profile || "Wybierz opcje aby wygenerować profil..."} />
                 </div>
-                <div className="mt-4 flex gap-2">
-                  <button
-                    onClick={copyToClipboard}
-                    className="flex-1 px-4 py-2 border border-green-700 rounded hover:bg-green-900 hover:bg-opacity-30"
-                  >
-                    Kopiuj Profil
-                  </button>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button
-                        onClick={resetProfile}
-                        className="px-4 py-2 border border-red-700 rounded hover:bg-red-900 hover:bg-opacity-30 text-red-500 hover:text-red-400"
-                      >
-                        <RefreshCw className="h-4 w-4" />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Resetuj profil DNA</p>
-                    </TooltipContent>
-                  </Tooltip>
+                <div className="mt-4 space-y-4">
+                  <div className="flex gap-2">
+                    <button
+                      onClick={copyToClipboard}
+                      className="flex-1 px-4 py-2 border border-green-700 rounded hover:bg-green-900 hover:bg-opacity-30"
+                    >
+                      Kopiuj Profil
+                    </button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={resetProfile}
+                          className="px-4 py-2 border border-red-700 rounded hover:bg-red-900 hover:bg-opacity-30 text-red-500 hover:text-red-400"
+                        >
+                          <RefreshCw className="h-4 w-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Resetuj profil DNA</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                  {profile && (
+                    <Button 
+                      className="w-full bg-gradient-to-r from-green-900 to-blue-900 hover:from-green-800 hover:to-blue-800 text-xs border border-green-600 py-4 flex items-center gap-2 group relative overflow-hidden"
+                      onClick={() => setQuantumModalOpen(true)}
+                    >
+                      <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-20 transition-opacity"></div>
+                      <div className="relative z-10 flex items-center justify-center w-full font-mono">
+                        <Sparkles className="h-4 w-4 mr-2 text-cyan-300" />
+                        <span>Dodaj swój profil do kwantowej przestrzeni możliwości</span>
+                      </div>
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>

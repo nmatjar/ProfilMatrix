@@ -278,7 +278,9 @@ export function DNADecoderPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-1">
-                <Card className="border border-green-700 rounded-md bg-black bg-opacity-90">
+                <Card className="border border-green-700 rounded-md bg-black bg-opacity-90 terminal-container">
+                  <div className="scanline"></div>
+                  <div className="terminal-window-effect"></div>
                   <CardHeader className="pb-3">
                     <CardTitle className="text-lg font-bold">Wprowadź kod DNA</CardTitle>
                     <CardDescription className="text-gray-300">
@@ -343,7 +345,9 @@ export function DNADecoderPage() {
                   </TabsList>
 
                   <TabsContent value="decoded" className="mt-0">
-                    <Card className="border border-green-700 rounded-md bg-black bg-opacity-90">
+                    <Card className="border border-green-700 rounded-md bg-black bg-opacity-90 terminal-container">
+                      <div className="scanline"></div>
+                      <div className="terminal-window-effect"></div>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg font-bold">Zdekodowany profil</CardTitle>
                         <CardDescription className="text-gray-300">
@@ -359,7 +363,9 @@ export function DNADecoderPage() {
                   </TabsContent>
 
                   <TabsContent value="visualize" className="mt-0">
-                    <Card className="border border-green-700 rounded-md bg-black bg-opacity-90">
+                    <Card className="border border-green-700 rounded-md bg-black bg-opacity-90 terminal-container">
+                      <div className="scanline"></div>
+                      <div className="terminal-window-effect"></div>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg font-bold">Wizualizacje DNA</CardTitle>
                         <CardDescription className="text-gray-300">
@@ -403,7 +409,9 @@ export function DNADecoderPage() {
                   </TabsContent>
 
                   <TabsContent value="formatted" className="mt-0">
-                    <Card className="border border-green-700 rounded-md bg-black bg-opacity-90">
+                    <Card className="border border-green-700 rounded-md bg-black bg-opacity-90 terminal-container">
+                      <div className="scanline"></div>
+                      <div className="terminal-window-effect"></div>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg font-bold">Sformatowany kod DNA</CardTitle>
                         <CardDescription className="text-gray-300">
@@ -447,7 +455,9 @@ export function DNADecoderPage() {
                   </TabsContent>
 
                   <TabsContent value="text" className="mt-0">
-                    <Card className="border border-green-700 rounded-md bg-black bg-opacity-90">
+                    <Card className="border border-green-700 rounded-md bg-black bg-opacity-90 terminal-container">
+                      <div className="scanline"></div>
+                      <div className="terminal-window-effect"></div>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg font-bold">Opis do wykorzystania z LLM</CardTitle>
                         <CardDescription className="text-gray-300">
